@@ -1,0 +1,33 @@
+[
+    {
+        "id": "f3d16347-ff04-4134-bacf-0b89a3d5c6bc",
+        "author": { "id": "ff461495-7827-4d76-bf2e-52d52e72e0fb"},
+        "createdAt": "2026-02-21T09:30:00-05:00",
+        "comments": [
+            { "id": "fb136fc6-3645-4383-9dc3-22933e38b7ff"}
+        ],
+        "tags": ["strings", "palindrome"],
+        "contentSections": [
+            { "type": "text", "value": "Here is my approach:" },
+            { "type": "image", "value": "diagram1.png" }
+        ],
+        "score": 132,
+        "solutionNumber": 2,
+        "questionId": "1d1d0951-015f-4d59-b0f4-771a34fb4053"
+    },
+    {
+        "id": "d00aea83-0b2b-448c-b8ba-0174db213e26",
+        "author": { "id": "c66b8c4a-670a-4df4-a436-7d0afa8ceb67"},
+        "createdAt": "2026-02-20T11:15:00-05:00",
+        "comments": [
+            { "id": "fb136fc6-3645-4383-9dc3-22933e38b7ff"}
+        ],
+        "tags": ["graphs"],
+        "contentSections": [
+            { "type": "code", "value": "Queue<Node> q = new LinkedList<>();" }
+        ],
+        "score": 4,
+        "solutionNumber": 5,
+        "questionId": "6f0257f5-2e88-48ea-9cbf-f2f59f8b1826"
+    }
+]

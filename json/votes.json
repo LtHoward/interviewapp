@@ -1,0 +1,14 @@
+[
+    {
+        "id": "6dd0c032-ee10-4f40-9d43-ff2af0255b9f",
+        "voter": { "id": "ff461495-7827-4d76-bf2e-52d52e72e0fb"},
+        "post": { "id": "80b72263-d899-42e6-a334-6d38ae8286cd"},
+        "value": "UP"
+    },
+    {
+        "id": "6dd0c032-ee10-4f40-9d43-ff2af0255b9f",
+        "voter": { "id": "ff461495-7827-4d76-bf2e-52d52e72e0fb"},
+        "post": { "id": "80b72263-d899-42e6-a334-6d38ae8286cd"},
+        "value": "UP"
+    }
+]

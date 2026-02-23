@@ -1,0 +1,20 @@
+[
+    {
+        "id": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+        "username": "sthomas",
+        "email": "sthomas@email.sc.edu",
+        "password": "daR33l*Th0m45",
+        "firstName": "Thomas",
+        "lastName": "Sanders",
+        "role": "STUDENT"
+    },
+    {
+        "id": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
+        "username": "ProfessionalProfessor",
+        "email": "pprofessor@cse.sc.edu",
+        "password": "1LuvC5C3247!",
+        "firstName": "Peter",
+        "lastName": "Professor",
+        "role": "CONTRIBUTOR"
+    }
+]

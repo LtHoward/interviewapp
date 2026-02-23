@@ -1,0 +1,18 @@
+[
+    {
+        "points": 310, 
+        "level": 4, 
+        "currentStreak": 1, 
+        "longestStreak": 8, 
+        "equippedTitle": "BOOLEAN_BRAWLER", 
+        "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC LEARNER", "BOOLEAN_BRAWLER"]
+    },
+    {
+        "points": 120, 
+        "level": 2, 
+        "currentStreak": 3, 
+        "longestStreak": 5, 
+        "equippedTitle": "SYNTAX_SCOUT", 
+        "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC LEARNER"]
+    }
+]

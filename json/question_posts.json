@@ -1,0 +1,35 @@
+[
+    {
+         "id": "80b72263-d899-42e6-a334-6d38ae8286cd",
+        "author": { "id": "1e13689f-6698-45f4-9d21-bdc5a03d6652"},
+        "createdAt": "2026-02-22T12:00:00-05:00",
+        "comments": [
+            { "id": "c07c9584-614f-455c-be71-edea8b3a6397"}
+        ],
+        "tags": ["arrays", "two-sum"],
+        "contentSections": [
+            { "type": "text", "value": "Solve Two Sum efficiently." },
+            { "type": "code", "value": "for(...) { ... }" }
+        ],
+        "score": 670,
+        "title": "Two Sum",
+        "difficulty": "EASY",
+        "hint": "Try using a hashmap."
+    },
+    {
+        "id": "6f0257f5-2e88-48ea-9cbf-f2f59f8b1826",
+        "author": { "id": "43fbcd13-092a-49c2-8f37-ddafa9427701"},
+        "createdAt": "2026-02-20T10:00:00-05:00",
+        "comments": [
+            { "id": "404f5dcc-6eca-46a5-ad29-752737556cbd"}
+        ],
+        "tags": ["graphs"],
+        "contentSections": [
+            { "type": "text", "value": "Find the shortest path..." }
+        ],
+        "score": 45,
+        "title": "Shortest Path Intro",
+        "difficulty": "MEDIUM",
+        "hint": "Think abouth Breadth-First Searching"
+    }
+]

@@ -1,0 +1,4 @@
+[
+    { "type" : "XP_BOOST", "amount": 50, "redeemed": false },
+    { "type" : "TITLE_UNLOCK", "amount": 1, "redeemed": true }
+]
