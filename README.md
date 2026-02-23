@@ -1,7 +1,7 @@
 # InterviewApp-OvernightOperators
 A LeetCode copy application made just for the University of South Carolina students
 
- # DOCUMENTS:
+# DOCUMENTS:
 ## Requirements Spreadsheet: 
 https://docs.google.com/spreadsheets/d/1_mxCSE42vKNPuZRdKcWs23Ra3RZZTM-ptYpUIcEwxts/edit?usp=sharing
 ## UML Class Diagram: 
