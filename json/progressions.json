@@ -5,7 +5,7 @@
         "currentStreak": 1, 
         "longestStreak": 8, 
         "equippedTitle": "BOOLEAN_BRAWLER", 
-        "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC LEARNER", "BOOLEAN_BRAWLER"]
+        "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC_LEARNER", "BOOLEAN_BRAWLER"]
     },
     {
         "points": 120, 
@@ -13,6 +13,6 @@
         "currentStreak": 3, 
         "longestStreak": 5, 
         "equippedTitle": "SYNTAX_SCOUT", 
-        "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC LEARNER"]
+        "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC_LEARNER"]
     }
 ]

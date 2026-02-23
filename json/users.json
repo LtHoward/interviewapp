@@ -16,5 +16,41 @@
         "firstName": "Peter",
         "lastName": "Professor",
         "role": "CONTRIBUTOR"
+    },
+    {
+        "id": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
+        "username": "adminA",
+        "email": "adminA@email.sc.edu",
+        "password": "Adm1nA!*",
+        "firstName": "Ava",
+        "lastName": "Admin",
+        "role": "ADMIN"
+    },
+    {
+        "id": "f2335d42-a8b1-47fc-b99b-9a7e02e0662b",
+        "username": "adminB",
+        "email": "adminB@email.sc.edu",
+        "password": "Adm1nB!*",
+        "firstName": "Blake",
+        "lastName": "Admin",
+        "role": "ADMIN"
+    },
+    {
+        "id": "43fbcd13-092a-49c2-8f37-ddafa9427701",
+        "username": "gta_aurora",
+        "email": "gta@cse.sc.edu",
+        "password": "TApass!215",
+        "firstName": "Taylor",
+        "lastName": "Assistant",
+        "role": "CONTRIBUTOR"
+    },
+    {
+        "id": "c66b8c4a-670a-4df4-a436-7d0afa8ceb67",
+        "username": "cstudent",
+        "email": "cstudent@email.sc.edu",
+        "password": "Stud3nt!",
+        "firstName": "Casey",
+        "lastName": "Student",
+        "role": "STUDENT"
     }
 ]
