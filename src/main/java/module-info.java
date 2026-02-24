@@ -4,4 +4,7 @@ module com.interviewapp {
 
     opens com.interviewapp to javafx.fxml;
     exports com.interviewapp;
+
+    opens com.model to javafx.fxml;
+    exports com.model;
 }
