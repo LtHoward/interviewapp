@@ -1,12 +1,36 @@
 [
     {
         "id": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
-        "username": "sthomas",
-        "email": "sthomas@email.sc.edu",
-        "password": "daR33l*Th0m45",
+        "username": "sSteven",
+        "email": "ssteven@email.sc.edu",
+        "password": "daR33l*5T3ven!",
         "firstName": "Thomas",
-        "lastName": "Sanders",
-        "role": "STUDENT"
+        "lastName": "Student",
+        "role": "STUDENT",
+
+        "studentData": {
+            "currentClasses": "CSCE 211, CSCE 240, MATH 347",
+            "classesTaken": "CSCE 145, CSCE 190, CSCE 146, CSCE 215",
+            "major": "COMPUTER_SCIENCE",
+            "year": "SOPHOMORE",
+            "experience": "BEGINNER",
+            "solvedQuestions": 7,
+            "postedSolutions": ["0a189ba1-efc4-4e1f-82a3-cd529088d715"],
+            "lastActivityDate": "2026-02-22T18:00:00-05:00"
+        },
+
+        "progression": {
+            "points": 120,
+            "level": 2,
+            "currentStreak": 3,
+            "longestStreak": 4,
+            "equippedTitle": "SYNTAX_SCOUT",
+            "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC_LEARNER"]
+        },
+
+        "rewards": [
+            { "type": "XP_BOOST", "amount": 20, "redeemed": false }
+        ]
     },
     {
         "id": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
@@ -15,7 +39,11 @@
         "password": "1LuvC5C3247!",
         "firstName": "Peter",
         "lastName": "Professor",
-        "role": "CONTRIBUTOR"
+        "role": "CONTRIBUTOR",
+
+        "contributorData": {
+            "experienceDescription": "Professor of Computer Science with 15 years experience."
+        }
     },
     {
         "id": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
@@ -24,33 +52,6 @@
         "password": "Adm1nA!*",
         "firstName": "Ava",
         "lastName": "Admin",
-        "role": "ADMIN"
-    },
-    {
-        "id": "f2335d42-a8b1-47fc-b99b-9a7e02e0662b",
-        "username": "adminB",
-        "email": "adminB@email.sc.edu",
-        "password": "Adm1nB!*",
-        "firstName": "Blake",
-        "lastName": "Admin",
-        "role": "ADMIN"
-    },
-    {
-        "id": "43fbcd13-092a-49c2-8f37-ddafa9427701",
-        "username": "gta_aurora",
-        "email": "gta@cse.sc.edu",
-        "password": "TApass!215",
-        "firstName": "Taylor",
-        "lastName": "Assistant",
-        "role": "CONTRIBUTOR"
-    },
-    {
-        "id": "c66b8c4a-670a-4df4-a436-7d0afa8ceb67",
-        "username": "cstudent",
-        "email": "cstudent@email.sc.edu",
-        "password": "Stud3nt!",
-        "firstName": "Casey",
-        "lastName": "Student",
-        "role": "STUDENT"
-    }
+        "role": "ADMINISTRATOR"
+  }
 ]
