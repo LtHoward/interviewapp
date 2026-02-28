@@ -76,4 +76,3 @@ public class DataLoader extends DataConstants {
         System.out.println("Posts loaded: " + posts.size());
     }
 }
-}
