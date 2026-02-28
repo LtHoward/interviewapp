@@ -22,37 +22,54 @@ public abstract class Post {
                 ArrayList<PostContent> contentSections,
                 int score) {
 
+        this.id = id;
+        this.author = author;
+        this.createdAt = createdAt;
+        this.comments = comments;
+        this.tags = tags;
+        this.contentSections = contentSections;
+        this.score = score;
+    }
+
+    public Post(User author) {
+        this(UUID.randomUUID(),
+             author,
+             new Date(),
+             new ArrayList<>(),
+             new ArrayList<>(),
+             new ArrayList<>(),
+             0);
     }
 
     public void addComment(Comment comment) {
-
+        comments.add(comment);
     }
 
     public ArrayList<Comment> getComments() {
-        return null;
+        return comments;
     }
 
     public User getAuthor() {
-        return null;
+        return author;
     }
 
     public Date getCreatedAt() {
-        return null;
+        return createdAt;
     }
 
     public int getScore() {
-        return 0;
+        return score;
     }
 
     public int upvote(User user) {
-        return 0;
+        return ++score;
     }
 
     public int downvote(User user) {
-        return 0;
+        return --score;
     }
 
     public int getScore(int upVote, int downVote) {
-        return 0;
+        return upVote - downVote;
     }
 }
