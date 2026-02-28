@@ -1,6 +1,6 @@
 package com.model;
 
-public abstract class dataConstants {
+public abstract class DataConstants {
 
     public static final String USERS_FILE = "json/users.json";
     public static final String POSTS_FILE = "json/posts.json";
