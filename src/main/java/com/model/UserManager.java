@@ -12,7 +12,7 @@ public class UserManager {
     }
 
     public User createUser (String username, String email, String firstName, String lastName) {
-        r
+        return null;
     }
 
     public boolean login (String username, String email, String password) {
@@ -28,14 +28,14 @@ public class UserManager {
     }
 
     public User getUser (String username, String password) {
-        
+        return null;
     }
 
     public boolean saveUser () {
         return true;
     }
 
-    public boolean removeOtherAccount(Administration administration) {
+    public boolean removeOtherAccount(Role administration) {
         return true;
     }
 }
