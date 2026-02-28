@@ -1,0 +1,4 @@
+--patch-module
+com.interviewapp=_
+--add-reads
+com.interviewapp=ALL-UNNAMED
