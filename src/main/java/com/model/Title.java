@@ -1,0 +1,13 @@
+package com.model;
+
+public enum Title {
+    SYNTAX_SCOUT,
+    LOGIC_LEARNER,
+    BOOLEAN_BRAWLER,
+    ALGORITH_APPRENTICE,
+    HASHMAP_HUNTER,
+    RECURSION_RENEGADE,
+    CODE_WARLORD,
+    GARNET_GURU,
+    LORD_OF_LOGIC
+}
