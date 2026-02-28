@@ -1,6 +1,6 @@
 package com.model;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class PostManager 
 {
@@ -183,12 +183,11 @@ public class PostManager
     }
 
     /**
-     * save method saves all post and users
+     * save method saves all post data to the JSON file
      * @return true if the posts were saved successfully, false otherwise
      */
     public boolean save()
     {
-        DataWriter.saveUsers();
         DataWriter.savePosts();
         return true;
     }
