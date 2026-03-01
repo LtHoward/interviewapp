@@ -12,13 +12,13 @@ public class DataWriter extends DataConstants
     public static void saveUsers()
     {
         Users users = Users.getInstance();
-        ArrayList<User> userList = users.getUsers();
+        ArrayList<User> users = users.getUsers();
 
         JSONArray jasonUsers = new JSONArray();
 
         for(int i = 0; i < userList.size(); i++) 
         {
-            jsonUsers.add(getUserJSON(userList.get(i)));
+            jasonUsers.add(getUserJSON(users.get(i)));
         }
 
         try (FileWriter file = new FileWriter(USERS_FILE)) 
@@ -51,80 +51,42 @@ public class DataWriter extends DataConstants
 
     }
 
-    public static void saveQuestions()
+    public static void savePosts() 
     {
-        Questions questions = Questions.getInstance();
-        ArrayList<Question> questionList = questions.getQuestions();
+        Posts postsInstance = Posts.getInstance();
+        ArrayList<Post> posts = postsInstance.getPosts();
 
-        JSONArray jsonQuestions = new JSONArray();
+        JSONArray jsonPosts = new JSONArray();
 
-        for(int i = 0; i < questionList.size(); i++) 
+        for (int i = 0; i < posts.size(); i++) 
         {
-            jsonQuestions.add(getQuestionJSON(questionList.get(i)));
+            jsonPosts.add(getPostJSON(posts.get(i)));
         }
 
-        try (FileWriter file = new FileWriter(QUESTIONS_FILE)) 
+        try (FileWriter file = new FileWriter(POSTS_FILE)) 
         {
-            file.write(jsonQuestions.toJSONString());
+            file.write(jsonPosts.toJSONString());
             file.flush();
         } catch (IOException e) 
         {
             e.printStackTrace();
         }
 
-        public static JSONObject getQuestionJSON(Question question) 
+        public static JSONObject getPostJSON(Post post) 
         {
-            JSONObject questionDetails = new JSONObject();
-            questionDetails.put(QUESTION_ID, question.getId());
-            questionDetails.put(TITLE, question.getTitle());
-            questionDetails.put(AUTHOR_ID, question.getAuthorId());
-            questionDetails.put(CREATED_AT, question.getCreatedAt());
-            questionDetails.put(DIFFICULTY, question.getDifficulty());
-            questionDetails.put(HINT, question.getHint());
-            questionDetails.put(TAGS, question.getTags());
-            return questionDetails;
+            JSONObject postDetails = new JSONObject();
+            postDetails.put(USER_ID, post.getId());
+            postDetails.put(POST_TYPE, post.getType());
+            postDetails.put(AUTHOR_ID, post.getAuthorId());
+            postDetails.put(CREATED_AT, post.getCreatedAt());
+            postDetails.put(SCORE, post.getScore());
+            return postDetails;
         }
 
         public static void main(String[] args) 
         {
-            DataWriter.saveQuestions();
-        }
-    }
-
-    public static void saveSolutions()
-    {
-        Solutions solutions = Solutions.getInstance();
-        ArrayList<Solution> solutionList = solutions.getSolutions();
-
-        JSONArray jsonSolutions = new JSONArray();
-
-        for(int i = 0; i < solutionList.size(); i++) 
-        {
-            jsonSolutions.add(getSolutionJSON(solutionList.get(i)));
+            DataWriter.savePosts();
         }
 
-        try (FileWriter file = new FileWriter(SOLUTIONS_FILE)) 
-        {
-            file.write(jsonSolutions.toJSONString());
-            file.flush();
-        } catch (IOException e) 
-        {
-            e.printStackTrace();
-        }
-
-        public static JSONObject getSolutionJSON(Solution solution) 
-        {
-            JSONObject solutionDetails = new JSONObject();
-            solutionDetails.put(QUESTION_ID, solution.getQuestionId());
-            solutionDetails.put(SOLUTION_NUMBER, solution.getSolutionNumber());
-            solutionDetails.put(AUTHOR_ID, solution.getAuthorId());
-            solutionDetails.put(CREATED_AT, solution.getCreatedAt());
-            return solutionDetails;
-        }
-
-        public static void main(String[] args) 
-        {
-            DataWriter.saveSolutions();
-        }
-
-}
+    } 
+} 
