@@ -1,6 +1,13 @@
 package com.model;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Date;
+=======
+
+import java.util.ArrayList;
+import java.util.Date;
+
+>>>>>>> fdb99d3959b5bb708c3f38cbe349b043eb400c9d
 public class Progression 
 {
     private int points;

@@ -10,12 +10,12 @@ public class QuestionPost extends Post {
     private Difficulty difficulty;
     private String hint;
 
-    public QuestionPost(User author,
-                        String title,
-                        Difficulty difficulty,
-                        String hint) {
+    public QuestionPost(UUID postId, User author, Date createdAt,
+                ArrayList<Comment> comments, ArrayList<String> tags,
+                ArrayList<PostContent> contentSections, int score,
+                String title,Difficulty difficulty, String hint) {
 
-        super(author);
+        super(postId, author, createdAt, comments, tags, contentSections, score);
         this.title = title;
         this.difficulty = difficulty;
         this.hint = hint;

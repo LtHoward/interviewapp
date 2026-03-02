@@ -5,7 +5,7 @@ public abstract class DataConstants {
     public static final String USERS_FILE = "json/users.json";
     public static final String POSTS_FILE = "json/posts.json";
 
-    public static final String USER_ID = "id";
+    public static final String USER_ID = "userId";
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
@@ -18,13 +18,13 @@ public abstract class DataConstants {
     public static final String CLASSES_TAKEN = "classesTaken";
     public static final String MAJOR = "major";
     public static final String YEAR = "year";
-    public static final String EXPERIENCE = "experience";
+    public static final String SKILL_LEVEL = "skillLevel";
     public static final String SOLVED_QUESTIONS = "solvedQuestions";
     public static final String POSTED_SOLUTIONS = "postedSolutions";
     public static final String LAST_ACTIVITY_DATE = "lastActivityDate";
 
     public static final String CONTRIBUTOR_DATA = "contributorData";
-    public static final String EXPERIENCE_DESCRIPTION = "experienceDescription";
+    public static final String EXPERIENCE = "experience";
 
     public static final String PROGRESSION = "progression";
     public static final String POINTS = "points";
@@ -39,6 +39,7 @@ public abstract class DataConstants {
     public static final String AMOUNT = "amount";
     public static final String REDEEMED = "redeemed";
 
+    public static final String POST_ID = "postId";
     public static final String POST_TYPE = "type";
     public static final String TITLE = "title";
     public static final String AUTHOR_ID = "authorId";
