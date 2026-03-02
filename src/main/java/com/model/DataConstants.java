@@ -18,13 +18,13 @@ public abstract class DataConstants {
     public static final String CLASSES_TAKEN = "classesTaken";
     public static final String MAJOR = "major";
     public static final String YEAR = "year";
-    public static final String EXPERIENCE = "experience";
+    public static final String SKILL_LEVEL = "skillLevel";
     public static final String SOLVED_QUESTIONS = "solvedQuestions";
     public static final String POSTED_SOLUTIONS = "postedSolutions";
     public static final String LAST_ACTIVITY_DATE = "lastActivityDate";
 
     public static final String CONTRIBUTOR_DATA = "contributorData";
-    public static final String EXPERIENCE_DESCRIPTION = "experienceDescription";
+    public static final String EXPERIENCE = "experience";
 
     public static final String PROGRESSION = "progression";
     public static final String POINTS = "points";

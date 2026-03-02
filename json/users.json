@@ -13,7 +13,7 @@
             "classesTaken": "CSCE 145, CSCE 190, CSCE 146, CSCE 215",
             "major": "COMPUTER_SCIENCE",
             "year": "SOPHOMORE",
-            "experience": "BEGINNER",
+            "skillLevel": "BEGINNER",
             "solvedQuestions": 7,
             "postedSolutions": ["0a189ba1-efc4-4e1f-82a3-cd529088d715"],
             "lastActivityDate": "2026-02-22T18:00:00-05:00"
@@ -42,7 +42,7 @@
         "role": "CONTRIBUTOR",
 
         "contributorData": {
-            "experienceDescription": "Professor of Computer Science with 15 years experience."
+            "experience": "Professor of Computer Science with 15 years experience."
         }
     },
     {
