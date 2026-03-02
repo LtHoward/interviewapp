@@ -22,32 +22,32 @@ public class InterviewApp {
       if (user == null)
       return false; // nobody logged in then it failed 
 
-     return UserManager.removeUser(); // someone is logged in, remove them
+     return usermanager.removeUser(); // someone is logged in, remove them
         
     }
 
     public ArrayList<User> getAllUsers()
     {
-        return UserManager.getAllUsers();
+        return usermanager.getUser();
         
     }
 
     public boolean createUser(String username, String email, String password, String firstName, String lastName)
     {
-       return UserManager.createUser(username, email, password, firstName, lastName);
+       return usermanager.createUser(username, email, password, firstName, lastName);
 
     
     }
 
     public boolean login(String username, String email, String password)
     {
-        return UserManger.login(username, email, password);
+        return UserManager.login(username, email, password);
 
     }
 
     public boolean logout()
     {
-        return UserManger.logout();
+        return UserManager.logout();
 
     }
 
@@ -77,17 +77,19 @@ public class InterviewApp {
 
     public boolean addSavedQuestion()
     {
-        return QuestionManger.add
+        return QuestionManger.addSavedQuestion();
 
     }
 
     public void comment(user User, postId UUID, String content)
     {
+        return UserManager.comment(User, UUID, content);
 
     }
 
     public boolean removeSavedQuestion()
     {
+        return QuestionManager.removeSavedQuestion();
 
     } 
 
