@@ -1,5 +1,8 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Progression 
 {
     private int points;
