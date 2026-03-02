@@ -11,14 +11,14 @@ public class DataWriter extends DataConstants
 
     public static void saveUsers()
     {
-        Users users = Users.getInstance();
-        ArrayList<User> users = users.getUsers();
+        Users usersInstance = Users.getInstance();
+        ArrayList<User> userManager = usersInstance.getUsers();
 
         JSONArray jasonUsers = new JSONArray();
 
-        for(int i = 0; i < userList.size(); i++) 
+        for(int i = 0; i < userManager.size(); i++) 
         {
-            jasonUsers.add(getUserJSON(users.get(i)));
+            jasonUsers.add(getUsersJSON(userManager.get(i)));
         }
 
         try (FileWriter file = new FileWriter(USERS_FILE)) 
@@ -30,37 +30,37 @@ public class DataWriter extends DataConstants
             e.printStackTrace();
         }
 
-        public static JSONObject getUserJSON(User user) 
+        public static JSONObject getUsersJSON(User user) 
         {
-            JSONObject userDetails = new JSONObject();
-            userDetails.put(USER_ID, user.getId());
-            userDetails.put(USERNAME, user.getUsername());
-            userDetails.put(EMAIL, user.getEmail());
-            userDetails.put(PASSWORD, user.getPassword());
-            userDetails.put(FIRST_NAME, user.getFirstName());
-            userDetails.put(LAST_NAME, user.getLastName());
-            userDetails.put(ROLE, user.getRole());
-            return userDetails;
+            JSONObject usersDetails = new JSONObject();
+            usersDetails.put(USER_ID, user.getId().toString());
+            usersDetails.put(USERNAME, user.getUsername());
+            usersDetails.put(EMAIL, user.getEmail());
+            usersDetails.put(PASSWORD, user.getPassword());
+            usersDetails.put(FIRST_NAME, user.getFirstName());
+            usersDetails.put(LAST_NAME, user.getLastName());
+            usersDetails.put(ROLE, user.getRole());
+            return usersDetails;
         }
 
 
         public static void main(String[] args) 
         {
             DataWriter.saveUsers();
-        }
+        
 
     }
 
-    public static void savePosts() 
+   /**public static void savePosts() 
     {
         Posts postsInstance = Posts.getInstance();
-        ArrayList<Post> posts = postsInstance.getPosts();
+        ArrayList<Posts> posts = postsInstance.getPosts();
 
         JSONArray jsonPosts = new JSONArray();
 
         for (int i = 0; i < posts.size(); i++) 
         {
-            jsonPosts.add(getPostJSON(posts.get(i)));
+            jsonPosts.add(getPostsJSON(posts.get(i)));
         }
 
         try (FileWriter file = new FileWriter(POSTS_FILE)) 
@@ -72,7 +72,7 @@ public class DataWriter extends DataConstants
             e.printStackTrace();
         }
 
-        public static JSONObject getPostJSON(Post post) 
+        public static JSONObject getPostsJSON(Posts post) 
         {
             JSONObject postDetails = new JSONObject();
             postDetails.put(USER_ID, post.getId());
@@ -89,4 +89,5 @@ public class DataWriter extends DataConstants
         }
 
     } 
+        */
 } 
