@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants 
 {
-
+    
     public static void saveUsers()
     {
         Users users = Users.getInstance();

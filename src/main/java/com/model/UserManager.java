@@ -19,6 +19,10 @@ public class UserManager {
         return true;
     }
 
+    public boolean logout() {
+        return true;
+    }
+
     public boolean resetPassword (){
         return true;
     }
