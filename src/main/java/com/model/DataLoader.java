@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.time.OffsetDateTime;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,7 +34,7 @@ public class DataLoader extends DataConstants {
                 Role role = Role.valueOf(((String) userJSON.get(ROLE)).toUpperCase());
 
                 if (role == Role.STUDENT) {
-            
+
                     String currentClasses = (String) userJSON.getOrDefault(CURRENT_CLASSES, "");
                     String classesTaken = (String) userJSON.getOrDefault(CLASSES_TAKEN, "");
 
@@ -50,24 +51,22 @@ public class DataLoader extends DataConstants {
                     long lastMs = (Long) userJSON.getOrDefault(LAST_ACTIVITY_DATE, System.currentTimeMillis());
                     Date lastActivityDate = new Date(lastMs);
 
-                    users.add(new Student(id, username, email, password, firstName, 
-                    lastName, major, year, currentClasses, classesTaken, 
-                    skillLevel, solvedQuestions, postedSolutions, 
-                    progression, rewards, lastActivityDate));
+                    users.add(new Student(id, username, email, password, firstName,
+                            lastName, major, year, currentClasses, classesTaken,
+                            skillLevel, solvedQuestions, postedSolutions,
+                            progression, rewards, lastActivityDate));
 
                 } else if (role == Role.CONTRIBUTOR) {
                     String experience = (String) userJSON.getOrDefault(EXPERIENCE, "");
 
-                    users.add(new Contributor(id, username, email, password, firstName, 
-                        lastName, experience
-                    ));
-                }
+                    users.add(new Contributor(id, username, email, password, firstName,
+                            lastName, experience));
 
-                else if (role == Role.ADMINISTRATOR) {
+                } else if (role == Role.ADMINISTRATOR) {
                     String experience = (String) userJSON.getOrDefault(EXPERIENCE, "");
-                    users.add(new Contributor(id, username, email, password, firstName, 
-                        lastName, experience, Role.ADMINISTRATOR));
-}
+                    users.add(new Contributor(id, username, email, password, firstName,
+                            lastName, experience, Role.ADMINISTRATOR));
+                }
             }
 
         } catch (Exception e) {
@@ -76,12 +75,13 @@ public class DataLoader extends DataConstants {
 
         return users;
     }
+
     public static ArrayList<Post> getPosts(ArrayList<User> users) {
         ArrayList<Post> posts = new ArrayList<>();
 
         Map<UUID, User> userMap = new HashMap<>();
-        for (User u : users) {
-            userMap.put(u.getId(), u);
+        for (User user : users) {
+            userMap.put(user.getId(), user);
         }
 
         try (FileReader reader = new FileReader(POSTS_FILE)) {
@@ -91,18 +91,30 @@ public class DataLoader extends DataConstants {
             for (int i = 0; i < postsJSON.size(); i++) {
                 JSONObject postJSON = (JSONObject) postsJSON.get(i);
 
-                UUID postId = UUID.fromString((String) postJSON.get(POST_ID));
-                UUID authorId = UUID.fromString((String) postJSON.get(AUTHOR_ID));
+                String postIdString = (String) postJSON.get(POST_ID);
+                String authorIdString = (String) postJSON.get(AUTHOR_ID);
 
-                User author = userMap.get(authorId);
-                if (author == null) {
+                if (postIdString == null || authorIdString == null) {
+                    System.out.println("Bad post JSON entry (missing id keys): " + postJSON.toJSONString());
                     continue;
                 }
 
-                long createdMs = (Long) postJSON.getOrDefault(CREATED_AT, System.currentTimeMillis());
-                Date createdAt = new Date(createdMs);
+                UUID postId = UUID.fromString(postIdString);
+                UUID authorId = UUID.fromString(authorIdString);
 
-                int score = ((Long) postJSON.getOrDefault(SCORE, 0L)).intValue();
+                User author = userMap.get(authorId);
+                if (author == null) {
+                    System.out.println("Post has unknown authorId: " + authorId + " | post=" + postJSON.toJSONString());
+                    continue;
+                }
+
+                String createdAtStr = (String) postJSON.get(CREATED_AT);
+                Date createdAt = (createdAtStr == null)
+                        ? new Date()
+                        : Date.from(OffsetDateTime.parse(createdAtStr).toInstant());
+
+                Number scoreNum = (Number) postJSON.getOrDefault(SCORE, 0L);
+                int score = scoreNum.intValue();
 
                 String type = ((String) postJSON.getOrDefault(POST_TYPE, "")).toUpperCase();
 
@@ -116,18 +128,16 @@ public class DataLoader extends DataConstants {
                     Difficulty difficulty = Difficulty.valueOf(((String) postJSON.getOrDefault(DIFFICULTY, "EASY")).toUpperCase());
                     String hint = (String) postJSON.getOrDefault(HINT, "");
 
-                    posts.add(new QuestionPost(postId, author, createdAt, comments, tags, contentSections, score, title, difficulty, hint));
+                    posts.add(new QuestionPost(postId, author, createdAt, comments, tags, contentSections,
+                            score, title, difficulty, hint));
 
                 } else if (type.equals("SOLUTION")) {
 
-                    int solutionNumber = ((Long) postJSON.getOrDefault(SOLUTION_NUMBER, 0L)).intValue();
+                    int solutionNumber = ((Number) postJSON.getOrDefault(SOLUTION_NUMBER, 0L)).intValue();
                     UUID questionId = UUID.fromString((String) postJSON.getOrDefault(QUESTION_ID, postId.toString()));
 
-                    posts.add(new SolutionPost(
-                            postId, author, createdAt,
-                            comments, tags, contentSections, score,
-                            solutionNumber, questionId
-                    ));
+                    posts.add(new SolutionPost(postId, author, createdAt, comments, tags, contentSections,
+                            score, solutionNumber, questionId));
                 }
             }
 
@@ -136,5 +146,13 @@ public class DataLoader extends DataConstants {
         }
 
         return posts;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<User> users = DataLoader.getUsers();
+        System.out.println("Users loaded: " + users.size());
+
+        ArrayList<Post> posts = DataLoader.getPosts(users);
+        System.out.println("Posts loaded: " + posts.size());
     }
 }

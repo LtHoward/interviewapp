@@ -2,7 +2,7 @@ package com.model;
 import java.util.UUID;
 
 public abstract class User {
-    private UUID id;
+    private UUID userId;
     private String username;
     private String email;
     private String password;
@@ -11,7 +11,7 @@ public abstract class User {
     private Role role;
 
     public User (UUID id, String username, String email, String password, String firstName, String lastName) {
-        this.id = id;
+        this.userId = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -24,7 +24,7 @@ public abstract class User {
     }
 
     public UUID getId () {
-        return id;
+        return userId;
     }
 
     public String getUsername() {
