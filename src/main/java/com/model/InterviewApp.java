@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class InterviewApp {
     private PostManager postmanager;
-    private QuestionManager questionmanager;
-    private SavedQuestion savedQuestion;
+    private QuestionPost questionmanager;
+    private ArrayList<Post> savedQuestion;
     private UserManager usermanager;
     private User currentuser;
 
