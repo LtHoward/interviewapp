@@ -11,8 +11,8 @@ public class DataWriter extends DataConstants
 
     public static void saveUsers()
     {
-        Users usersInstance = Users.getInstance();
-        ArrayList<User> userManager = usersInstance.getUsers();
+        UserManager users = UserManager.getInstance();
+        ArrayList<User> userManager = users.getUser();
 
         JSONArray jasonUsers = new JSONArray();
 
@@ -30,6 +30,7 @@ public class DataWriter extends DataConstants
             e.printStackTrace();
         }
 
+    }
         public static JSONObject getUsersJSON(User user) 
         {
             JSONObject usersDetails = new JSONObject();
@@ -39,7 +40,8 @@ public class DataWriter extends DataConstants
             usersDetails.put(PASSWORD, user.getPassword());
             usersDetails.put(FIRST_NAME, user.getFirstName());
             usersDetails.put(LAST_NAME, user.getLastName());
-            usersDetails.put(ROLE, user.getRole());
+            usersDetails.put(ROLE, user.getStatus().toString());
+
             return usersDetails;
         }
 
@@ -47,7 +49,7 @@ public class DataWriter extends DataConstants
         public static void main(String[] args) 
         {
             DataWriter.saveUsers();
-        
+        }
 
     }
 
@@ -89,5 +91,5 @@ public class DataWriter extends DataConstants
         }
 
     } 
-        */
+    */
 } 

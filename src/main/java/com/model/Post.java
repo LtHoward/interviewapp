@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public abstract class Post {
 
-    private UUID id;
+    private UUID postId;
     private User author;
     private Date createdAt;
     private ArrayList<Comment> comments;
@@ -14,15 +14,11 @@ public abstract class Post {
     private ArrayList<PostContent> contentSections;
     private int score;
 
-    public Post(UUID id,
-                User author,
-                Date createdAt,
-                ArrayList<Comment> comments,
-                ArrayList<String> tags,
-                ArrayList<PostContent> contentSections,
-                int score) {
+    public Post(UUID postId, User author, Date createdAt,
+                ArrayList<Comment> comments, ArrayList<String> tags,
+                ArrayList<PostContent> contentSections, int score) {
 
-        this.id = id;
+        this.postId = postId;
         this.author = author;
         this.createdAt = createdAt;
         this.comments = comments;

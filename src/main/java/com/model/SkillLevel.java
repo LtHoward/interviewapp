@@ -1,6 +1,6 @@
 package com.model;
 
-public enum Experience {
+public enum SkillLevel {
     BEGINNER,
     INTERMEDIATE,
     EXPERT
