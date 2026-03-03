@@ -52,6 +52,10 @@
         "password": "Adm1nA!*",
         "firstName": "Ava",
         "lastName": "Admin",
-        "role": "ADMINISTRATOR"
+        "role": "ADMINISTRATOR",
+
+        "contributorData": {
+            "experience": "IT Support Specialist for College of Engineering and Computing."
+        }
   }
 ]
