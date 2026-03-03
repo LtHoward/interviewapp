@@ -14,8 +14,10 @@ public class PostManager
 
     public static PostManager getInstance() 
     {
-        
-        return null;
+        if(postManager == null) {
+            postManager = new PostManager();
+        }
+        return postManager;
     }
 
     
@@ -44,7 +46,7 @@ public class PostManager
    
     public ArrayList<Post> getPostByKeyWord(String title)
     {
-        return null;
+        return posts;
     }
 
    
