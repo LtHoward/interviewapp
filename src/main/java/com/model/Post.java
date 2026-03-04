@@ -37,10 +37,6 @@ public abstract class Post {
              0);
     }
 
-    public void addComment(Comment comment) {
-        comments.add(comment);
-    }
-
     public ArrayList<Comment> getComments() {
         return comments;
     }
