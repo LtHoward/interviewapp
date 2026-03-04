@@ -58,7 +58,7 @@ public class UserManager {
     {
         return null;
     }
-    
+
     public boolean addUser(String username, String email, String password, String firstName, String lastName) {
         if(haveUser(username)) return false;
 
@@ -79,8 +79,17 @@ public class UserManager {
         return null;
     }
 
-    public boolean login (String username, String email, String password) {
-        return true;
+    public boolean login(String username, String email, String password) {
+        users = DataLoader.getUsers();
+        
+        for (User user : users) {
+            if (user.getUsername().equals(username) &&
+                user.getEmail().equals(email) &&
+                user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean logout() {

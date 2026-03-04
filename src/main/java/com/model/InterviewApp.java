@@ -37,10 +37,8 @@ public class InterviewApp {
     
     }
 
-    public boolean login(String username, String email, String password)
-    {
+    public boolean login(String username, String email, String password) {
         return userManager.login(username, email, password);
-
     }
 
     public boolean logout()
