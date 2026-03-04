@@ -7,10 +7,10 @@ public class Comment {
     private User author;
     private Date createdAt;
     private String content;
-    private UUID id;
+    private UUID commentId;
     private UUID postId;
 
-    public Comment (User author, String content){
+    public Comment (User author, String content, UUID postId){
 
     }
 

@@ -1,6 +1,6 @@
 [
     {
-        "id": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+        "userId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
         "username": "sSteven",
         "email": "ssteven@email.sc.edu",
         "password": "daR33l*5T3ven!",
@@ -33,7 +33,7 @@
         ]
     },
     {
-        "id": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
+        "userId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
         "username": "ProfessionalProfessor",
         "email": "pprofessor@cse.sc.edu",
         "password": "1LuvC5C3247!",
@@ -46,12 +46,16 @@
         }
     },
     {
-        "id": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
+        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
         "username": "adminA",
         "email": "adminA@email.sc.edu",
         "password": "Adm1nA!*",
         "firstName": "Ava",
         "lastName": "Admin",
-        "role": "ADMINISTRATOR"
+        "role": "ADMINISTRATOR",
+
+        "contributorData": {
+            "experience": "IT Support Specialist for College of Engineering and Computing."
+        }
   }
 ]

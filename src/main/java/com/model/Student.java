@@ -15,12 +15,11 @@ public class Student extends User{
     private ArrayList<Reward> rewards;
     private Date lastActivityDate;
 
-    public Student (UUID id, String username, String email, String password, String firstName, 
+    public Student (UUID userId, String username, String email, String password, String firstName, 
         String lastName, Major major, Year year, String currentClasses, String classesTaken, 
         SkillLevel skillLevel, int solvedQuestions, ArrayList<SolutionPost> postedSolutions, 
         Progression progression, ArrayList<Reward> rewards, Date lastActivityDate) {
-        super(id, username, email, password, firstName, lastName);
-        
+        super(userId, username, email, password, firstName, lastName);
         
     }
 
