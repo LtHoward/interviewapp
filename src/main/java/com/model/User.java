@@ -10,13 +10,14 @@ public abstract class User {
     private String lastName;
     private Role role;
 
-    public User (UUID id, String username, String email, String password, String firstName, String lastName) {
+    public User (UUID id, String username, String email, String password, String firstName, String lastName, Role role) {
         this.userId = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
     }
 
     public boolean userExist (String username, String password) {
@@ -36,9 +37,6 @@ public abstract class User {
     }
 
     public String getPassword() {
-        if ( password == null || password.length() < 12) {
-            return null;
-        }
         return password;
     }
 
