@@ -1,8 +1,6 @@
 package com.model;
-
 import java.util.ArrayList;
 import java.util.Date;
-
 public class Progression 
 {
     private int points;
@@ -13,7 +11,7 @@ public class Progression
     private ArrayList<Title> unlockedTitles;
 
     public void awardXP(int amount) {
-        return;
+        
     }
 
     public boolean checkLevelUp() {
@@ -26,7 +24,7 @@ public class Progression
 
     public void updateStreak(Date solvedOn)
     {
-        return;
+       
     }
     
     public ArrayList<Title> unlockTitles()
