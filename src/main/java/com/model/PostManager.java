@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class PostManager 
 {
     private static PostManager postManager;
-    private ArrayList<Post> posts;
+    private ArrayList<QuestionPost> questionPosts;
+
 
     public PostManager()
     {
+        questionPosts = new ArrayList<>();
         return;
     }
 
@@ -20,8 +22,17 @@ public class PostManager
         return postManager;
     }
 
-    
-    public boolean addPost(Contributor contributor, Post post)
+    public ArrayList<QuestionPost> getQuestion(String title)
+    {
+        return questionPosts;
+    }
+
+    public ArrayList<SolutionPost> getSolution()
+    {
+        return null;
+    }
+
+    public boolean addQuestion(Contributor contributor, QuestionPost question)
     {
         return false;
     }
@@ -44,20 +55,19 @@ public class PostManager
         return false;
     }
    
-    public ArrayList<Post> getPostByKeyWord(String title)
+    public ArrayList<QuestionPost> getQuestionsByKeyWord(String title)
     {
-        return posts;
+        return questionPosts;
     }
 
    
-    public ArrayList<Post> getAllPost()
+    public ArrayList<QuestionPost> getAllQuestions()
     {
         return null;
     }
 
    
-    public boolean addComment()
-    {
+    public boolean addComment(Comment comment) {
         return false;
     }
 

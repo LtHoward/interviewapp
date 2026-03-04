@@ -57,8 +57,4 @@ public abstract class User {
     public Role getStatus () {
         return role;
     }
-
-    public boolean resetPassword (String password ) {
-        return true;
-    }
 }

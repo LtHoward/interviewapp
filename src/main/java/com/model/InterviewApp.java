@@ -1,95 +1,93 @@
 package com.model;
+
+import java.util.UUID;
 import java.util.ArrayList;
 
 public class InterviewApp {
-    private PostManager postmanager;
-    private QuestionPost questionmanager;
-    private ArrayList<Post> savedQuestion;
-    private UserManager usermanager;
-    private User currentuser;
+    private PostManager postManager;
+    private ArrayList<Post> savedPost;
+    private UserManager userManager;
+    private User currentUser;
 
     public InterviewApp() 
-    {
-        this.postmanager = new PostManager();
-        this.questionmanager = new QuestionManager();
-        this.currentuser = new CurrentUser();
-        this.savedQuestion = new SavedQuestion();
+    {        
+        postManager = new PostManager();
+        savedPost = new ArrayList<>();
+        userManager = UserManager.getInstance();
+        currentUser = null;
 
     }
 
     public boolean removeUser(User user)
     {
-      if (user == null)
-      return false; // nobody logged in then it failed 
-
-     return usermanager.removeUser(); // someone is logged in, remove them
-        
+      if (user == null) return false;
+      return userManager.removeUser(user);
     }
 
     public ArrayList<User> getAllUsers()
     {
-        return usermanager.getUser();
+        return userManager.getAllUsers();
         
     }
 
     public boolean createUser(String username, String email, String password, String firstName, String lastName)
     {
-       return usermanager.createUser(username, email, password, firstName, lastName);
+       return userManager.addUser(username, email, password, firstName, lastName);
 
     
     }
 
     public boolean login(String username, String email, String password)
     {
-        return UserManager.login(username, email, password);
+        return userManager.login(username, email, password);
 
     }
 
     public boolean logout()
     {
-        return UserManager.logout();
+        return userManager.logout();
 
     }
 
-    public boolean resetPassword(String username, String newPassword)
+    public boolean resetPassword(String password)
     {
-        return UserManager.resetPassword(username, newPassword);
+        return userManager.resetPassword(password);
 
     }
 
-    public boolean addQuestion (QuestionPost question)
+    public boolean addQuestion (Contributor contributor, QuestionPost question)
     {
-        return QuestionManager.addQuestion(question);
+        return postManager.addQuestion(contributor, question);
 
     }
 
-    public boolean addSolution(SolutionPost solution)
+    public boolean addSolution(User user, SolutionPost solution)
     {
-        return QuestionManager.addSolution(solution);
+        return postManager.addSolution(user, solution);
 
     }
 
-    public ArrayList<Question> getQuestion(String title)
+    public ArrayList<QuestionPost> getQuestion(String title)
     {
-        return QuestionManager.getQuestion(title);
+        return postManager.getQuestion(title);
 
     }
 
     public boolean addSavedQuestion()
     {
-        return QuestionManger.addSavedQuestion();
+        return postManager.save();
 
     }
 
-    public void comment(user User, postId UUID, String content)
+    public boolean addComment(Comment comment)
     {
-        return UserManager.comment(User, UUID, content);
+        return postManager.addComment(comment);
 
     }
 
     public boolean removeSavedQuestion()
     {
-        return QuestionManager.removeSavedQuestion();
+        return postManager.save();
 
     } 
 
