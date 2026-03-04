@@ -37,8 +37,14 @@ public abstract class Post {
              0);
     }
 
+    
+
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+
+    public UUID getPostId() {
+        return postId;
     }
 
     public ArrayList<Comment> getComments() {
