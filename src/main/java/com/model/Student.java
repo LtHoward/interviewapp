@@ -32,8 +32,51 @@ public class Student extends User{
         return 0;
     }
 
-    public ArrayList<SolutionPost> getPostedSolution() {
+    public ArrayList<SolutionPost> getPostedSolutions() {
         return null;
+    }
+
+    public String getCurrentClasses() {
+        return null;
+    }
+
+    public String getClassesTaken() {
+        return null;
+    }
+
+    public Major getMajor() {
+        return null;
+    }
+
+    public Year getYear() {
+        return null;
+    }
+
+    public SkillLevel getSkillLevel() {
+        return null;
+    }
+    public int getSolvedQuestions() {
+        return 0;
+    }
+
+    public Date getLastActivityDate() {
+        return null;
+    }
+
+    public ArrayList<Reward> getRewards() {
+        return null;
+    }
+
+    public String getType() {
+        return null;
+    }
+
+    public int getAmount() {
+        return 0;
+    }
+
+    public boolean getRedeemed() {
+        return false;
     }
 
     public void updateLevel() {

@@ -49,6 +49,8 @@ public abstract class Post {
         return author;
     }
 
+    public abstract String getType();
+
     public Date getCreatedAt() {
         return createdAt;
     }

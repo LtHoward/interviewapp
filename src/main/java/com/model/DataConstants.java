@@ -5,6 +5,7 @@ public abstract class DataConstants {
     public static final String USERS_FILE = "json/users.json";
     public static final String POSTS_FILE = "json/posts.json";
     protected static final String USERS_TEMP_FILE = "json/users_temp.json";
+    protected static final String POSTS_TEMP_FILE = "json/posts_temp.json";
 
     protected static final String USER_ID = "userId";
     protected static final String USERNAME = "username";
@@ -14,7 +15,6 @@ public abstract class DataConstants {
     protected static final String LAST_NAME = "lastName";
     protected static final String ROLE = "role";
 
-    protected static final String STUDENT_DATA = "studentData";
     protected static final String CURRENT_CLASSES = "currentClasses";
     protected static final String CLASSES_TAKEN = "classesTaken";
     protected static final String MAJOR = "major";
@@ -24,7 +24,6 @@ public abstract class DataConstants {
     protected static final String POSTED_SOLUTIONS = "postedSolutions";
     protected static final String LAST_ACTIVITY_DATE = "lastActivityDate";
 
-    protected static final String CONTRIBUTOR_DATA = "contributorData";
     protected static final String EXPERIENCE = "experience";
     protected static final String PROGRESSION = "progression";
     protected static final String POINTS = "points";
