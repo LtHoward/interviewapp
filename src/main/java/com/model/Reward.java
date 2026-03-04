@@ -5,21 +5,19 @@ public class Reward {
     private int amount;
     private boolean redeemed;
 
-    public Reward(RewardType type, int amount) {
-        this.type = type;
-        this.amount = amount;
-        this.redeemed = false;
+    public Reward (RewardType type, int amount) {
+
     }
 
     public RewardType getType() {
-        return this.type;
+        return type;
     }
 
     public int getAmount() {
-        return this.amount;
+        return amount;
     }
 
     public boolean isRedeemed() {
-        return this.redeemed;
+        return true;
     }
 }

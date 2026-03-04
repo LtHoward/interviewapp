@@ -36,14 +36,23 @@ public abstract class User {
     }
 
     public String getPassword() {
+        if ( password == null || password.length() < 12) {
+            return null;
+        }
         return password;
     }
 
     public String getFirstName() {
+        if (firstName == null || firstName.isEmpty()) {
+            return null;
+        }
         return firstName;
     }
 
     public String getLastName() {
+        if (lastName == null || lastName.isEmpty()) {
+            return null;
+        }
         return lastName;
     }
 
@@ -51,7 +60,7 @@ public abstract class User {
         return role;
     }
 
-    public boolean resetPassword (String password) {
+    public boolean resetPassword (String password ) {
         return true;
     }
 }
