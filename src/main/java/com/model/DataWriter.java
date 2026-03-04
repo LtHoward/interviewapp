@@ -13,10 +13,6 @@ public class DataWriter extends DataConstants
     {
         UserManager users = UserManager.getInstance();
         ArrayList<User> userManager = users.getUser();
-        users.addUser("testUser1", "testEmail1", "testPassword12", "testFirstName12", "testLastName1");
-        
-
-        
 
         JSONArray jasonUsers = new JSONArray();
 
@@ -25,7 +21,7 @@ public class DataWriter extends DataConstants
             jasonUsers.add(getUsersJSON(userManager.get(i)));
         }
 
-        try (FileWriter file = new FileWriter(USERS_TEMP_FILE)) 
+        try (FileWriter file = new FileWriter(USERS_FILE)) 
         {
             file.write(jasonUsers.toJSONString());
             file.flush();
@@ -44,40 +40,54 @@ public class DataWriter extends DataConstants
             usersDetails.put(PASSWORD, user.getPassword());
             usersDetails.put(FIRST_NAME, user.getFirstName());
             usersDetails.put(LAST_NAME, user.getLastName());
+            usersDetails.put(ROLE, user.getStatus().toString());
 
             if(user.getStatus() == Role.CONTRIBUTOR) 
             {
-                usersDetails.put(ROLE, "CONTRIBUTOR");
                 JSONObject contributorDetails = new JSONObject();
+                usersDetails.put(CONTRIBUTOR_DATA, contributorDetails);
                 Contributor contributor = (Contributor) user;
                 contributorDetails.put(EXPERIENCE, contributor.getExperience());
-                usersDetails.put("contributorDetails", contributorDetails);
+                
             } 
             else if (user.getStatus() == Role.STUDENT) 
             {
-                usersDetails.put(ROLE, "STUDENT");
                 JSONObject studentDetails = new JSONObject();
+                usersDetails.put(STUDENT_DATA, studentDetails);
                 Student student = (Student) user;
-                studentDetails.put(CURRENT_CLASSES, student.getCurrentClasses());
-                studentDetails.put(CLASSES_TAKEN, student.getClassesTaken());
-                studentDetails.put(MAJOR, student.getMajor());
-                studentDetails.put(YEAR, student.getYear());
-                studentDetails.put(SKILL_LEVEL, student.getSkillLevel());
+                studentDetails.put(CURRENT_CLASSES, student.getCurrentClasses().toString());
+                studentDetails.put(CLASSES_TAKEN, student.getClassesTaken().toString());
+                studentDetails.put(MAJOR, student.getMajor().toString());
+                studentDetails.put(YEAR, student.getYear().toString());
+                studentDetails.put(SKILL_LEVEL, student.getSkillLevel().toString());
                 studentDetails.put(SOLVED_QUESTIONS, student.getSolvedQuestions());
                 studentDetails.put(POSTED_SOLUTIONS, student.getPostedSolutions());
-                studentDetails.put(LAST_ACTIVITY_DATE, student.getLastActivityDate());
-                studentDetails.put(REWARDS, student.getRewards());
-                studentDetails.put(TYPE, student.getType());
-                studentDetails.put(AMOUNT, student.getAmount());
-                studentDetails.put(REDEEMED, student.getRedeemed());
-                usersDetails.put("studentDetails", studentDetails);
+                studentDetails.put(LAST_ACTIVITY_DATE, student.getLastActivityDate().getTime());
+
+                JSONObject progression = new JSONObject();
+                progression.put(POINTS, student.getProgression().getPoints());
+                progression.put(LEVEL, student.getProgression().getLevel());
+                progression.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
+                progression.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
+                progression.put(EQUIPPED_TITLE, student.getProgression().getEquippedTitle());
+                progression.put(UNLOCKED_TITLES, student.getProgression().unlockTitles());
+                usersDetails.put(PROGRESSION, progression);
+
+                JSONArray rewardsArray = new JSONArray();
+                for(Reward reward : student.getRewards()) 
+                {
+                JSONObject rewards = new JSONObject();
+                rewards.put(TYPE, reward.getType());
+                rewards.put(AMOUNT, reward.getAmount());
+                rewards.put(REDEEMED, reward.isRedeemed());
+                rewardsArray.add(rewards);
+                }
+                usersDetails.put(REWARDS, rewardsArray);
             } 
             else if (user.getStatus() == Role.ADMINISTRATOR) 
             {
                 usersDetails.put(ROLE, "ADMINISTRATOR");
             }
-
-            
 
             return usersDetails;
         }
@@ -85,12 +95,14 @@ public class DataWriter extends DataConstants
 
         public static void main(String[] args) 
         {
+            UserManager.getInstance().getUser().clear();
+            UserManager.getInstance().getUser().addAll(DataLoader.getUsers());
             DataWriter.saveUsers();
         }
 
+    }
 
-
-
+/** 
    public static void savePosts() 
     {
         PostManager postsInstance = PostManager.getInstance();
@@ -127,4 +139,4 @@ public class DataWriter extends DataConstants
         {
             DataWriter.savePosts();
         } 
-}
+}*/

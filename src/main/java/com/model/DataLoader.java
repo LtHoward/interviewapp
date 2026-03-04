@@ -54,7 +54,7 @@ public class DataLoader extends DataConstants {
                     users.add(new Student(id, username, email, password, firstName,
                             lastName, major, year, currentClasses, classesTaken,
                             skillLevel, solvedQuestions, postedSolutions,
-                            progression, rewards, lastActivityDate));
+                            progression, rewards, lastActivityDate,role));
 
                 } else if (role == Role.CONTRIBUTOR) {
                     String experience = (String) userJSON.getOrDefault(EXPERIENCE, "");

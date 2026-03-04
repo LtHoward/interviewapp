@@ -15,6 +15,8 @@ public abstract class DataConstants {
     protected static final String LAST_NAME = "lastName";
     protected static final String ROLE = "role";
 
+    protected static final String STUDENT_DATA = "studentData";
+    protected static final String CONTRIBUTOR_DATA = "contributorData";
     protected static final String CURRENT_CLASSES = "currentClasses";
     protected static final String CLASSES_TAKEN = "classesTaken";
     protected static final String MAJOR = "major";

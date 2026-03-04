@@ -18,8 +18,18 @@ public class Student extends User{
     public Student (UUID userId, String username, String email, String password, String firstName, 
         String lastName, Major major, Year year, String currentClasses, String classesTaken, 
         SkillLevel skillLevel, int solvedQuestions, ArrayList<SolutionPost> postedSolutions, 
-        Progression progression, ArrayList<Reward> rewards, Date lastActivityDate) {
-        super(userId, username, email, password, firstName, lastName);
+        Progression progression, ArrayList<Reward> rewards, Date lastActivityDate, Role role) {
+        super(userId, username, email, password, firstName, lastName, role);
+        this.currentClasses = currentClasses;
+        this.classesTaken = classesTaken;
+        this.major = major;
+        this.year = year;
+        this.skillLevel = skillLevel;
+        this.solvedQuestions = solvedQuestions;
+        this.postedSolutions = postedSolutions;
+        this.progression = progression;
+        this.rewards = rewards;
+        this.lastActivityDate = lastActivityDate;
         
     }
 
@@ -32,58 +42,50 @@ public class Student extends User{
     }
 
     public ArrayList<SolutionPost> getPostedSolutions() {
-        return null;
+        return postedSolutions;
     }
 
     public String getCurrentClasses() {
-        return null;
+        return currentClasses;
     }
 
     public String getClassesTaken() {
-        return null;
+        return classesTaken;
     }
 
     public Major getMajor() {
-        return null;
+        return major;
     }
 
     public Year getYear() {
-        return null;
+        return year;
     }
 
     public SkillLevel getSkillLevel() {
-        return null;
+        return skillLevel;
     }
     public int getSolvedQuestions() {
-        return 0;
+        return solvedQuestions;
     }
 
     public Date getLastActivityDate() {
-        return null;
+        return lastActivityDate;
     }
 
     public ArrayList<Reward> getRewards() {
-        return null;
+        return rewards;
     }
 
-    public String getType() {
-        return null;
-    }
-
-    public int getAmount() {
-        return 0;
-    }
-
-    public boolean getRedeemed() {
-        return false;
+    public Progression getProgression() {
+        return progression;
     }
 
     public void updateLevel() {
 
     }
 
-    public Date getCurrentStreak() {
-        return null;
+    public int getCurrentStreak() {
+        return progression.getCurrentStreak();
     }
     
 }

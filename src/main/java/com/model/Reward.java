@@ -6,7 +6,9 @@ public class Reward {
     private boolean redeemed;
 
     public Reward (RewardType type, int amount) {
-
+        this.type = type;
+        this.amount = amount;
+        this.redeemed = true;
     }
 
     public RewardType getType() {
