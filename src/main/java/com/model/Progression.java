@@ -18,6 +18,26 @@ public class Progression
         return false;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getCurrentStreak() {
+        return currentStreak;
+    }
+
+    public int getLongestStreak() {
+        return longestStreak;
+    }
+
+    public Title getEquippedTitle() {
+        return equippedTitle;
+    }
+
     public int xpToNextLevel() {
         return 0;
     }
@@ -29,6 +49,6 @@ public class Progression
     
     public ArrayList<Title> unlockTitles()
     {
-        return null;
+        return unlockedTitles;
     }
 }

@@ -37,6 +37,19 @@ public abstract class Post {
              0);
     }
 
+<<<<<<< HEAD
+    
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
+
+    public UUID getPostId() {
+        return postId;
+    }
+
+=======
+>>>>>>> 34ac506eb0f7fd6259836afd7cc9ab28c118522f
     public ArrayList<Comment> getComments() {
         return comments;
     }
@@ -44,6 +57,8 @@ public abstract class Post {
     public User getAuthor() {
         return author;
     }
+
+    public abstract String getType();
 
     public Date getCreatedAt() {
         return createdAt;
