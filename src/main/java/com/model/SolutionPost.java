@@ -9,12 +9,12 @@ public class SolutionPost extends Post {
     private int solutionNumber;
     private UUID questionId;
 
-    public SolutionPost(UUID postId, User author, Date createdAt,
+    public SolutionPost(UUID postId, String title, User author, Date createdAt,
                 ArrayList<Comment> comments, ArrayList<String> tags,
                 ArrayList<PostContent> contentSections, int score,
                 int solutionNumber, UUID questionId) {
 
-        super(postId, author, createdAt, comments, tags, contentSections, score);
+        super(postId, title, author, createdAt, comments, tags, contentSections, score);
         this.solutionNumber = solutionNumber;
         this.questionId = questionId;
     }

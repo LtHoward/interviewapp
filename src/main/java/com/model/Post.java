@@ -7,6 +7,7 @@ import java.util.UUID;
 public abstract class Post {
 
     private UUID postId;
+    private String title;
     private User author;
     private Date createdAt;
     private ArrayList<Comment> comments;
@@ -14,11 +15,12 @@ public abstract class Post {
     private ArrayList<PostContent> contentSections;
     private int score;
 
-    public Post(UUID postId, User author, Date createdAt,
+    public Post(UUID postId, String title, User author, Date createdAt,
                 ArrayList<Comment> comments, ArrayList<String> tags,
                 ArrayList<PostContent> contentSections, int score) {
 
         this.postId = postId;
+        this.title = title;
         this.author = author;
         this.createdAt = createdAt;
         this.comments = comments;
@@ -29,16 +31,14 @@ public abstract class Post {
 
     public Post(User author) {
         this(UUID.randomUUID(),
-             author,
+            "Untitled",
+            author,
              new Date(),
              new ArrayList<>(),
              new ArrayList<>(),
              new ArrayList<>(),
              0);
     }
-
-<<<<<<< HEAD
-    
 
     public void addComment(Comment comment) {
         comments.add(comment);
@@ -48,17 +48,26 @@ public abstract class Post {
         return postId;
     }
 
-=======
->>>>>>> 34ac506eb0f7fd6259836afd7cc9ab28c118522f
+    public String getTitle() {
+        return title;
+    }
+
+
     public ArrayList<Comment> getComments() {
         return comments;
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
     }
 
     public User getAuthor() {
         return author;
     }
 
-    public abstract String getType();
+    public ArrayList<PostContent> getContentSections() {
+        return contentSections;
+    }
 
     public Date getCreatedAt() {
         return createdAt;

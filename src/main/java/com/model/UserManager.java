@@ -2,7 +2,6 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
-import javafx.scene.chart.PieChart.Data;
 
 public class UserManager {
     private static UserManager userManager;
@@ -83,10 +82,10 @@ public class UserManager {
 
     public boolean login(String username, String email, String password) {
         users = DataLoader.getUsers();
-        
+
         for (User user : users) {
-            if (user.getUsername().equals(username) &&
-                user.getEmail().equals(email) &&
+            if ((user.getUsername().equals(username) ||
+                user.getEmail().equals(email)) &&
                 user.getPassword().equals(password)) {
                 return true;
             }
