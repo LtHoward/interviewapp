@@ -6,23 +6,17 @@ import java.util.UUID;
 
 public class QuestionPost extends Post {
 
-    private String title;
     private Difficulty difficulty;
     private String hint;
 
-    public QuestionPost(UUID postId, User author, Date createdAt,
+    public QuestionPost(UUID postId, String title, User author, Date createdAt,
                 ArrayList<Comment> comments, ArrayList<String> tags,
                 ArrayList<PostContent> contentSections, int score,
-                String title,Difficulty difficulty, String hint) {
+                Difficulty difficulty, String hint) {
 
-        super(postId, author, createdAt, comments, tags, contentSections, score);
-        this.title = title;
+        super(postId, title, author, createdAt, comments, tags, contentSections, score);
         this.difficulty = difficulty;
         this.hint = hint;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public Difficulty getDifficulty() {

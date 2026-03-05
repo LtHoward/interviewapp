@@ -1,6 +1,6 @@
 [
     {
-        "firstName": "Thomas",
+        "firstName": "Steven",
         "lastName": "Student",
         "password": "daR33l*5T3ven!",
         "role": "STUDENT",
@@ -40,12 +40,16 @@
         "username": "ProfessionalProfessor"
     },
     {
+        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
+        "username": "adminA",
+        "email": "adminA@email.sc.edu",
+        "password": "Adm1nA!*",
         "firstName": "Ava",
         "lastName": "Admin",
-        "password": "Adm1nA!*",
         "role": "ADMINISTRATOR",
-        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
-        "email": "adminA@email.sc.edu",
-        "username": "adminA"
+
+        "contributorData": {
+            "experience": "IT Support Specialist for College of Engineering and Computing."
+        }
     }
 ]
