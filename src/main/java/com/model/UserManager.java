@@ -3,6 +3,8 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javafx.scene.chart.PieChart.Data;
+
 public class UserManager {
     private static UserManager userManager;
     private ArrayList<User> users = new ArrayList<>();
@@ -94,6 +96,8 @@ public class UserManager {
     }
 
     public boolean logout() {
+        DataWriter.saveUsers();
+        users.clear();
         return true;
     }
 

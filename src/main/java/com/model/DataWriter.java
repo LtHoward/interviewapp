@@ -100,13 +100,13 @@ public class DataWriter extends DataConstants
             DataWriter.saveUsers();
         }
 
-    }
+    
 
-/** 
+
    public static void savePosts() 
     {
         PostManager postsInstance = PostManager.getInstance();
-        ArrayList<Post> posts = postsInstance.getAllPost();
+        ArrayList<Post> posts = postsInstance.getAllPosts();
 
         JSONArray jsonPosts = new JSONArray();
 
@@ -123,20 +123,23 @@ public class DataWriter extends DataConstants
         {
             e.printStackTrace();
         }
+    }
 
         public static JSONObject getPostsJSON(Post post) 
         {
             JSONObject postDetails = new JSONObject();
-            postDetails.put(USER_ID, post.getId());
+            postDetails.put(POST_ID, post.getPostId());
             postDetails.put(POST_TYPE, post.getType());
+            postDetails.put(TITLE, post.getTitle());
             postDetails.put(AUTHOR_ID, post.getAuthor());
             postDetails.put(CREATED_AT, post.getCreatedAt());
             postDetails.put(SCORE, post.getScore());
             return postDetails;
         }
 
-        public static void main(String[] args) 
-        {
-            DataWriter.savePosts();
-        } 
-}*/
+    /**public static void main(String[] args) 
+    {
+        DataWriter.savePosts();
+    }*/
+}
+

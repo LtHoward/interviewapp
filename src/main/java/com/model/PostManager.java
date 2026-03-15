@@ -6,11 +6,13 @@ public class PostManager
 {
     private static PostManager postManager;
     private ArrayList<QuestionPost> questionPosts;
+    private ArrayList<SolutionPost> solutionPosts;
 
 
     public PostManager()
     {
         questionPosts = new ArrayList<>();
+        solutionPosts = new ArrayList<>();
         return;
     }
 
@@ -22,6 +24,13 @@ public class PostManager
         return postManager;
     }
 
+    public ArrayList<Post> getAllPosts() {
+        ArrayList<Post> allPosts = new ArrayList<>();
+        allPosts.addAll(questionPosts);
+        allPosts.addAll(solutionPosts);
+        return allPosts;
+    }
+
     public ArrayList<QuestionPost> getQuestion(String title)
     {
         return questionPosts;
@@ -29,7 +38,7 @@ public class PostManager
 
     public ArrayList<SolutionPost> getSolution()
     {
-        return null;
+        return solutionPosts;
     }
 
     public boolean addQuestion(Contributor contributor, QuestionPost question)
@@ -74,10 +83,8 @@ public class PostManager
     
     public ArrayList<Comment> getComments()
     {
-       
         return null;
     }
-
     
     public boolean save()
     {

@@ -61,6 +61,10 @@ public abstract class Post {
         return tags;
     }
 
+    public String getType() {
+        return this instanceof QuestionPost ? "QUESTION" : "SOLUTION";
+    }
+
     public User getAuthor() {
         return author;
     }
