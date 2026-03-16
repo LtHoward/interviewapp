@@ -76,6 +76,11 @@ public class InterviewApp {
 
     }
 
+    public ArrayList<QuestionPost> getAllQuestions()
+    {
+        return postManager.getAllQuestions();
+    }
+    
     public boolean addSavedQuestion()
     {
         return postManager.save();

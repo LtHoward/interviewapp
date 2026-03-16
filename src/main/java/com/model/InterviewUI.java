@@ -60,66 +60,66 @@ public class InterviewUI {
                 System.out.println("\nLogin successful!\n");
             }
         }
-            while(!loggedIn);
+        while(!loggedIn);
 
-            User currentUser = app.getUser(username, password);
-            System.out.println("Welcome to the Interview App, " + username + "!\nStatus: " + currentUser.getStatus() + "\n");
+        User currentUser = app.getUser(username, password);
+        System.out.println("Welcome to the Interview App, " + username + "!\nStatus: " + currentUser.getStatus() + "\n");
 
-            boolean validRole = false;
-            while(!validRole)
+        boolean validRole = false;
+        while(!validRole)
+        {
+            switch (currentUser.getStatus()) 
             {
-                switch (currentUser.getStatus()) 
-                {
-                    case STUDENT:
-                        validRole = true;
-                        System.out.println("You have the Student role.\n 1. Questions\n 2. Solutions\n 3. Logout");
-                        int studentChoice = scanner.nextInt();
-                        if(studentChoice == 1) 
-                        {
-                            System.out.println("You have chosen to view Questions.");
-                        } 
-                        else if (studentChoice == 2) 
-                        {
-                            System.out.println("You have chosen to view Solutions.");
-                        } 
-                        else if (studentChoice == 3) scenario3();
-                        break;
-                    case CONTRIBUTOR:
-                        validRole = true;
-                        System.out.println("You have the Contributor role.\n 1. Create Question\n 2. Create Solution\n 3. Logout");
-                            int contributorChoice = scanner.nextInt();
-                        if(contributorChoice == 1) 
-                        {
-                            System.out.println("You have chosen to Create a Question.");
-                        } 
-                        else if (contributorChoice == 2) 
-                        {
-                            System.out.println("You have chosen to Create a Solution.");
-                        }
-                        else if (contributorChoice == 3) scenario3();
-                        break;
-                    case ADMINISTRATOR:
-                        validRole = true;
-                        System.out.println("You have the Administrator role.\n 1. Edit Post\n 2. Delete Post\n 3. Remove User\n 4. Logout");
-                            int adminChoice = scanner.nextInt();
-                        if(adminChoice == 1) 
-                        {
-                            System.out.println("You have chosen to Edit a Post.");
-                        } 
-                        else if (adminChoice == 2) 
-                        {
-                            System.out.println("You have chosen to Delete a Post.");
-                        } 
-                        else if (adminChoice == 3)
-                        {
-                            System.out.println("You have chosen to Remove a User.");
-                        } 
-                        else if (adminChoice == 4) scenario3();
-                        break;
-                    default:
-                        System.out.println("Invalid choice.");
-                }
+                case STUDENT:
+                    validRole = true;
+                    System.out.println("You have the Student role.\n 1. Questions\n 2. Solutions\n 3. Logout");
+                    int studentChoice = scanner.nextInt();
+                    if(studentChoice == 1) 
+                    {
+                        System.out.println("You have chosen to view Questions.");
+                    } 
+                    else if (studentChoice == 2) 
+                    {
+                        System.out.println("You have chosen to view Solutions.");
+                    } 
+                    else if (studentChoice == 3) scenario3();
+                    break;
+                case CONTRIBUTOR:
+                    validRole = true;
+                    System.out.println("You have the Contributor role.\n 1. Create Question\n 2. Create Solution\n 3. Logout");
+                        int contributorChoice = scanner.nextInt();
+                    if(contributorChoice == 1) 
+                    {
+                        System.out.println("You have chosen to Create a Question.");
+                    } 
+                    else if (contributorChoice == 2) 
+                    {
+                        System.out.println("You have chosen to Create a Solution.");
+                    }
+                    else if (contributorChoice == 3) scenario3();
+                    break;
+                case ADMINISTRATOR:
+                    validRole = true;
+                    System.out.println("You have the Administrator role.\n 1. Edit Post\n 2. Delete Post\n 3. Remove User\n 4. Logout");
+                        int adminChoice = scanner.nextInt();
+                    if(adminChoice == 1) 
+                    {
+                        System.out.println("You have chosen to Edit a Post.");
+                    } 
+                    else if (adminChoice == 2) 
+                    {
+                        System.out.println("You have chosen to Delete a Post.");
+                    } 
+                    else if (adminChoice == 3)
+                    {
+                        System.out.println("You have chosen to Remove a User.");
+                    } 
+                    else if (adminChoice == 4) scenario3();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
             }
+        }
     }
 
     private boolean validateUsername(String username) 
