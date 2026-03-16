@@ -60,7 +60,9 @@ public class UserManager {
         return users;
     }
 
-    public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) {
+    public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) 
+    {
+        
     if (username == null || email == null || password == null || firstName == null || lastName == null || role == null) return false;
     if (haveUser(username)) return false;
 
