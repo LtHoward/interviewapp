@@ -10,7 +10,7 @@ public class UserManager {
     private ArrayList<User> users = new ArrayList<>();
 
     public UserManager() {
-        users = new ArrayList<>();
+        users = DataLoader.getUsers();
     } 
 
     public static UserManager getInstance() {
@@ -41,8 +41,8 @@ public class UserManager {
         }
         return null;
     }
-
-    public ArrayList<User> getUser() {
+    public ArrayList<User> getUsers() 
+    {
         return users;
     }
 
@@ -59,7 +59,7 @@ public class UserManager {
 
     public ArrayList<User> getAllUsers()
     {
-        return null;
+        return users;
     }
 
     public boolean addUser(String username, String email, String password, String firstName, String lastName) {

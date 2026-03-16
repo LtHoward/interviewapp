@@ -12,7 +12,7 @@ public class DataWriter extends DataConstants
     public static void saveUsers()
     {
         UserManager users = UserManager.getInstance();
-        ArrayList<User> userManager = users.getUser();
+        ArrayList<User> userManager = users.getUsers();
 
         JSONArray jasonUsers = new JSONArray();
 
@@ -95,8 +95,8 @@ public class DataWriter extends DataConstants
 
         public static void main(String[] args) 
         {
-            UserManager.getInstance().getUser().clear();
-            UserManager.getInstance().getUser().addAll(DataLoader.getUsers());
+            UserManager.getInstance().getUsers().clear();
+            UserManager.getInstance().getUsers().addAll(DataLoader.getUsers());
             DataWriter.saveUsers();
         }
 

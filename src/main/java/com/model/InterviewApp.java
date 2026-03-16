@@ -30,6 +30,11 @@ public class InterviewApp {
         
     }
 
+    public User getUser(String username, String password) 
+    {
+        return userManager.getUser(username, password);
+    }
+
     public boolean createUser(String username, String email, String password, String firstName, String lastName)
     {
        return userManager.addUser(username, email, password, firstName, lastName);
@@ -89,4 +94,8 @@ public class InterviewApp {
 
     } 
 
+    public boolean haveUser(String username) 
+    {
+    return userManager.haveUser(username);
+    }
 }
