@@ -3,8 +3,6 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javafx.scene.chart.PieChart.Data;
-
 public class UserManager {
     private static UserManager userManager;
     private ArrayList<User> users = new ArrayList<>();
@@ -62,12 +60,29 @@ public class UserManager {
         return users;
     }
 
-    public boolean addUser(String username, String email, String password, String firstName, String lastName) {
-        if(haveUser(username)) return false;
+    public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) {
+    if (username == null || email == null || password == null || firstName == null || lastName == null || role == null) return false;
+    if (haveUser(username)) return false;
 
-        users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null));
-        return true;
+    switch (role) 
+    {
+        case STUDENT:
+            users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName,
+                major, year, "", "",
+                SkillLevel.BEGINNER, 0, new ArrayList<>(),
+                new Progression(), new ArrayList<>(), new java.util.Date(), Role.STUDENT));
+            break;
+
+        case ADMINISTRATOR:
+            users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null, Role.ADMINISTRATOR));
+            break;
+
+        default: // CONTRIBUTOR
+            users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null));
+            break;
     }
+    return true;
+}
 
     public boolean removeUser(User user) {
         if (user == null) return false;
