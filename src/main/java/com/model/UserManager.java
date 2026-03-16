@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.Date;
 
 public class UserManager {
     private static UserManager userManager;
@@ -62,17 +63,16 @@ public class UserManager {
 
     public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) 
     {
-        
+
     if (username == null || email == null || password == null || firstName == null || lastName == null || role == null) return false;
     if (haveUser(username)) return false;
 
     switch (role) 
     {
         case STUDENT:
-            users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName,
-                major, year, "", "",
-                SkillLevel.BEGINNER, 0, new ArrayList<>(),
-                new Progression(), new ArrayList<>(), new java.util.Date(), Role.STUDENT));
+            users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName, major, year,
+            "", "", SkillLevel.BEGINNER, 0, new ArrayList<>(),
+            new Progression(), new ArrayList<>(), new Date(), Role.STUDENT));
             break;
 
         case ADMINISTRATOR:
