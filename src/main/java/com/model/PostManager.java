@@ -33,8 +33,18 @@ public class PostManager
 
     public ArrayList<QuestionPost> getQuestion(String title)
     {
-        return questionPosts;
-    }
+        ArrayList<QuestionPost> matchingPosts = new ArrayList<>();
+    
+        for (QuestionPost question : questionPosts)
+       {
+        if (question.getTitle().equalsIgnoreCase(title))
+        {
+            matchingPosts.add(question);
+        }
+        }
+    
+        return matchingPosts;
+        }
 
     public ArrayList<SolutionPost> getSolution()
     {
