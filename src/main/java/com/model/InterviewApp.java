@@ -56,9 +56,9 @@ public class InterviewApp {
 
     }
 
-    public boolean addQuestion (Contributor contributor, QuestionPost question)
+    public boolean addQuestion (QuestionPost question)
     {
-        return postManager.addQuestion(contributor, question);
+        return postManager.addQuestion(question);
 
     }
 
