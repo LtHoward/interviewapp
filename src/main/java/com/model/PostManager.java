@@ -41,9 +41,9 @@ public class PostManager
         return solutionPosts;
     }
 
-    public boolean addQuestion(Contributor contributor, QuestionPost question)
+    public boolean addQuestion(QuestionPost question)
     {
-        return false;
+        return questionPosts.add(question);
     }
 
     
@@ -72,10 +72,9 @@ public class PostManager
    
     public ArrayList<QuestionPost> getAllQuestions()
     {
-        return null;
+        return new ArrayList<>(questionPosts);
     }
-
-   
+       
     public boolean addComment(Comment comment) {
         return false;
     }
