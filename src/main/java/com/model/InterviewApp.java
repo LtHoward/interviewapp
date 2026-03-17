@@ -35,11 +35,9 @@ public class InterviewApp {
         return userManager.getUser(username, password);
     }
 
-    public boolean createUser(String username, String email, String password, String firstName, String lastName)
+    public boolean createUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year)
     {
-       return userManager.addUser(username, email, password, firstName, lastName);
-
-    
+       return userManager.addUser(username, email, password, firstName, lastName, role, major, year);
     }
 
     public boolean login(String username, String email, String password) {
@@ -76,11 +74,6 @@ public class InterviewApp {
 
     }
 
-    public ArrayList<QuestionPost> getAllQuestions()
-    {
-        return postManager.getAllQuestions();
-    }
-    
     public boolean addSavedQuestion()
     {
         return postManager.save();
