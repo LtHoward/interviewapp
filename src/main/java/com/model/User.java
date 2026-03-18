@@ -36,7 +36,7 @@ public abstract class User {
      * @auhtor Myila Howard
      */
     public String getEmail() {
-        return email != null && !email.isEmpty() && email.contains("@" + ".") ? email : null;
+        return email;
     }
 
     public String getPassword() {
