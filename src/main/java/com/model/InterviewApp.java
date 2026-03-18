@@ -30,6 +30,10 @@ public class InterviewApp {
         
     }
 
+    public ArrayList<Post> getAllPosts() {
+        return PostManager.getInstance().getAllPosts();
+    }
+
     public User getUser(String username, String password) 
     {
         return userManager.getUser(username, password);
