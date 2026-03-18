@@ -2,14 +2,14 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
-import javafx.scene.chart.PieChart.Data;
+import java.util.Date;
 
 public class UserManager {
     private static UserManager userManager;
     private ArrayList<User> users = new ArrayList<>();
 
     public UserManager() {
-        users = new ArrayList<>();
+        users = DataLoader.getUsers();
     } 
 
     public static UserManager getInstance() {
@@ -40,8 +40,8 @@ public class UserManager {
         }
         return null;
     }
-
-    public ArrayList<User> getUser() {
+    public ArrayList<User> getUsers() 
+    {
         return users;
     }
 
@@ -58,15 +58,33 @@ public class UserManager {
 
     public ArrayList<User> getAllUsers()
     {
-        return null;
+        return users;
     }
-    
-    public boolean addUser(String username, String email, String password, String firstName, String lastName) {
-        if(haveUser(username)) return false;
 
-        users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null));
-        return true;
+    public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) 
+    {
+
+    if (username == null || email == null || password == null || firstName == null || lastName == null || role == null) return false;
+    if (haveUser(username)) return false;
+
+    switch (role) 
+    {
+        case STUDENT:
+            users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName, major, year,
+            "", "", SkillLevel.BEGINNER, 0, new ArrayList<>(),
+            new Progression(), new ArrayList<>(), new Date(), Role.STUDENT));
+            break;
+
+        case ADMINISTRATOR:
+            users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null, Role.ADMINISTRATOR));
+            break;
+
+        default: // CONTRIBUTOR
+            users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null));
+            break;
     }
+    return true;
+}
 
     public boolean removeUser(User user) {
         if (user == null) return false;
@@ -81,11 +99,22 @@ public class UserManager {
         return null;
     }
 
-    public boolean login (String username, String email, String password) {
-        return true;
+    public boolean login(String username, String email, String password) {
+        users = DataLoader.getUsers();
+
+        for (User user : users) {
+            if ((user.getUsername().equals(username) ||
+                user.getEmail().equals(email)) &&
+                user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean logout() {
+        DataWriter.saveUsers();
+        users.clear();
         return true;
     }
 

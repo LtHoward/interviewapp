@@ -6,11 +6,13 @@ public class PostManager
 {
     private static PostManager postManager;
     private ArrayList<QuestionPost> questionPosts;
+    private ArrayList<SolutionPost> solutionPosts;
 
 
     public PostManager()
     {
         questionPosts = new ArrayList<>();
+        solutionPosts = new ArrayList<>();
         return;
     }
 
@@ -22,19 +24,36 @@ public class PostManager
         return postManager;
     }
 
+    public ArrayList<Post> getAllPosts() {
+        ArrayList<Post> allPosts = new ArrayList<>();
+        allPosts.addAll(questionPosts);
+        allPosts.addAll(solutionPosts);
+        return allPosts;
+    }
+
     public ArrayList<QuestionPost> getQuestion(String title)
     {
-        return questionPosts;
-    }
+        ArrayList<QuestionPost> matchingPosts = new ArrayList<>();
+    
+        for (QuestionPost question : questionPosts)
+       {
+        if (question.getTitle().equalsIgnoreCase(title))
+        {
+            matchingPosts.add(question);
+        }
+        }
+    
+        return matchingPosts;
+        }
 
     public ArrayList<SolutionPost> getSolution()
     {
-        return null;
+        return solutionPosts;
     }
 
-    public boolean addQuestion(Contributor contributor, QuestionPost question)
+    public boolean addQuestion(QuestionPost question)
     {
-        return false;
+        return questionPosts.add(question);
     }
 
     
@@ -63,10 +82,9 @@ public class PostManager
    
     public ArrayList<QuestionPost> getAllQuestions()
     {
-        return null;
+        return new ArrayList<>(questionPosts);
     }
-
-   
+       
     public boolean addComment(Comment comment) {
         return false;
     }
@@ -74,10 +92,8 @@ public class PostManager
     
     public ArrayList<Comment> getComments()
     {
-       
         return null;
     }
-
     
     public boolean save()
     {

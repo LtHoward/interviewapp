@@ -93,6 +93,7 @@ public class DataLoader extends DataConstants {
 
                 String postIdString = (String) postJSON.get(POST_ID);
                 String authorIdString = (String) postJSON.get(AUTHOR_ID);
+                String title = (String) postJSON.getOrDefault(TITLE, "");
 
                 if (postIdString == null || authorIdString == null) {
                     System.out.println("Bad post JSON entry (missing id keys): " + postJSON.toJSONString());
@@ -124,19 +125,18 @@ public class DataLoader extends DataConstants {
 
                 if (type.equals("QUESTION")) {
 
-                    String title = (String) postJSON.getOrDefault(TITLE, "");
                     Difficulty difficulty = Difficulty.valueOf(((String) postJSON.getOrDefault(DIFFICULTY, "EASY")).toUpperCase());
                     String hint = (String) postJSON.getOrDefault(HINT, "");
 
-                    posts.add(new QuestionPost(postId, author, createdAt, comments, tags, contentSections,
-                            score, title, difficulty, hint));
+                    posts.add(new QuestionPost(postId, title, author, createdAt, comments, tags, contentSections,
+                            score, difficulty, hint));
 
                 } else if (type.equals("SOLUTION")) {
 
                     int solutionNumber = ((Number) postJSON.getOrDefault(SOLUTION_NUMBER, 0L)).intValue();
                     UUID questionId = UUID.fromString((String) postJSON.getOrDefault(QUESTION_ID, postId.toString()));
 
-                    posts.add(new SolutionPost(postId, author, createdAt, comments, tags, contentSections,
+                    posts.add(new SolutionPost(postId, title, author, createdAt, comments, tags, contentSections,
                             score, solutionNumber, questionId));
                 }
             }

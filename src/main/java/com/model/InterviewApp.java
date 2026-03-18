@@ -30,17 +30,18 @@ public class InterviewApp {
         
     }
 
-    public boolean createUser(String username, String email, String password, String firstName, String lastName)
+    public User getUser(String username, String password) 
     {
-       return userManager.addUser(username, email, password, firstName, lastName);
-
-    
+        return userManager.getUser(username, password);
     }
 
-    public boolean login(String username, String email, String password)
+    public boolean createUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year)
     {
-        return userManager.login(username, email, password);
+       return userManager.addUser(username, email, password, firstName, lastName, role, major, year);
+    }
 
+    public boolean login(String username, String email, String password) {
+        return userManager.login(username, email, password);
     }
 
     public boolean logout()
@@ -55,9 +56,9 @@ public class InterviewApp {
 
     }
 
-    public boolean addQuestion (Contributor contributor, QuestionPost question)
+    public boolean addQuestion (QuestionPost question)
     {
-        return postManager.addQuestion(contributor, question);
+        return postManager.addQuestion(question);
 
     }
 
@@ -91,4 +92,8 @@ public class InterviewApp {
 
     } 
 
+    public boolean haveUser(String username) 
+    {
+    return userManager.haveUser(username);
+    }
 }
