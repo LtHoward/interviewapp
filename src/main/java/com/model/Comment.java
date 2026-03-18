@@ -18,6 +18,26 @@ public class Comment {
         this.postId = postId;
     }
 
+    public User getAuthor() {
+        return author;
+    }
+    
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public UUID getCommentId() {
+        return commentId;
+    }
+
+    public UUID getPostId() {
+        return postId;
+    }
+
     public Comment getReply(){
         return null;
     }
