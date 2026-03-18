@@ -30,7 +30,7 @@ public abstract class User {
     }
 
     /**
-     * returns the email if it is valid, otherwise returns null.
+     * Method to get the email if it is valid, otherwise returns null.
      * A valid email contains an "@" and a "." and is not null or empty.
      * @return true if the email id valid, false otherwise.
      * @auhtor Myila Howard
@@ -44,7 +44,7 @@ public abstract class User {
     }
 
     /**
-     * gets the first name of the user if valid.
+     * Method to get the first name of the user if valid.
      * @return true if the first name is not null or empty, false otherwise
      * @author Myila Howard
      */
@@ -56,8 +56,8 @@ public abstract class User {
     }
 
     /**
-     * get the last name of the user if valid.
-     * @return true if the last name is not null or empty, false other wise.
+     * Method to get the last name of the user if valid.
+     * @return true if the last name is not null or empty, false otherwise.
      * @author Myila Howard
      */
     public String getLastName() {
@@ -72,7 +72,7 @@ public abstract class User {
     }
 
     /**
-     * Resets the user's password if the new password is the same as the old password,
+     * Mehthod to reset the user's password if the new password is the same as the old password,
      * otherwise return false and do not change the password.
      * @param newPass the users new password
      * @return true if the password was successfully reset, false otherwise.

@@ -46,7 +46,7 @@ public class UserManager {
     }
 
     /**
-     * Checks if the username exists in the user list.
+     * Method to check if the username exists in the user list.
      * @param username the username to check
      * @return true if the username exist, false otherwise. 
      * @author 
@@ -125,7 +125,7 @@ public class UserManager {
     }
 
     /**
-     * Reset the password for a user if the username exists and the new password is different from the old password.
+     * Method to reset the password for a user if the username exists and the new password is different from the old password.
      * @param username the username of the user whose wants to reset their password
      * @param newPass the new password the user wants to set
      * @return true if the password was successfully reset, false otherwise.
@@ -139,7 +139,7 @@ public class UserManager {
     }
 
     /**
-     * Removes a user account if the user exist in the user list.
+     * Method to remove a user account if the user exist in the user list.
      * @param user the user whose account is to be removed
      * @return true if the account was successfully removed, false otherwise.
      * @author Myila Howard
