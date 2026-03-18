@@ -20,7 +20,14 @@ public class InterviewUI {
     public void run() {
         boolean running = true;
         while (running) {
-            System.out.println("\nWelcome to the Interview App!\n\nChoose a scenario to run:\n\n1. Login Scenario\n2. Create Account Scenario\n3. logout Scenario\n4. Create Question Post Scenario");
+            System.out.println("\nWelcome to the Interview App!\n" +
+            "\nChoose a scenario to run:\n" +
+            "\n1. Login Scenario" +
+            "\n2. Create Account Scenario" +
+            "\n3. logout Scenario" +
+            "\n4. Create Question Post Scenario" +
+            "\n5. View Question Post" +
+            "\n6. Exit");
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -34,7 +41,14 @@ public class InterviewUI {
                     scenario3(); // logout scenario
                     break;
                 case 4: 
-                    scenario4();
+                    scenario4(); //question post creation scenario
+                    break;
+                case 5:
+                    scenario5(); //view question post scenario
+                    break;
+                case 6:
+                    System.out.println("Exiting the app...");
+                    running = false;
                     break;
                 default:
                     System.out.println("Invalid choice.");
@@ -74,62 +88,6 @@ public class InterviewUI {
 
         currentUser = app.getUser(username, password);
         System.out.println("Welcome to the Interview App, " + username + "!\nStatus: " + currentUser.getStatus() + "\n");
-
-        boolean validRole = false;
-        while(!validRole)
-        {
-            switch (currentUser.getStatus()) 
-            {
-                case STUDENT:
-                    validRole = true;
-                    System.out.println("You have the Student role.\n 1. Questions\n 2. Solutions\n 3. Logout");
-                    int studentChoice = scanner.nextInt();
-                    if(studentChoice == 1) 
-                    {
-                        System.out.println("You have chosen to view Questions.");
-                    } 
-                    else if (studentChoice == 2) 
-                    {
-                        System.out.println("You have chosen to view Solutions.");
-                    } 
-                    else if (studentChoice == 3) scenario3();
-                    break;
-                case CONTRIBUTOR:
-                    validRole = true;
-                    System.out.println("You have the Contributor role.\n 1. Create Question\n 2. Create Solution\n 3. Logout");
-                        int contributorChoice = scanner.nextInt();
-                    if(contributorChoice == 1) 
-                    {
-                        System.out.println("You have chosen to Create a Question.");
-                    } 
-                    else if (contributorChoice == 2) 
-                    {
-                        System.out.println("You have chosen to Create a Solution.");
-                    }
-                    else if (contributorChoice == 3) scenario3();
-                    break;
-                case ADMINISTRATOR:
-                    validRole = true;
-                    System.out.println("You have the Administrator role.\n 1. Edit Post\n 2. Delete Post\n 3. Remove User\n 4. Logout");
-                        int adminChoice = scanner.nextInt();
-                    if(adminChoice == 1) 
-                    {
-                        System.out.println("You have chosen to Edit a Post.");
-                    } 
-                    else if (adminChoice == 2) 
-                    {
-                        System.out.println("You have chosen to Delete a Post.");
-                    } 
-                    else if (adminChoice == 3)
-                    {
-                        System.out.println("You have chosen to Remove a User.");
-                    } 
-                    else if (adminChoice == 4) scenario3();
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-            }
-        }
     }
 
     private boolean validateUsername(String username) 
@@ -432,6 +390,57 @@ public class InterviewUI {
         }
     }
 
+    private void scenario5() {
+        ArrayList<Post> allPosts = app.getAllPosts();
+
+        ArrayList<QuestionPost> questions = new ArrayList<>();
+        
+        for (Post post : allPosts) {
+            if (post instanceof QuestionPost) {
+                questions.add((QuestionPost) post);
+            }
+        }
+
+        if (questions.isEmpty()) {
+            System.out.println("No question posts available.");
+            return;
+        }
+
+        System.out.println("\n--- Question Posts ---");
+        for (int i = 0; i < questions.size(); i++) {
+            System.out.println((i + 1) + ". " + questions.get(i).getTitle());
+        }
+
+        System.out.println("\nSelect a question by number:");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (choice < 1 || choice > questions.size()) {
+            System.out.println("Invalid selection.");
+            return;
+        }
+
+        QuestionPost selected = questions.get(choice - 1);
+
+        System.out.println("\n--- Question Details ---");
+        System.out.println("Title: " + selected.getTitle());
+        System.out.println("Author: " + selected.getAuthor().getUsername());
+        System.out.println("Difficulty: " + selected.getDifficulty());
+        System.out.println("Hint: " + selected.getHint());
+        System.out.println("Score: " + selected.getScore());
+
+        System.out.println("\nTags:");
+        for (String tag : selected.getTags()) {
+            System.out.println("- " + tag);
+        }
+
+        System.out.println("\nContent:");
+        for (PostContent section : selected.getContentSections()) {
+            System.out.println("Type: " + section.getType());
+            System.out.println(section.getContent());
+            System.out.println();
+        }
+    }
 
     public static void main(String[] args) {
 		InterviewUI libraryInterface = new InterviewUI();

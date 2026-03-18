@@ -10,7 +10,7 @@ public class InterviewApp {
 
     public InterviewApp() 
     {        
-        postManager = new PostManager();
+        postManager = PostManager.getInstance();
         savedPost = new ArrayList<>();
         userManager = UserManager.getInstance();
         currentUser = null;
