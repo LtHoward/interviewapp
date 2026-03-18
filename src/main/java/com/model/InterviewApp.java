@@ -1,6 +1,5 @@
 package com.model;
 
-import java.util.UUID;
 import java.util.ArrayList;
 
 public class InterviewApp {
@@ -36,7 +35,7 @@ public class InterviewApp {
 
     public User getUser(String username, String password) 
     {
-        return userManager.getUser(username, password);
+        return userManager.getUser(username);
     }
 
     public boolean createUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year)
@@ -54,10 +53,20 @@ public class InterviewApp {
 
     }
 
-    public boolean resetPassword(String password)
+    /**
+     * Method to reset the password for the current user if the old password is right
+     * and the new password is different from the old password.
+     * @param oldPass the users current password
+     * @param newPass the users new password
+     * @return true if the password was successfully reset, false otherwise.
+     * @author Myila Howard
+     */
+    public boolean resetPassword(String oldPass, String newPass)
     {
-        return userManager.resetPassword(password);
-
+        if (currentUser != null && currentUser.getPassword().equals(oldPass)) {
+            return userManager.resetPassword(currentUser.getUsername(), newPass);
+        }
+        return false;
     }
 
     public boolean addQuestion (QuestionPost question)
@@ -98,6 +107,6 @@ public class InterviewApp {
 
     public boolean haveUser(String username) 
     {
-    return userManager.haveUser(username);
+    return userManager.userExist(username);
     }
 }

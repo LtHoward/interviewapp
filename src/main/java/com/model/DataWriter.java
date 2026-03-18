@@ -9,6 +9,11 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataConstants 
 {
     
+/**
+ * The main method for User to write the users to the JSON file.
+ * Uses associated classes to get the necessary information to write to the file.
+ * @author Dorian Rhone
+ */
     public static void saveUsers()
     {
         UserManager users = UserManager.getInstance();
@@ -31,6 +36,15 @@ public class DataWriter extends DataConstants
         }
 
     }
+
+
+    /**
+     * Main method to get the JSON object for a User,
+     *  which is used in the saveUsers method to write to the JSON file.
+     * @param user The User object to be converted to a JSON object.
+     * @return The JSON object representing the user.
+     * @author Dorian Rhone
+     */
         public static JSONObject getUsersJSON(User user) 
         {
             JSONObject usersDetails = new JSONObject();
@@ -42,6 +56,11 @@ public class DataWriter extends DataConstants
             usersDetails.put(LAST_NAME, user.getLastName());
             usersDetails.put(ROLE, user.getStatus().toString());
 
+            /**
+             * if else statement to determine if the user is a Contributor, Student, or Administrator,
+             * which is needed to write the necessary information to the file.
+             * @author Dorian Rhone
+             */
             if(user.getStatus() == Role.CONTRIBUTOR) 
             {
                 JSONObject contributorDetails = new JSONObject();
@@ -62,8 +81,14 @@ public class DataWriter extends DataConstants
                 studentDetails.put(SKILL_LEVEL, student.getSkillLevel().toString());
                 studentDetails.put(SOLVED_QUESTIONS, student.getSolvedQuestions());
                 studentDetails.put(POSTED_SOLUTIONS, student.getPostedSolutions());
-                studentDetails.put(LAST_ACTIVITY_DATE, student.getLastActivityDate().getTime());
+                studentDetails.put(LAST_ACTIVITY_DATE, student.getLastActivityDate().toString());
 
+            
+            /**
+             * JSON Object needed for Progression, which is needed to determine the points, level, current streak,
+             * longest streak, equipped title, and unlocked titles of the student, which is needed to write to the file.
+             * @author Dorian Rhone
+             */
                 JSONObject progression = new JSONObject();
                 progression.put(POINTS, student.getProgression().getPoints());
                 progression.put(LEVEL, student.getProgression().getLevel());
@@ -73,6 +98,12 @@ public class DataWriter extends DataConstants
                 progression.put(UNLOCKED_TITLES, student.getProgression().unlockTitles());
                 usersDetails.put(PROGRESSION, progression);
 
+
+            /**
+             * Rewards Array needed to determine the type of reward, the amount of the reward,
+             * and if the reward has been redeemed or not, which is needed to write to the file.
+             * @author Dorian Rhone
+             */
                 JSONArray rewardsArray = new JSONArray();
                 for(Reward reward : student.getRewards()) 
                 {
@@ -92,7 +123,12 @@ public class DataWriter extends DataConstants
             return usersDetails;
         }
 
-
+/**
+ * Main method to load the users from the JSON file and write them to the file again,
+ * which is needed to test the saveUsers method and ensure that the users are being written to the file correctly.
+ * @param args
+ * @author Dorian Rhone
+ */
         public static void main(String[] args) 
         {
             UserManager.getInstance().getUsers().clear();
@@ -101,9 +137,13 @@ public class DataWriter extends DataConstants
         }
 
     
-
-
-   public static void savePosts() 
+    /**
+     * The main method for Post to write the posts to the JSON file.
+     * Uses associated classes to get the necessary information to write to the file.
+     * @author Dorian Rhone
+     */
+    
+    public static void savePosts() 
     {
         PostManager postsInstance = PostManager.getInstance();
         ArrayList<Post> posts = postsInstance.getAllPosts();
@@ -125,21 +165,112 @@ public class DataWriter extends DataConstants
         }
     }
 
+    /**
+     * Main method to get the JSON object for a Post,
+     * which is used in the savePosts method to write to the JSON file.
+     * @param post The Post object to be converted to a JSON object.
+     * @return The JSON object representing the Post.
+     * @author Dorian Rhone
+     */
         public static JSONObject getPostsJSON(Post post) 
         {
             JSONObject postDetails = new JSONObject();
-            postDetails.put(POST_ID, post.getPostId());
+            postDetails.put(POST_ID, post.getPostId().toString());
             postDetails.put(POST_TYPE, post.getType());
             postDetails.put(TITLE, post.getTitle());
-            postDetails.put(AUTHOR_ID, post.getAuthor());
-            postDetails.put(CREATED_AT, post.getCreatedAt());
+            postDetails.put(AUTHOR_ID, post.getAuthor().getId().toString());
+            postDetails.put(CREATED_AT, post.getCreatedAt().toString());
             postDetails.put(SCORE, post.getScore());
+
+            /**
+             * JSON Array needed for Tags to determine the tags associated with the post,
+             * which is needed to write to the file.
+             * @author Dorian Rhone
+             */
+            JSONArray tagsArray = new JSONArray();
+            for(String tag : post.getTags())
+            {
+                tagsArray.add(tag);
+            }
+            postDetails.put(TAGS, tagsArray);
+
+
+            /**
+             * JSON Array needed for Comments, which also needs to get the
+             * necessary information from the Comment class to write to the file.
+             * @author Dorian Rhone
+             */
+            JSONArray commentsArray = new JSONArray();
+            for(Comment comment : post.getComments())
+            {
+                JSONObject commentDetails = new JSONObject();
+                commentDetails.put(POST_ID, comment.getCommentId().toString());
+                commentDetails.put(AUTHOR_ID, comment.getAuthor().getId().toString());
+                commentDetails.put(CONTENT, comment.getContent());
+                commentDetails.put(CREATED_AT, comment.getCreatedAt().toString());
+                commentsArray.add(commentDetails);
+            }
+            postDetails.put(COMMENTS, commentsArray);
+
+
+            /**
+             * Content Sections Array need to determine the type of 
+             * content and the content itself, which is needed to write to the file.
+             * @author Dorian Rhone
+             */
+            JSONArray sectionsArray = new JSONArray();
+            for(PostContent section : post.getContentSections())
+            {
+                JSONObject sectionDetails = new JSONObject();
+                sectionDetails.put(TYPE, section.getType().toString());
+                sectionDetails.put(CONTENT, section.getContent());
+                sectionsArray.add(sectionDetails);
+            }
+            postDetails.put(CONTENT_SECTIONS, sectionsArray);
+
+
+            /**
+             * if else statement to determine if the post is a QuestionPost or a SolutionPost,
+             * which is needed to write the necessary information to the file.
+             * @author Dorian Rhone
+             */
+            if(post instanceof QuestionPost) 
+            {
+                QuestionPost question = (QuestionPost) post;
+                postDetails.put(DIFFICULTY, question.getDifficulty().toString());
+                postDetails.put(HINT, question.getHint());
+            } 
+            else if (post instanceof SolutionPost) 
+            {
+                SolutionPost solution = (SolutionPost) post;
+                postDetails.put(QUESTION_ID, solution.getQuestionId().toString());
+                postDetails.put(SOLUTION_NUMBER, solution.getSolutionNumber());
+            }
             return postDetails;
         }
 
-    /**public static void main(String[] args) 
-    {
-        DataWriter.savePosts();
-    }*/
+        /**
+         * Second Main method to load the posts from the JSON file and write them to the file again,
+         * which is needed to test the savePosts method and ensure that the posts are being written to the file correctly.
+         * @param args
+         * @author Dorian Rhone
+         */
+       public static void main2(String[] args) 
+        {
+            ArrayList<User> users = DataLoader.getUsers();
+            ArrayList<Post> posts = DataLoader.getPosts(users);
+            for(Post post: posts)
+            {
+                if (post instanceof QuestionPost) 
+                {
+                    PostManager.getInstance().addQuestion((QuestionPost) post);
+                }
+                else if (post instanceof SolutionPost) 
+                {
+                    PostManager.getInstance().getSolution().add((SolutionPost) post);
+                }
+            }
+            DataWriter.savePosts();
+        }
 }
 

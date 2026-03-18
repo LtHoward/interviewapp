@@ -1,8 +1,8 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.UUID;
 import java.util.Date;
+import java.util.UUID;
 
 public class UserManager {
     private static UserManager userManager;
@@ -30,11 +30,11 @@ public class UserManager {
         return null;
     }
 
-    public User getUser (String username, String password) {
-        if (username == null || password == null) return null;
+    public User getUser (String username) {
+        if (username == null) return null;
 
         for(User user : users) {
-            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            if(user.getUsername().equals(username)) {
                 return user;
             }
         }
@@ -45,7 +45,13 @@ public class UserManager {
         return users;
     }
 
-    public boolean haveUser(String username){
+    /**
+     * Method to check if the username exists in the user list.
+     * @param username the username to check
+     * @return true if the username exist, false otherwise. 
+     * @author 
+     */
+    public boolean userExist(String username){
         if (username == null) return false;
         
         for (User user : users) {
@@ -65,7 +71,7 @@ public class UserManager {
     {
 
     if (username == null || email == null || password == null || firstName == null || lastName == null || role == null) return false;
-    if (haveUser(username)) return false;
+    if (userExist(username)) return false;
 
     switch (role) 
     {
@@ -118,15 +124,35 @@ public class UserManager {
         return true;
     }
 
-    public boolean resetPassword (String password ) {
-        return true;
+    /**
+     * Method to reset the password for a user if the username exists and the new password is different from the old password.
+     * @param username the username of the user whose wants to reset their password
+     * @param newPass the new password the user wants to set
+     * @return true if the password was successfully reset, false otherwise.
+     * @author Myila Howard
+     */
+    public boolean resetPassword (String username, String newPass) {
+        if(userExist(username)) {
+            return getUser(username).resetPassword(newPass);
+        }
+        return false;
     }
 
-    public boolean resetAccount(User user) {
+    /**
+     * Method to remove a user account if the user exist in the user list.
+     * @param user the user whose account is to be removed
+     * @return true if the account was successfully removed, false otherwise.
+     * @author Myila Howard
+     */
+    public boolean removeAccount(User user) {
+        if (users.contains(user)) {
+            users.remove(user);
+        }
         return true;
     }
 
     public boolean removeOtherAccount(Role ADMINISTRATOR) {
+
         return true;
     }
 }
