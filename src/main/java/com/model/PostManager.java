@@ -9,7 +9,7 @@ public class PostManager
     private ArrayList<SolutionPost> solutionPosts;
 
 
-    public PostManager()
+    public PostManager() 
     {
         questionPosts = new ArrayList<>();
         solutionPosts = new ArrayList<>();

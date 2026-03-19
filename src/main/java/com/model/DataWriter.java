@@ -253,5 +253,5 @@ public class DataWriter extends DataConstants
             PostManager.getInstance().getAllPosts().addAll(DataLoader.getPosts(users));
             DataWriter.savePosts();
         }
-}
+} 
 
