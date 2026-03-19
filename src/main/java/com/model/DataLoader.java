@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 import org.json.simple.JSONArray;
@@ -132,9 +133,14 @@ public class DataLoader extends DataConstants {
                 }
 
                 String createdAtStr = (String) postJSON.get(CREATED_AT);
-                Date createdAt = (createdAtStr == null)
-                        ? new Date()
-                        : Date.from(OffsetDateTime.parse(createdAtStr).toInstant());
+                Date createdAt = new Date();
+                if (createdAtStr != null) {
+                    try {
+                        createdAt = Date.from(OffsetDateTime.parse(createdAtStr).toInstant());
+                    } catch (Exception e) {
+                        createdAt = new Date();
+                    }
+                }
 
                 Number scoreNum = (Number) postJSON.getOrDefault(SCORE, 0L);
                 int score = scoreNum.intValue();
@@ -144,6 +150,75 @@ public class DataLoader extends DataConstants {
                 ArrayList<Comment> comments = new ArrayList<>();
                 ArrayList<String> tags = new ArrayList<>();
                 ArrayList<PostContent> contentSections = new ArrayList<>();
+
+                JSONArray tagsJSON = (JSONArray) postJSON.get(TAGS);
+                if (tagsJSON != null) {
+                    for (Object tagObj : tagsJSON) {
+                        tags.add((String) tagObj);
+                    }
+                }
+
+                JSONArray contentSectionsJSON = (JSONArray) postJSON.get(CONTENT_SECTIONS);
+                if (contentSectionsJSON != null) {
+                    for (Object sectionObj : contentSectionsJSON) {
+                        JSONObject sectionJSON = (JSONObject) sectionObj;
+
+                        String sectionTypeStr = (String) sectionJSON.get(TYPE);
+                        String sectionContent = (String) sectionJSON.get(CONTENT);
+
+                        if (sectionTypeStr != null && sectionContent != null) {
+                            try {
+                                ContentType contentType = ContentType.valueOf(sectionTypeStr.toUpperCase());
+                                contentSections.add(new PostContent(contentType, sectionContent));
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Invalid content type: " + sectionTypeStr);
+                            }
+                        }
+                    }
+                }
+
+                JSONArray commentsJSON = (JSONArray) postJSON.get(COMMENTS);
+                if (commentsJSON != null) {
+                    for (Object commentObj : commentsJSON) {
+                        JSONObject commentJSON = (JSONObject) commentObj;
+
+                        String commentIdString = (String) commentJSON.get(POST_ID);
+                        String commentAuthorIdString = (String) commentJSON.get(AUTHOR_ID);
+                        String commentContent = (String) commentJSON.getOrDefault(CONTENT, "");
+                        String commentCreatedAtStr = (String) commentJSON.get(CREATED_AT);
+
+                        if (commentIdString == null || commentAuthorIdString == null) {
+                            continue;
+                        }
+
+                        UUID commentId = UUID.fromString(commentIdString);
+                        UUID commentAuthorId = UUID.fromString(commentAuthorIdString);
+
+                        User commentAuthor = userMap.get(commentAuthorId);
+                        if (commentAuthor == null) {
+                            continue;
+                        }
+
+                        Date commentCreatedAt = new Date();
+                        if (commentCreatedAtStr != null) {
+                            try {
+                                commentCreatedAt = Date.from(OffsetDateTime.parse(commentCreatedAtStr).toInstant());
+                            } catch (Exception e) {
+                                commentCreatedAt = new Date();
+                            }
+                        }
+
+                        LocalDate commentDate = LocalDate.now();
+                        if (commentCreatedAtStr != null) {
+                            try {
+                                commentDate = OffsetDateTime.parse(commentCreatedAtStr).toLocalDate();
+                            } catch (Exception e) {
+                                commentDate = LocalDate.now();
+                            }
+                        }
+                        comments.add(new Comment(commentId, commentAuthor, commentContent, postId, commentDate));
+                    }
+                }
 
                 if (type.equals("QUESTION")) {
 
