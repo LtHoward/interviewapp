@@ -9,14 +9,14 @@ public class PostManager
     private ArrayList<SolutionPost> solutionPosts;
 
 
-    public PostManager() 
+    public PostManager()
     {
         questionPosts = new ArrayList<>();
         solutionPosts = new ArrayList<>();
         return;
     }
 
-    public static PostManager getInstance()  
+    public static PostManager getInstance() 
     {
         if(postManager == null) {
             postManager = new PostManager();
@@ -24,7 +24,7 @@ public class PostManager
         return postManager;
     }
 
-    public ArrayList<Post> getAllPosts() { 
+    public ArrayList<Post> getAllPosts() {
         ArrayList<Post> allPosts = new ArrayList<>();
         allPosts.addAll(questionPosts);
         allPosts.addAll(solutionPosts);
@@ -82,7 +82,7 @@ public class PostManager
    
     public ArrayList<QuestionPost> getQuestionsByKeyWord(String title)
     {
-        return questionPosts;
+        return questionPosts; 
     }
 
    
