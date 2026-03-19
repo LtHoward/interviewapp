@@ -1,6 +1,14 @@
 [
     {
+<<<<<<< HEAD
         "firstName": "Steven",
+=======
+        "userId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+        "username": "sSteven",
+        "email": "ssteven@email.sc.edu",
+        "password": "daR33l*5T3ven!",
+        "firstName": "Thomas",
+>>>>>>> d96e5e7f21e7c7ce21d9993d6146338121c7788e
         "lastName": "Student",
         "password": "daR33l*5T3ven!",
         "role": "STUDENT",

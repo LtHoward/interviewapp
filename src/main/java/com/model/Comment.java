@@ -1,6 +1,7 @@
 package com.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Comment {
@@ -9,6 +10,7 @@ public class Comment {
     private String content;
     private UUID commentId;
     private UUID postId;
+    private ArrayList<Comment> reply;
 
     public Comment (User author, String content, UUID postId){
         this.author = author;
@@ -16,6 +18,7 @@ public class Comment {
         this.content = content;
         this.commentId = UUID.randomUUID();
         this.postId = postId;
+        this.reply = new ArrayList<>();
     }
 
     public User getAuthor() {
@@ -38,7 +41,7 @@ public class Comment {
         return postId;
     }
 
-    public Comment getReply(){
-        return null;
+    public ArrayList<Comment> getReply(){
+        return reply;
     }
 }

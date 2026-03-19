@@ -46,9 +46,15 @@ public class PostManager
         return matchingPosts;
         }
 
-    public ArrayList<SolutionPost> getSolution()
+    public ArrayList<SolutionPost> getSolution(int solutionNumber)
     {
-        return solutionPosts;
+        if(solutionPosts.size() < solutionNumber)
+        {
+            System.out.println("Error! System out of bounds");
+            return new ArrayList<>();
+        }
+        else
+            return new ArrayList<>(solutionPosts.subList(0, solutionNumber));
     }
 
     public boolean addQuestion(QuestionPost question)
@@ -76,7 +82,7 @@ public class PostManager
    
     public ArrayList<QuestionPost> getQuestionsByKeyWord(String title)
     {
-        return questionPosts;
+        return questionPosts; 
     }
 
    
@@ -95,7 +101,7 @@ public class PostManager
         return null;
     }
     
-    public boolean save()
+    public boolean save()  
     {
         return true;
     }
