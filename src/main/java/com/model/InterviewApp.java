@@ -20,7 +20,7 @@ public class InterviewApp {
     public boolean removeUser(User user)
     {
       if (user == null) return false;
-      return userManager.removeUser(user);
+      return userManager.removeAccount(user);
     }
 
     public ArrayList<User> getAllUsers()
