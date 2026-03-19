@@ -1,16 +1,18 @@
 package com.model;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class UserManager {
     private static UserManager userManager;
     private ArrayList<User> users = new ArrayList<>();
 
+<<<<<<< HEAD
+    public UserManager() {} 
+=======
     public UserManager() {
         users = DataLoader.getUsers();
     } 
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
 
     public static UserManager getInstance() {
         if (userManager == null) {
@@ -19,20 +21,44 @@ public class UserManager {
         return userManager;
     }
 
-    public User getUserById(UUID userId){
-        if (userId == null) return null;
-
-        for (User user : users) {
-            if (user.getId().equals(userId)) {
-                return user;
-            }
-        }
-        return null;
+    public User createUser (String username, String email, String firstName, String lastName) {
+        
+        User createdUser = new User(username, email, firstName, lastName);
+        return createdUser;
     }
 
+    public boolean login (String username, String email, String password) {
+        User user = getUser(username,password);
+        if(user != null)
+        return  true;
+    else 
+        return false;
+    
+    }
+
+    public boolean logout(User user)
+    {
+       if(users.contains(user))
+        return true;
+    else 
+        return false;
+    }
+
+    public boolean resetPassword (){
+        return true;
+    }
+
+    public boolean resetAccount(User user) {
+        return true;
+    }
+
+<<<<<<< HEAD
+    public User getUser (String username, String password) {
+=======
     public User getUser (String username) {
         if (username == null) return null;
 
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
         for(User user : users) {
             if(user.getUsername().equals(username)) {
                 return user;
@@ -45,6 +71,9 @@ public class UserManager {
         return users;
     }
 
+<<<<<<< HEAD
+    public boolean haveUser(String username){
+=======
     /**
      * Method to check if the username exists in the user list.
      * @param username the username to check
@@ -54,6 +83,7 @@ public class UserManager {
     public boolean userExist(String username){
         if (username == null) return false;
         
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
         for (User user : users) {
             if (user.getUsername().equals(username)) {
                 return true;
@@ -62,6 +92,10 @@ public class UserManager {
         return false;
     }
 
+<<<<<<< HEAD
+    public boolean addUser(String username, String email, String password, String firstName, String lastName) {
+        if(haveUser(username)) return false;
+=======
     public ArrayList<User> getAllUsers()
     {
         return users;
@@ -69,6 +103,7 @@ public class UserManager {
 
     public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) 
     {
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
 
     if (username == null || email == null || password == null || firstName == null || lastName == null || role == null) return false;
     if (userExist(username)) return false;
@@ -92,15 +127,13 @@ public class UserManager {
     return true;
 }
 
-    public boolean removeUser(User user) {
-        if (user == null) return false;
-        return users.remove(user);
-    }
-
     public boolean saveUser () {
         return true;
     }
 
+<<<<<<< HEAD
+    public boolean removeOtherAccount(Role administration) {
+=======
     public User createUser (String username, String email, String firstName, String lastName) {
         return null;
     }
@@ -109,8 +142,7 @@ public class UserManager {
         users = DataLoader.getUsers();
 
         for (User user : users) {
-            if ((user != null && 
-                user.getUsername().equals(username) ||
+            if ((user.getUsername().equals(username) ||
                 user.getEmail().equals(email)) &&
                 user.getPassword().equals(password)) {
                 return true;
@@ -154,6 +186,7 @@ public class UserManager {
 
     public boolean removeOtherAccount(Role ADMINISTRATOR) {
 
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
         return true;
     }
 }

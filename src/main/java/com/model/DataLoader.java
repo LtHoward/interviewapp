@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 import org.json.simple.JSONArray;
@@ -18,7 +19,6 @@ public class DataLoader extends DataConstants {
         ArrayList<User> users = new ArrayList<>();
 
         try (FileReader reader = new FileReader(USERS_FILE)) {
-
             JSONArray usersJSON = (JSONArray) new JSONParser().parse(reader);
 
             for (int i = 0; i < usersJSON.size(); i++) {
@@ -34,41 +34,64 @@ public class DataLoader extends DataConstants {
                 Role role = Role.valueOf(((String) userJSON.get(ROLE)).toUpperCase());
 
                 if (role == Role.STUDENT) {
+                    JSONObject studentData = (JSONObject) userJSON.get(STUDENT_DATA);
 
-                    String currentClasses = (String) userJSON.getOrDefault(CURRENT_CLASSES, "");
-                    String classesTaken = (String) userJSON.getOrDefault(CLASSES_TAKEN, "");
+                    String currentClasses = "";
+                    String classesTaken = "";
+                    Major major = Major.COMPUTER_SCIENCE;
+                    Year year = Year.FRESHMAN;
+                    SkillLevel skillLevel = SkillLevel.BEGINNER;
+                    int solvedQuestions = 0;
+                    Date lastActivityDate = new Date();
 
-                    Major major = Major.valueOf(((String) userJSON.getOrDefault(MAJOR, "COMPUTER_SCIENCE")).toUpperCase());
-                    Year year = Year.valueOf(((String) userJSON.getOrDefault(YEAR, "FRESHMAN")).toUpperCase());
-                    SkillLevel skillLevel = SkillLevel.valueOf(((String) userJSON.getOrDefault(SKILL_LEVEL, "BEGINNER")).toUpperCase());
-
-                    int solvedQuestions = ((Long) userJSON.getOrDefault(SOLVED_QUESTIONS, 0L)).intValue();
+                    if(studentData != null) {
+                        currentClasses = (String) studentData.getOrDefault(CURRENT_CLASSES, "");
+                        classesTaken = (String) studentData.getOrDefault(CLASSES_TAKEN, "");
+                        major = Major.valueOf(((String) studentData.getOrDefault(MAJOR, "COMPUTER_SCIENCE")).toUpperCase());
+                        year = Year.valueOf(((String) studentData.getOrDefault(YEAR, "FRESHMAN")).toUpperCase());
+                        skillLevel = SkillLevel.valueOf(((String) studentData.getOrDefault(SKILL_LEVEL, "BEGINNER")).toUpperCase());
+                        solvedQuestions = ((Long) studentData.getOrDefault(SOLVED_QUESTIONS, 0L)).intValue();
+                        
+                        String lastActivityDateStr = (String) studentData.get(LAST_ACTIVITY_DATE);
+                        if (lastActivityDateStr != null) {
+                            try{
+                                lastActivityDate = Date.from(OffsetDateTime.parse(lastActivityDateStr).toInstant());
+                            } catch (Exception e) {
+                                lastActivityDate = new Date();
+                            }
+                        }   
+                    }
 
                     ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
                     Progression progression = new Progression();
                     ArrayList<Reward> rewards = new ArrayList<>();
 
-                    long lastMs = (Long) userJSON.getOrDefault(LAST_ACTIVITY_DATE, System.currentTimeMillis());
-                    Date lastActivityDate = new Date(lastMs);
-
                     users.add(new Student(id, username, email, password, firstName,
-                            lastName, major, year, currentClasses, classesTaken,
-                            skillLevel, solvedQuestions, postedSolutions,
-                            progression, rewards, lastActivityDate,role));
+                        lastName, major, year, currentClasses, classesTaken,
+                        skillLevel, solvedQuestions, postedSolutions,
+                        progression, rewards, lastActivityDate, role));
 
                 } else if (role == Role.CONTRIBUTOR) {
-                    String experience = (String) userJSON.getOrDefault(EXPERIENCE, "");
+                    JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
+                    String experience = "";
+                    if(contributorData != null) {
+                        experience = (String) contributorData.getOrDefault(EXPERIENCE, "");
+                    }
 
                     users.add(new Contributor(id, username, email, password, firstName,
                             lastName, experience));
 
                 } else if (role == Role.ADMINISTRATOR) {
-                    String experience = (String) userJSON.getOrDefault(EXPERIENCE, "");
+                    JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
+                    String experience = "";
+                    if(contributorData != null) {
+                        experience = (String) contributorData.getOrDefault(EXPERIENCE, "");
+                    }
                     users.add(new Contributor(id, username, email, password, firstName,
                             lastName, experience, Role.ADMINISTRATOR));
                 }
-            }
-
+                
+            } 
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,9 +133,14 @@ public class DataLoader extends DataConstants {
                 }
 
                 String createdAtStr = (String) postJSON.get(CREATED_AT);
-                Date createdAt = (createdAtStr == null)
-                        ? new Date()
-                        : Date.from(OffsetDateTime.parse(createdAtStr).toInstant());
+                Date createdAt = new Date();
+                if (createdAtStr != null) {
+                    try {
+                        createdAt = Date.from(OffsetDateTime.parse(createdAtStr).toInstant());
+                    } catch (Exception e) {
+                        createdAt = new Date();
+                    }
+                }
 
                 Number scoreNum = (Number) postJSON.getOrDefault(SCORE, 0L);
                 int score = scoreNum.intValue();
@@ -122,6 +150,75 @@ public class DataLoader extends DataConstants {
                 ArrayList<Comment> comments = new ArrayList<>();
                 ArrayList<String> tags = new ArrayList<>();
                 ArrayList<PostContent> contentSections = new ArrayList<>();
+
+                JSONArray tagsJSON = (JSONArray) postJSON.get(TAGS);
+                if (tagsJSON != null) {
+                    for (Object tagObj : tagsJSON) {
+                        tags.add((String) tagObj);
+                    }
+                }
+
+                JSONArray contentSectionsJSON = (JSONArray) postJSON.get(CONTENT_SECTIONS);
+                if (contentSectionsJSON != null) {
+                    for (Object sectionObj : contentSectionsJSON) {
+                        JSONObject sectionJSON = (JSONObject) sectionObj;
+
+                        String sectionTypeStr = (String) sectionJSON.get(TYPE);
+                        String sectionContent = (String) sectionJSON.get(CONTENT);
+
+                        if (sectionTypeStr != null && sectionContent != null) {
+                            try {
+                                ContentType contentType = ContentType.valueOf(sectionTypeStr.toUpperCase());
+                                contentSections.add(new PostContent(contentType, sectionContent));
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Invalid content type: " + sectionTypeStr);
+                            }
+                        }
+                    }
+                }
+
+                JSONArray commentsJSON = (JSONArray) postJSON.get(COMMENTS);
+                if (commentsJSON != null) {
+                    for (Object commentObj : commentsJSON) {
+                        JSONObject commentJSON = (JSONObject) commentObj;
+
+                        String commentIdString = (String) commentJSON.get(POST_ID);
+                        String commentAuthorIdString = (String) commentJSON.get(AUTHOR_ID);
+                        String commentContent = (String) commentJSON.getOrDefault(CONTENT, "");
+                        String commentCreatedAtStr = (String) commentJSON.get(CREATED_AT);
+
+                        if (commentIdString == null || commentAuthorIdString == null) {
+                            continue;
+                        }
+
+                        UUID commentId = UUID.fromString(commentIdString);
+                        UUID commentAuthorId = UUID.fromString(commentAuthorIdString);
+
+                        User commentAuthor = userMap.get(commentAuthorId);
+                        if (commentAuthor == null) {
+                            continue;
+                        }
+
+                        Date commentCreatedAt = new Date();
+                        if (commentCreatedAtStr != null) {
+                            try {
+                                commentCreatedAt = Date.from(OffsetDateTime.parse(commentCreatedAtStr).toInstant());
+                            } catch (Exception e) {
+                                commentCreatedAt = new Date();
+                            }
+                        }
+
+                        LocalDate commentDate = LocalDate.now();
+                        if (commentCreatedAtStr != null) {
+                            try {
+                                commentDate = OffsetDateTime.parse(commentCreatedAtStr).toLocalDate();
+                            } catch (Exception e) {
+                                commentDate = LocalDate.now();
+                            }
+                        }
+                        comments.add(new Comment(commentId, commentAuthor, commentContent, postId, commentDate));
+                    }
+                }
 
                 if (type.equals("QUESTION")) {
 

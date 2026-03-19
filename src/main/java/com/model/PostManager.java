@@ -12,8 +12,12 @@ public class PostManager
     public PostManager()
     {
         questionPosts = new ArrayList<>();
+<<<<<<< HEAD
+        
+=======
         solutionPosts = new ArrayList<>();
         return;
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
     }
 
     public static PostManager getInstance() 
@@ -33,6 +37,11 @@ public class PostManager
 
     public ArrayList<QuestionPost> getQuestion(String title)
     {
+<<<<<<< HEAD
+
+        questionPosts = new ArrayList<>();
+        return questionPosts;
+=======
         ArrayList<QuestionPost> matchingPosts = new ArrayList<>();
     
         for (QuestionPost question : questionPosts)
@@ -55,11 +64,22 @@ public class PostManager
         }
         else
             return new ArrayList<>(solutionPosts.subList(0, solutionNumber));
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
     }
 
     public boolean addQuestion(QuestionPost question)
     {
+<<<<<<< HEAD
+        solutionPosts= new ArrayList<>();
+        return solutionPosts;
+    }
+
+    public boolean addQuestion(Contributor contributor, QuestionPost question)
+    {
+        return false;
+=======
         return questionPosts.add(question);
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
     }
 
     
@@ -82,13 +102,17 @@ public class PostManager
    
     public ArrayList<QuestionPost> getQuestionsByKeyWord(String title)
     {
-        return questionPosts;
+        return questionPosts; 
     }
 
    
     public ArrayList<QuestionPost> getAllQuestions()
     {
+<<<<<<< HEAD
+        return questionPosts;
+=======
         return new ArrayList<>(questionPosts);
+>>>>>>> 1932ee516e694e60dc5b3e73567df77ad94b7b6b
     }
        
     public boolean addComment(Comment comment) {
@@ -101,7 +125,7 @@ public class PostManager
         return null;
     }
     
-    public boolean save()
+    public boolean save()  
     {
         return true;
     }
