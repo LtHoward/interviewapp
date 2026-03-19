@@ -123,20 +123,6 @@ public class DataWriter extends DataConstants
             return usersDetails;
         }
 
-/**
- * Main method to load the users from the JSON file and write them to the file again,
- * which is needed to test the saveUsers method and ensure that the users are being written to the file correctly.
- * @param args
- * @author Dorian Rhone
- */
-        public static void main(String[] args) 
-        {
-            UserManager.getInstance().getUsers().clear();
-            UserManager.getInstance().getUsers().addAll(DataLoader.getUsers());
-            DataWriter.saveUsers();
-        }
-
-    
     /**
      * The main method for Post to write the posts to the JSON file.
      * Uses associated classes to get the necessary information to write to the file.
@@ -255,22 +241,17 @@ public class DataWriter extends DataConstants
          * @param args
          * @author Dorian Rhone
          */
-       /*public static void main(String[] args) 
+       public static void main(String[] args) 
         {
             ArrayList<User> users = DataLoader.getUsers();
-            ArrayList<Post> posts = DataLoader.getPosts(users);
-            for(Post post: posts)
-            {
-                if (post instanceof QuestionPost) 
-                {
-                    PostManager.getInstance().addQuestion((QuestionPost) post);
-                }
-                else if (post instanceof SolutionPost) 
-                {
-                    PostManager.getInstance().getSolution().add((SolutionPost) post);
-                }
-            }
+
+            UserManager.getInstance().getUsers().clear();
+            UserManager.getInstance().getUsers().addAll(DataLoader.getUsers());
+            DataWriter.saveUsers();
+
+            PostManager.getInstance().getAllPosts().clear();
+            PostManager.getInstance().getAllPosts().addAll(DataLoader.getPosts(users));
             DataWriter.savePosts();
-        }*/
+        }
 }
 
