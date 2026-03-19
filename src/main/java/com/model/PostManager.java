@@ -16,7 +16,7 @@ public class PostManager
         return;
     }
 
-    public static PostManager getInstance() 
+    public static PostManager getInstance()  
     {
         if(postManager == null) {
             postManager = new PostManager();
