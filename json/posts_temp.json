@@ -1,53 +1,61 @@
 [
-  {
-    "id": "80b72263-d899-42e6-a334-6d38ae8286cd",
-    "type": "QUESTION",
-    "title": "Two Sum",
-    "authorId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
-    "createdAt": "2026-02-22T12:00:00-05:00",
-    "difficulty": "EASY",
-    "hint": "Try using a hashmap.",
-    "tags": ["arrays", "two-sum"],
-    "score": 670,
+    {
+        "userId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+        "username": "sSteven",
+        "email": "ssteven@email.sc.edu",
+        "password": "daR33l*5T3ven!",
+        "firstName": "Thomas",
+        "lastName": "Student",
+        "role": "STUDENT",
 
-    "contentSections": [
-      { "type": "text", "value": "Solve Two Sum efficiently." },
-      { "type": "code", "value": "for(...) { ... }" }
-    ],
+        "studentData": {
+            "currentClasses": "CSCE 211, CSCE 240, MATH 347",
+            "classesTaken": "CSCE 145, CSCE 190, CSCE 146, CSCE 215",
+            "major": "COMPUTER_SCIENCE",
+            "year": "SOPHOMORE",
+            "skillLevel": "BEGINNER",
+            "solvedQuestions": 7,
+            "postedSolutions": ["0a189ba1-efc4-4e1f-82a3-cd529088d715"],
+            "lastActivityDate": "2026-02-22T18:00:00-05:00"
+        },
 
-    "comments": [
-      {
-        "id": "c07c9584-614f-455c-be71-edea8b3a6397",
-        "authorId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
-        "createdAt": "2026-02-22T12:10:00-05:00",
-        "content": "Can you clarify the constraints?"
-      }
-    ]
-  },
+        "progression": {
+            "points": 120,
+            "level": 2,
+            "currentStreak": 3,
+            "longestStreak": 4,
+            "equippedTitle": "SYNTAX_SCOUT",
+            "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC_LEARNER"]
+        },
 
-  {
-    "id": "f3d16347-ff04-4134-bacf-0b89a3d5c6bc",
-    "title": "Two Sum Solution",
-    "type": "SOLUTION",
-    "questionId": "80b72263-d899-42e6-a334-6d38ae8286cd",
-    "solutionNumber": 2,
-    "authorId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
-    "createdAt": "2026-02-21T09:30:00-05:00",
-    "score": 132,
+        "rewards": [
+            { "type": "XP_BOOST", "amount": 20, "redeemed": false }
+        ]
+    },
+    {
+        "userId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
+        "username": "ProfessionalProfessor",
+        "email": "pprofessor@cse.sc.edu",
+        "password": "1LuvC5C3247!",
+        "firstName": "Peter",
+        "lastName": "Professor",
+        "role": "CONTRIBUTOR",
 
-    "contentSections": [
-      { "type": "text", "value": "Here is my approach:" },
-      { "type": "image", "value": "diagram1.png" },
-      { "type": "video", "value": "explanation.mp4"}
-    ],
+        "contributorData": {
+            "experience": "Professor of Computer Science with 15 years experience."
+        }
+    },
+    {
+        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
+        "username": "adminA",
+        "email": "adminA@email.sc.edu",
+        "password": "Adm1nA!*",
+        "firstName": "Ava",
+        "lastName": "Admin",
+        "role": "ADMINISTRATOR",
 
-    "comments": [
-      {
-        "id": "fb136fc6-3645-4383-9dc3-22933e38b7ff",
-        "authorId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
-        "createdAt": "2026-02-21T09:45:00-05:00",
-        "content": "Nice solution, but could you add a quick complexity note?"
-      }
-    ]
+        "contributorData": {
+            "experience": "IT Support Specialist for College of Engineering and Computing."
+        }
   }
 ]

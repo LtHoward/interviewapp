@@ -40,6 +40,8 @@ public abstract class Post {
              0);
     }
 
+    
+
     public void addComment(Comment comment) {
         comments.add(comment);
     }
@@ -48,17 +50,20 @@ public abstract class Post {
         return postId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-
     public ArrayList<Comment> getComments() {
         return comments;
     }
 
     public ArrayList<String> getTags() {
         return tags;
+    }
+
+    public String getType() {
+        return this instanceof QuestionPost ? "QUESTION" : "SOLUTION";
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public User getAuthor() {

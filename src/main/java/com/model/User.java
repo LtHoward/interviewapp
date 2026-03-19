@@ -20,9 +20,6 @@ public abstract class User {
         this.role = role;
     }
 
-    public boolean userExist (String username, String password) {
-        return true;
-    }
 
     public UUID getId () {
         return userId;
@@ -32,6 +29,12 @@ public abstract class User {
         return username;
     }
 
+    /**
+     * Method to get the email if it is valid, otherwise returns null.
+     * A valid email contains an "@" and a "." and is not null or empty.
+     * @return true if the email id valid, false otherwise.
+     * @auhtor Myila Howard
+     */
     public String getEmail() {
         return email;
     }
@@ -40,6 +43,11 @@ public abstract class User {
         return password;
     }
 
+    /**
+     * Method to get the first name of the user if valid.
+     * @return true if the first name is not null or empty, false otherwise
+     * @author Myila Howard
+     */
     public String getFirstName() {
         if (firstName == null || firstName.isEmpty()) {
             return null;
@@ -47,6 +55,11 @@ public abstract class User {
         return firstName;
     }
 
+    /**
+     * Method to get the last name of the user if valid.
+     * @return true if the last name is not null or empty, false otherwise.
+     * @author Myila Howard
+     */
     public String getLastName() {
         if (lastName == null || lastName.isEmpty()) {
             return null;
@@ -56,5 +69,20 @@ public abstract class User {
 
     public Role getStatus () {
         return role;
+    }
+
+    /**
+     * Mehthod to reset the user's password if the new password is the same as the old password,
+     * otherwise return false and do not change the password.
+     * @param newPass the users new password
+     * @return true if the password was successfully reset, false otherwise.
+     * @author Myila Howard
+     */
+    public boolean resetPassword(String newPass) {
+        if (!password.equals(newPass)) {
+            password = newPass;
+            return true;
+        }
+        return false;
     }
 }

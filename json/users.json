@@ -1,6 +1,14 @@
 [
     {
+<<<<<<< HEAD
         "firstName": "Steven",
+=======
+        "userId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+        "username": "sSteven",
+        "email": "ssteven@email.sc.edu",
+        "password": "daR33l*5T3ven!",
+        "firstName": "Thomas",
+>>>>>>> d96e5e7f21e7c7ce21d9993d6146338121c7788e
         "lastName": "Student",
         "password": "daR33l*5T3ven!",
         "role": "STUDENT",
@@ -8,7 +16,7 @@
             "currentClasses": "",
             "major": "COMPUTER_SCIENCE",
             "year": "FRESHMAN",
-            "lastActivityDate": 1772648305387,
+            "lastActivityDate": "Thu Mar 19 13:40:51 EDT 2026",
             "classesTaken": "",
             "postedSolutions": [],
             "skillLevel": "BEGINNER",
@@ -40,16 +48,12 @@
         "username": "ProfessionalProfessor"
     },
     {
-        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
-        "username": "adminA",
-        "email": "adminA@email.sc.edu",
-        "password": "Adm1nA!*",
         "firstName": "Ava",
         "lastName": "Admin",
+        "password": "Adm1nA!*",
         "role": "ADMINISTRATOR",
-
-        "contributorData": {
-            "experience": "IT Support Specialist for College of Engineering and Computing."
-        }
+        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
+        "email": "adminA@email.sc.edu",
+        "username": "adminA"
     }
 ]

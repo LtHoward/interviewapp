@@ -1,6 +1,6 @@
 package com.model;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 public class Progression 
 {
     private int points;
@@ -26,11 +26,16 @@ public class Progression
         return level;
     }
 
+    /**
+     * Method to get the current streak of the user
+     * @return the current streak of the user
+     */
     public int getCurrentStreak() {
         return currentStreak;
     }
 
     public int getLongestStreak() {
+
         return longestStreak;
     }
 
@@ -42,9 +47,8 @@ public class Progression
         return 0;
     }
 
-    public void updateStreak(Date solvedOn)
-    {
-       
+    public void updateStreak(LocalDate solvedOn){
+        
     }
     
     public ArrayList<Title> unlockTitles()

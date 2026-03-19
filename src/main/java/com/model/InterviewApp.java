@@ -1,6 +1,5 @@
 package com.model;
 
-import java.util.UUID;
 import java.util.ArrayList;
 
 public class InterviewApp {
@@ -11,7 +10,7 @@ public class InterviewApp {
 
     public InterviewApp() 
     {        
-        postManager = new PostManager();
+        postManager = PostManager.getInstance();
         savedPost = new ArrayList<>();
         userManager = UserManager.getInstance();
         currentUser = null;
@@ -30,11 +29,18 @@ public class InterviewApp {
         
     }
 
-    public boolean createUser(String username, String email, String password, String firstName, String lastName)
-    {
-       return userManager.addUser(username, email, password, firstName, lastName);
+    public ArrayList<Post> getAllPosts() {
+        return PostManager.getInstance().getAllPosts();
+    }
 
-    
+    public User getUser(String username, String password) 
+    {
+        return userManager.getUser(username);
+    }
+
+    public boolean createUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year)
+    {
+       return userManager.addUser(username, email, password, firstName, lastName, role, major, year);
     }
 
     public boolean login(String username, String email, String password) {
@@ -47,15 +53,25 @@ public class InterviewApp {
 
     }
 
-    public boolean resetPassword(String password)
+    /**
+     * Method to reset the password for the current user if the old password is right
+     * and the new password is different from the old password.
+     * @param oldPass the users current password
+     * @param newPass the users new password
+     * @return true if the password was successfully reset, false otherwise.
+     * @author Myila Howard
+     */
+    public boolean resetPassword(String oldPass, String newPass)
     {
-        return userManager.resetPassword(password);
-
+        if (currentUser != null && currentUser.getPassword().equals(oldPass)) {
+            return userManager.resetPassword(currentUser.getUsername(), newPass);
+        }
+        return false;
     }
 
-    public boolean addQuestion (Contributor contributor, QuestionPost question)
+    public boolean addQuestion (QuestionPost question)
     {
-        return postManager.addQuestion(contributor, question);
+        return postManager.addQuestion(question);
 
     }
 
@@ -89,4 +105,8 @@ public class InterviewApp {
 
     } 
 
+    public boolean haveUser(String username) 
+    {
+    return userManager.userExist(username);
+    }
 }

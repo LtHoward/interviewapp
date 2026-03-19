@@ -18,7 +18,6 @@ public class DataLoader extends DataConstants {
         ArrayList<User> users = new ArrayList<>();
 
         try (FileReader reader = new FileReader(USERS_FILE)) {
-
             JSONArray usersJSON = (JSONArray) new JSONParser().parse(reader);
 
             for (int i = 0; i < usersJSON.size(); i++) {
@@ -34,41 +33,64 @@ public class DataLoader extends DataConstants {
                 Role role = Role.valueOf(((String) userJSON.get(ROLE)).toUpperCase());
 
                 if (role == Role.STUDENT) {
+                    JSONObject studentData = (JSONObject) userJSON.get(STUDENT_DATA);
 
-                    String currentClasses = (String) userJSON.getOrDefault(CURRENT_CLASSES, "");
-                    String classesTaken = (String) userJSON.getOrDefault(CLASSES_TAKEN, "");
+                    String currentClasses = "";
+                    String classesTaken = "";
+                    Major major = Major.COMPUTER_SCIENCE;
+                    Year year = Year.FRESHMAN;
+                    SkillLevel skillLevel = SkillLevel.BEGINNER;
+                    int solvedQuestions = 0;
+                    Date lastActivityDate = new Date();
 
-                    Major major = Major.valueOf(((String) userJSON.getOrDefault(MAJOR, "COMPUTER_SCIENCE")).toUpperCase());
-                    Year year = Year.valueOf(((String) userJSON.getOrDefault(YEAR, "FRESHMAN")).toUpperCase());
-                    SkillLevel skillLevel = SkillLevel.valueOf(((String) userJSON.getOrDefault(SKILL_LEVEL, "BEGINNER")).toUpperCase());
-
-                    int solvedQuestions = ((Long) userJSON.getOrDefault(SOLVED_QUESTIONS, 0L)).intValue();
+                    if(studentData != null) {
+                        currentClasses = (String) studentData.getOrDefault(CURRENT_CLASSES, "");
+                        classesTaken = (String) studentData.getOrDefault(CLASSES_TAKEN, "");
+                        major = Major.valueOf(((String) studentData.getOrDefault(MAJOR, "COMPUTER_SCIENCE")).toUpperCase());
+                        year = Year.valueOf(((String) studentData.getOrDefault(YEAR, "FRESHMAN")).toUpperCase());
+                        skillLevel = SkillLevel.valueOf(((String) studentData.getOrDefault(SKILL_LEVEL, "BEGINNER")).toUpperCase());
+                        solvedQuestions = ((Long) studentData.getOrDefault(SOLVED_QUESTIONS, 0L)).intValue();
+                        
+                        String lastActivityDateStr = (String) studentData.get(LAST_ACTIVITY_DATE);
+                        if (lastActivityDateStr != null) {
+                            try{
+                                lastActivityDate = Date.from(OffsetDateTime.parse(lastActivityDateStr).toInstant());
+                            } catch (Exception e) {
+                                lastActivityDate = new Date();
+                            }
+                        }   
+                    }
 
                     ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
                     Progression progression = new Progression();
                     ArrayList<Reward> rewards = new ArrayList<>();
 
-                    long lastMs = (Long) userJSON.getOrDefault(LAST_ACTIVITY_DATE, System.currentTimeMillis());
-                    Date lastActivityDate = new Date(lastMs);
-
                     users.add(new Student(id, username, email, password, firstName,
-                            lastName, major, year, currentClasses, classesTaken,
-                            skillLevel, solvedQuestions, postedSolutions,
-                            progression, rewards, lastActivityDate,role));
+                        lastName, major, year, currentClasses, classesTaken,
+                        skillLevel, solvedQuestions, postedSolutions,
+                        progression, rewards, lastActivityDate, role));
 
                 } else if (role == Role.CONTRIBUTOR) {
-                    String experience = (String) userJSON.getOrDefault(EXPERIENCE, "");
+                    JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
+                    String experience = "";
+                    if(contributorData != null) {
+                        experience = (String) contributorData.getOrDefault(EXPERIENCE, "");
+                    }
 
                     users.add(new Contributor(id, username, email, password, firstName,
                             lastName, experience));
 
                 } else if (role == Role.ADMINISTRATOR) {
-                    String experience = (String) userJSON.getOrDefault(EXPERIENCE, "");
+                    JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
+                    String experience = "";
+                    if(contributorData != null) {
+                        experience = (String) contributorData.getOrDefault(EXPERIENCE, "");
+                    }
                     users.add(new Contributor(id, username, email, password, firstName,
                             lastName, experience, Role.ADMINISTRATOR));
                 }
-            }
-
+                
+            } 
         } catch (Exception e) {
             e.printStackTrace();
         }
