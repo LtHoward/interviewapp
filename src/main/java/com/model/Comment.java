@@ -5,32 +5,32 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Comment {
-    private User author;
-    private LocalDate createdAt;
-    private String content;
+    private User commentAuthor;
+    private LocalDate commentDate;
+    private String commentContent;
     private UUID commentId;
     private UUID postId;
     private ArrayList<Comment> reply;
 
-    public Comment (User author, String content, UUID postId){
-        this.author = author;
-        this.createdAt = LocalDate.now();
-        this.content = content;
-        this.commentId = UUID.randomUUID();
+    public Comment (UUID commentId, User commentAuthor, String commentContent, UUID postId, LocalDate commentDate) {
+        this.commentAuthor = commentAuthor;
+        this.commentDate = commentDate;
+        this.commentContent = commentContent;
+        this.commentId = commentId;
         this.postId = postId;
         this.reply = new ArrayList<>();
     }
 
     public User getAuthor() {
-        return author;
+        return commentAuthor;
     }
     
-    public LocalDate getCreatedAt() {
-        return createdAt;
+    public LocalDate getCommentDate() {
+        return commentDate;
     }
 
     public String getContent() {
-        return content;
+        return commentContent;
     }
 
     public UUID getCommentId() {
