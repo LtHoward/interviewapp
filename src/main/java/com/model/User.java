@@ -30,10 +30,8 @@ public abstract class User {
     }
 
     /**
-     * Method to get the email if it is valid, otherwise returns null.
-     * A valid email contains an "@" and a "." and is not null or empty.
-     * @return true if the email id valid, false otherwise.
-     * @auhtor Myila Howard
+     * 
+     * @return email
      */
     public String getEmail() {
         return email;

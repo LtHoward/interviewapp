@@ -1,44 +1,49 @@
 package com.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Comment {
     private User author;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     private String content;
     private UUID commentId;
     private UUID postId;
 
     public Comment (User author, String content, UUID postId){
         this.author = author;
-        this.createdAt = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
         this.content = content;
         this.commentId = UUID.randomUUID();
         this.postId = postId;
     }
 
-    public User getAuthor() {
-        return author;
+
+    public UUID getpostId() {
+        return postId;
     }
-    
-    public LocalDate getCreatedAt() {
-        return createdAt;
+
+    public Comment getReply() {
+        return null;
     }
 
     public String getContent() {
         return content;
-    }
+    } 
 
     public UUID getCommentId() {
         return commentId;
     }
 
-    public UUID getPostId() {
-        return postId;
+    public LocalDateTime getCreatedAt() {
+        LocalDateTime today = LocalDateTime.now();
+
+        return createdAt;
     }
 
-    public Comment getReply(){
-        return null;
+    public User getAuthor() {
+        return author;
     }
+
 }
+
