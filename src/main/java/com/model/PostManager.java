@@ -24,7 +24,7 @@ public class PostManager
         return postManager;
     }
 
-    public ArrayList<Post> getAllPosts() {
+    public ArrayList<Post> getAllPosts() { 
         ArrayList<Post> allPosts = new ArrayList<>();
         allPosts.addAll(questionPosts);
         allPosts.addAll(solutionPosts);
