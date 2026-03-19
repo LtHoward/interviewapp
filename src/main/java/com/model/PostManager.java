@@ -101,7 +101,7 @@ public class PostManager
         return null;
     }
     
-    public boolean save()
+    public boolean save()  
     {
         return true;
     }
