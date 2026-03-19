@@ -109,8 +109,7 @@ public class UserManager {
         users = DataLoader.getUsers();
 
         for (User user : users) {
-            if ((user != null && 
-                user.getUsername().equals(username) ||
+            if ((user.getUsername().equals(username) ||
                 user.getEmail().equals(email)) &&
                 user.getPassword().equals(password)) {
                 return true;

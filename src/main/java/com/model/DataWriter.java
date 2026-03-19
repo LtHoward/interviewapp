@@ -255,7 +255,7 @@ public class DataWriter extends DataConstants
          * @param args
          * @author Dorian Rhone
          */
-       public static void main2(String[] args) 
+       /*public static void main(String[] args) 
         {
             ArrayList<User> users = DataLoader.getUsers();
             ArrayList<Post> posts = DataLoader.getPosts(users);
@@ -271,6 +271,6 @@ public class DataWriter extends DataConstants
                 }
             }
             DataWriter.savePosts();
-        }
+        }*/
 }
 
