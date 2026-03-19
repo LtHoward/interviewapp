@@ -1,15 +1,11 @@
 package com.model;
-
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class UserManager {
     private static UserManager userManager;
     private ArrayList<User> users = new ArrayList<>();
 
-    public UserManager() {
-        users = new ArrayList<>();
-    } 
+    public UserManager() {} 
 
     public static UserManager getInstance() {
         if (userManager == null) {
@@ -18,20 +14,38 @@ public class UserManager {
         return userManager;
     }
 
-    public User getUserById(UUID userId){
-        if (userId == null) return null;
+    public User createUser (String username, String email, String firstName, String lastName) {
+        
+        User createdUser = new User(username, email, firstName, lastName);
+        return createdUser;
+    }
 
-        for (User user : users) {
-            if (user.getId().equals(userId)) {
-                return user;
-            }
-        }
-        return null;
+    public boolean login (String username, String email, String password) {
+        User user = getUser(username,password);
+        if(user != null)
+        return  true;
+    else 
+        return false;
+    
+    }
+
+    public boolean logout(User user)
+    {
+       if(users.contains(user))
+        return true;
+    else 
+        return false;
+    }
+
+    public boolean resetPassword (){
+        return true;
+    }
+
+    public boolean resetAccount(User user) {
+        return true;
     }
 
     public User getUser (String username, String password) {
-        if (username == null || password == null) return null;
-
         for(User user : users) {
             if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user;
@@ -45,19 +59,12 @@ public class UserManager {
     }
 
     public boolean haveUser(String username){
-        if (username == null) return false;
-        
         for (User user : users) {
             if (user.getUsername().equals(username)) {
                 return true;
             }
         }
         return false;
-    }
-
-    public ArrayList<User> getAllUsers()
-    {
-        return null;
     }
 
     public boolean addUser(String username, String email, String password, String firstName, String lastName) {
@@ -67,45 +74,11 @@ public class UserManager {
         return true;
     }
 
-    public boolean removeUser(User user) {
-        if (user == null) return false;
-        return users.remove(user);
-    }
-
     public boolean saveUser () {
         return true;
     }
 
-    public User createUser (String username, String email, String firstName, String lastName) {
-        return null;
-    }
-
-    public boolean login(String username, String email, String password) {
-        users = DataLoader.getUsers();
-
-        for (User user : users) {
-            if ((user.getUsername().equals(username) ||
-                user.getEmail().equals(email)) &&
-                user.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean logout() {
-        return true;
-    }
-
-    public boolean resetPassword (String password ) {
-        return true;
-    }
-
-    public boolean resetAccount(User user) {
-        return true;
-    }
-
-    public boolean removeOtherAccount(Role ADMINISTRATOR) {
+    public boolean removeOtherAccount(Role administration) {
         return true;
     }
 }
