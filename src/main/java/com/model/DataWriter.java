@@ -82,21 +82,20 @@ public class DataWriter extends DataConstants
                 studentDetails.put(SOLVED_QUESTIONS, student.getSolvedQuestions());
                 studentDetails.put(POSTED_SOLUTIONS, student.getPostedSolutions());
                 studentDetails.put(LAST_ACTIVITY_DATE, student.getLastActivityDate().toString());
-
+                studentDetails.put(POINTS, student.getProgression().getPoints());
+                studentDetails.put(LEVEL, student.getProgression().getLevel());
+                studentDetails.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
+                studentDetails.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
+                studentDetails.put(EQUIPPED_TITLE, student.getProgression().getEquippedTitle());
+                studentDetails.put(UNLOCKED_TITLES, student.getProgression().unlockTitles());
             
             /**
              * JSON Object needed for Progression, which is needed to determine the points, level, current streak,
              * longest streak, equipped title, and unlocked titles of the student, which is needed to write to the file.
              * @author Dorian Rhone
              */
-                JSONObject progression = new JSONObject();
-                progression.put(POINTS, student.getProgression().getPoints());
-                progression.put(LEVEL, student.getProgression().getLevel());
-                progression.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
-                progression.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
-                progression.put(EQUIPPED_TITLE, student.getProgression().getEquippedTitle());
-                progression.put(UNLOCKED_TITLES, student.getProgression().unlockTitles());
-                usersDetails.put(PROGRESSION, progression);
+                
+               
 
 
             /**
@@ -193,7 +192,7 @@ public class DataWriter extends DataConstants
                 commentDetails.put(POST_ID, comment.getCommentId().toString());
                 commentDetails.put(AUTHOR_ID, comment.getAuthor().getId().toString());
                 commentDetails.put(CONTENT, comment.getContent());
-                commentDetails.put(CREATED_AT, comment.getCreatedAt().toString());
+                commentDetails.put(CREATED_AT, comment.getCommentDate().toString());
                 commentsArray.add(commentDetails);
             }
             postDetails.put(COMMENTS, commentsArray);
