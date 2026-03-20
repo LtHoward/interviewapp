@@ -250,18 +250,34 @@ public class DataWriter extends DataConstants
             ArrayList<User> users = DataLoader.getUsers();
             ArrayList<Post> posts = DataLoader.getPosts(users);
 
-                for (Post post : posts) 
+            /**
+             * for loop for QuestionPosts, which needs to get the necessary 
+             * information from the User class to write to the file.
+             * @author Dorian Rhone
+             */
+            for(Post post : posts)
+                {
+                    if (post instanceof QuestionPost)
                     {
-                    if (post instanceof QuestionPost) 
-                        {
                         PostManager.getInstance().addQuestion((QuestionPost) post);
-                    } else if (post instanceof SolutionPost) 
-                        {
-                        PostManager.getInstance().addSolution((QuestionPost) post, null, (SolutionPost) post);  
                     }
+                }   
+            /**
+             * for loop for SolutionPosts, which also needs to get the necessary
+             * information from the QuestionPost class to write to the file.
+             * @author Dorian Rhone
+             */
+            for (Post post : posts)
+            {
+                if (post instanceof SolutionPost)
+                {
+                    SolutionPost solution = (SolutionPost) post;
+                    QuestionPost parent = PostManager.getInstance().getQuestionById(solution.getQuestionId());
+                    PostManager.getInstance().addSolution(parent, solution.getAuthor(), solution);
                 }
-                DataWriter.saveUsers();
-                DataWriter.savePosts();
+            }
+            DataWriter.saveUsers();
+            DataWriter.savePosts();
         }
        
 } 

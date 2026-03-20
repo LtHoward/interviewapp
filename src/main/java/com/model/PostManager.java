@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class PostManager 
 {
@@ -95,6 +96,24 @@ public class PostManager
     public ArrayList<QuestionPost> getAllQuestions()
     {
         return new ArrayList<>(questionPosts);
+    }
+
+    /**
+     * Gets a question by its unique identifier.
+     * @param id The UUID of the question post to retrieve.
+     * @return The QuestionPost with the specified UUID, or null if not found.
+     * @author Dorian Rhone
+     */
+    public QuestionPost getQuestionById(UUID id)
+    {
+        for (QuestionPost question : questionPosts) 
+            {
+            if (question.getPostId().equals(id))
+            {
+                return question;
+            }
+        }
+        return null; 
     }
        
     public boolean addComment(Comment comment) {

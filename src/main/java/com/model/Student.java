@@ -62,6 +62,10 @@ public class Student extends User{
         return year;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     public SkillLevel getSkillLevel() {
         return skillLevel;
     }
@@ -81,8 +85,9 @@ public class Student extends User{
         return progression;
     }
 
-    public void updatelevel() {    
-   progression.checkLevelUp();                                       
+    public void updatelevel() 
+    {    
+        progression.checkLevelUp();                                       
     }
 
     public int getCurrentStreak() {
