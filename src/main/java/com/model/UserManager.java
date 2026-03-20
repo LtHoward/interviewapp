@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
     public class UserManager {
+        private Role role;
 
         private static UserManager userManager;
         private ArrayList<User> users = new ArrayList<>();
@@ -147,8 +148,21 @@ import java.util.UUID;
             return true;
         }
 
-        public boolean removeOtherAccount(Role ADMINISTRATOR) {
-
-            return true;
+        /**
+         * Method to remove another user's account if the current user is an administrator and 
+         * the user whose account is to be removed exist in the user list.
+         * @param user the user to be removed
+         * @return true if the account was successfuly removed, false otherwise.
+         * @author Myila Howard
+         */
+        public boolean removeOtherAccount(User user) {
+            if (this.role != Role.ADMINISTRATOR) {
+               return false;
+            }
+            if (users.contains(user)) {
+                users.remove(user);
+                return true;
+            }
+            return false;
         }
 }

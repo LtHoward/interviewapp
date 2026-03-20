@@ -37,7 +37,7 @@ public abstract class User {
         return email;
     }
 
-    public String getPassword() {
+    public String getPassword() { 
         return password;
     }
 

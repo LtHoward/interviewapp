@@ -10,6 +10,7 @@ public class Comment {
     private String commentContent;
     private UUID commentId;
     private UUID postId;
+    private LocalDate createdAt;
     private ArrayList<Comment> reply;
 
     public Comment (UUID commentId, User commentAuthor, String commentContent, UUID postId, LocalDate commentDate) {
@@ -37,7 +38,9 @@ public class Comment {
         return commentId;
     }
 
-
+    public UUID getPostId() {
+        return postId;
+    }
 
     public ArrayList<Comment> getReply(){
         return reply;
