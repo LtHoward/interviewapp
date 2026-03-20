@@ -33,55 +33,55 @@ public class Student extends User{
         
     }
 
-    public void recordSolvedQuestions(){
-
+    public void recordSolvedQuestions(){    
+         solvedQuestions++;                                                         
     }
 
     public int addPoints() {
         return 0;
     }
 
-    public ArrayList<SolutionPost> getPostedSolutions() {
+    public ArrayList<SolutionPost> getpostedSolutions() {
         return postedSolutions;
     }
 
-    public String getCurrentClasses() {
+    public String getcurrentClasses() {
         return currentClasses;
     }
 
-    public String getClassesTaken() {
+    public String getclassesTaken() {
         return classesTaken;
     }
 
-    public Major getMajor() {
+    public Major getmajor() {
         return major;
     }
 
-    public Year getYear() {
+    public Year getyear() {
         return year;
     }
 
-    public SkillLevel getSkillLevel() {
+    public SkillLevel getskillLevel() {
         return skillLevel;
     }
-    public int getSolvedQuestions() {
+    public int getsolvedQuestions() {
         return solvedQuestions;
     }
 
-    public Date getLastActivityDate() {
+    public Date getlastActivityDate() {
         return lastActivityDate;
     }
 
-    public ArrayList<Reward> getRewards() {
+    public ArrayList<Reward> getrewards() {
         return rewards;
     }
 
-    public Progression getProgression() {
+    public Progression getprogression() {
         return progression;
     }
 
-    public void updateLevel() {
-
+    public void updatelevel() {    
+   progression.checkLevelUp();                                       
     }
 
     public int getCurrentStreak() {
