@@ -63,9 +63,15 @@ public class PostManager
     }
 
     
-    public boolean addSolution(User user, SolutionPost solution)
+    public boolean addSolution(QuestionPost question, User user, SolutionPost solution)
     {
+       if(solution == null || question == null)
         return false;
+    if (!questionPosts.contains(question))
+        return false;
+    return solutionPosts.add(solution);
+
+
     }
 
     
