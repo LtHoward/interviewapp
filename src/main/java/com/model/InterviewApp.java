@@ -75,9 +75,9 @@ public class InterviewApp {
 
     }
 
-    public boolean addSolution(User user, SolutionPost solution)
+    public boolean addSolution(QuestionPost question, User user, SolutionPost solution)
     {
-        return postManager.addSolution(user, solution);
+        return postManager.addSolution(question, user, solution);
 
     }
 
