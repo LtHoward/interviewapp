@@ -2,13 +2,13 @@ package com.model;
 import java.util.UUID;
 
 public abstract class User {
-    private UUID userId;
-    private String username;
-    private String email;
+    private final UUID userId;
+    private final String username;
+    private final String email;
     private String password;
-    private String firstName;
-    private String lastName;
-    private Role role;
+    private final String firstName;
+    private final String lastName;
+    private final Role role;
 
     public User (UUID id, String username, String email, String password, String firstName, String lastName, Role role) {
         this.userId = id;
