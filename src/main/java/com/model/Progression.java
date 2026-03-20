@@ -55,4 +55,28 @@ public class Progression
     {
         return unlockedTitles;
     }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }   
+
+    public void setCurrentStreak(int currentStreak) {
+        this.currentStreak = currentStreak;
+    }
+
+    public void setLongestStreak(int longestStreak) {
+        this.longestStreak = longestStreak;
+    }
+
+    public void setEquippedTitle(Title equippedTitle) {
+        this.equippedTitle = equippedTitle;
+    }
+
+    public void setUnlockedTitles(ArrayList<Title> unlockedTitles) {
+        this.unlockedTitles = unlockedTitles;
+    }
 }
