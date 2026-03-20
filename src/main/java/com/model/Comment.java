@@ -37,11 +37,11 @@ public class Comment {
         return commentId;
     }
 
-    public UUID getPostId() {
-        return postId;
-    }
+
 
     public ArrayList<Comment> getReply(){
         return reply;
     }
+
 }
+
