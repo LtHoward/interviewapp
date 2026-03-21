@@ -76,26 +76,44 @@ public class PostManager
     }
 
     
-    public boolean editPost(User user, Post post, PostContent newContent)
+    public boolean editPost(User user, Post post, PostContent newContent, int index)
     {
        if(!questionPosts.contains(post) && !solutionPosts.contains(post))
         return false;
        if(!post.getAuthor().equals(user))
         return false;
-         PostContent.setContent(newContent);
+       if(index > post.getContentSections().size())
+            return false;
+         post.getContentSections().set(index, newContent);
          return true;
-
+        
     }
 
     
     public boolean deletePost(User user, Post post)
     {
+        if(!questionPosts.contains(post) && !solutionPosts.contains(post))
         return false;
+    if(!post.getAuthor().equals(user))
+        return false;
+    if(questionPosts.contains(post))
+        return questionPosts.remove(post);
+    return solutionPosts.remove(post);
     }
    
     public ArrayList<QuestionPost> getQuestionsByKeyWord(String title)
     {
-        return questionPosts; 
+        ArrayList<QuestionPost> matchingPosts = new ArrayList<>();
+    
+    for(QuestionPost question : questionPosts)
+    {
+        if(question.getTitle().toLowerCase().contains(title.toLowerCase()))
+        {
+            matchingPosts.add(question);
+        }
+    }
+    
+    return matchingPosts;
     }
 
    
@@ -123,13 +141,15 @@ public class PostManager
     }
        
     public boolean addComment(Comment comment) {
+        if(comment == null)
         return false;
+    return comments.add(comment);
     }
 
     
     public ArrayList<Comment> getComments()
     {
-        return null;
+          return new ArrayList<>(comments);
     }
     
     public boolean save()  
