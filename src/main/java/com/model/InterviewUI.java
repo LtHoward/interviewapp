@@ -1,10 +1,12 @@
 package com.model;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.Date;
+import java.time.LocalDate;
 
 public class InterviewUI {
     private InterviewApp app;
@@ -441,7 +443,82 @@ public class InterviewUI {
             System.out.println();
         }
     }
+ private void scenario6() {
+  
+    if (currentUser == null) {
+        System.out.println("No user logged in. Please login first.");
+        return;
+    }
 
+    ArrayList<Post> allPosts = app.getAllPosts();
+    ArrayList<QuestionPost> questions = new ArrayList<>();
+
+    for (Post post : allPosts) {
+        if (post instanceof QuestionPost) {
+            questions.add((QuestionPost) post);
+        }
+    }
+// Checks if there are any question posts to comment on
+    if (questions.isEmpty()) {
+        System.out.println("No question posts available to comment on.");
+        return;
+    }
+
+    // Display posts 
+    System.out.println("\n--- Select a Question Post to Comment On ---");
+    for (int i = 0; i < questions.size(); i++) {
+        System.out.println((i + 1) + ". " + questions.get(i).getTitle());
+    }
+
+    System.out.println("\nSelect a question by number:");
+    int choice = scanner.nextInt();
+    scanner.nextLine(); // consume newline
+
+    if (choice < 1 || choice > questions.size()) {
+        System.out.println("Invalid selection.");
+        return;
+    }
+
+    QuestionPost selected = questions.get(choice - 1);
+
+    // Show existing comments first
+    System.out.println("\n--- Existing Comments on: " + selected.getTitle() + " ---");
+    ArrayList<Comment> comments = selected.getComments();
+
+    if (comments.isEmpty()) {
+        System.out.println("They're no comments yet. Be the first!");
+    } else {
+        for (int i = 0; i < comments.size(); i++) {
+            Comment c = comments.get(i);
+            System.out.println((i + 1) + ". " + c.getAuthor().getUsername() + ": " + c.getContent());
+        }
+    }
+
+    // Collect and post the new comment
+    System.out.println("\nEnter your comment:");
+    String commentText = scanner.nextLine();
+
+    if (commentText == null || commentText.trim().isEmpty()) {
+        System.out.println("Your comment cannot be empty.");
+        return;
+    }
+
+   Comment newComment = new Comment(
+    UUID.randomUUID(),
+    currentUser,
+    commentText.trim(),
+    selected.getPostId(),   // postId from the selected QuestionPost
+    LocalDate.now()
+);
+
+   boolean success = app.addComment(newComment);;
+
+    if (success) {
+        System.out.println("Comment posted successfully!");
+    } else {
+        System.out.println("Failed to post comment.");
+    }
+}
     public static void main(String[] args) {
 		InterviewUI libraryInterface = new InterviewUI();
 		libraryInterface.run();
