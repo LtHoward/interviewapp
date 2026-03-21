@@ -3,16 +3,29 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+    /**
+     * Class to manage usr accounts, including creating new accounts, logging in and out, resseting passwords, and removing accounts.
+     * It also has method to check if a username exist and if a password is valid.
+     * @author Myila Howard
+     */
     public class UserManager {
-        private Role role;
 
+        private Role role;
         private static UserManager userManager;
         private ArrayList<User> users = new ArrayList<>();
 
+        /**
+         * Constructor for the UseManager class that initializes the user list by loading the user data from the data loader.
+         */
         public UserManager() {
             users = DataLoader.getUsers();
         } 
 
+        /**
+         * Method to get the instance of the UserManager class
+         * @return the instance of the UserManager class
+         * @author myila Howard
+         */
         public static UserManager getInstance() {
             if (userManager == null) {
                 userManager = new UserManager();
@@ -20,22 +33,12 @@ import java.util.UUID;
             return userManager;
         }
 
-        public boolean logout(User user)
-        {
-        if(users.contains(user))
-            return true;
-        else 
-            return false;
-        }
-
-        public boolean resetPassword (){
-            return true;
-        }
-
-        public boolean resetAccount(User user) {
-            return true;
-        }
-
+        /**
+         * Method to get a user by their username.
+         * @param username the username of the user to get
+         * @return the user with the given username, or null if the username does not exist in the user list.
+         * @author Myila Howard
+         */
         public User getUser (String username) {
             if (username == null) return null;
 
@@ -49,6 +52,16 @@ import java.util.UUID;
         public ArrayList<User> getUsers() 
         {
             return users;
+        }
+
+        /**
+         * Method to check if the password is valid
+         * @param password the password to check
+         * @return true if the password is at least 8 characters long and contains at least one letter, one number, and one special character, false otherwise.
+         * @author Myila Howard
+         */
+        public boolean isPasswordValid(String password) {
+            return "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$".equals(password);
         }
 
         /**
@@ -68,11 +81,29 @@ import java.util.UUID;
             return false;
         }
 
+        /**
+         * Method to get all users in the userlist.
+         * @return an arraylist of all users in the user list.
+         * @author Myila Howard
+         */
         public ArrayList<User> getAllUsers()
         {
             return users;
         }
-
+        
+        /**
+         * Method to add a user to the user list if the username does not exist and the password is valid.
+         * @param username the username of the user to be added
+         * @param email the email of the user to be added
+         * @param password the password of the user to be added 
+         * @param firstName the first name of the user to be added 
+         * @param lastName the last name of the user to be added
+         * @param role the role of the user to be added 
+         * @param major the major of the user to be added
+         * @param year the year of the user to be added 
+         * @return true if the user was successfuly added to the user list, false otherwise.
+         * 
+         */
         public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) 
         {
 
@@ -98,10 +129,22 @@ import java.util.UUID;
         return true;
     }
 
+    /**
+     * Method to save the user data to the data writter
+     * @return true if the user data was successfuly saved, false otherwise.
+     * @author Myila Howard
+     */
         public boolean saveUser () {
             return true;
         }
 
+        /**
+         * Method to log in a user if the username or email and password match a user in the user list.
+         * @param username the username of the user to log including
+         * @param email the email of the user to log in
+         * @param password the password of the user to log in
+         * @returtn trur if the login was successful, false otherwise
+         */
         public boolean login(String username, String email, String password) {
             users = DataLoader.getUsers();
 

@@ -2,7 +2,7 @@ package com.model;
 
 public class PostContent {
     private ContentType type;
-    private String content;
+    private Object content;
 
     public PostContent(ContentType type, String content) {
         this.type = type;
@@ -13,7 +13,13 @@ public class PostContent {
         return type;
     }
 
-    public String getContent() {
+    public Object getContent() {
         return content;
+    }
+
+    public void setContent(Object content)
+    {
+        this.content = content;
+
     }
 }

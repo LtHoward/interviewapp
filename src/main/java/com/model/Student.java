@@ -9,6 +9,7 @@ public class Student extends User{
     private Major major;
     private Year year;
     private SkillLevel skillLevel;
+    private int level;
     private int solvedQuestions;
     private ArrayList<SolutionPost> postedSolutions;
     private Progression progression;
@@ -41,47 +42,52 @@ public class Student extends User{
         return 0;
     }
 
-    public ArrayList<SolutionPost> getpostedSolutions() {
+    public ArrayList<SolutionPost> getPostedSolutions() {
         return postedSolutions;
     }
 
-    public String getcurrentClasses() {
+    public String getCurrentClasses() {
         return currentClasses;
     }
 
-    public String getclassesTaken() {
+    public String getClassesTaken() {
         return classesTaken;
     }
 
-    public Major getmajor() {
+    public Major getMajor() {
         return major;
     }
 
-    public Year getyear() {
+    public Year getYear() {
         return year;
     }
 
-    public SkillLevel getskillLevel() {
+    public int getLevel() {
+        return level;
+    }
+
+    public SkillLevel getSkillLevel() {
         return skillLevel;
     }
-    public int getsolvedQuestions() {
+    public int getSolvedQuestions() {
         return solvedQuestions;
     }
 
-    public Date getlastActivityDate() {
+    public Date getLastActivityDate() {
         return lastActivityDate;
     }
 
-    public ArrayList<Reward> getrewards() {
+    public ArrayList<Reward> getRewards() {
         return rewards;
     }
 
-    public Progression getprogression() {
+    public Progression getProgression() {
         return progression;
     }
 
-    public void updatelevel() {    
-   progression.checkLevelUp();                                       
+    public void updatelevel() 
+    {    
+        progression.checkLevelUp();                                       
     }
 
     public int getCurrentStreak() {

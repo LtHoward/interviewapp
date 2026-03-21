@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javafx.scene.chart.PieChart.Data;
+
 public class DataWriter extends DataConstants 
 {
     
@@ -87,7 +89,7 @@ public class DataWriter extends DataConstants
                 studentDetails.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
                 studentDetails.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
                 studentDetails.put(EQUIPPED_TITLE, student.getProgression().getEquippedTitle());
-                studentDetails.put(UNLOCKED_TITLES, student.getProgression().unlockTitles());
+                studentDetails.put(UNLOCKED_TITLES, student.getProgression().unlockedTitles());
             
             /**
              * JSON Object needed for Progression, which is needed to determine the points, level, current streak,
@@ -242,15 +244,41 @@ public class DataWriter extends DataConstants
          */
        public static void main(String[] args) 
         {
-            ArrayList<User> users = DataLoader.getUsers();
-
             UserManager.getInstance().getUsers().clear();
             UserManager.getInstance().getUsers().addAll(DataLoader.getUsers());
-            DataWriter.saveUsers();
 
-            PostManager.getInstance().getAllPosts().clear();
-            PostManager.getInstance().getAllPosts().addAll(DataLoader.getPosts(users));
+            ArrayList<User> users = DataLoader.getUsers();
+            ArrayList<Post> posts = DataLoader.getPosts(users);
+
+            /**
+             * for loop for QuestionPosts, which needs to get the necessary 
+             * information from the User class to write to the file.
+             * @author Dorian Rhone
+             */
+            for(Post post : posts)
+                {
+                    if (post instanceof QuestionPost)
+                    {
+                        PostManager.getInstance().addQuestion((QuestionPost) post);
+                    }
+                }   
+            /**
+             * for loop for SolutionPosts, which also needs to get the necessary
+             * information from the QuestionPost class to write to the file.
+             * @author Dorian Rhone
+             */
+            for (Post post : posts)
+            {
+                if (post instanceof SolutionPost)
+                {
+                    SolutionPost solution = (SolutionPost) post;
+                    QuestionPost parent = PostManager.getInstance().getQuestionById(solution.getQuestionId());
+                    PostManager.getInstance().addSolution(parent, solution.getAuthor(), solution);
+                }
+            }
+            DataWriter.saveUsers();
             DataWriter.savePosts();
         }
+       
 } 
 

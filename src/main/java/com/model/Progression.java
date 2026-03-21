@@ -22,7 +22,7 @@ public class Progression
         return points;
     }
 
-    public int getlevel() {
+    public int getLevel() {
         return level;
     }
 
@@ -39,7 +39,7 @@ public class Progression
         return longestStreak;
     }
 
-    public Title getequippedTitle() {
+    public Title getEquippedTitle() {
         return equippedTitle;
     }
 
