@@ -76,9 +76,15 @@ public class PostManager
     }
 
     
-    public boolean editPost(User user, Post post)
+    public boolean editPost(User user, Post post, PostContent newContent)
     {
+       if(!questionPosts.contains(post) && !solutionPosts.contains(post))
         return false;
+       if(!post.getAuthor().equals(user))
+        return false;
+         PostContent.setContent(newContent);
+         return true;
+
     }
 
     
