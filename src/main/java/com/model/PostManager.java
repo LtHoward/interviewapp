@@ -248,4 +248,26 @@ public ArrayList<QuestionPost> getQuestion(String title)
     {
         return true;
     }
+
+    /**
+     * Clears all question and solution posts from the PostManager. 
+     * This method is intended for testing purposes to reset the state of the PostManager between tests.
+     */
+    public void clearPosts() {
+        questionPosts.clear();
+        solutionPosts.clear();
+    }
+
+    /**
+     * Adds a solution post to the list of solution posts.
+     * @param user the user adding the solution post
+     * @param solution the solution post to be added
+     * @return true if the solution post was successfully added, false otherwise
+     */
+    public boolean addSolution(User user, SolutionPost solution) {
+        if (solution == null) {
+            return false;
+        }
+        return solutionPosts.add(solution);
+    }
 }
