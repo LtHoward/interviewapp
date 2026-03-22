@@ -10,7 +10,6 @@ public class Comment {
     private String commentContent;
     private UUID commentId;
     private UUID postId;
-    private LocalDate createdAt;
     private ArrayList<Comment> reply;
 
     public Comment (UUID commentId, User commentAuthor, String commentContent, UUID postId, LocalDate commentDate) {
@@ -44,6 +43,12 @@ public class Comment {
 
     public ArrayList<Comment> getReply(){
         return reply;
+    }
+
+    public boolean addReply(Comment comment) {
+        if(reply == null) return false;
+        reply.add(comment);
+        return true;
     }
 
 }
