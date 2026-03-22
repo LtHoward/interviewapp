@@ -514,11 +514,7 @@ public class InterviewUI {
     LocalDate.now()
 );
 
-<<<<<<< HEAD
-   boolean success = app.addComment(selected,newComment);;
-=======
    boolean success = app.addComment(selected, newComment);
->>>>>>> a3195ce22c4cdc0b63d946b18ec394a479535aec
 
     if (success) {
         System.out.println("Comment posted successfully!");
