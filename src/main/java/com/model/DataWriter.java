@@ -84,22 +84,15 @@ public class DataWriter extends DataConstants
                 studentDetails.put(SOLVED_QUESTIONS, student.getSolvedQuestions());
                 studentDetails.put(POSTED_SOLUTIONS, student.getPostedSolutions());
                 studentDetails.put(LAST_ACTIVITY_DATE, student.getLastActivityDate().toString());
-                studentDetails.put(POINTS, student.getProgression().getPoints());
-                studentDetails.put(LEVEL, student.getProgression().getLevel());
-                studentDetails.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
-                studentDetails.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
-                studentDetails.put(EQUIPPED_TITLE, student.getProgression().getEquippedTitle());
-                studentDetails.put(UNLOCKED_TITLES, student.getProgression().unlockedTitles());
-            
-            /**
-             * JSON Object needed for Progression, which is needed to determine the points, level, current streak,
-             * longest streak, equipped title, and unlocked titles of the student, which is needed to write to the file.
-             * @author Dorian Rhone
-             */
+                JSONObject progressionDetails = new JSONObject();
+                studentDetails.put(PROGRESSION, progressionDetails);
+                progressionDetails.put(POINTS, student.getProgression().getPoints());
+                progressionDetails.put(LEVEL, student.getProgression().getLevel());
+                progressionDetails.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
+                progressionDetails.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
+                progressionDetails.put(EQUIPPED_TITLE, student.getProgression().getEquippedTitle());
+                progressionDetails.put(UNLOCKED_TITLES, student.getProgression().unlockedTitles());
                 
-               
-
-
             /**
              * Rewards Array needed to determine the type of reward, the amount of the reward,
              * and if the reward has been redeemed or not, which is needed to write to the file.
@@ -220,6 +213,8 @@ public class DataWriter extends DataConstants
             JSONArray sectionsArray = new JSONArray();
             for(PostContent section : post.getContentSections())
             {
+                if(section == null || section.getType() == null || section.getContent() == null) 
+                    continue;
                 JSONObject sectionDetails = new JSONObject();
                 sectionDetails.put(TYPE, section.getType().toString());
                 sectionDetails.put(CONTENT, section.getContent());
