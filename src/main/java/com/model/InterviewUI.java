@@ -1,8 +1,9 @@
 package com.model;
+import com.model.Year;
 
 import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.time.Year;
+//import java.time.Year;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.ArrayList;
@@ -154,7 +155,7 @@ public class InterviewUI {
      * required details including username, email, password, role, major, and year.
      * Also routes the user to role-specific options after account creation.
      */
-   /** private void scenario2() 
+    private void scenario2() 
     {
 
         String username = "";
