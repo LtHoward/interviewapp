@@ -270,7 +270,7 @@ public class DataLoader extends DataConstants {
      * @return a Comment object with nested replies loaded, or null if invalid
      */
     private static Comment loadComment(JSONObject commentJSON, Map<UUID, User> userMap, UUID parentPostId) {
-        String commentIdString = (String) commentJSON.get(POST_ID);
+        String commentIdString = (String) commentJSON.get(COMMENT_ID);
         String commentAuthorIdString = (String) commentJSON.get(AUTHOR_ID);
         String commentContent = (String) commentJSON.getOrDefault(CONTENT, "");
         String commentCreatedAtStr = (String) commentJSON.get(CREATED_AT);
@@ -298,7 +298,7 @@ public class DataLoader extends DataConstants {
 
         Comment comment = new Comment(commentId, commentAuthor, commentContent, parentPostId, commentDate);
 
-        JSONArray repliesJSON = (JSONArray) commentJSON.get("replies");
+        JSONArray repliesJSON = (JSONArray) commentJSON.get(REPLIES);
         if (repliesJSON != null) {
             for (Object replyObj : repliesJSON) {
                 Comment reply = loadComment((JSONObject) replyObj, userMap, parentPostId);

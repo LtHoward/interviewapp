@@ -189,7 +189,7 @@ public class DataWriter extends DataConstants
             for(Comment comment : post.getComments())
             {
                 JSONObject commentDetails = new JSONObject();
-                commentDetails.put(POST_ID, comment.getCommentId().toString());
+                commentDetails.put(COMMENT_ID, comment.getCommentId().toString());
                 commentDetails.put(AUTHOR_ID, comment.getAuthor().getId().toString());
                 commentDetails.put(CONTENT, comment.getContent());
                 commentDetails.put(CREATED_AT, comment.getCommentDate().toString());
@@ -204,7 +204,7 @@ public class DataWriter extends DataConstants
                     replyDetails.put(CREATED_AT, reply.getCommentDate().toString());
                     repliesArray.add(replyDetails);
                 }
-                commentDetails.put("replies", repliesArray);
+                commentDetails.put(REPLIES, repliesArray);
                 commentsArray.add(commentDetails);
             }
             postDetails.put(COMMENTS, commentsArray);
