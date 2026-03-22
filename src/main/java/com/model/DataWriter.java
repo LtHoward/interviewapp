@@ -82,7 +82,11 @@ public class DataWriter extends DataConstants
                 studentDetails.put(YEAR, student.getYear().toString());
                 studentDetails.put(SKILL_LEVEL, student.getSkillLevel().toString());
                 studentDetails.put(SOLVED_QUESTIONS, student.getSolvedQuestions());
-                studentDetails.put(POSTED_SOLUTIONS, student.getPostedSolutions());
+                JSONArray postedSolutionsArray = new JSONArray();
+                for (SolutionPost solution : student.getPostedSolutions()) {
+                    postedSolutionsArray.add(solution.getPostId().toString());
+                }
+                studentDetails.put(POSTED_SOLUTIONS, postedSolutionsArray);
                 studentDetails.put(LAST_ACTIVITY_DATE, student.getLastActivityDate().toString());
                 JSONObject progressionDetails = new JSONObject();
                 studentDetails.put(PROGRESSION, progressionDetails);
@@ -222,7 +226,7 @@ public class DataWriter extends DataConstants
                     continue;
                 JSONObject sectionDetails = new JSONObject();
                 sectionDetails.put(TYPE, section.getType().toString());
-                sectionDetails.put(CONTENT, section.getContent());
+                sectionDetails.put(VALUE, section.getContent());
                 sectionsArray.add(sectionDetails);
             }
             postDetails.put(CONTENT_SECTIONS, sectionsArray);

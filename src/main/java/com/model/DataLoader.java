@@ -213,12 +213,12 @@ public class DataLoader extends DataConstants {
                         JSONObject sectionJSON = (JSONObject) sectionObj;
 
                         String sectionTypeStr = (String) sectionJSON.get(TYPE);
-                        String sectionContent = (String) sectionJSON.get(CONTENT);
+                        String sectionValue = (String) sectionJSON.get(VALUE);
 
-                        if (sectionTypeStr != null && sectionContent != null) {
+                        if (sectionTypeStr != null && sectionValue != null) {
                             try {
                                 ContentType contentType = ContentType.valueOf(sectionTypeStr.toUpperCase());
-                                contentSections.add(new PostContent(contentType, sectionContent));
+                                contentSections.add(new PostContent(contentType, sectionValue));
                             } catch (IllegalArgumentException e) {
                                 System.out.println("Invalid content type: " + sectionTypeStr);
                             }
