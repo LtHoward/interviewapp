@@ -33,9 +33,13 @@ public class InterviewApp {
         return PostManager.getInstance().getAllPosts();
     }
 
-    public User getUser(String username, String password) 
-    {
-        return userManager.getUser(username);
+    public User getUser(String username, String password) {
+        User user = userManager.getUser(username);
+        if (user != null && user.getPassword().equals(password)) {
+            currentUser = user;
+            return user;
+        }
+        return null;
     }
 
     public boolean createUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year)
