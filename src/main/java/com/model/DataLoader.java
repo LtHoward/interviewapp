@@ -13,8 +13,18 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * DataLoader is responsible for loading user and post data from JSON files. 
+ * It reads the data, parses it, and constructs the appropriate User and Post objects based on the JSON structure. 
+ * 
+ * @author Tyrel Hamilton
+ */
 public class DataLoader extends DataConstants {
 
+    /**
+     * Loads users from the USERS_FILE JSON file and constructs User objects based on the data.
+     * @return An ArrayList of User objects.
+     */
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
 
@@ -44,6 +54,10 @@ public class DataLoader extends DataConstants {
                     int solvedQuestions = 0;
                     Date lastActivityDate = new Date();
 
+                    ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
+                    Progression progression = new Progression();
+                    ArrayList<Reward> rewards = new ArrayList<>();
+
                     if(studentData != null) {
                         currentClasses = (String) studentData.getOrDefault(CURRENT_CLASSES, "");
                         classesTaken = (String) studentData.getOrDefault(CLASSES_TAKEN, "");
@@ -61,15 +75,45 @@ public class DataLoader extends DataConstants {
                             }
                         }   
                     }
+                    
+                    JSONObject progressionJSON = (JSONObject) studentData.get(PROGRESSION);
+                    if (progressionJSON != null) {
+                        progression.setPoints(((Long) progressionJSON.getOrDefault(POINTS, 0L)).intValue());
+                        progression.setLevel(((Long) progressionJSON.getOrDefault(LEVEL, 1L)).intValue());
+                        progression.setCurrentStreak(((Long) progressionJSON.getOrDefault(CURRENT_STREAK, 0L)).intValue());
+                        progression.setLongestStreak(((Long) progressionJSON.getOrDefault(LONGEST_STREAK, 0L)).intValue());
 
-                    ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
-                    Progression progression = new Progression();
-                    ArrayList<Reward> rewards = new ArrayList<>();
+                        String equippedTitleStr = (String) progressionJSON.get(EQUIPPED_TITLE);
+                        if (equippedTitleStr != null) {
+                            progression.setEquippedTitle(Title.valueOf(equippedTitleStr.toUpperCase()));
+                        }
 
-                    users.add(new Student(id, username, email, password, firstName,
-                        lastName, major, year, currentClasses, classesTaken,
-                        skillLevel, solvedQuestions, postedSolutions,
-                        progression, rewards, lastActivityDate, role));
+                        JSONArray unlockedTitlesJSON = (JSONArray) progressionJSON.get(UNLOCKED_TITLES);
+                        ArrayList<Title> unlockedTitles = new ArrayList<>();
+                        if (unlockedTitlesJSON != null) {
+                            for (Object obj : unlockedTitlesJSON) {
+                                unlockedTitles.add(Title.valueOf(((String) obj).toUpperCase()));
+                            }
+                        }
+                        progression.setUnlockedTitles(unlockedTitles);
+                    }
+
+                    JSONArray rewardsJSON = (JSONArray) userJSON.get(REWARDS);
+                    if (rewardsJSON != null) {
+                        for (Object rewardObj : rewardsJSON) {
+                            JSONObject rewardJSON = (JSONObject) rewardObj;
+
+                            RewardType type = RewardType.valueOf(((String) rewardJSON.get(TYPE)).toUpperCase());
+                            int amount = ((Long) rewardJSON.getOrDefault(AMOUNT, 0L)).intValue();
+                            boolean redeemed = (Boolean) rewardJSON.getOrDefault(REDEEMED, false);
+
+                            rewards.add(new Reward(type, amount, redeemed));
+                        }
+                    }
+                                users.add(new Student(id, username, email, password, firstName,
+                                    lastName, major, year, currentClasses, classesTaken,
+                                    skillLevel, solvedQuestions, postedSolutions,
+                                    progression, rewards, lastActivityDate, role));
 
                 } else if (role == Role.CONTRIBUTOR) {
                     JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
@@ -99,6 +143,11 @@ public class DataLoader extends DataConstants {
         return users;
     }
 
+    /**
+     * Loads posts from the POSTS_FILE JSON file and constructs Post objects based on the data.
+     * @param users the list of users used to map author IDs to User objects
+     * @return an ArrayList of Post objects loaded from the JSON file
+     */
     public static ArrayList<Post> getPosts(ArrayList<User> users) {
         ArrayList<Post> posts = new ArrayList<>();
 
@@ -180,43 +229,10 @@ public class DataLoader extends DataConstants {
                 JSONArray commentsJSON = (JSONArray) postJSON.get(COMMENTS);
                 if (commentsJSON != null) {
                     for (Object commentObj : commentsJSON) {
-                        JSONObject commentJSON = (JSONObject) commentObj;
-
-                        String commentIdString = (String) commentJSON.get(POST_ID);
-                        String commentAuthorIdString = (String) commentJSON.get(AUTHOR_ID);
-                        String commentContent = (String) commentJSON.getOrDefault(CONTENT, "");
-                        String commentCreatedAtStr = (String) commentJSON.get(CREATED_AT);
-
-                        if (commentIdString == null || commentAuthorIdString == null) {
-                            continue;
+                        Comment comment = loadComment((JSONObject) commentObj, userMap, postId);
+                        if (comment != null) {
+                            comments.add(comment);
                         }
-
-                        UUID commentId = UUID.fromString(commentIdString);
-                        UUID commentAuthorId = UUID.fromString(commentAuthorIdString);
-
-                        User commentAuthor = userMap.get(commentAuthorId);
-                        if (commentAuthor == null) {
-                            continue;
-                        }
-
-                        Date commentCreatedAt = new Date();
-                        if (commentCreatedAtStr != null) {
-                            try {
-                                commentCreatedAt = Date.from(OffsetDateTime.parse(commentCreatedAtStr).toInstant());
-                            } catch (Exception e) {
-                                commentCreatedAt = new Date();
-                            }
-                        }
-
-                        LocalDate commentDate = LocalDate.now();
-                        if (commentCreatedAtStr != null) {
-                            try {
-                                commentDate = OffsetDateTime.parse(commentCreatedAtStr).toLocalDate();
-                            } catch (Exception e) {
-                                commentDate = LocalDate.now();
-                            }
-                        }
-                        comments.add(new Comment(commentId, commentAuthor, commentContent, postId, commentDate));
                     }
                 }
 
@@ -243,6 +259,56 @@ public class DataLoader extends DataConstants {
         }
 
         return posts;
+    }
+
+    /**
+     * Loads a single comment from JSON and recursively loads all
+     * replies attached to the comment.
+     * @param commentJSON the JSON object representing one comment
+     * @param userMap map of user IDs to User objects
+     * @param parentPostId the ID of the post this comment belongs to
+     * @return a Comment object with nested replies loaded, or null if invalid
+     */
+    private static Comment loadComment(JSONObject commentJSON, Map<UUID, User> userMap, UUID parentPostId) {
+        String commentIdString = (String) commentJSON.get(POST_ID);
+        String commentAuthorIdString = (String) commentJSON.get(AUTHOR_ID);
+        String commentContent = (String) commentJSON.getOrDefault(CONTENT, "");
+        String commentCreatedAtStr = (String) commentJSON.get(CREATED_AT);
+
+        if (commentIdString == null || commentAuthorIdString == null) {
+            return null;
+        }
+
+        UUID commentId = UUID.fromString(commentIdString);
+        UUID commentAuthorId = UUID.fromString(commentAuthorIdString);
+
+        User commentAuthor = userMap.get(commentAuthorId);
+        if (commentAuthor == null) {
+            return null;
+        }
+
+        LocalDate commentDate = LocalDate.now();
+        if (commentCreatedAtStr != null) {
+            try {
+                commentDate = OffsetDateTime.parse(commentCreatedAtStr).toLocalDate();
+            } catch (Exception e) {
+                commentDate = LocalDate.now();
+            }
+        }
+
+        Comment comment = new Comment(commentId, commentAuthor, commentContent, parentPostId, commentDate);
+
+        JSONArray repliesJSON = (JSONArray) commentJSON.get("replies");
+        if (repliesJSON != null) {
+            for (Object replyObj : repliesJSON) {
+                Comment reply = loadComment((JSONObject) replyObj, userMap, parentPostId);
+                if (reply != null) {
+                    comment.addReply(reply);
+                }
+            }
+        }
+
+        return comment;
     }
 
     public static void main(String[] args) {
