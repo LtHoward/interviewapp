@@ -82,7 +82,7 @@ public class PostManager
         return false;
        if(!post.getAuthor().equals(user))
         return false;
-       if(index > post.getContentSections().size())
+       if(index >= post.getContentSections().size() || index < 0)
             return false;
          post.getContentSections().set(index, newContent);
          return true;
