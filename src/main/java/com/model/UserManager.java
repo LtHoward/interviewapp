@@ -61,7 +61,8 @@ import java.util.UUID;
          * @author Myila Howard
          */
         public boolean isPasswordValid(String password) {
-            return "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$".equals(password);
+            if (password == null) return false;
+            return password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
         }
 
         /**
