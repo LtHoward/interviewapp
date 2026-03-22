@@ -33,6 +33,9 @@ public class Progression
     
 
     public int getPoints() {
+        if (points < 0) {
+            points = 0;
+        }
         return points;
     }
 

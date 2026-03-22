@@ -27,6 +27,7 @@ public class SolutionPost extends Post {
         return questionId;
     }
 
+    @Override 
     public String getType() {
         return "SOLUTION";
     }

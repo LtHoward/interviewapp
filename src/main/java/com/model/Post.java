@@ -46,6 +46,12 @@ public abstract class Post {
         comments.add(comment);
     }
 
+    public boolean addContentSection(PostContent contentSection) {
+        if(contentSection == null) return false;
+        contentSections.add(contentSection);
+        return true;
+    }
+
     public UUID getPostId() {
         return postId;
     }

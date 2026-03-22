@@ -27,6 +27,7 @@ public class QuestionPost extends Post {
         return hint;
     }
 
+    @Override
     public String getType() {
         return "QUESTION";
     }
