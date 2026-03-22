@@ -54,6 +54,10 @@ public class DataLoader extends DataConstants {
                     int solvedQuestions = 0;
                     Date lastActivityDate = new Date();
 
+                    ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
+                    Progression progression = new Progression();
+                    ArrayList<Reward> rewards = new ArrayList<>();
+
                     if(studentData != null) {
                         currentClasses = (String) studentData.getOrDefault(CURRENT_CLASSES, "");
                         classesTaken = (String) studentData.getOrDefault(CLASSES_TAKEN, "");
@@ -71,15 +75,45 @@ public class DataLoader extends DataConstants {
                             }
                         }   
                     }
+                    
+                    JSONObject progressionJSON = (JSONObject) studentData.get(PROGRESSION);
+                    if (progressionJSON != null) {
+                        progression.setPoints(((Long) progressionJSON.getOrDefault(POINTS, 0L)).intValue());
+                        progression.setLevel(((Long) progressionJSON.getOrDefault(LEVEL, 1L)).intValue());
+                        progression.setCurrentStreak(((Long) progressionJSON.getOrDefault(CURRENT_STREAK, 0L)).intValue());
+                        progression.setLongestStreak(((Long) progressionJSON.getOrDefault(LONGEST_STREAK, 0L)).intValue());
 
-                    ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
-                    Progression progression = new Progression();
-                    ArrayList<Reward> rewards = new ArrayList<>();
+                        String equippedTitleStr = (String) progressionJSON.get(EQUIPPED_TITLE);
+                        if (equippedTitleStr != null) {
+                            progression.setEquippedTitle(Title.valueOf(equippedTitleStr.toUpperCase()));
+                        }
 
-                    users.add(new Student(id, username, email, password, firstName,
-                        lastName, major, year, currentClasses, classesTaken,
-                        skillLevel, solvedQuestions, postedSolutions,
-                        progression, rewards, lastActivityDate, role));
+                        JSONArray unlockedTitlesJSON = (JSONArray) progressionJSON.get(UNLOCKED_TITLES);
+                        ArrayList<Title> unlockedTitles = new ArrayList<>();
+                        if (unlockedTitlesJSON != null) {
+                            for (Object obj : unlockedTitlesJSON) {
+                                unlockedTitles.add(Title.valueOf(((String) obj).toUpperCase()));
+                            }
+                        }
+                        progression.setUnlockedTitles(unlockedTitles);
+                    }
+
+                    JSONArray rewardsJSON = (JSONArray) userJSON.get(REWARDS);
+                    if (rewardsJSON != null) {
+                        for (Object rewardObj : rewardsJSON) {
+                            JSONObject rewardJSON = (JSONObject) rewardObj;
+
+                            RewardType type = RewardType.valueOf(((String) rewardJSON.get(TYPE)).toUpperCase());
+                            int amount = ((Long) rewardJSON.getOrDefault(AMOUNT, 0L)).intValue();
+                            boolean redeemed = (Boolean) rewardJSON.getOrDefault(REDEEMED, false);
+
+                            rewards.add(new Reward(type, amount, redeemed));
+                        }
+                    }
+                                users.add(new Student(id, username, email, password, firstName,
+                                    lastName, major, year, currentClasses, classesTaken,
+                                    skillLevel, solvedQuestions, postedSolutions,
+                                    progression, rewards, lastActivityDate, role));
 
                 } else if (role == Role.CONTRIBUTOR) {
                     JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
