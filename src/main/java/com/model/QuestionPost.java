@@ -26,4 +26,8 @@ public class QuestionPost extends Post {
     public String getHint() {
         return hint;
     }
+
+    public String getType() {
+        return "QUESTION";
+    }
 }

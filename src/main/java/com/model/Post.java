@@ -58,9 +58,7 @@ public abstract class Post {
         return tags;
     }
 
-    public String getType() {
-        return this instanceof QuestionPost ? "QUESTION" : "SOLUTION";
-    }
+    public abstract String getType();
 
     public String getTitle() {
         return title;
