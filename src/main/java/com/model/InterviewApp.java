@@ -138,13 +138,9 @@ public class InterviewApp {
      * @param question the question to be added with the solution
      * @param user the user that wants to add a soltuion
      * @param solution the solution to be added
-     * @return true if the solution was added
+     * @return true if the solution was added, false otherwise
      */
-    public boolean addSolution(QuestionPost question, User user, SolutionPost solution)
-    {
-        return postManager.addSolution(question, user, solution);
 
-    }
 
     /**
      * Method to get the question

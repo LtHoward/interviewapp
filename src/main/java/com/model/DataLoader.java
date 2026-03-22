@@ -1,12 +1,13 @@
 package com.model;
 
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 import org.json.simple.JSONArray;
@@ -20,7 +21,7 @@ import org.json.simple.parser.JSONParser;
  * @author Tyrel Hamilton
  */
 public class DataLoader extends DataConstants {
-
+    
     /**
      * Loads users from the USERS_FILE JSON file and constructs User objects based on the data.
      * @return An ArrayList of User objects.
@@ -54,7 +55,6 @@ public class DataLoader extends DataConstants {
                     int solvedQuestions = 0;
                     LocalDate lastActivityDate = LocalDate.now();
 
-                    ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
                     Progression progression = new Progression();
                     ArrayList<Reward> rewards = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class DataLoader extends DataConstants {
                             } catch (Exception e) {
                                 lastActivityDate = LocalDate.now();
                             }
-                        }   
+                        }
                     }
                     
                     JSONObject progressionJSON = (JSONObject) studentData.get(PROGRESSION);
@@ -110,10 +110,11 @@ public class DataLoader extends DataConstants {
                             rewards.add(new Reward(type, amount, redeemed));
                         }
                     }
-                                users.add(new Student(id, username, email, password, firstName,
-                                    lastName, major, year, currentClasses, classesTaken,
-                                    skillLevel, solvedQuestions, postedSolutions,
-                                    progression, rewards, lastActivityDate, role));
+
+                    users.add(new Student(id, username, email, password, firstName,
+                        lastName, major, year, currentClasses, classesTaken,
+                        skillLevel, solvedQuestions,
+                        progression, rewards, lastActivityDate, role));
 
                 } else if (role == Role.CONTRIBUTOR) {
                     JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
