@@ -113,9 +113,7 @@ import java.util.UUID;
         switch (role) 
         {
             case STUDENT:
-                users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName, major, year,
-                "", "", SkillLevel.BEGINNER, 0, new ArrayList<>(),
-                new Progression(), new ArrayList<>(), new Date(), Role.STUDENT));
+                users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName, Role.STUDENT, major, year));
                 break;
 
             case ADMINISTRATOR:
