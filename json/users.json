@@ -56,5 +56,14 @@
         "contributorData": {
             "experience": "IT Support Specialist for College of Engineering and Computing."
         }
-  }
+    },
+    {
+        "userId": "32a90820-b4c6-47ec-ac67-7447c9232630",
+        "username": "SSparrow",
+        "email": "SSparrow@email.sc.edu",
+        "password": "Sspaarow33*",
+        "firstName": "Sparrow",
+        "lastName": "Contributor",
+        "role": "CONTRIBUTOR"
+    }
 ]
