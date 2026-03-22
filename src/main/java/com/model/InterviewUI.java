@@ -2,23 +2,39 @@ package com.model;
 
 import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.Scanner;
 import java.util.UUID;
+
+import javax.management.relation.Role;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDate;
-
+/**
+ * Provides a command-line interface for interacting with the InterviewApp,
+ * allowing users to log in, create accounts, manage posts, and add comments.
+ */
 public class InterviewUI {
+    /** The main application instance handling business logic. */
     private InterviewApp app;
+    /** The currently logged-in user, or {@code null} if no user is logged in. */
     private User currentUser;
+    /** Scanner for reading user input from the console. */
     private Scanner scanner;
-
+/**
+     * Constructs a new InterviewUI instance, initializing the application,
+     * scanner, and setting the current user to {@code null}.
+*/
     public InterviewUI() {
         app = new InterviewApp();
         scanner = new Scanner(System.in);
         currentUser = null;
     }
-
+/**
+     * Starts the main application loop, displaying the menu and routing
+     * the user to the appropriate scenario based on their input.
+     */
     public void run() {
         boolean running = true;
         while (running) {
@@ -60,7 +76,10 @@ public class InterviewUI {
             }
         }
 	}
-
+ /**
+     * Handles the login scenario, prompting the user for credentials
+     * and retrying until a successful login is achieved.
+     */
     private void scenario1() 
     {
         String username = " ";
@@ -94,7 +113,13 @@ public class InterviewUI {
         currentUser = app.getUser(username, password);
         System.out.println("Welcome to the Interview App, " + username + "!\nStatus: " + currentUser.getStatus() + "\n");
     }
-
+/**
+     * Validates the given username by checking that it is non-null,
+     * non-empty, and not already taken.
+     *
+     * @param username the username to validate
+     * @return {@code true} if the username is valid, {@code false} otherwise
+     */
     private boolean validateUsername(String username) 
     {
         if (username == null || username.isEmpty()) 
@@ -109,7 +134,12 @@ public class InterviewUI {
         }
         return true;
     }
-
+/**
+     * Validates whether the given email belongs to an existing Administrator.
+     *
+     * @param email the email address to validate
+     * @return {@code true} if the email belongs to an Administrator, {@code false} otherwise
+     */
     private boolean validateAdminEmail(String email) 
     {
         ArrayList<User> users = app.getAllUsers();
@@ -122,7 +152,11 @@ public class InterviewUI {
         }
         return false;
     }
-
+/**
+     * Handles the account creation scenario, prompting the user for all
+     * required details including username, email, password, role, major, and year.
+     * Also routes the user to role-specific options after account creation.
+     */
     private void scenario2() 
     {
 
@@ -280,7 +314,10 @@ public class InterviewUI {
             }
         }
     }
-    
+    /**
+     * Handles the logout scenario, logging out the current user
+     * and clearing the session.
+     */
     private void scenario3() 
     {
        if(!app.logout()) {
@@ -290,7 +327,11 @@ public class InterviewUI {
         System.out.println("Logout successful!");
        }
     }
-
+ /**
+     * Handles the question post creation scenario, prompting the current user
+     * for a title, tags, content type, content, difficulty, and hint.
+     * Only Contributors and Administrators are permitted to create question posts.
+     */
     private void scenario4() {
         if (currentUser == null) {
             System.out.println("No user logged in. Please login first.");
@@ -394,7 +435,10 @@ public class InterviewUI {
             System.out.println("Failed to create QuestionPost.");
         }
     }
-
+/**
+     * Handles the view question post scenario, displaying a list of all
+     * available question posts and showing the details of the selected post.
+     */
     private void scenario5() {
         ArrayList<Post> allPosts = app.getAllPosts();
 
@@ -446,6 +490,10 @@ public class InterviewUI {
             System.out.println();
         }
     }
+    /**
+     * Handles the view question post scenario, displaying a list of all
+     * available question posts and showing the details of the selected post.
+     */
  private void scenario6() {
   
     if (currentUser == null) {
@@ -514,11 +562,7 @@ public class InterviewUI {
     LocalDate.now()
 );
 
-<<<<<<< HEAD
-   boolean success = app.addComment(selected,newComment);;
-=======
    boolean success = app.addComment(selected, newComment);
->>>>>>> a3195ce22c4cdc0b63d946b18ec394a479535aec
 
     if (success) {
         System.out.println("Comment posted successfully!");
@@ -526,6 +570,11 @@ public class InterviewUI {
         System.out.println("Failed to post comment.");
     }
 }
+/**
+     * The entry point of the application. Creates an {@link InterviewUI} instance and starts the run loop.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
 		InterviewUI libraryInterface = new InterviewUI();
 		libraryInterface.run();

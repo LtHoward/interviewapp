@@ -1,6 +1,6 @@
 package com.model;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -21,10 +21,10 @@ public class Student extends User{
     private ArrayList<SolutionPost> postedSolutions;
     private Progression progression;
     private ArrayList<Reward> rewards;
-    private Date lastActivityDate;
+    private LocalDate lastActivityDate;
 
     /**
-     * Constructor for the Student class that initicalizes the student with the given parameters.
+     * Constructor for the Student class that initializes the student with the given parameters.
      * @param userId the id of the student to be created
      * @param username the username of the student to be created 
      * @param email the email of the student to be created 
@@ -47,7 +47,7 @@ public class Student extends User{
     public Student (UUID userId, String username, String email, String password, String firstName, 
         String lastName, Major major, Year year, String currentClasses, String classesTaken, 
         SkillLevel skillLevel, int solvedQuestions, ArrayList<SolutionPost> postedSolutions, 
-        Progression progression, ArrayList<Reward> rewards, Date lastActivityDate, Role role) {
+        Progression progression, ArrayList<Reward> rewards, LocalDate lastActivityDate, Role role) {
         super(userId, username, email, password, firstName, lastName, role);
         this.currentClasses = currentClasses;
         this.classesTaken = classesTaken;
@@ -145,7 +145,7 @@ public class Student extends User{
      * Method to get the last activity date of the student 
      * @return the last activity date of the student 
      */
-    public Date getLastActivityDate() {
+    public LocalDate getLastActivityDate() {
         return lastActivityDate;
     }
 

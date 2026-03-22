@@ -1,6 +1,17 @@
 package com.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
+<<<<<<< HEAD
+/**
+ * Represents a user's progression, tracking experience points, level,
+ * streaks, and unlocked titles.
+=======
+
+/**
+ * Class to represents the user progression in the application. It manages the points, level, streaks, and unlocked titles.
+ * It provides functionality to award Xp, check for level ups, track streaks, and manage titles.
+>>>>>>> 839b35d13dab2b39a211bafef58772451497e41a
+ */
 public class Progression 
 {
     private int points;
@@ -26,7 +37,10 @@ public class Progression
  * @param amount the number of points to add
  */
     public void awardXP(int amount) {
-        this.points += amount;
+        if (amount > 0 ) {
+            this.points += amount;
+            checkLevelUp();
+        }
     }
 /**
  * Checks whether the current points are sufficient to level up.
@@ -50,10 +64,7 @@ public class Progression
  * @return the current points, or {@code 0} if points have fallen below zero
  */  
     public int getPoints() {
-        if (points < 0) {
-            points = 0;
-        }
-        return points;
+       return Math.max(points, 0);
     }
 /**
  * Returns the current level.
@@ -66,7 +77,7 @@ public class Progression
 
     /**
      * Method to get the current streak of the user
-     * @return the current streak of the user
+     * @return the current streak 
      */
     public int getCurrentStreak() {
         return currentStreak;
@@ -102,8 +113,24 @@ public class Progression
  * @param solvedOn the {@link LocalDate} on which the problem was solved
  */   
 
-    public void updateStreak(LocalDate solvedOn){ 
-        LocalDate.now();                
+    /**
+     * Method to update the user's activity streak based on the last activity date
+     * @param solvedOn the date of the current activity 
+     * @param lastActivityDate the previous activity date
+     */
+    public void updateStreak(LocalDate solvedOn, LocalDate lastActivityDate){ 
+        if (lastActivityDate == null) {
+            currentStreak = 1;
+        } else if (solvedOn.equals(lastActivityDate.plusDays(1))) {
+            currentStreak++;
+        } else if (solvedOn.equals(lastActivityDate)) {
+            return;
+        } else {
+            currentStreak = 1;
+        }
+        if (currentStreak > longestStreak) {
+            longestStreak = currentStreak;
+        }            
     }
  /**
  * Returns the list of titles that have been unlocked.
