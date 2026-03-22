@@ -197,6 +197,7 @@ public class DataWriter extends DataConstants
                 for(Comment reply : comment.getReply())
                 {
                     JSONObject replyDetails = new JSONObject();
+                    replyDetails.put(COMMENT_ID, reply.getCommentId().toString());
                     replyDetails.put(POST_ID, reply.getCommentId().toString());
                     replyDetails.put(AUTHOR_ID, reply.getAuthor().getId().toString());
                     replyDetails.put(CONTENT, reply.getContent());

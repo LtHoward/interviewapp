@@ -1,1 +1,66 @@
-[{"difficulty":"EASY","createdAt":"Sun Mar 22 18:38:21 EDT 2026","score":670,"contentSections":[{"type":"TEXT","value":"Solve Two Sum efficiently."},{"type":"CODE","value":"for(...) { ... }"}],"comments":[{"createdAt":"2026-03-22","replies":[],"commentId":"e6e43925-483c-43b9-bec3-e863fd5e30b9","authorId":"ff461495-7827-4d76-bf2e-52d52e72e0fb","content":"Can you clarify the constraints?"}],"hint":"Try using a hashmap.","postId":"80b72263-d899-42e6-a334-6d38ae8286cd","type":"QUESTION","title":"Two Sum","authorId":"1e13689f-6698-45f4-9d21-bdc5a03d6652","tags":["arrays","two-sum"]},{"createdAt":"Sun Mar 22 18:38:21 EDT 2026","score":132,"contentSections":[{"type":"TEXT","value":"Here is my approach:"},{"type":"IMAGE","value":"diagram1.png"},{"type":"VIDEO","value":"explanation.mp4"}],"comments":[{"createdAt":"2026-03-22","replies":[],"commentId":"fb136fc6-3645-4383-9dc3-22933e38b7ff","authorId":"1e13689f-6698-45f4-9d21-bdc5a03d6652","content":"Nice solution, but could you add a quick complexity note?"}],"questionId":"80b72263-d899-42e6-a334-6d38ae8286cd","postId":"f3d16347-ff04-4134-bacf-0b89a3d5c6bc","type":"SOLUTION","title":"Two Sum Solution","authorId":"ff461495-7827-4d76-bf2e-52d52e72e0fb","solutionNumber":2,"tags":[]}]
+[
+  {
+    "postId": "80b72263-d899-42e6-a334-6d38ae8286cd",
+    "type": "QUESTION",
+    "title": "Two Sum",
+    "authorId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
+    "createdAt": "2026-02-22T12:00:00-05:00",
+    "difficulty": "EASY",
+    "hint": "Try using a hashmap.",
+    "tags": ["arrays", "two-sum"],
+    "score": 670,
+
+    "contentSections": [
+      { "type": "text", "value": "Solve Two Sum efficiently." },
+      { "type": "code", "value": "for(...) { ... }" }
+    ],
+
+    "comments": [
+      {
+        "commentId": "e6e43925-483c-43b9-bec3-e863fd5e30b9",
+        "postId": "80b72263-d899-42e6-a334-6d38ae8286cd",
+        "authorId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+        "createdAt": "2026-02-22T12:10:00-05:00",
+        "content": "Can you clarify the constraints?",
+        "replies": [
+          {
+            "commentId": "a1b2c3d4-5678-90ab-cdef-1234567890ab",
+            "postId":"e6e43925-483c-43b9-bec3-e863fd5e30b9",
+            "authorId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+            "createdAt": "2026-02-22T12:15:00-05:00",
+            "content": "Specifically, can we assume the input array is not null and has at least two elements?",
+            "replies": []
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "postId": "f3d16347-ff04-4134-bacf-0b89a3d5c6bc",
+    "title": "Two Sum Solution",
+    "type": "SOLUTION",
+    "questionId": "80b72263-d899-42e6-a334-6d38ae8286cd",
+    "solutionNumber": 2,
+    "authorId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+    "createdAt": "2026-02-21T09:30:00-05:00",
+    "score": 132,
+
+    "contentSections": [
+      { "type": "text", "value": "Here is my approach:" },
+      { "type": "image", "value": "diagram1.png" },
+      { "type": "video", "value": "explanation.mp4"}
+    ],
+
+    "comments": [
+      {
+        "commentId": "fb136fc6-3645-4383-9dc3-22933e38b7ff",
+        "postId": "f3d16347-ff04-4134-bacf-0b89a3d5c6bc",
+        "authorId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
+        "createdAt": "2026-02-21T09:45:00-05:00",
+        "content": "Nice solution, but could you add a quick complexity note?",
+        "replies": []
+      }
+    ]
+  }
+]
