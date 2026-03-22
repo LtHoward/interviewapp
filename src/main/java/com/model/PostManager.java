@@ -244,9 +244,13 @@ public ArrayList<QuestionPost> getQuestion(String title)
  *
  * @return {@code true} if the save was successful
  */
-    public boolean save()  
-    {
-        return true;
+    public boolean save() {
+        try {
+            DataWriter.savePosts();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
