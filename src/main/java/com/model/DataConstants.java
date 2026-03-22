@@ -57,4 +57,6 @@ public abstract class DataConstants {
     protected static final String CONTENT = "content";
     protected static final String QUESTION = "QUESTION";
     protected static final String SOLUTION = "SOLUTION";
+    protected static final String COMMENT_ID = "commentId";
+    protected static final String REPLIES = "replies";
 }
