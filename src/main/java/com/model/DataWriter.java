@@ -90,8 +90,13 @@ public class DataWriter extends DataConstants
                 progressionDetails.put(LEVEL, student.getProgression().getLevel());
                 progressionDetails.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
                 progressionDetails.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
-                progressionDetails.put(EQUIPPED_TITLE, student.getProgression().getEquippedTitle());
-                progressionDetails.put(UNLOCKED_TITLES, student.getProgression().unlockedTitles());
+                Title equipped = student.getProgression().getEquippedTitle();
+                progressionDetails.put(EQUIPPED_TITLE, equipped != null ? equipped.name() : null);
+                JSONArray unlockedTitlesArray = new JSONArray();
+                for (Title title : student.getProgression().getUnlockedTitles()) {
+                    unlockedTitlesArray.add(title.name());
+                }
+                progressionDetails.put(UNLOCKED_TITLES, unlockedTitlesArray);
                 
             /**
              * Rewards Array needed to determine the type of reward, the amount of the reward,
@@ -102,7 +107,7 @@ public class DataWriter extends DataConstants
                 for(Reward reward : student.getRewards()) 
                 {
                 JSONObject rewards = new JSONObject();
-                rewards.put(TYPE, reward.getType());
+                rewards.put(TYPE, reward.getType().name());
                 rewards.put(AMOUNT, reward.getAmount());
                 rewards.put(REDEEMED, reward.isRedeemed());
                 rewardsArray.add(rewards);

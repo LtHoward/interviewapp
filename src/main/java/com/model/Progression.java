@@ -110,7 +110,7 @@ public class Progression
  *
  * @return an {@link ArrayList} of unlocked {@link Title} objects
  */   
-    public ArrayList<Title> unlockedTitles()
+    public ArrayList<Title> getUnlockedTitles()
     {
         return unlockedTitles;
     }
