@@ -90,7 +90,7 @@ import java.util.UUID;
         {
             return users;
         }
-        
+
         /**
          * Method to add a user to the user list if the username does not exist and the password is valid.
          * @param username the username of the user to be added
