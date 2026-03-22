@@ -93,10 +93,14 @@ public class InterviewApp {
 
     }
 
-    public boolean addComment(Comment comment)
+    public boolean addComment(Post post,Comment comment)
     {
-        return postManager.addComment(comment);
+        return postManager.addComment(post, comment);
+    }
 
+    public ArrayList<Comment> getComments(Post post)
+    {
+        return postManager.getComments(post);
     }
 
     public boolean removeSavedQuestion()

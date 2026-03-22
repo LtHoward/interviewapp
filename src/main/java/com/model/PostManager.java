@@ -140,16 +140,22 @@ public class PostManager
         return null; 
     }
        
-    public boolean addComment(Comment comment) {
-        if(comment == null)
+    public boolean addComment(Post post, Comment comment) {
+        if(post == null || comment == null)
         return false;
-    return comments.add(comment);
+        if(!questionPosts.contains(post) && !solutionPosts.contains(post))
+        return false;
+        post.addComment(comment);
+        return true;
+    
     }
 
     
-    public ArrayList<Comment> getComments()
-    {
-          return new ArrayList<>(comments);
+    public ArrayList<Comment> getComments(Post post)
+    {   
+        if(post == null)
+        return new ArrayList<>();
+        return post.getComments();
     }
     
     public boolean save()  

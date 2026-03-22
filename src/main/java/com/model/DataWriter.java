@@ -195,6 +195,18 @@ public class DataWriter extends DataConstants
                 commentDetails.put(AUTHOR_ID, comment.getAuthor().getId().toString());
                 commentDetails.put(CONTENT, comment.getContent());
                 commentDetails.put(CREATED_AT, comment.getCommentDate().toString());
+
+                JSONArray repliesArray = new JSONArray();
+                for(Comment reply : comment.getReply())
+                {
+                    JSONObject replyDetails = new JSONObject();
+                    replyDetails.put(POST_ID, reply.getCommentId().toString());
+                    replyDetails.put(AUTHOR_ID, reply.getAuthor().getId().toString());
+                    replyDetails.put(CONTENT, reply.getContent());
+                    replyDetails.put(CREATED_AT, reply.getCommentDate().toString());
+                    repliesArray.add(replyDetails);
+                }
+                commentDetails.put("replies", repliesArray);
                 commentsArray.add(commentDetails);
             }
             postDetails.put(COMMENTS, commentsArray);

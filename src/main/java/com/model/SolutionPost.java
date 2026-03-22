@@ -26,4 +26,8 @@ public class SolutionPost extends Post {
     public UUID getQuestionId() {
         return questionId;
     }
+
+    public String getType() {
+        return "SOLUTION";
+    }
 }
