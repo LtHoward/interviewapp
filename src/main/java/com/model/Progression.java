@@ -1,16 +1,10 @@
 package com.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
-<<<<<<< HEAD
-/**
- * Represents a user's progression, tracking experience points, level,
- * streaks, and unlocked titles.
-=======
 
 /**
  * Class to represents the user progression in the application. It manages the points, level, streaks, and unlocked titles.
  * It provides functionality to award Xp, check for level ups, track streaks, and manage titles.
->>>>>>> 839b35d13dab2b39a211bafef58772451497e41a
  */
 public class Progression 
 {

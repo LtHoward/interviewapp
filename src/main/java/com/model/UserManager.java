@@ -1,6 +1,6 @@
 package com.model;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
     /**
@@ -115,7 +115,7 @@ import java.util.UUID;
             case STUDENT:
                 users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName, major, year,
                 "", "", SkillLevel.BEGINNER, 0, new ArrayList<>(),
-                new Progression(), new ArrayList<>(), new Date(), Role.STUDENT));
+                new Progression(), new ArrayList<>(), LocalDate.now(), Role.STUDENT));
                 break;
 
             case ADMINISTRATOR:
