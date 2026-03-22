@@ -5,9 +5,6 @@ import java.time.LocalDate;
 import java.time.Year;
 import java.util.Scanner;
 import java.util.UUID;
-
-import javax.management.relation.Role;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDate;
@@ -53,7 +50,7 @@ public class InterviewUI {
                     scenario1(); // Login scenario
                     break;
                 case 2:
-                    scenario2(); // Create account scenario
+                   /* scenario2();*/ // Create account scenario
                     break;
                 case 3:
                     scenario3(); // logout scenario
@@ -157,7 +154,7 @@ public class InterviewUI {
      * required details including username, email, password, role, major, and year.
      * Also routes the user to role-specific options after account creation.
      */
-    private void scenario2() 
+   /** private void scenario2() 
     {
 
         String username = "";
@@ -313,7 +310,7 @@ public class InterviewUI {
                 System.out.println("Invalid choice.");
             }
         }
-    }
+    }*/
     /**
      * Handles the logout scenario, logging out the current user
      * and clearing the session.
