@@ -10,13 +10,27 @@ public class Progression
     private Title equippedTitle;
     private ArrayList<Title> unlockedTitles;
 
+    public Progression() {
+    this.points = 0;
+    this.level = 1;
+    this.currentStreak = 0;
+    this.longestStreak = 0;
+    this.unlockedTitles = new ArrayList<>();
+}
     public void awardXP(int amount) {
         this.points += amount;
     }
 
     public boolean checkLevelUp() {
-        return false;
+    int xpNeeded = level * 100; // e.g. level 1 needs 100xp, level 2 needs 200xp, etc.
+    if (points >= xpNeeded) {
+        level++;
+        points -= xpNeeded; // reset points after leveling up
+        return true;
     }
+    return false;
+}
+    
 
     public int getPoints() {
         return points;
@@ -44,8 +58,9 @@ public class Progression
     }
 
     public int xpToNextLevel() {
-        return 0;
-    }
+    return (level * 100) - points;
+}
+    
 
     public void updateStreak(LocalDate solvedOn){ 
         LocalDate.now();                
