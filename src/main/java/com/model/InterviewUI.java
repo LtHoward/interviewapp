@@ -49,6 +49,9 @@ public class InterviewUI {
                     scenario5(); //view question post scenario
                     break;
                 case 6:
+                    scenario6(); //comment on question post scenario
+                    break;
+                case 7:
                     System.out.println("Exiting the app...");
                     running = false;
                     break;
@@ -511,7 +514,7 @@ public class InterviewUI {
     LocalDate.now()
 );
 
-   boolean success = app.addComment(newComment);;
+   boolean success = app.addComment(selected, newComment);
 
     if (success) {
         System.out.println("Comment posted successfully!");
