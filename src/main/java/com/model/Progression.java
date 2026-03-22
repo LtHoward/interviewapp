@@ -93,10 +93,6 @@ public class Progression
     public Title getEquippedTitle() {
         return equippedTitle;
     }
-
-    public ArrayList<Title> getUnlockedTitles() {
-        return unlockedTitles;
-    }
 /**
  * Calculates the number of experience points needed to reach the next level.
  *
@@ -135,7 +131,7 @@ public class Progression
  *
  * @return an {@link ArrayList} of unlocked {@link Title} objects
  */   
-    public ArrayList<Title> unlockedTitles()
+    public ArrayList<Title> getUnlockedTitles()
     {
         return unlockedTitles;
     }

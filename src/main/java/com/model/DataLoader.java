@@ -52,7 +52,7 @@ public class DataLoader extends DataConstants {
                     Year year = Year.FRESHMAN;
                     SkillLevel skillLevel = SkillLevel.BEGINNER;
                     int solvedQuestions = 0;
-                    Date lastActivityDate = new Date();
+                    LocalDate lastActivityDate = LocalDate.now();
 
                     ArrayList<SolutionPost> postedSolutions = new ArrayList<>();
                     Progression progression = new Progression();
@@ -69,9 +69,9 @@ public class DataLoader extends DataConstants {
                         String lastActivityDateStr = (String) studentData.get(LAST_ACTIVITY_DATE);
                         if (lastActivityDateStr != null) {
                             try{
-                                lastActivityDate = Date.from(OffsetDateTime.parse(lastActivityDateStr).toInstant());
+                                lastActivityDate = LocalDate.from(OffsetDateTime.parse(lastActivityDateStr).toInstant());
                             } catch (Exception e) {
-                                lastActivityDate = new Date();
+                                lastActivityDate = LocalDate.now();
                             }
                         }   
                     }
