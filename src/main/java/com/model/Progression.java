@@ -1,6 +1,10 @@
 package com.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
+/**
+ * Represents a user's progression, tracking experience points, level,
+ * streaks, and unlocked titles.
+ */
 public class Progression 
 {
     private int points;
