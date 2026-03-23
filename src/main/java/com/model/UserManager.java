@@ -167,7 +167,6 @@ import java.util.UUID;
 
         public boolean logout() {
             DataWriter.saveUsers();
-            users.clear();
             return true;
         }
 
