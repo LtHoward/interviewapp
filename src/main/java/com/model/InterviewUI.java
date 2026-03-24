@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class InterviewUI_Temp {
+public class InterviewUI {
 
     public static void main(String[] args) {
 
