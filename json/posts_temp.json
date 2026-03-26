@@ -62,5 +62,54 @@
         "replies": []
       }
     ]
+  },
+  {
+    "postId": "e06cb2e3-a5a9-47bb-bcd4-051b562f469e",
+    "type": "QUESTION",
+    "title": "Binary Search Tree Basics",
+    "authorId": "f8a41f95-0e0a-4135-b701-3f4c8accfb19",
+    "createdAt": "2026-02-20T10:00:00-05:00",
+    "difficulty": "EASY",
+    "hint": "Think about left < root < right",
+    "tags": ["trees", "bst"],
+    "score": 100,
+    "contentSections": [
+      { "type": "text", "value": "Explain how BST insertion works." }
+    ],
+    "comments": [
+      {
+        "commentId": "56c6c303-ac3e-4ee7-b02f-556677f41434",
+        "postId": "e06cb2e3-a5a9-47bb-bcd4-051b562f469e",
+        "authorId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
+        "createdAt": "2026-02-20T11:30:00-05:00",
+        "content": "Excellent question Professor! I think this is a great warm-up for the more advanced BST question you posted.",
+        "replies": []
+      }
+      
+    ]
+  },
+  {
+  "postId": "20387ee0-e13b-4700-b7b3-431897ae2536",
+  "type": "QUESTION",
+  "title": "Advanced Binary Search Tree Traversal",
+  "authorId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
+  "createdAt": "2026-02-20T11:00:00-05:00",
+  "difficulty": "HARD",
+  "hint": "Consider recursion vs iteration",
+  "tags": ["trees", "bst", "traversal"],
+  "score": 200,
+  "contentSections": [
+    { "type": "text", "value": "Implement inorder, preorder, and postorder traversal." }
+  ],
+  "comments": [
+    {
+      "commentId": "97abfb93-275f-4d19-a8cf-5a1682b8ec5d",
+      "postId": "20387ee0-e13b-4700-b7b3-431897ae2536",
+      "authorId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+      "createdAt": "2026-02-20T11:30:00-05:00",
+      "content": "WOWIE this is a tough one!",
+      "replies": []
+    }
+  ]
   }
 ]

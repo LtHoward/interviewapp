@@ -115,7 +115,7 @@ import java.util.UUID;
         {
             case STUDENT:
                 users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName, major, year,
-                "", "", SkillLevel.BEGINNER, 0, new ArrayList<>(),
+                "", "", SkillLevel.BEGINNER, 0,
                 new Progression(), new ArrayList<>(), LocalDate.now(), Role.STUDENT));
                 break;
 
@@ -135,9 +135,15 @@ import java.util.UUID;
      * @return true if the user data was successfuly saved, false otherwise.
      * @author Myila Howard
      */
-        public boolean saveUser () {
+    public boolean saveUser() {
+        try {
+            DataWriter.saveUsers();
             return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
+    }
 
         /**
          * Method to log in a user if the username or email and password match a user in the user list.
@@ -161,7 +167,6 @@ import java.util.UUID;
 
         public boolean logout() {
             DataWriter.saveUsers();
-            users.clear();
             return true;
         }
 

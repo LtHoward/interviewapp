@@ -18,7 +18,6 @@ public class Student extends User{
     private SkillLevel skillLevel;
     private int level;
     private int solvedQuestions;
-    private ArrayList<SolutionPost> postedSolutions;
     private Progression progression;
     private ArrayList<Reward> rewards;
     private LocalDate lastActivityDate;
@@ -37,7 +36,6 @@ public class Student extends User{
      * @param classesTaken the current classes taken of the student to be created 
      * @param skillLevel the skill level of the student to be created 
      * @param solvedQuestions the number of solved questions of the student to be created 
-     * @param postedSolutions the list of posted solution posts of the student to be created 
      * @param progression the progression of the student to be created 
      * @param rewards the list of rewards of the student to be created 
      * @param lastActivityDate the last activity date of the student to be created 
@@ -46,7 +44,7 @@ public class Student extends User{
      */
     public Student (UUID userId, String username, String email, String password, String firstName, 
         String lastName, Major major, Year year, String currentClasses, String classesTaken, 
-        SkillLevel skillLevel, int solvedQuestions, ArrayList<SolutionPost> postedSolutions, 
+        SkillLevel skillLevel, int solvedQuestions, 
         Progression progression, ArrayList<Reward> rewards, LocalDate lastActivityDate, Role role) {
         super(userId, username, email, password, firstName, lastName, role);
         this.currentClasses = currentClasses;
@@ -55,7 +53,6 @@ public class Student extends User{
         this.year = year;
         this.skillLevel = skillLevel;
         this.solvedQuestions = solvedQuestions;
-        this.postedSolutions = postedSolutions;
         this.progression = progression;
         this.rewards = rewards;
         this.lastActivityDate = lastActivityDate;
@@ -75,14 +72,6 @@ public class Student extends User{
      */
     public int addPoints() {
         return progression.getPoints();
-    }
-
-    /**
-     * Method to get the list of posted solution posts of the student.
-     * @return the list of posted solution posts of the student.
-     */
-    public ArrayList<SolutionPost> getPostedSolutions() {
-        return postedSolutions;
     }
 
     /**
@@ -183,5 +172,4 @@ public class Student extends User{
     public int getCurrentStreak() {
         return progression.getCurrentStreak();
     }
-    
 }

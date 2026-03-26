@@ -1,60 +1,71 @@
 [
     {
-        "userId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
-        "username": "sSteven",
-        "email": "ssteven@email.sc.edu",
-        "password": "daR33l*5T3ven!",
-        "firstName": "Thomas",
-        "lastName": "Student",
+        "firstName": "Jimmy",
+        "lastName": "Johns",
+        "password": "J0hn$2026",
         "role": "STUDENT",
-
         "studentData": {
             "currentClasses": "CSCE 211, CSCE 240, MATH 347",
-            "classesTaken": "CSCE 145, CSCE 190, CSCE 146, CSCE 215",
             "major": "COMPUTER_SCIENCE",
             "year": "SOPHOMORE",
-            "skillLevel": "BEGINNER",
-            "solvedQuestions": 7,
-            "postedSolutions": ["0a189ba1-efc4-4e1f-82a3-cd529088d715"],
-            "lastActivityDate": "2026-02-22T18:00:00-05:00",
+            "lastActivityDate": "2026-03-22",
+            "classesTaken": "CSCE 145, CSCE 190, CSCE 146, CSCE 215",
             "progression": {
-                "points": 120,
+                "currentStreak": 8,
                 "level": 2,
-                "currentStreak": 3,
-                "longestStreak": 4,
                 "equippedTitle": "SYNTAX_SCOUT",
-                "unlockedTitles": ["SYNTAX_SCOUT", "LOGIC_LEARNER"]
-            }
+                "longestStreak": 4,
+                "points": 120,
+                "unlockedTitles": [
+                    "SYNTAX_SCOUT",
+                    "LOGIC_LEARNER"
+                ]
+            },
+            "skillLevel": "BEGINNER",
+            "solvedQuestions": 7
         },
-
+        "userId": "ff461495-7827-4d76-bf2e-52d52e72e0fb",
+        "email": "jjohns@email.sc.edu",
         "rewards": [
-            { "type": "XP_BOOST", "amount": 20, "redeemed": false }
-        ]
+            {
+                "amount": 20,
+                "redeemed": false,
+                "type": "XP_BOOST"
+            }
+        ],
+        "username": "jJohns"
     },
     {
-        "userId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
-        "username": "ProfessionalProfessor",
-        "email": "pprofessor@cse.sc.edu",
-        "password": "1LuvC5C3247!",
         "firstName": "Peter",
         "lastName": "Professor",
+        "password": "1LuvC5C3247!",
         "role": "CONTRIBUTOR",
-
         "contributorData": {
             "experience": "Professor of Computer Science with 15 years experience."
-        }
+        },
+        "userId": "1e13689f-6698-45f4-9d21-bdc5a03d6652",
+        "email": "pprofessor@cse.sc.edu",
+        "username": "ProfessionalProfessor"
     },
     {
-        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
-        "username": "adminA",
-        "email": "adminA@email.sc.edu",
-        "password": "Adm1nA!*",
         "firstName": "Ava",
         "lastName": "Admin",
+        "password": "Adm1nA!*",
         "role": "ADMINISTRATOR",
-
+        "userId": "15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef",
+        "email": "adminA@email.sc.edu",
+        "username": "adminA"
+    },
+    {
+        "firstName": "Sullivan",
+        "lastName": "Sparrow",
+        "password": "WwSpar!2026",
+        "role": "CONTRIBUTOR",
         "contributorData": {
-            "experience": "IT Support Specialist for College of Engineering and Computing."
-        }
-  }
+            "experience": "Professor of Computer Science with 15 years experience."
+        },
+        "userId": "f8a41f95-0e0a-4135-b701-3f4c8accfb19",
+        "email": "sSparrow@cse.sc.edu",
+        "username": "sSparrow"
+    }
 ]

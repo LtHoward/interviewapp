@@ -1,19 +1,21 @@
 package com.model;
-import com.model.Year;
 
-import java.lang.reflect.Array;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.time.LocalDate;
-//import java.time.Year;
-import java.util.Scanner;
-import java.util.UUID;
 import java.util.ArrayList;
 import java.util.Date;
-import java.time.LocalDate;
+import java.util.UUID;
+
+
 /**
- * Provides a command-line interface for interacting with the InterviewApp,
- * allowing users to log in, create accounts, manage posts, and add comments.
+ * Class to demonstrate the functionality of the application by creating users, posts, comments, and interactions between them. 
+ * It also demonstrates saving data to files and searching for posts.
+ * 
+ * @author Overnight Opperators
  */
 public class InterviewUI {
+<<<<<<< HEAD
     /** The main application instance handling business logic. */
     private InterviewApp app;
     /** The currently logged-in user, or {@code null} if no user is logged in. */
@@ -313,270 +315,217 @@ public class InterviewUI {
         }
     }
     
+=======
+
+>>>>>>> 22475bd39ee84bd15d0ebc895d90a533c601b926
     /**
-     * Handles the logout scenario, logging out the current user
-     * and clearing the session.
-     */
-    private void scenario3() 
-    {
-       if(!app.logout()) {
-        System.out.println("Logout failed :(");
-       } else {
-        currentUser = null;
-        System.out.println("Logout successful!");
-       }
-    }
- /**
-     * Handles the question post creation scenario, prompting the current user
-     * for a title, tags, content type, content, difficulty, and hint.
-     * Only Contributors and Administrators are permitted to create question posts.
-     */
-    private void scenario4() {
-        if (currentUser == null) {
-            System.out.println("No user logged in. Please login first.");
-            return;
-        }
+     * Main method to run the demonstration of the application functionality.
+     * @param args the command line arguments (not used)
+      * @author Overnight Operators
+      * @see InterviewApp
+      * @see UserManager
+      * @see PostManager
+      * @see Student
+      * @see Comment
+      * @see DataWriter
+      */    
+    public static void main(String[] args) {
 
-        Role role = currentUser.getStatus();
+        InterviewApp app = new InterviewApp();
+        PostManager postManager = PostManager.getInstance();
+        UserManager userManager = UserManager.getInstance();
 
-        if (role != Role.CONTRIBUTOR && role != Role.ADMINISTRATOR) {
-            System.out.println("Access denied. Only Contributors or Admins can create QuestionPosts.");
-            return;
-        }
+        System.out.println("========== BEFORE DEMO ==========");
+        printUsers(app);
+        printPosts(app);
 
-        System.out.println("\n--- Create Question Post ---");
+        System.out.println("\n========== CREATE ACCOUNT - DUPLICATE ==========");
 
-        // TITLE
-        System.out.println("Enter question title:");
-        String title = scanner.nextLine();
-
-        // TAGS
-        System.out.println("Enter a tag:");
-        String tag = scanner.nextLine();
-
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add(tag);
-        
-        // CONTENT TYPE
-        System.out.println("Select content type:");
-        System.out.println("1. TEXT\n2. CODE\n3. IMAGE\n4. VIDEO");
-
-        int typeChoice = scanner.nextInt();
-        scanner.nextLine();
-
-        ContentType type;
-
-        switch(typeChoice) {
-            case 1: type = ContentType.TEXT; break;
-            case 2: type = ContentType.CODE; break;
-            case 3: type = ContentType.IMAGE; break;
-            case 4: type = ContentType.VIDEO; break;
-            default:
-                System.out.println("Invalid choice. Defaulting to TEXT.");
-                type = ContentType.TEXT;
-        }
-
-         // CONTENT
-        System.out.println("Enter content:");
-        String content = scanner.nextLine();
-
-        ArrayList<PostContent> contentSections = new ArrayList<>();
-        contentSections.add(new PostContent(type, content));
-
-        // DIFFICULTY
-        System.out.println("Select difficulty:");
-        System.out.println("1. EASY\n2. MEDIUM\n3. HARD");
-
-        int diffChoice = scanner.nextInt();
-        scanner.nextLine(); // consume newline
-
-        Difficulty difficulty;
-
-        switch (diffChoice) {
-            case 1:
-                difficulty = Difficulty.EASY;
-                break;
-            case 2:
-                difficulty = Difficulty.MEDIUM;
-                break;
-            case 3:
-                difficulty = Difficulty.HARD;
-                break;
-            default:
-                System.out.println("Invalid choice. Defaulting to EASY.");
-                difficulty = Difficulty.EASY;
-        }
-
-        // HINT
-        System.out.println("Enter a hint:");
-        String hint = scanner.nextLine();
-
-        // CREATE OBJECT
-        QuestionPost questionPost = new QuestionPost(
-            UUID.randomUUID(),
-            title,
-            currentUser,
-            new Date(),
-            new ArrayList<Comment>(),
-            tags,
-            contentSections,
-            0,
-            difficulty,
-            hint
+        boolean duplicate = app.createUser(
+                "sSparrow", 
+                "sally@email.com",
+                "Password123!",
+                "Sally",
+                "Sparrow",
+                Role.STUDENT,
+                Major.COMPUTER_SCIENCE,
+                Year.SOPHOMORE
         );
 
-        // SAVE
-        boolean success = app.addQuestion(questionPost);
-
-        if (success) {
-            System.out.println("QuestionPost created successfully!");
-        } else {
-            System.out.println("Failed to create QuestionPost.");
+        if (!duplicate) {
+            System.out.println("Duplicate user detected. Account creation rejected.");
         }
-    }
-/**
-     * Handles the view question post scenario, displaying a list of all
-     * available question posts and showing the details of the selected post.
-     */
-    private void scenario5() {
-        ArrayList<Post> allPosts = app.getAllPosts();
 
-        ArrayList<QuestionPost> questions = new ArrayList<>();
-        
-        for (Post post : allPosts) {
-            if (post instanceof QuestionPost) {
-                questions.add((QuestionPost) post);
+        System.out.println("\n========== CREATE ACCOUNT - SUCCESS ==========");
+
+        app.createUser(
+                "SallySparrow",
+                "sally@email.com",
+                "ValidPass1!",
+                "Sally",
+                "Sparrow",
+                Role.CONTRIBUTOR,
+                Major.COMPUTER_SCIENCE,
+                Year.SOPHOMORE
+        );
+
+        User sally = app.getUser("SallySparrow", "ValidPass1!");
+        System.out.println("Sally logged in: " + (sally != null));
+
+        System.out.println("\n========== SALLY CREATES QUESTION ==========");
+
+        ArrayList<PostContent> questionContent = new ArrayList<>();
+        questionContent.add(new PostContent(ContentType.TEXT, "Find the longest subarray with sum K."));
+        questionContent.add(new PostContent(ContentType.CODE, "LongestSubArraySolution.java"));
+
+        QuestionPost question = new QuestionPost(
+                UUID.randomUUID(),
+                "Longest SubArray with Sum K",
+                sally,
+                new Date(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                questionContent,
+                0,
+                Difficulty.MEDIUM,
+                "Use prefix sums or hashmap"
+        );
+
+        app.addQuestion(question);
+
+        System.out.println("Question created: " + question.getTitle());
+
+        System.out.println("\n========== SALLY ADDS SOLUTIONS ==========");
+
+        SolutionPost sol1 = new SolutionPost(
+                UUID.randomUUID(),
+                "Brute Force Solution",
+                sally,
+                new Date(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                0,
+                1,
+                question.getPostId()
+        );
+
+        SolutionPost sol2 = new SolutionPost(
+                UUID.randomUUID(),
+                "Optimized HashMap Solution",
+                sally,
+                new Date(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                0,
+                2,
+                question.getPostId()
+        );
+
+        postManager.addSolution(question, sally, sol1);
+        postManager.addSolution(question, sally, sol2);
+
+        System.out.println("2 solutions added.");
+
+        System.out.println("\nSally logs out...");
+        app.logout();
+
+        // ----------------------------------------------------
+
+        System.out.println("\n========== JIMMY BAUER DAILY TASK ==========");
+
+        User jimmy = app.getUser("jJohns", "J0hn$2026");
+        Student jimmyStudent = (Student) jimmy;
+
+        System.out.println("Jimmy logged in.");
+        System.out.println("Current streak: " + jimmyStudent.getCurrentStreak());
+
+        System.out.println("\nDaily Challenge Presented:");
+        System.out.println("-> " + question.getTitle());
+
+        System.out.println("\nJimmy reviews solutions:");
+        for (Post post : app.getAllPosts()) {
+            if (post instanceof SolutionPost &&
+                ((SolutionPost) post).getQuestionId().equals(question.getPostId())) {
+
+                System.out.println("- " + post.getTitle());
             }
         }
 
-        if (questions.isEmpty()) {
-            System.out.println("No question posts available.");
-            return;
+        System.out.println("\nJimmy is confused and comments on Solution 2...");
+
+        Comment comment = new Comment(
+                UUID.randomUUID(),
+                jimmy,
+                "Can someone explain why this works?",
+                sol2.getPostId(),
+                LocalDate.now()
+        );
+
+        app.addComment(sol2, comment);
+
+        System.out.println("Comment added:");
+        System.out.println(jimmy.getUsername() + " (" + LocalDate.now() + "): " + comment.getContent());
+
+        System.out.println("\n========== PRINT TO FILE ==========");
+
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter("JimmyReview.txt"));
+            writer.println("Question: " + question.getTitle());
+            writer.println("Comment: " + comment.getContent());
+            writer.close();
+            System.out.println("Printed to JimmyReview.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        System.out.println("\n--- Question Posts ---");
-        for (int i = 0; i < questions.size(); i++) {
-            System.out.println((i + 1) + ". " + questions.get(i).getTitle());
+        System.out.println("\n========== SEARCH: Binary Search Tree ==========");
+
+        ArrayList<QuestionPost> results = postManager.searchQuestions("Binary Search Tree");
+
+        System.out.println("Found " + results.size() + " questions:");
+
+        for (QuestionPost q : results) {
+            System.out.println("- " + q.getTitle());
         }
 
-        System.out.println("\nSelect a question by number:");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("\n========== STREAK UPDATE ==========");
+        jimmyStudent.getProgression().setCurrentStreak(jimmyStudent.getCurrentStreak() + 1);
+        System.out.println("New streak: " + jimmyStudent.getCurrentStreak());
 
-        if (choice < 1 || choice > questions.size()) {
-            System.out.println("Invalid selection.");
-            return;
-        }
+        System.out.println("\nJimmy logs out...");
+        app.logout();
 
-        QuestionPost selected = questions.get(choice - 1);
+        // ----------------------------------------------------
 
-        System.out.println("\n--- Question Details ---");
-        System.out.println("Title: " + selected.getTitle());
-        System.out.println("Author: " + selected.getAuthor().getUsername());
-        System.out.println("Difficulty: " + selected.getDifficulty());
-        System.out.println("Hint: " + selected.getHint());
-        System.out.println("Score: " + selected.getScore());
+        System.out.println("\n========== AFTER DEMO ==========");
+        DataWriter.saveUsers();
+        DataWriter.savePosts();
 
-        System.out.println("\nTags:");
-        for (String tag : selected.getTags()) {
-            System.out.println("- " + tag);
-        }
-
-        System.out.println("\nContent:");
-        for (PostContent section : selected.getContentSections()) {
-            System.out.println("Type: " + section.getType());
-            System.out.println(section.getContent());
-            System.out.println();
-        }
+        printUsers(app);
+        printPosts(app);
     }
+
     /**
-     * Handles the view question post scenario, displaying a list of all
-     * available question posts and showing the details of the selected post.
+     * prints all users in the application
+     * @param app the InterviewApp instance to get users from
      */
- private void scenario6() {
-  
-    if (currentUser == null) {
-        System.out.println("No user logged in. Please login first.");
-        return;
-    }
-
-    ArrayList<Post> allPosts = app.getAllPosts();
-    ArrayList<QuestionPost> questions = new ArrayList<>();
-
-    for (Post post : allPosts) {
-        if (post instanceof QuestionPost) {
-            questions.add((QuestionPost) post);
-        }
-    }
-// Checks if there are any question posts to comment on
-    if (questions.isEmpty()) {
-        System.out.println("No question posts available to comment on.");
-        return;
-    }
-
-    // Display posts 
-    System.out.println("\n--- Select a Question Post to Comment On ---");
-    for (int i = 0; i < questions.size(); i++) {
-        System.out.println((i + 1) + ". " + questions.get(i).getTitle());
-    }
-
-    System.out.println("\nSelect a question by number:");
-    int choice = scanner.nextInt();
-    scanner.nextLine(); // consume newline
-
-    if (choice < 1 || choice > questions.size()) {
-        System.out.println("Invalid selection.");
-        return;
-    }
-
-    QuestionPost selected = questions.get(choice - 1);
-
-    // Show existing comments first
-    System.out.println("\n--- Existing Comments on: " + selected.getTitle() + " ---");
-    ArrayList<Comment> comments = selected.getComments();
-
-    if (comments.isEmpty()) {
-        System.out.println("They're no comments yet. Be the first!");
-    } else {
-        for (int i = 0; i < comments.size(); i++) {
-            Comment c = comments.get(i);
-            System.out.println((i + 1) + ". " + c.getAuthor().getUsername() + ": " + c.getContent());
+    private static void printUsers(InterviewApp app) {
+        System.out.println("\nUsers:");
+        for (User user : app.getAllUsers()) {
+            System.out.println("- " + user.getUsername() + " (" + user.getStatus() + ")");
         }
     }
 
-    // Collect and post the new comment
-    System.out.println("\nEnter your comment:");
-    String commentText = scanner.nextLine();
-
-    if (commentText == null || commentText.trim().isEmpty()) {
-        System.out.println("Your comment cannot be empty.");
-        return;
-    }
-
-   Comment newComment = new Comment(
-    UUID.randomUUID(),
-    currentUser,
-    commentText.trim(),
-    selected.getPostId(),   // postId from the selected QuestionPost
-    LocalDate.now()
-);
-
-   boolean success = app.addComment(selected, newComment);
-
-    if (success) {
-        System.out.println("Comment posted successfully!");
-    } else {
-        System.out.println("Failed to post comment.");
-    }
-}
-/**
-     * The entry point of the application. Creates an {@link InterviewUI} instance and starts the run loop.
-     *
-     * @param args command-line arguments (not used)
+    /**
+     * prints all posts in the application
+     * @param app the InterviewApp instance to get posts from
      */
-    public static void main(String[] args) {
-		InterviewUI libraryInterface = new InterviewUI();
-		libraryInterface.run();
-
-	}
+    private static void printPosts(InterviewApp app) {
+        System.out.println("\nPosts:");
+        for (Post post : app.getAllPosts()) {
+            System.out.println("- " + post.getTitle() + " [" + post.getType() + "]");
+        }
+    }
 }

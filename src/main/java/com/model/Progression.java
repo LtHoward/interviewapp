@@ -15,7 +15,7 @@ public class Progression
     private Title equippedTitle;
     private ArrayList<Title> unlockedTitles;
 /**
- * Constructs a new Progression instance with default starting values,
+ * Creates a new Progression instance with default starting values,
  * initializing points, level, and streaks to zero and an empty list of unlocked titles.
  */
     public Progression() {

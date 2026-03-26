@@ -19,7 +19,17 @@ public class PostManager
     {
         questionPosts = new ArrayList<>();
         solutionPosts = new ArrayList<>();
-        return;
+
+        ArrayList<User> users = UserManager.getInstance().getUsers();
+        ArrayList<Post> loadedPosts = DataLoader.getPosts(users);
+
+        for (Post post : loadedPosts) {
+            if (post instanceof QuestionPost) {
+                questionPosts.add((QuestionPost) post);
+            } else if (post instanceof SolutionPost) {
+                solutionPosts.add((SolutionPost) post);
+            }
+        }
     }
 /**
  * Returns the singleton instance of PostManager, creating it if it does not yet exist.
@@ -33,18 +43,7 @@ public class PostManager
         }
         return postManager;
     }
-    /**
- * Returns a combined list of all question posts and solution posts.
- *
- * @return an {@link ArrayList} containing all {@link Post} objects
- */
-
-    public ArrayList<Post> getAllPosts() {
-        ArrayList<Post> allPosts = new ArrayList<>();
-        allPosts.addAll(questionPosts);
-        allPosts.addAll(solutionPosts);
-        return allPosts;
-    }
+ 
 /**
  * Searches for question posts that match the given title (case-insensitive).
  *
@@ -158,27 +157,38 @@ public ArrayList<QuestionPost> getQuestion(String title)
         return questionPosts.remove(post);
     return solutionPosts.remove(post);
     }
-/**
- * Searches for question posts whose titles contain the given keyword (case-insensitive).
- *
- * @param title the keyword to search for within post titles
- * @return an {@link ArrayList} of {@link QuestionPost} objects whose titles contain the keyword,
- *         or an empty list if no matches are found
- */
+
+    /**
+     * Searches for question posts that match the given keyword in their title or tags (case-insensitive).
+     * @param keyword the keyword to search for in question titles and tags
+     * @return an {@link ArrayList} of {@link QuestionPost} objects whose titles or tags contain the given keyword,
+     */
    
-    public ArrayList<QuestionPost> getQuestionsByKeyWord(String title)
-    {
-        ArrayList<QuestionPost> matchingPosts = new ArrayList<>();
-    
-    for(QuestionPost question : questionPosts)
-    {
-        if(question.getTitle().toLowerCase().contains(title.toLowerCase()))
-        {
-            matchingPosts.add(question);
+    public ArrayList<QuestionPost> searchQuestions(String keyword) {
+        ArrayList<QuestionPost> results = new ArrayList<>();
+
+        if (keyword == null || keyword.isEmpty()) return results;
+
+        String lowerKeyword = keyword.toLowerCase();
+
+        for (QuestionPost question : questionPosts) {
+
+            // Check title
+            if (question.getTitle().toLowerCase().contains(lowerKeyword)) {
+                results.add(question);
+                continue;
+            }
+
+            // Check tags
+            for (String tag : question.getTags()) {
+                if (tag.toLowerCase().contains(lowerKeyword)) {
+                    results.add(question);
+                    break;
+                }
+            }
         }
-    }
-    
-    return matchingPosts;
+
+        return results;
     }
 /**
  * Returns a copy of all question posts.
@@ -188,6 +198,23 @@ public ArrayList<QuestionPost> getQuestion(String title)
     public ArrayList<QuestionPost> getAllQuestions()
     {
         return new ArrayList<>(questionPosts);
+    }
+
+    /**
+     * Returns a copy of all solution posts.
+     * @return an {@link ArrayList} containing all {@link SolutionPost} objects
+     */
+    public ArrayList<SolutionPost> getAllSolutions()
+    {
+        return new ArrayList<>(solutionPosts);
+    }
+
+    public ArrayList<Post> getAllPosts()
+    {
+        ArrayList<Post> allPosts = new ArrayList<>();
+        allPosts.addAll(questionPosts);
+        allPosts.addAll(solutionPosts);
+        return allPosts;
     }
 
     /**

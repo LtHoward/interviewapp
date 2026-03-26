@@ -23,7 +23,6 @@ public abstract class DataConstants {
     protected static final String YEAR = "year";
     protected static final String SKILL_LEVEL = "skillLevel";
     protected static final String SOLVED_QUESTIONS = "solvedQuestions";
-    protected static final String POSTED_SOLUTIONS = "postedSolutions";
     protected static final String LAST_ACTIVITY_DATE = "lastActivityDate";
 
     protected static final String EXPERIENCE = "experience";
