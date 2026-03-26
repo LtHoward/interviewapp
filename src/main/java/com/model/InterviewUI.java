@@ -9,6 +9,24 @@ import java.util.UUID;
 
 public class InterviewUI {
 
+/**
+ * Class to demonstrate the functionality of the application by creating users, posts, comments, and interactions between them. 
+ * It also demonstrates saving data to files and searching for posts.
+ * 
+ * @author Overnight Opperators
+ */
+
+    /**
+     * Main method to run the demonstration of the application functionality.
+     * @param args the command line arguments (not used)
+      * @author Overnight Operators
+      * @see InterviewApp
+      * @see UserManager
+      * @see PostManager
+      * @see Student
+      * @see Comment
+      * @see DataWriter
+      */    
     public static void main(String[] args) {
 
         InterviewApp app = new InterviewApp();
@@ -22,7 +40,7 @@ public class InterviewUI {
         System.out.println("\n========== CREATE ACCOUNT - DUPLICATE ==========");
 
         boolean duplicate = app.createUser(
-                "sSparrow", // already exists in your JSON
+                "sSparrow", 
                 "sally@email.com",
                 "Password123!",
                 "Sally",
@@ -187,8 +205,10 @@ public class InterviewUI {
         printPosts(app);
     }
 
-    // ---------------- HELPERS ----------------
-
+    /**
+     * prints all users in the application
+     * @param app the InterviewApp instance to get users from
+     */
     private static void printUsers(InterviewApp app) {
         System.out.println("\nUsers:");
         for (User user : app.getAllUsers()) {
@@ -196,6 +216,10 @@ public class InterviewUI {
         }
     }
 
+    /**
+     * prints all posts in the application
+     * @param app the InterviewApp instance to get posts from
+     */
     private static void printPosts(InterviewApp app) {
         System.out.println("\nPosts:");
         for (Post post : app.getAllPosts()) {
