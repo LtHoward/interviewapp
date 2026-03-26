@@ -69,7 +69,7 @@ import java.util.UUID;
          * Method to check if the username exists in the user list.
          * @param username the username to check
          * @return true if the username exist, false otherwise. 
-         * @author 
+         * @author Michelle Ihetu
          */
         public boolean userExist(String username){
             if (username == null) return false;

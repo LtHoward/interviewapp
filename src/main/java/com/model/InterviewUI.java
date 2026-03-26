@@ -312,7 +312,7 @@ public class InterviewUI {
             }
         }
     }
-
+    
     /**
      * Handles the logout scenario, logging out the current user
      * and clearing the session.
