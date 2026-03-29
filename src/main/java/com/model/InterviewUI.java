@@ -15,7 +15,6 @@ import java.util.UUID;
  * @author Overnight Opperators
  */
 public class InterviewUI {
-
     /**
      * Main method to run the demonstration of the application functionality.
      * @param args the command line arguments (not used)
