@@ -1,13 +1,11 @@
 package com.model;  
-
 import java.util.ArrayList;
 import java.util.UUID;
-
-
 import java.util.*;
-
 import org.junit.Test;
-
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 
 public class PostManagerTest{
@@ -27,7 +25,7 @@ public class PostManagerTest{
         //Create test users
         authorUser = new User("author_user", "password123", "author@email.com");
         otherUser  = new User("other_user",  "password456", "other@email.com");
- QuestionPost questionPost = new QuestionPost(
+        QuestionPost questionPost = new QuestionPost(
                 authorUser,
                 "How do I reverse a linked list?",
                 new ArrayList<>(Arrays.asList(new PostContent("Sample content"))),
@@ -38,7 +36,28 @@ public class PostManagerTest{
                 authorUser,
                 new ArrayList<>(Arrays.asList(new PostContent("Use a while loop and swap pointers.")))
         );
- 
+        
+    //getInstance
+    @Test
+    void testGetInstance_returnsSameInstance() {
+        PostManager instance1 = PostManager.getInstance();
+        PostManager instance2 = PostManager.getInstance();
+        assertSame(instance1 , instance2);
+    }
+
+    // addQuestion
+    @Test
+    void testAddQuestion_validPost_returnsTrue() {
+        assertTrue(postManager.addQuestion(questionPost));
+    }
+
+    @Test
+    void testAddQuestion_postAppearsInList() {
+        postManager.addQuestion(questionPost);
+        assertTrue(postManager.getAllQuestions().contains(questionPost));
+    }
+
+
     }
 
 }
