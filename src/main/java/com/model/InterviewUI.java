@@ -15,7 +15,11 @@ public class InterviewUI {
  * 
  * @author Overnight Opperators
  */
+<<<<<<< HEAD
 
+=======
+public class InterviewUI {
+>>>>>>> 253feb96fc23c6a06b6fb011bf24f5cde40f1785
     /**
      * Main method to run the demonstration of the application functionality.
      * @param args the command line arguments (not used)
