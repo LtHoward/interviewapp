@@ -4,8 +4,10 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 /**
  * DataLoader Class tested by:
@@ -81,5 +83,17 @@ class DataLoaderTesting {
         assertEquals(Major.COMPUTER_SCIENCE, ((Student) users.get(0)).getMajor());
     }
 
+    @Test 
+    void testGetUsersNotEmpty() {
+        users = DataLoader.getUsers();
+        assertFalse(users.isEmpty());
+    }
+
+    @Test 
+    void testUserIdsEqual() {
+        users = DataLoader.getUsers();
+        assertEquals(UUID.fromString("ff461495-7827-4d76-bf2e-52d52e72e0fb"), ((Student) users.get(0)).getId());
+        assertEquals(UUID.fromString("15f3ae3e-2759-44c3-9d00-c9cf0b4ce5ef"), ((Contributor) users.get(1)).getId());
+    }
 
 }
