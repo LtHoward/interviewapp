@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * DataLoader Class tested by:
+ * @author Myila Howard 
+ * 
+ */
 class DataLoaderTesting {
     private UserManager userManager = UserManager.getInstance();
     private ArrayList<User> users = userManager.getUsers();
@@ -35,7 +40,7 @@ class DataLoaderTesting {
 
     @Test
     void testGetUsersSizeZero() {
-        userManager.getInstance().getUsers().clear();
+        UserManager.getInstance().getUsers().clear();
         DataWriter.saveUsers();
         assertEquals(0, users.size());
     }
@@ -63,5 +68,18 @@ class DataLoaderTesting {
         users = DataLoader.getUsers();
         assertEquals(Role.STUDENT, users.get(0).getStatus());
     }
+
+    @Test 
+    void testGetSecondUserStatus() {
+        users = DataLoader.getUsers();
+        assertEquals(Role.CONTRIBUTOR, users.get(1).getStatus());    
+    }
+
+    @Test
+    void testGetUserMajor() {
+        users = DataLoader.getUsers();
+        assertEquals(Major.COMPUTER_SCIENCE, ((Student) users.get(0)).getMajor());
+    }
+
 
 }

@@ -2,13 +2,13 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.*;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
 
 
-public class PostManagerTest{
+class PostManagerTest{
 
     private PostManager postManager;
     private User authorUser;
