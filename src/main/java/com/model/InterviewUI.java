@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+public class InterviewUI {
 
 /**
  * Class to demonstrate the functionality of the application by creating users, posts, comments, and interactions between them. 
@@ -14,7 +15,6 @@ import java.util.UUID;
  * 
  * @author Overnight Opperators
  */
-public class InterviewUI {
     /**
      * Main method to run the demonstration of the application functionality.
      * @param args the command line arguments (not used)
