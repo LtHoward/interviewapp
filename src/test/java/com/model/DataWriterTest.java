@@ -574,47 +574,62 @@ public class DataWriterTest {
 
         @Test
         public void testEquiTitleMustBeUnlocked() {
-        Progression progression = new Progression();
-        ArrayList<Title> unlockedTitles = new ArrayList<>();
-        unlockedTitles.add(Title.SYNTAX_SCOUT);
-        unlockedTitles.add(Title.LOGIC_LEARNER);
+            Progression progression = new Progression();
+            ArrayList<Title> unlockedTitles = new ArrayList<>();
+            unlockedTitles.add(Title.SYNTAX_SCOUT);
+            unlockedTitles.add(Title.LOGIC_LEARNER);
 
-        progression.setUnlockedTitles(unlockedTitles);
-        progression.setEquippedTitle(Title.BOOLEAN_BRAWLER);
+            progression.setUnlockedTitles(unlockedTitles);
+            progression.setEquippedTitle(Title.BOOLEAN_BRAWLER);
 
-        ArrayList<Reward> rewards = new ArrayList<>();
+            ArrayList<Reward> rewards = new ArrayList<>();
 
-        Student student = new Student(
-            UUID.randomUUID(),
-            "ljames",
-            "ljames@email.sc.edu",
-            "password1@A",
-            "Lebron",
-            "James",
-            Major.COMPUTER_SCIENCE,
-            Year.FRESHMAN,
-            "CSCE 247, MATH 374",
-            "CSCE 145, CSCE 146",
-            SkillLevel.BEGINNER,
-            0,
-            progression,
-            rewards,
-            java.time.LocalDate.of(2026, 3, 29),
-            Role.STUDENT
-        );
+            Student student = new Student(
+                UUID.randomUUID(),
+                "ljames",
+                "ljames@email.sc.edu",
+                "password1@A",
+                "Lebron",
+                "James",
+                Major.COMPUTER_SCIENCE,
+                Year.FRESHMAN,
+                "CSCE 247, MATH 374",
+                "CSCE 145, CSCE 146",
+                SkillLevel.BEGINNER,
+                0,
+                progression,
+                rewards,
+                java.time.LocalDate.of(2026, 3, 29),
+                Role.STUDENT
+            );
 
-        UserManager.getInstance().getUsers().add(student);
+            UserManager.getInstance().getUsers().add(student);
 
-        DataWriter.saveUsers();
+            DataWriter.saveUsers();
 
-        ArrayList<User> reloaded = DataLoader.getUsers();
-        Student reloadedStudent = (Student) reloaded.get(0);
+            ArrayList<User> reloaded = DataLoader.getUsers();
+            Student reloadedStudent = (Student) reloaded.get(0);
 
-        assertTrue(
-            reloadedStudent.getProgression().getUnlockedTitles()
-                .contains(reloadedStudent.getProgression().getEquippedTitle()),
-            "Equipped title should already be in unlocked titles"
-        );
+            assertNull(
+                reloadedStudent.getProgression().getEquippedTitle(),
+                "Equipped title should be null if it was not unlocked"
+            );
+
+            assertEquals(
+                2,
+                reloadedStudent.getProgression().getUnlockedTitles().size(),
+                "Unlocked titles should still be saved correctly"
+            );
+
+            assertTrue(
+                reloadedStudent.getProgression().getUnlockedTitles().contains(Title.SYNTAX_SCOUT),
+                "SYNTAX_SCOUT should still be unlocked"
+            );
+
+            assertTrue(
+                reloadedStudent.getProgression().getUnlockedTitles().contains(Title.LOGIC_LEARNER),
+                "LOGIC_LEARNER should still be unlocked"
+            );
         }
 
         @Test

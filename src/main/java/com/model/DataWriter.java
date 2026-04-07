@@ -90,7 +90,12 @@ public class DataWriter extends DataConstants
                 progressionDetails.put(CURRENT_STREAK, student.getProgression().getCurrentStreak());
                 progressionDetails.put(LONGEST_STREAK, student.getProgression().getLongestStreak());
                 Title equipped = student.getProgression().getEquippedTitle();
-                progressionDetails.put(EQUIPPED_TITLE, equipped != null ? equipped.name() : null);
+                ArrayList<Title> unlockedTitles = student.getProgression().getUnlockedTitles();
+                if (equipped != null && unlockedTitles != null && unlockedTitles.contains(equipped)) {
+                    progressionDetails.put(EQUIPPED_TITLE, equipped.name());
+                } else {
+                    progressionDetails.put(EQUIPPED_TITLE, null);
+                }
                 JSONArray unlockedTitlesArray = new JSONArray();
                 for (Title title : student.getProgression().getUnlockedTitles()) {
                     unlockedTitlesArray.add(title.name());
