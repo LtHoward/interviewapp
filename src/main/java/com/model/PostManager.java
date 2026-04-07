@@ -24,9 +24,9 @@ public class PostManager
         ArrayList<Post> loadedPosts = DataLoader.getPosts(users);
 
         for (Post post : loadedPosts) {
-            if (post instanceof QuestionPost) {
+            if (post.getType().equals("QUESTION")) {
                 questionPosts.add((QuestionPost) post);
-            } else if (post instanceof SolutionPost) {
+            } else if (post.getType().equals("SOLUTION")) {
                 solutionPosts.add((SolutionPost) post);
             }
         }
