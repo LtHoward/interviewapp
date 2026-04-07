@@ -539,7 +539,7 @@ public class DataWriterTest {
         public void testSaveStudLastActDate() {
         Progression progression = new Progression();
         ArrayList<Reward> rewards = new ArrayList<>();
-        java.time.LocalDate activityDate = java.time.LocalDate.of(2026, 3, 29);
+        java.time.LocalDate activityDate = java.time.LocalDate.of(2026, 4, 7);
 
         Student student = new Student(
             UUID.randomUUID(),
@@ -655,44 +655,91 @@ public class DataWriterTest {
             "Solved questions were not saved correctly");
         }
 
-        @Test
+       @Test
         public void testSaveAllPostsFromJson() {
-        ArrayList<User> users = DataLoader.getUsers();
-        assertFalse(users.isEmpty(), "Users loaded from JSON should not be empty");
+            UserManager.getInstance().getUsers().clear();
+            PostManager.getInstance().clearPosts();
 
-        ArrayList<Post> originalPosts = DataLoader.getPosts(users);
-        assertFalse(originalPosts.isEmpty(), "Original posts loaded from JSON should not be empty");
+            UserManager.getInstance().addUser(
+                "ljames",
+                "ljames@email.sc.edu",
+                "password1@A",
+                "Lebron",
+                "James",
+                Role.STUDENT,
+                Major.COMPUTER_SCIENCE,
+                Year.FRESHMAN
+            );
 
-        UserManager.getInstance().getUsers().clear();
-        PostManager.getInstance().clearPosts();
-        UserManager.getInstance().getUsers().addAll(users);
+            User author = UserManager.getInstance().getUser("ljames");
 
-        for (Post post : originalPosts) {
-            if (post instanceof QuestionPost) {
-                PostManager.getInstance().addQuestion((QuestionPost) post);
+            QuestionPost question = new QuestionPost(
+                UUID.randomUUID(),
+                "Two Sum",
+                author,
+                new java.util.Date(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                0,
+                Difficulty.EASY,
+                "Try using a hashmap."
+            );
+
+            SolutionPost solution = new SolutionPost(
+                UUID.randomUUID(),
+                "Two Sum Solution",
+                author,
+                new java.util.Date(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                0,
+                1,
+                question.getPostId()
+            );
+
+            PostManager.getInstance().addQuestion(question);
+            PostManager.getInstance().addSolution(author, solution);
+
+            DataWriter.saveUsers();
+            DataWriter.savePosts();
+
+            ArrayList<User> users = DataLoader.getUsers();
+            assertFalse(users.isEmpty(), "Users loaded from JSON should not be empty");
+
+            ArrayList<Post> originalPosts = DataLoader.getPosts(users);
+            assertFalse(originalPosts.isEmpty(), "Original posts loaded from JSON should not be empty");
+
+            UserManager.getInstance().getUsers().clear();
+            PostManager.getInstance().clearPosts();
+            UserManager.getInstance().getUsers().addAll(users);
+
+            for (Post post : originalPosts) {
+                if (post.getType().equals("QUESTION")) {
+                    PostManager.getInstance().addQuestion((QuestionPost) post);
+                }
             }
-        }
 
-        for (Post post : originalPosts) {
-            if (post instanceof SolutionPost) {
-                SolutionPost solution = (SolutionPost) post;
-                QuestionPost parent = PostManager.getInstance().getQuestionById(solution.getQuestionId());
-                assertNotNull(parent, "Parent question should exist for each solution post");
-                PostManager.getInstance().addSolution(parent, solution.getAuthor(), solution);
+            for (Post post : originalPosts) {
+                if (post.getType().equals("SOLUTION")) {
+                    SolutionPost currentSolution = (SolutionPost) post;
+                    QuestionPost parent = PostManager.getInstance().getQuestionById(currentSolution.getQuestionId());
+                    assertNotNull(parent, "Parent question should exist for each solution post");
+                    PostManager.getInstance().addSolution(parent, currentSolution.getAuthor(), currentSolution);
+                }
             }
+
+            DataWriter.savePosts();
+
+            ArrayList<Post> reloadedPosts = DataLoader.getPosts(UserManager.getInstance().getUsers());
+            assertFalse(reloadedPosts.isEmpty(), "Reloaded posts should not be empty after saving");
+            assertEquals(originalPosts.size(), reloadedPosts.size(),
+                "All posts from JSON should still be present after saving");
+
+            assertEquals(originalPosts.get(0).getTitle(), reloadedPosts.get(0).getTitle(),
+                "First post title was not saved correctly");
+            assertEquals(originalPosts.get(0).getType(), reloadedPosts.get(0).getType(),
+                "First post type was not saved correctly");
         }
-
-        DataWriter.savePosts();
-
-        ArrayList<Post> reloadedPosts = DataLoader.getPosts(UserManager.getInstance().getUsers());
-        assertFalse(reloadedPosts.isEmpty(), "Reloaded posts should not be empty after saving");
-        assertEquals(originalPosts.size(), reloadedPosts.size(),
-            "All posts from JSON should still be present after saving");
-
-        assertEquals(originalPosts.get(0).getTitle(), reloadedPosts.get(0).getTitle(),
-            "First post title was not saved correctly");
-        assertEquals(originalPosts.get(0).getType(), reloadedPosts.get(0).getType(),
-            "First post type was not saved correctly");
-        }
-
 }
