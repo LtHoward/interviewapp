@@ -229,17 +229,16 @@ public class DataWriter extends DataConstants
 
 
             /**
-             * if else statement to determine if the post is a QuestionPost or a SolutionPost,
-             * which is needed to write the necessary information to the file.
+             * if else statement to determine if the post is a Question or a Solution,
              * @author Dorian Rhone
              */
-            if(post instanceof QuestionPost) 
+            if(post.getType().equals("QUESTION")) 
             {
                 QuestionPost question = (QuestionPost) post;
                 postDetails.put(DIFFICULTY, question.getDifficulty().toString());
                 postDetails.put(HINT, question.getHint());
             } 
-            else if (post instanceof SolutionPost) 
+            else if (post.getType().equals("SOLUTION")) 
             {
                 SolutionPost solution = (SolutionPost) post;
                 postDetails.put(QUESTION_ID, solution.getQuestionId().toString());
@@ -262,26 +261,22 @@ public class DataWriter extends DataConstants
             ArrayList<User> users = DataLoader.getUsers();
             ArrayList<Post> posts = DataLoader.getPosts(users);
 
+            PostManager.getInstance().clearPosts();
+
             /**
-             * for loop for QuestionPosts, which needs to get the necessary 
-             * information from the User class to write to the file.
-             * @author Dorian Rhone
-             */
-            for(Post post : posts)
-                {
-                    if (post instanceof QuestionPost)
-                    {
-                        PostManager.getInstance().addQuestion((QuestionPost) post);
-                    }
-                }   
-            /**
-             * for loop for SolutionPosts, which also needs to get the necessary
-             * information from the QuestionPost class to write to the file.
+             * for loop to determine the type of post needed to write to the file
              * @author Dorian Rhone
              */
             for (Post post : posts)
             {
-                if (post instanceof SolutionPost)
+                if (post.getType().equals("QUESTION"))
+                {
+                    PostManager.getInstance().addQuestion((QuestionPost) post);
+                }
+            }
+            for (Post post : posts)
+            {
+                if (post.getType().equals("SOLUTION"))
                 {
                     SolutionPost solution = (SolutionPost) post;
                     QuestionPost parent = PostManager.getInstance().getQuestionById(solution.getQuestionId());
