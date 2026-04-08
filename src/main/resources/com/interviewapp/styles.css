@@ -1,0 +1,159 @@
+/* ================= ROOT ================= */
+.root {
+    -fx-font-family: "Segoe UI";
+}
+
+.main-bg {
+    -fx-background-color:
+        radial-gradient(center 20% 40%, radius 50%, rgba(56,189,248,0.25), transparent),
+        radial-gradient(center 80% 70%, radius 50%, rgba(168,85,247,0.25), transparent),
+        linear-gradient(to right, #020617, #020617, #1a1033);
+}
+
+/* ================= TOP BAR ================= */
+.top-bar {
+    -fx-background-color: linear-gradient(to right, rgba(42, 28, 92, 0.95), rgba(17, 24, 68, 0.95));
+    -fx-padding: 18 40 18 40;
+    -fx-border-color: rgba(255,255,255,0.18);
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: center-left;
+    -fx-spacing: 20;
+}
+
+/* top left title */
+.app-title {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #67c1ff, #c75cff);
+}
+
+/* About us */
+.nav-text {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-padding: 8 12 8 12;
+}
+
+/* ================= MAIN CONTENT ================= */
+.center-content {
+    -fx-alignment: center;
+    -fx-spacing: 56;
+    -fx-padding: 34 42 34 42;
+}
+
+/* ================= HERO TEXT ================= */
+.hero-panel {
+    -fx-alignment: center-left;
+    -fx-spacing: 22;
+    -fx-max-width: 470;
+}
+
+.hero-title {
+    -fx-font-size: 52px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #67c1ff, #c75cff);
+}
+
+.hero-subtitle {
+    -fx-text-fill: #f3f4f6;
+    -fx-font-size: 17px;
+    -fx-line-spacing: 6px;
+    -fx-wrap-text: true;
+}
+
+.button-row {
+    -fx-spacing: 26;
+    -fx-alignment: center-left;
+    -fx-padding: 10 0 0 0;
+}
+
+/* ================= BUTTONS ================= */
+.primary-button {
+    -fx-background-color: linear-gradient(to right, #67b7ff, #c85bff);
+    -fx-background-radius: 18;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 14 34 14 34;
+    -fx-min-width: 165;
+    -fx-min-height: 54;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(200, 91, 255, 0.45), 18, 0.25, 0, 0);
+}
+
+/* ================= CODE CARD ================= */
+.login-card {
+    -fx-background-color: linear-gradient(to bottom, #273244 0%, #20293b 100%);
+    -fx-background-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 18, 0.25, 0, 4);
+}
+
+.login-header {
+    -fx-background-color: #5c5f69;
+    -fx-background-radius: 14 14 0 0;
+    -fx-padding: 16 22 16 22;
+    -fx-spacing: 12;
+    -fx-alignment: center-left;
+}
+
+.login-header-text {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.login-body {
+    -fx-padding: 30 34 30 34;
+    -fx-spacing: 16;
+    -fx-alignment: center-left;
+}
+
+.login-label {
+    -fx-text-fill: #f3f4f6;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.login-field {
+    -fx-background-color: #f4f4f5;
+    -fx-background-radius: 12;
+    -fx-font-size: 18px;
+    -fx-padding: 12 14 12 14;
+    -fx-pref-width: 100%;
+}
+
+.login-button {
+    -fx-background-color: linear-gradient(to right, #67b7ff, #c85bff);
+    -fx-background-radius: 18;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24 12 24;
+    -fx-min-width: 180;
+    -fx-cursor: hand;
+}
+
+.login-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c084fc;
+    -fx-font-size: 15px;
+    -fx-underline: true;
+}
+
+/* ================= WINDOW DOTS ================= */
+.red-dot {
+    -fx-fill: #ff5757;
+}
+
+.yellow-dot {
+    -fx-fill: #f2e94e;
+}
+
+.green-dot {
+    -fx-fill: #49e63a;
+}

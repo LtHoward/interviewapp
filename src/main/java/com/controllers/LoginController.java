@@ -1,13 +1,25 @@
 package com.controllers;
 
-import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import com.interviewapp.App;
+import javafx.scene.control.Button;
 
 public class LoginController {
 
     @FXML
-    private void switchToHome() throws IOException {
-        App.setRoot("home");
+    private Button back;
+
+    @FXML
+    private Button login;
+
+    @FXML
+    void login(ActionEvent event) {
+
     }
+
+    @FXML
+    void switchToIntro(ActionEvent event) {
+
+    }
+
 }

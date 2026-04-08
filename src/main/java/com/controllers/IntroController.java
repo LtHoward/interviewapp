@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import com.interviewapp.App;
 
-public class HomeController {
+public class IntroController {
 
     @FXML
     private void switchToLogin() throws IOException {
