@@ -19,7 +19,7 @@
          <top>
             <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="60.0" prefWidth="123.0" styleClass="top-bar" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="101.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="54.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" styleClass="app-logo" />
                   <Label styleClass="app-title" text="Interview App" />
                   <Pane prefHeight="23.0" prefWidth="857.0" />
                   <Button mnemonicParsing="false" styleClass="nav-text" text="About us" />
@@ -27,9 +27,9 @@
             </HBox>
          </top>
          <center>
-            <HBox alignment="CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="400.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox maxHeight="433.0" maxWidth="611.0" prefHeight="433.0" prefWidth="611.0" styleClass="login-card" HBox.hgrow="ALWAYS">
+                  <VBox maxHeight="433.0" maxWidth="751.0" minWidth="0.0" prefHeight="433.0" prefWidth="670.0" styleClass="login-card" HBox.hgrow="NEVER">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="16.0" prefWidth="253.0" spacing="10.0" styleClass="login-header">
                            <children>
@@ -43,30 +43,30 @@
                               </Label>
                            </children>
                         </HBox>
-                        <VBox prefHeight="373.0" prefWidth="890.0" spacing="10.0" styleClass="login-body">
+                        <VBox prefHeight="373.0" prefWidth="598.0" spacing="10.0" styleClass="login-body">
                            <children>
-                              <Label prefHeight="28.0" prefWidth="268.0" styleClass="login-label" text="int main() {" />
-                              <Label prefHeight="42.0" prefWidth="509.0" styleClass="login-label" text="&quot;Welcome to the Interview App!&quot;;">
+                              <Label prefHeight="28.0" prefWidth="268.0" styleClass="code-blue" text="int main() {" />
+                              <Label prefHeight="26.0" prefWidth="543.0" styleClass="code-green" text="&quot;Welcome to the Interview App!&quot;;">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
                               </Label>
-                              <Label styleClass="login-label" text="Enter username:">
+                              <Label styleClass="code-pink" text="Enter username:">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
                               </Label>
-                              <TextField prefHeight="47.0" prefWidth="275.0" styleClass="login-field">
+                              <TextField prefHeight="47.0" prefWidth="481.0" styleClass="login-field">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
                               </TextField>
-                              <Label styleClass="login-label" text="Enter Password:">
+                              <Label styleClass="code-pink" text="Enter Password:">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
                               </Label>
-                              <TextField styleClass="login-field">
+                              <TextField prefHeight="23.0" prefWidth="505.0" styleClass="login-field">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
@@ -83,16 +83,19 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="412.0" prefWidth="369.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="740.0" prefWidth="592.0">
                      <children>
-                        <Label prefHeight="55.0" prefWidth="377.0" styleClass="hero-title" text="Interview App" />
+                        <Label prefHeight="87.0" prefWidth="573.0" styleClass="hero-title" text="Interview App" />
                         <Label alignment="TOP_LEFT" prefHeight="83.0" prefWidth="477.0" styleClass="hero-subtitle" text="Helping CS and CIS students prepare for interviews and solve industry-related problems." />
-                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="232.0" spacing="40.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="232.0" spacing="40.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="250.0" styleClass="primary-button" text="Sign Up" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="54.0" prefWidth="543.0" styleClass="primary-button" text="Sign Up" />
                            </children>
                         </HBox>
                      </children>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
                   </VBox>
                </children>
             </HBox>
