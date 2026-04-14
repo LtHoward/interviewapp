@@ -2,5 +2,6 @@ package com.model;
 
 public enum RewardType {
     XP_BOOST,
-    TITLE_UNLOCK
+    TITLE_UNLOCK,
+    STREAK_SAVER
 }

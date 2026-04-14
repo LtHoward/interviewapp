@@ -7,8 +7,8 @@ import com.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class LoginController {
 
@@ -18,11 +18,11 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    private InterviewApp app = new InterviewApp();
+    private final InterviewApp app = new InterviewApp();
 
     @FXML
     void login(ActionEvent event) {
-        String username = usernameField.getText();
+        String username = usernameField.getText().trim();
         String password = passwordField.getText();
 
         User user = app.getUser(username, password);
@@ -30,20 +30,22 @@ public class LoginController {
         if (user != null) {
             try {
                 FXMLLoader loader = App.setRootWithLoader("dashboard");
-
                 DashboardController controller = loader.getController();
-                controller.setUser(user); // 🔥 CLEAN DATA PASS
+                controller.setUser(user);
 
+                System.out.println("Logged in as: " + user.getUsername());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            System.out.println("Invalid username or password");
         }
     }
 
     @FXML
     void switchToIntro(ActionEvent event) {
         try {
-            App.setRoot("intro");
+            App.setRoot("login");
         } catch (Exception e) {
             e.printStackTrace();
         }

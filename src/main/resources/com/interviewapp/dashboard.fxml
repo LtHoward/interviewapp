@@ -14,8 +14,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="800.0" prefWidth="1440.0"
+           styleClass="main-bg"
+           stylesheets="@styles.css"
+           fx:controller="com.controllers.DashboardController"
+           xmlns="http://javafx.com/javafx/25"
+           xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
@@ -34,18 +39,33 @@
                </padding>
             </VBox>
          </left>
+
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="dashboard-main" BorderPane.alignment="CENTER">
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="welcome-banner">
+
+                  <StackPane prefHeight="170.0" prefWidth="200.0" styleClass="welcome-banner">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" StackPane.alignment="CENTER_LEFT">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" styleClass="welcome-banner-overlay" StackPane.alignment="CENTER_LEFT">
                            <children>
                               <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="profile-logo-box" />
                               <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="1108.0" spacing="6.0" styleClass="welcome-text-box">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="429.0" styleClass="welcome-title" text="Welcome User" />
-                                    <Label prefHeight="29.0" prefWidth="426.0" styleClass="welcome-subtitle" text="Level:    ~   Streak:    ~   Title" />
+                                    <Label fx:id="welcomeLabel"
+                                           prefHeight="60.0"
+                                           prefWidth="700.0"
+                                           styleClass="welcome-title"
+                                           text="Welcome User" />
+                                    <Label fx:id="statsLabel"
+                                           prefHeight="35.0"
+                                           prefWidth="900.0"
+                                           styleClass="welcome-subtitle"
+                                           text="Level: ~   Streak: ~   Title" />
+                                    <Label fx:id="detailsLabel"
+                                           prefHeight="25.0"
+                                           prefWidth="900.0"
+                                           styleClass="soft-text"
+                                           text="Major | Skill | Solved" />
                                  </children>
                               </VBox>
                            </children>
@@ -55,8 +75,10 @@
                         </HBox>
                      </children>
                   </StackPane>
+
                   <HBox prefHeight="554.0" prefWidth="1307.0" spacing="30.0" styleClass="lower-content">
                      <children>
+
                         <VBox prefHeight="554.0" prefWidth="850.0" spacing="20.0" styleClass="left-column">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0" styleClass="card">
@@ -77,18 +99,19 @@
                                     </HBox>
                                  </children>
                               </VBox>
+
                               <VBox prefHeight="302.0" prefWidth="850.0" styleClass="card">
                                  <children>
                                     <Label styleClass="card-title" text="Browse by Tags" />
                                     <GridPane hgap="20.0" prefHeight="224.0" prefWidth="850.0" vgap="20.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
                                        <children>
                                           <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-blue">
                                              <children>
@@ -116,22 +139,25 @@
                               </VBox>
                            </children>
                         </VBox>
+
                         <VBox prefHeight="554.0" prefWidth="458.0" spacing="20.0" styleClass="right-column">
                            <children>
+
                               <VBox prefHeight="160.0" prefWidth="350.0" styleClass="card">
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="458.0">
                                        <children>
                                           <ImageView fitHeight="55.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Label prefHeight="29.0" prefWidth="94.0" styleClass="card-title" text="Level #" />
+                                          <Label fx:id="levelLabel" prefHeight="29.0" prefWidth="140.0" styleClass="card-title" text="Level #" />
                                           <Pane prefHeight="70.0" prefWidth="42.0" HBox.hgrow="ALWAYS" />
-                                          <Label styleClass="stats-value" text="### XP" />
+                                          <Label fx:id="xpLabel" styleClass="stats-value" text="### XP" />
                                        </children>
                                     </HBox>
-                                    <ProgressBar prefHeight="25.0" prefWidth="458.0" progress="0.0" />
-                                    <Label styleClass="stats-subtext" text="## XP to Level #" />
+                                    <ProgressBar fx:id="xpBar" prefHeight="25.0" prefWidth="458.0" progress="0.0" />
+                                    <Label fx:id="xpToNextLabel" styleClass="stats-subtext" text="## XP to Level #" />
                                  </children>
                               </VBox>
+
                               <VBox prefHeight="339.0" prefWidth="458.0" styleClass="card">
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="302.0">
@@ -140,22 +166,25 @@
                                           <Label styleClass="card-title" text="Rewards:" />
                                        </children>
                                     </HBox>
+
                                     <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="302.0" styleClass="reward-pill">
                                        <children>
-                                          <Label styleClass="accent-blue" text="XP: ###  " />
-                                          <Label styleClass="accent-grey" text="|  XP Boost: x#" />
+                                          <Label fx:id="pointsLabel" styleClass="accent-blue" text="XP: ###" />
+                                          <Label fx:id="boostLabel" styleClass="accent-grey" text="|  XP Boost: x#" />
                                        </children>
                                     </HBox>
+
                                     <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="458.0" styleClass="reward-pill">
                                        <children>
-                                          <Label styleClass="accent-yellow" text="Streak: ###  " />
-                                          <Label styleClass="accent-grey" text="|  Streak Saver:  x#" />
+                                          <Label fx:id="streakRewardLabel" styleClass="accent-yellow" text="Streak: ###" />
+                                          <Label fx:id="streakSaverLabel" styleClass="accent-grey" text="|  Streak Saver: x#" />
                                        </children>
                                     </HBox>
+
                                     <VBox prefHeight="200.0" prefWidth="100.0" styleClass="reward-pill">
                                        <children>
                                           <Label styleClass="accent-purple" text="Titles Unlocked:" />
-                                          <Label styleClass="accent-grey" text="Title" />
+                                          <Label fx:id="titlesUnlockedLabel" styleClass="accent-grey" text="Title" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -165,6 +194,7 @@
                               <Insets right="5.0" />
                            </padding>
                         </VBox>
+
                      </children>
                   </HBox>
                </children>
