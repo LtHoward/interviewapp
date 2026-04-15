@@ -28,12 +28,59 @@
         "email": "jjohns@email.sc.edu",
         "rewards": [
             {
-                "amount": 20,
+                "amount": 2,
                 "redeemed": false,
                 "type": "XP_BOOST"
+            },
+            {
+                "amount": 1,
+                "redeemed": false,
+                "type": "STREAK_SAVER"
             }
         ],
         "username": "jJohns"
+    },
+    {
+        "firstName": "Goob",
+        "lastName": "Berg",
+        "password": "G00ber123*",
+        "role": "STUDENT",
+        "studentData": {
+            "currentClasses": "CSCE 212, CSCE 247, STAT 509",
+            "major": "COMPUTER_ENGINEERING",
+            "year": "JUNIOR",
+            "lastActivityDate": "2026-04-10",
+            "classesTaken": "CSCE 145, CSCE 146, CSCE 190, MATH 241",
+            "progression": {
+                "currentStreak": 5,
+                "level": 3,
+                "equippedTitle": "LOGIC_LEARNER",
+                "longestStreak": 8,
+                "points": 240,
+                "unlockedTitles": [
+                    "SYNTAX_SCOUT",
+                    "LOGIC_LEARNER",
+                    "CODE_COMMANDER"
+                ]
+            },
+            "skillLevel": "INTERMEDIATE",
+            "solvedQuestions": 15
+        },
+        "userId": "c3d9b9a2-6c44-4a2f-b3e1-91a9c5c8f742",
+        "email": "gBerg@email.sc.edu",
+        "rewards": [
+            {
+                "amount": 1,
+                "redeemed": false,
+                "type": "XP_BOOST"
+            },
+            {
+                "amount": 2,
+                "redeemed": false,
+                "type": "STREAK_SAVER"
+            }
+        ],
+        "username": "Goober"
     },
     {
         "firstName": "Peter",

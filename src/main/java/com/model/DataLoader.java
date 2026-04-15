@@ -15,15 +15,18 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 /**
- * DataLoader is responsible for loading user and post data from JSON files. 
- * It reads the data, parses it, and constructs the appropriate User and Post objects based on the JSON structure. 
+ * DataLoader is responsible for loading user and post data from JSON files.
+ * It reads the data, parses it, and constructs the appropriate User and Post
+ * objects based on the JSON structure.
  * 
  * @author Tyrel Hamilton
  */
 public class DataLoader extends DataConstants {
-    
+
     /**
-     * Loads users from the USERS_FILE JSON file and constructs User objects based on the data.
+     * Loads users from the USERS_FILE JSON file and constructs User objects based
+     * on the data.
+     * 
      * @return An ArrayList of User objects.
      */
     public static ArrayList<User> getUsers() {
@@ -58,35 +61,35 @@ public class DataLoader extends DataConstants {
                     Progression progression = new Progression();
                     ArrayList<Reward> rewards = new ArrayList<>();
 
-                    if(studentData != null) {
+                    if (studentData != null) {
                         currentClasses = (String) studentData.getOrDefault(CURRENT_CLASSES, "");
                         classesTaken = (String) studentData.getOrDefault(CLASSES_TAKEN, "");
-                        major = Major.valueOf(((String) studentData.getOrDefault(MAJOR, "COMPUTER_SCIENCE")).toUpperCase());
+                        major = Major
+                                .valueOf(((String) studentData.getOrDefault(MAJOR, "COMPUTER_SCIENCE")).toUpperCase());
                         year = Year.valueOf(((String) studentData.getOrDefault(YEAR, "FRESHMAN")).toUpperCase());
-                        skillLevel = SkillLevel.valueOf(((String) studentData.getOrDefault(SKILL_LEVEL, "BEGINNER")).toUpperCase());
+                        skillLevel = SkillLevel
+                                .valueOf(((String) studentData.getOrDefault(SKILL_LEVEL, "BEGINNER")).toUpperCase());
                         solvedQuestions = ((Long) studentData.getOrDefault(SOLVED_QUESTIONS, 0L)).intValue();
-                        
+
                         String lastActivityDateStr = (String) studentData.get(LAST_ACTIVITY_DATE);
                         if (lastActivityDateStr != null) {
-                            try{
-                                lastActivityDate = LocalDate.from(OffsetDateTime.parse(lastActivityDateStr).toInstant());
+                            try {
+                                lastActivityDate = LocalDate
+                                        .from(OffsetDateTime.parse(lastActivityDateStr).toInstant());
                             } catch (Exception e) {
                                 lastActivityDate = LocalDate.now();
                             }
                         }
                     }
-                    
+
                     JSONObject progressionJSON = (JSONObject) studentData.get(PROGRESSION);
                     if (progressionJSON != null) {
                         progression.setPoints(((Long) progressionJSON.getOrDefault(POINTS, 0L)).intValue());
                         progression.setLevel(((Long) progressionJSON.getOrDefault(LEVEL, 1L)).intValue());
-                        progression.setCurrentStreak(((Long) progressionJSON.getOrDefault(CURRENT_STREAK, 0L)).intValue());
-                        progression.setLongestStreak(((Long) progressionJSON.getOrDefault(LONGEST_STREAK, 0L)).intValue());
-
-                        String equippedTitleStr = (String) progressionJSON.get(EQUIPPED_TITLE);
-                        if (equippedTitleStr != null) {
-                            progression.setEquippedTitle(Title.valueOf(equippedTitleStr.toUpperCase()));
-                        }
+                        progression
+                                .setCurrentStreak(((Long) progressionJSON.getOrDefault(CURRENT_STREAK, 0L)).intValue());
+                        progression
+                                .setLongestStreak(((Long) progressionJSON.getOrDefault(LONGEST_STREAK, 0L)).intValue());
 
                         JSONArray unlockedTitlesJSON = (JSONArray) progressionJSON.get(UNLOCKED_TITLES);
                         ArrayList<Title> unlockedTitles = new ArrayList<>();
@@ -96,6 +99,11 @@ public class DataLoader extends DataConstants {
                             }
                         }
                         progression.setUnlockedTitles(unlockedTitles);
+
+                        String equippedTitleStr = (String) progressionJSON.get(EQUIPPED_TITLE);
+                        if (equippedTitleStr != null) {
+                            progression.setEquippedTitle(Title.valueOf(equippedTitleStr.toUpperCase()));
+                        }
                     }
 
                     JSONArray rewardsJSON = (JSONArray) userJSON.get(REWARDS);
@@ -112,14 +120,14 @@ public class DataLoader extends DataConstants {
                     }
 
                     users.add(new Student(id, username, email, password, firstName,
-                        lastName, major, year, currentClasses, classesTaken,
-                        skillLevel, solvedQuestions,
-                        progression, rewards, lastActivityDate, role));
+                            lastName, major, year, currentClasses, classesTaken,
+                            skillLevel, solvedQuestions,
+                            progression, rewards, lastActivityDate, role));
 
                 } else if (role == Role.CONTRIBUTOR) {
                     JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
                     String experience = "";
-                    if(contributorData != null) {
+                    if (contributorData != null) {
                         experience = (String) contributorData.getOrDefault(EXPERIENCE, "");
                     }
 
@@ -129,14 +137,14 @@ public class DataLoader extends DataConstants {
                 } else if (role == Role.ADMINISTRATOR) {
                     JSONObject contributorData = (JSONObject) userJSON.get(CONTRIBUTOR_DATA);
                     String experience = "";
-                    if(contributorData != null) {
+                    if (contributorData != null) {
                         experience = (String) contributorData.getOrDefault(EXPERIENCE, "");
                     }
                     users.add(new Contributor(id, username, email, password, firstName,
                             lastName, experience, Role.ADMINISTRATOR));
                 }
-                
-            } 
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,7 +153,9 @@ public class DataLoader extends DataConstants {
     }
 
     /**
-     * Loads posts from the POSTS_FILE JSON file and constructs Post objects based on the data.
+     * Loads posts from the POSTS_FILE JSON file and constructs Post objects based
+     * on the data.
+     * 
      * @param users the list of users used to map author IDs to User objects
      * @return an ArrayList of Post objects loaded from the JSON file
      */
@@ -239,7 +249,8 @@ public class DataLoader extends DataConstants {
 
                 if (type.equals("QUESTION")) {
 
-                    Difficulty difficulty = Difficulty.valueOf(((String) postJSON.getOrDefault(DIFFICULTY, "EASY")).toUpperCase());
+                    Difficulty difficulty = Difficulty
+                            .valueOf(((String) postJSON.getOrDefault(DIFFICULTY, "EASY")).toUpperCase());
                     String hint = (String) postJSON.getOrDefault(HINT, "");
 
                     posts.add(new QuestionPost(postId, title, author, createdAt, comments, tags, contentSections,
@@ -265,8 +276,9 @@ public class DataLoader extends DataConstants {
     /**
      * Loads a single comment from JSON and recursively loads all
      * replies attached to the comment.
-     * @param commentJSON the JSON object representing one comment
-     * @param userMap map of user IDs to User objects
+     * 
+     * @param commentJSON  the JSON object representing one comment
+     * @param userMap      map of user IDs to User objects
      * @param parentPostId the ID of the post this comment belongs to
      * @return a Comment object with nested replies loaded, or null if invalid
      */

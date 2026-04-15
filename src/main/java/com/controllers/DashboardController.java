@@ -9,8 +9,16 @@ import com.model.Title;
 import com.model.User;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 
 public class DashboardController {
 
@@ -52,6 +60,81 @@ public class DashboardController {
     @FXML
     private ProgressBar xpBar;
 
+    @FXML
+    private StackPane welcomeBanner;
+
+    @FXML
+    private ImageView profileImageView;
+
+    @FXML 
+    private Button homeButton;
+
+    @FXML 
+    private Button searchButton;
+
+    @FXML 
+    private Button solutionsButton;
+
+    @FXML 
+    private Button profileButton;
+
+    @FXML private Button settingsButton;
+
+    @FXML
+    private 
+    VBox sidebarContainer;
+
+    @FXML
+    private Button sidebarToggleButton;
+
+    private boolean sidebarVisible = false;
+    private static final double SIDEBAR_WIDTH = 120;
+
+    @FXML
+    public void initialize() {
+        profileImageView.setImage(
+            new Image(getClass().getResource("/com/interviewapp/images/DefaultIcon.png").toExternalForm())
+        );
+
+        // Rounded clipping for the banner
+        Rectangle bannerClip = new Rectangle();
+        bannerClip.setArcWidth(56);
+        bannerClip.setArcHeight(56);
+        bannerClip.widthProperty().bind(welcomeBanner.widthProperty());
+        bannerClip.heightProperty().bind(welcomeBanner.heightProperty());
+        welcomeBanner.setClip(bannerClip);
+
+        // Rounded clipping for the profile image
+        Rectangle profileClip = new Rectangle();
+        profileClip.setArcWidth(35);
+        profileClip.setArcHeight(35);
+        profileClip.widthProperty().bind(profileImageView.fitWidthProperty());
+        profileClip.heightProperty().bind(profileImageView.fitHeightProperty());
+        profileImageView.setClip(profileClip);
+
+        sidebarContainer.setTranslateX(-SIDEBAR_WIDTH);
+
+        setButtonIcon(homeButton, "/com/interviewapp/images/icons/home.png", 28);
+        setButtonIcon(searchButton, "/com/interviewapp/images/icons/search.png", 28);
+        setButtonIcon(solutionsButton, "/com/interviewapp/images/icons/solutions.png", 28);
+        setButtonIcon(profileButton, "/com/interviewapp/images/icons/profile.png", 28);
+        setButtonIcon(settingsButton, "/com/interviewapp/images/icons/settings.png", 28);
+    }
+
+    @FXML
+    private void toggleSidebar() {
+        TranslateTransition transition = new TranslateTransition(Duration.millis(250), sidebarContainer);
+
+        if (sidebarVisible) {
+            transition.setToX(-SIDEBAR_WIDTH);
+        } else {
+            transition.setToX(0);
+        }
+
+        transition.play();
+        sidebarVisible = !sidebarVisible;
+    }
+
     public void setUser(User user) {
         this.currentUser = user;
         populateDashboard();
@@ -79,7 +162,7 @@ public class DashboardController {
                 statsLabel.setText(
                     "Level: " + level +
                     "   Streak: " + streak +
-                    "   Title: " + (equippedTitle != null ? equippedTitle : "None")
+                    "   " + formatEnum(equippedTitle)
                 );
             }
 
@@ -110,9 +193,9 @@ public class DashboardController {
 
             if (detailsLabel != null) {
                 detailsLabel.setText(
-                    student.getMajor() + " | " +
-                    student.getSkillLevel() + " | Solved: " +
-                    student.getSolvedQuestions()
+                    "A " + formatEnum(student.getSkillLevel()) + " " + 
+                    formatEnum(student.getMajor()) + " major who's solved " +
+                    student.getSolvedQuestions() + " questions."
                 );
             }
 
@@ -131,11 +214,11 @@ public class DashboardController {
             }
 
             if (boostLabel != null) {
-                boostLabel.setText("XP Boost: x" + xpBoostCount);
+                boostLabel.setText("|  XP Boost: x" + xpBoostCount);
             }
 
             if (streakSaverLabel != null) {
-                streakSaverLabel.setText("Streak Saver: x" + streakSaverCount);
+                streakSaverLabel.setText("|  Streak Saver: x" + streakSaverCount);
             }
 
             ArrayList<Title> unlockedTitles = student.getProgression().getUnlockedTitles();
@@ -145,7 +228,7 @@ public class DashboardController {
                 } else {
                     StringBuilder builder = new StringBuilder();
                     for (int i = 0; i < unlockedTitles.size(); i++) {
-                        builder.append(unlockedTitles.get(i));
+                        builder.append(formatEnum(unlockedTitles.get(i)));
                         if (i < unlockedTitles.size() - 1) {
                             builder.append(", ");
                         }
@@ -153,6 +236,7 @@ public class DashboardController {
                     titlesUnlockedLabel.setText(builder.toString());
                 }
             }
+          
         } else {
             if (statsLabel != null) {
                 statsLabel.setText("Contributor/Admin dashboard");
@@ -188,5 +272,37 @@ public class DashboardController {
                 xpBar.setProgress(0.0);
             }
         }
+    }
+    // Helper method to format enumerations for display
+    private String formatEnum(Enum<?> value) {
+        if (value == null) {
+            return "None";
+        }
+
+        String[] words = value.name().toLowerCase().split("_");
+        StringBuilder formatted = new StringBuilder();
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].isEmpty()) continue;
+
+            formatted.append(Character.toUpperCase(words[i].charAt(0)))
+                    .append(words[i].substring(1));
+
+            if (i < words.length - 1) {
+                formatted.append(" ");
+            }
+        }
+
+        return formatted.toString();
+    }
+     // helper method to set button icons
+     private void setButtonIcon(Button button, String resourcePath, double size) {
+        Image image = new Image(getClass().getResource(resourcePath).toExternalForm());
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(size);
+        imageView.setFitHeight(size);
+        imageView.setPreserveRatio(true);
+        button.setText("");
+        button.setGraphic(imageView);
     }
 }
