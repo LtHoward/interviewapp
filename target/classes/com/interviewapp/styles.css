@@ -239,6 +239,13 @@
     -fx-underline: true;
 }
 
+/* ================= Reset Password Card ================= */
+.left-panel {
+    -fx-background-color: linear-gradient(to bottom, #273244 0%, #20293b 100%);
+    -fx-background-radius: 16;
+    -fx-padding: 30 34 30 34;
+}
+
 /* ================= WINDOW DOTS ================= */
 .red-dot {
     -fx-fill: #ff5757;
