@@ -246,6 +246,44 @@
     -fx-padding: 30 34 30 34;
 }
 
+.main-text {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight:bold;
+}
+
+.unhighlighted-text {
+    -fx-text-fill: grey;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.sub-to-main-text {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+}
+
+.unhighlighted-sub-text {
+    -fx-text-fill: grey;
+    -fx-font-size: 22px;
+}
+
+.text-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 0;
+    -fx-font-size: 18px;
+    
+}
+
+.subtitle {
+    -fx-text-fill: grey;
+    -fx-font-size: 17px;
+    -fx-line-spacing: 6px;
+    -fx-wrap-text: true;
+}
+
 /* ================= Signup Card ================= */
 .createaccount-bg {
     -fx-background-color: #ffffff;
