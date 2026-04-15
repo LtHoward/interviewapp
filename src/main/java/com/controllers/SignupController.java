@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 
 
-public class AccountController {
+public class SignupController {
     @FXML private TextField usernameField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
