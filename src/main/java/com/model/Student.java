@@ -172,4 +172,8 @@ public class Student extends User{
     public int getCurrentStreak() {
         return progression.getCurrentStreak();
     }
+
+    public Title getEquippedTitle(){
+        return progression.getEquippedTitle();
+    }
 }

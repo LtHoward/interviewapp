@@ -14,13 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="800.0" prefWidth="1440.0"
-           styleClass="main-bg"
-           stylesheets="@styles.css"
-           fx:controller="com.controllers.DashboardController"
-           xmlns="http://javafx.com/javafx/25"
-           xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.DashboardController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
@@ -51,21 +45,9 @@
                               <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" styleClass="profile-logo-box" />
                               <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="1108.0" spacing="6.0" styleClass="welcome-text-box">
                                  <children>
-                                    <Label fx:id="welcomeLabel"
-                                           prefHeight="60.0"
-                                           prefWidth="700.0"
-                                           styleClass="welcome-title"
-                                           text="Welcome User" />
-                                    <Label fx:id="statsLabel"
-                                           prefHeight="35.0"
-                                           prefWidth="900.0"
-                                           styleClass="welcome-subtitle"
-                                           text="Level: ~   Streak: ~   Title" />
-                                    <Label fx:id="detailsLabel"
-                                           prefHeight="25.0"
-                                           prefWidth="900.0"
-                                           styleClass="soft-text"
-                                           text="Major | Skill | Solved" />
+                                    <Label fx:id="welcomeLabel" prefHeight="60.0" prefWidth="700.0" styleClass="welcome-title" text="Welcome User" />
+                                    <Label fx:id="statsLabel" prefHeight="35.0" prefWidth="900.0" styleClass="welcome-subtitle" text="Level: ~   Streak: ~   Title" />
+                                    <Label fx:id="detailsLabel" prefHeight="25.0" prefWidth="900.0" styleClass="soft-text" text="Major | Skill | Solved" />
                                  </children>
                               </VBox>
                            </children>
@@ -150,11 +132,11 @@
                                           <ImageView fitHeight="55.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
                                           <Label fx:id="levelLabel" prefHeight="29.0" prefWidth="140.0" styleClass="card-title" text="Level #" />
                                           <Pane prefHeight="70.0" prefWidth="42.0" HBox.hgrow="ALWAYS" />
-                                          <Label fx:id="xpLabel" styleClass="stats-value" text="### XP" />
+                                          <Label styleClass="stats-value" text="### XP" fx:id="xpLabel" />
                                        </children>
                                     </HBox>
-                                    <ProgressBar fx:id="xpBar" prefHeight="25.0" prefWidth="458.0" progress="0.0" />
-                                    <Label fx:id="xpToNextLabel" styleClass="stats-subtext" text="## XP to Level #" />
+                                    <ProgressBar prefHeight="25.0" prefWidth="458.0" progress="0.0" fx:id="xpBar" />
+                                    <Label styleClass="stats-subtext" text="## XP to Level #" fx:id="xpToNextLabel" />
                                  </children>
                               </VBox>
 
@@ -167,17 +149,17 @@
                                        </children>
                                     </HBox>
 
-                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="302.0" styleClass="reward-pill">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="302.0" spacing="20.0" styleClass="reward-pill">
                                        <children>
                                           <Label fx:id="pointsLabel" styleClass="accent-blue" text="XP: ###" />
-                                          <Label fx:id="boostLabel" styleClass="accent-grey" text="|  XP Boost: x#" />
+                                          <Label fx:id="boostLabel" styleClass="accent-grey" text="XP Boost: x#" />
                                        </children>
                                     </HBox>
 
-                                    <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="458.0" styleClass="reward-pill">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="458.0" spacing="20.0" styleClass="reward-pill">
                                        <children>
                                           <Label fx:id="streakRewardLabel" styleClass="accent-yellow" text="Streak: ###" />
-                                          <Label fx:id="streakSaverLabel" styleClass="accent-grey" text="|  Streak Saver: x#" />
+                                          <Label fx:id="streakSaverLabel" styleClass="accent-grey" text="Streak Saver: x#" />
                                        </children>
                                     </HBox>
 
