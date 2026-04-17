@@ -4,7 +4,7 @@ module com.interviewapp {
     requires json.simple;
     requires junit;
     
-    opens com.interviewapp to javafx.fxml;
+    opens com.controllers to javafx.fxml;
     exports com.interviewapp;
 
     opens com.model to javafx.fxml;

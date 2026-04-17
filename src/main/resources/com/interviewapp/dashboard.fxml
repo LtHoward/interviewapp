@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.DashboardController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="dashboard-main" BorderPane.alignment="CENTER">
+               <children>
+
+                  <StackPane fx:id="welcomeBanner" prefHeight="170.0" prefWidth="200.0" styleClass="welcome-banner">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" styleClass="welcome-banner-overlay" StackPane.alignment="CENTER_LEFT">
+                           <children>
+                              <StackPane prefHeight="150.0" prefWidth="150.0" styleClass="profile-container">
+                                 <children>
+                                    <ImageView fx:id="profileImageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="1108.0" spacing="6.0" styleClass="welcome-text-box">
+                                 <children>
+                                    <Label fx:id="welcomeLabel" prefHeight="60.0" prefWidth="700.0" styleClass="welcome-title" text="Welcome User" />
+                                    <Label fx:id="statsLabel" prefHeight="35.0" prefWidth="900.0" styleClass="welcome-subtitle" text="Level: ~   Streak: ~   Title" />
+                                    <Label fx:id="detailsLabel" prefHeight="25.0" prefWidth="900.0" styleClass="welcome-sub-subtitle" text="Major | Skill | Solved">
+                                       <font>
+                                          <Font size="8.0" />
+                                       </font></Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="28.0" right="28.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </StackPane>
+
+                  <HBox prefHeight="554.0" prefWidth="1307.0" spacing="30.0" styleClass="lower-content">
+                     <children>
+
+                        <VBox prefHeight="554.0" prefWidth="850.0" spacing="20.0" styleClass="left-column">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="card">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="850.0" spacing="12.0">
+                                       <children>
+                                          <StackPane minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" styleClass="code-blue-icon" />
+                                          <Label styleClass="card-title" text="Recommended Question of the Day:" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0" styleClass="question-pill">
+                                       <children>
+                                          <StackPane minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" styleClass="code-icon" />
+                                          <Label prefHeight="29.0" prefWidth="197.0" styleClass="card-title" text="Question Title" />
+                                          <Pane prefHeight="70.0" prefWidth="307.0" HBox.hgrow="ALWAYS" />
+                                          <Label alignment="CENTER" prefHeight="15.0" prefWidth="129.0" styleClass="difficulty-badge" text="Difficulty" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+
+                              <VBox prefHeight="302.0" prefWidth="850.0" styleClass="card">
+                                 <children>
+                                    <Label styleClass="card-title" text="Browse by Tags" />
+                                    <GridPane hgap="20.0" prefHeight="224.0" prefWidth="850.0" vgap="20.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-blue">
+                                             <children>
+                                                <Label styleClass="tag-label" text="Tag 1" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-red" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label styleClass="tag-label" text="Tag 3" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-green" GridPane.columnIndex="1">
+                                             <children>
+                                                <Label styleClass="tag-label" text="Tag 2" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-purple" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label styleClass="tag-label" text="Tag 4" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+
+                        <VBox prefHeight="554.0" prefWidth="458.0" spacing="20.0" styleClass="right-column">
+                           <children>
+
+                              <VBox prefHeight="160.0" prefWidth="350.0" styleClass="card">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="458.0">
+                                       <children>
+                                          <StackPane prefHeight="55.0" prefWidth="55.0" styleClass="level-up-icon">
+                                             <children>
+                                                <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" styleClass="level-up-icon" />
+                                             </children>
+                                          </StackPane>
+                                          <Label fx:id="levelLabel" prefHeight="29.0" prefWidth="140.0" styleClass="card-title" text="Level #" />
+                                          <Pane prefHeight="70.0" prefWidth="42.0" HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="stats-value" text="### XP" fx:id="xpLabel" />
+                                       </children>
+                                    </HBox>
+                                    <ProgressBar prefHeight="25.0" prefWidth="458.0" progress="0.0" fx:id="xpBar" />
+                                    <Label styleClass="stats-subtext" text="## XP to Level #" fx:id="xpToNextLabel" />
+                                 </children>
+                              </VBox>
+
+                              <VBox prefHeight="339.0" prefWidth="458.0" styleClass="card">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="302.0">
+                                       <children>
+                                          <StackPane prefHeight="55.0" prefWidth="55.0" styleClass="level-up-icon">
+                                             <children>
+                                                <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" styleClass="level-up-icon" />
+                                             </children>
+                                          </StackPane>
+                                          <Label styleClass="card-title" text="Rewards:" />
+                                       </children>
+                                    </HBox>
+
+                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="302.0" spacing="10.0" styleClass="reward-pill">
+                                       <children>
+                                          <Label fx:id="pointsLabel" styleClass="accent-blue" text="XP: ###" />
+                                          <Label fx:id="boostLabel" styleClass="accent-grey" text="XP Boost: x#" />
+                                       </children>
+                                    </HBox>
+
+                                    <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="458.0" spacing="10.0" styleClass="reward-pill">
+                                       <children>
+                                          <Label fx:id="streakRewardLabel" styleClass="accent-yellow" text="Streak: ###" />
+                                          <Label fx:id="streakSaverLabel" styleClass="accent-grey" text="Streak Saver: x#" />
+                                       </children>
+                                    </HBox>
+
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="reward-pill">
+                                       <children>
+                                          <Label styleClass="accent-purple" text="Titles Unlocked:" />
+                                          <Label fx:id="titlesUnlockedLabel" styleClass="accent-grey" text="Title" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </VBox>
+
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="18.0" left="20.0" right="20.0" top="18.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+      <VBox fx:id="sidebarContainer" maxWidth="120.0" minWidth="120.0" prefHeight="800.0" prefWidth="120.0" styleClass="sidebar" StackPane.alignment="CENTER_LEFT">
+         <children>
+            <Button fx:id="homeButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></Button>
+            <Button fx:id="searchButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="solutionsButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Pane prefHeight="200.0" prefWidth="0.0" VBox.vgrow="ALWAYS" />
+            <Button fx:id="profileButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></Button>
+            <Button fx:id="settingsButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></Button>
+         </children>
+      </VBox>
+      <Button fx:id="sidebarToggleButton" mnemonicParsing="false" onAction="#toggleSidebar" styleClass="sidebar-toggle-button" text="☰" StackPane.alignment="TOP_LEFT">
+         <StackPane.margin>
+            <Insets left="15.0" top="15.0" />
+         </StackPane.margin>
+      </Button>
+   </children>
+</StackPane>

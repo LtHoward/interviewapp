@@ -8,21 +8,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("login.fxml"));
+        Parent root = loader.load();
+
+        scene = new Scene(root, 1440, 800);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static FXMLLoader setRootWithLoader(String fxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        Parent root = loader.load();
+        scene.setRoot(root);
+        return loader;
+    }
+
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -34,5 +41,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

@@ -8,10 +8,10 @@
             "currentClasses": "CSCE 211, CSCE 240, MATH 347",
             "major": "COMPUTER_SCIENCE",
             "year": "SOPHOMORE",
-            "lastActivityDate": "2026-03-22",
+            "lastActivityDate": "2026-03-26",
             "classesTaken": "CSCE 145, CSCE 190, CSCE 146, CSCE 215",
             "progression": {
-                "currentStreak": 8,
+                "currentStreak": 9,
                 "level": 2,
                 "equippedTitle": "SYNTAX_SCOUT",
                 "longestStreak": 4,
@@ -28,12 +28,59 @@
         "email": "jjohns@email.sc.edu",
         "rewards": [
             {
-                "amount": 20,
+                "amount": 2,
                 "redeemed": false,
                 "type": "XP_BOOST"
+            },
+            {
+                "amount": 1,
+                "redeemed": false,
+                "type": "STREAK_SAVER"
             }
         ],
         "username": "jJohns"
+    },
+    {
+        "firstName": "Goob",
+        "lastName": "Berg",
+        "password": "G00ber123*",
+        "role": "STUDENT",
+        "studentData": {
+            "currentClasses": "CSCE 212, CSCE 247, STAT 509",
+            "major": "COMPUTER_ENGINEERING",
+            "year": "JUNIOR",
+            "lastActivityDate": "2026-04-10",
+            "classesTaken": "CSCE 145, CSCE 146, CSCE 190, MATH 241",
+            "progression": {
+                "currentStreak": 5,
+                "level": 3,
+                "equippedTitle": "LOGIC_LEARNER",
+                "longestStreak": 8,
+                "points": 240,
+                "unlockedTitles": [
+                    "SYNTAX_SCOUT",
+                    "LOGIC_LEARNER",
+                    "BOOLEAN_BRAWLER"
+                ]
+            },
+            "skillLevel": "INTERMEDIATE",
+            "solvedQuestions": 15
+        },
+        "userId": "c3d9b9a2-6c44-4a2f-b3e1-91a9c5c8f742",
+        "email": "gBerg@email.sc.edu",
+        "rewards": [
+            {
+                "amount": 1,
+                "redeemed": false,
+                "type": "XP_BOOST"
+            },
+            {
+                "amount": 2,
+                "redeemed": false,
+                "type": "STREAK_SAVER"
+            }
+        ],
+        "username": "Goober"
     },
     {
         "firstName": "Peter",
@@ -67,5 +114,18 @@
         "userId": "f8a41f95-0e0a-4135-b701-3f4c8accfb19",
         "email": "sSparrow@cse.sc.edu",
         "username": "sSparrow"
+    },
+    {
+        "firstName": "Sally",
+        "lastName": "Sparrow",
+        "password": "ValidPass1!",
+        "role": "CONTRIBUTOR",
+        "contributorData": {
+            "experience": null
+        },
+        "userId": "bf13dcef-8a66-4c93-886f-9ab2ee7894ea",
+        "email": "sally@email.com",
+        "username": "SallySparrow"
     }
 ]
+
