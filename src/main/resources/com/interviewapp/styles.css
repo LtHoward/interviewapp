@@ -102,7 +102,7 @@
     -fx-padding: 8 12 8 12;
 }
 
-/* ================= INTRO / LOGIN MAIN CONTENT ================= */
+/* ================= LOGIN CONTENT ================= */
 .center-content {
     -fx-alignment: center;
     -fx-spacing: 56;
@@ -134,23 +134,15 @@
     -fx-padding: 10 0 0 0;
 }
 
+.forgot-password-link{
+    -fx-background-color: #20293b; 
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-underline: true;
+    -fx-font-family: "Consolas";
+}
+
 /* ================= SHARED BUTTONS ================= */
-.primary-button {
-    -fx-background-color: linear-gradient(to right, #67b7ff, #c85bff);
-    -fx-background-radius: 18;
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-padding: 14 34 14 34;
-    -fx-min-width: 165;
-    -fx-min-height: 54;
-    -fx-cursor: hand;
-}
-
-.primary-button:hover {
-    -fx-effect: dropshadow(gaussian, rgba(200, 91, 255, 0.45), 18, 0.25, 0, 0);
-}
-
 .login-button {
     -fx-background-color: linear-gradient(to right, #67b7ff, #c85bff);
     -fx-background-radius: 18;
@@ -252,7 +244,7 @@
     -fx-fill: #49e63a;
 }
 
-/* ================= SHARED CARDS ================= */
+/* ================= SHARED DASHBOARD CARDS ================= */
 .card {
     -fx-background-color: rgba(10, 18, 60, 0.40);
     -fx-background-radius: 28;
@@ -294,9 +286,6 @@
     -fx-background-color: #0a1030;
     -fx-padding: 22 14 22 14;
     -fx-spacing: 26;
-    -fx-pref-width: 120;
-    -fx-min-width: 120;
-    -fx-max-width: 120;
     -fx-border-color: rgba(255,255,255,0.08);
     -fx-border-width: 0 1 0 0;
     -fx-alignment: top-center;
@@ -316,18 +305,6 @@
 
 .sidebar-button:hover {
     -fx-background-color: rgba(255,255,255,0.08);
-}
-
-.sidebar-button-bottom {
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-size: 16px;
-    -fx-background-radius: 16;
-    -fx-border-radius: 16;
-    -fx-padding: 10;
-    -fx-cursor: hand;
-    -fx-pref-width: 72;
-    -fx-pref-height: 72;
 }
 
 .sidebar-button-bottom:hover {

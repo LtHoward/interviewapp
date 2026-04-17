@@ -10,7 +10,9 @@ import com.model.User;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.animation.TranslateTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -80,15 +82,14 @@ public class DashboardController {
 
     @FXML private Button settingsButton;
 
-    @FXML
-    private 
-    VBox sidebarContainer;
+   @FXML
+    private VBox sidebarContainer;
+
+    private boolean sidebarVisible = false;
+    private static final double SIDEBAR_OPEN_WIDTH = 90;
 
     @FXML
     private Button sidebarToggleButton;
-
-    private boolean sidebarVisible = false;
-    private static final double SIDEBAR_WIDTH = 120;
 
     @FXML
     public void initialize() {
@@ -112,27 +113,47 @@ public class DashboardController {
         profileClip.heightProperty().bind(profileImageView.fitHeightProperty());
         profileImageView.setClip(profileClip);
 
-        sidebarContainer.setTranslateX(-SIDEBAR_WIDTH);
+        sidebarContainer.setPrefWidth(0);
+        sidebarContainer.setMinWidth(0);
+        sidebarContainer.setMaxWidth(0);
+        setSidebarChildrenVisible(false);
 
-        setButtonIcon(homeButton, "/com/interviewapp/images/icons/home.png", 28);
-        setButtonIcon(searchButton, "/com/interviewapp/images/icons/search.png", 28);
-        setButtonIcon(solutionsButton, "/com/interviewapp/images/icons/solutions.png", 28);
-        setButtonIcon(profileButton, "/com/interviewapp/images/icons/profile.png", 28);
-        setButtonIcon(settingsButton, "/com/interviewapp/images/icons/settings.png", 28);
+        setButtonIcon(homeButton, "/com/interviewapp/images/icons/home.png", 32);
+        setButtonIcon(searchButton, "/com/interviewapp/images/icons/search.png", 32);
+        setButtonIcon(solutionsButton, "/com/interviewapp/images/icons/solutions.png", 32);
+        setButtonIcon(profileButton, "/com/interviewapp/images/icons/profile.png", 32);
+        setButtonIcon(settingsButton, "/com/interviewapp/images/icons/settings.png", 32);
     }
 
     @FXML
     private void toggleSidebar() {
-        TranslateTransition transition = new TranslateTransition(Duration.millis(250), sidebarContainer);
+        double targetWidth = sidebarVisible ? 0 : SIDEBAR_OPEN_WIDTH;
 
-        if (sidebarVisible) {
-            transition.setToX(-SIDEBAR_WIDTH);
-        } else {
-            transition.setToX(0);
+        if (!sidebarVisible) {
+            setSidebarChildrenVisible(true);
         }
 
-        transition.play();
+        Timeline timeline = new Timeline(
+            new KeyFrame(Duration.millis(250),
+                new KeyValue(sidebarContainer.prefWidthProperty(), targetWidth),
+                new KeyValue(sidebarContainer.minWidthProperty(), targetWidth),
+                new KeyValue(sidebarContainer.maxWidthProperty(), targetWidth)
+            )
+        );
+
+        if (sidebarVisible) {
+            timeline.setOnFinished(e -> setSidebarChildrenVisible(false));
+        }
+
+        timeline.play();
         sidebarVisible = !sidebarVisible;
+    }
+
+    private void setSidebarChildrenVisible(boolean visible) {
+        sidebarContainer.getChildren().forEach(node -> {
+            node.setVisible(visible);
+            node.setManaged(visible);
+        });
     }
 
     public void setUser(User user) {
