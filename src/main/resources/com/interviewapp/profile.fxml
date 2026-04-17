@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,123 +10,126 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-   <ImageView fx:id="profileImage1" fitHeight="800.0" fitWidth="1440.0" preserveRatio="true" styleClass="app-logo">
-      <image>
-         <Image url="@images/background1.png" />
-      </image>
-   </ImageView>
-   <ImageView fx:id="profileImage2" fitHeight="246.0" fitWidth="1322.0" layoutX="53.0" layoutY="31.0" preserveRatio="true" styleClass="app-logo">
-      <image>
-         <Image url="@images/banner1.png" />
-      </image>
-   </ImageView>
-
-    <!-- Main page container -->
-    <VBox prefHeight="782.0" prefWidth="1423.0" spacing="25.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="20.0">
-
-        <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-        </padding>
-
-        <!-- PROFILE HEADER CARD -->
-        <HBox prefHeight="226.0" prefWidth="1401.0" spacing="25.0" styleClass="profile-header-card" stylesheets="@styles.css">
-            <padding>
-                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-            </padding>
-
-            <!-- Profile image area -->
-            <StackPane prefHeight="180.0" prefWidth="180.0" styleClass="profile-image-box">
-                <ImageView fx:id="profileImage" fitHeight="168.0" fitWidth="192.0" preserveRatio="true" styleClass="app-logo">
-               <image>
-                  <Image url="@images/DefaultIcon.png" />
-               </image></ImageView>
+<AnchorPane prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="127.0" layoutY="97.0" prefHeight="744.0" prefWidth="1300.0" spacing="20.0" styleClass="main-text" stylesheets="@styles.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="220.0" fitWidth="1300.0">
+                     <image>
+                        <Image url="@images/banner1.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/DefaultIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="225.0">
+                           <children>
+                              <Label styleClass="white-text" stylesheets="@styles.css" text="LeBron James" />
+                              <Label layoutX="10.0" layoutY="10.0" styleClass="white-text" stylesheets="@styles.css" text="Computer Science" />
+                              <Label layoutX="10.0" layoutY="27.0" styleClass="white-text" stylesheets="@styles.css" text="Syntax Scout" />
+                           </children>
+                        </VBox>
+                        <Region prefHeight="150.0" prefWidth="13.0" />
+                        <Button mnemonicParsing="false" stylesheets="@styles.css" text="Edit Profile" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
             </StackPane>
-
-            <!-- Name + info -->
-            <VBox spacing="12.0">
-                <Label styleClass="profile-name" text="LeBron James" textFill="WHITE">
-               <font>
-                  <Font size="30.0" />
-               </font></Label>
-                <Label styleClass="profile-subtitle" text="Major:  Computer Science" textFill="WHITE">
-               <font>
-                  <Font size="30.0" />
-               </font></Label>
-                <Label styleClass="profile-subtitle" text="Title: Syntax Scout" textFill="WHITE">
-               <font>
-                  <Font name="ITFDevanagari-Book" size="30.0" />
-               </font></Label>
-
-                <!-- Optional spacer -->
-                <Region prefHeight="10.0" />
+            <VBox prefHeight="46.0" prefWidth="1400.0" spacing="15.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <HBox prefHeight="10.0" prefWidth="1400.0">
+                     <children>
+                        <Label style="-fx-tesxt-fill: white;" styleClass="white-text" text="About" />
+                        <Region prefHeight="43.0" prefWidth="1155.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" text="Edit" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="1400.0">
+                     <children>
+                        <Label styleClass="white-text" stylesheets="@styles.css" text="Hello, i'm a computer science major" />
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-        </HBox>
-
-           <!-- DETAILS CARD -->
-        <VBox prefHeight="162.0" prefWidth="1226.0" spacing="18.0" styleClass="profile-details-card">
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
-
-               <!-- About -->
-            <VBox spacing="6.0">
-                <Label prefWidth="107.0" styleClass="section-title" text="About" textFill="WHITE">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-                <Label styleClass="section-text" text="Write a short introduction about yourself here." textFill="WHITE" wrapText="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
+            <VBox layoutX="10.0" layoutY="150.0" prefHeight="49.0" prefWidth="1400.0" spacing="15.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="1400.0">
+                     <children>
+                        <Label styleClass="white-text" stylesheets="@styles.css" text="Achievements" />
+                        <Region prefHeight="100.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" stylesheets="@styles.css" text="Edit" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="1400.0">
+                     <children>
+                        <Label styleClass="white-text" text="Longest Streak: 10 Days | Earned Title &quot;Syntax Scout&quot;" />
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-
-               <!-- Achievements -->
-            <VBox spacing="6.0" stylesheets="@styles.css">
-                <Label prefHeight="37.0" prefWidth="222.0" styleClass="section-title" text="Achievements" textFill="WHITE">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-                <Label prefHeight="26.0" prefWidth="551.0" styleClass="section-text" text="Completed questions: __ | Longest streak: __ | Badge: __" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
+            <VBox layoutX="10.0" layoutY="248.0" prefHeight="49.0" prefWidth="1400.0" spacing="15.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="1400.0">
+                     <children>
+                        <Label styleClass="white-text" stylesheets="@styles.css" text="Skills" />
+                        <Region prefHeight="100.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" stylesheets="@styles.css" text="Edit" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="1400.0">
+                     <children>
+                        <Label styleClass="white-text" stylesheets="@styles.css" text="Python | C++ | Java | Problem Solving | Team Work" />
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-
-               <!-- Skills -->
-            <VBox spacing="6.0">
-                <Label styleClass="section-title" text="Skills" textFill="WHITE">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-                <Label styleClass="section-text" text="Python | Java | HTML/CSS | Git/GitHub | Debugging" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
+            <VBox layoutX="10.0" layoutY="346.0" prefHeight="49.0" prefWidth="1400.0" spacing="15.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="1400.0">
+                     <children>
+                        <Label styleClass="white-text" stylesheets="@styles.css" text="Stats" />
+                        <Region prefHeight="100.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" stylesheets="@styles.css" text="Edit" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="1400.0">
+                     <children>
+                        <Label styleClass="white-text" stylesheets="@styles.css" text="Completed: 8 Timed Interview Questions" />
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-
-               <!-- Statistics -->
-            <VBox spacing="6.0">
-                <Label styleClass="section-title" text="Statistics" textFill="WHITE">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-                <Label styleClass="section-text" text="Questions Practiced: __ | Reviews: __ | Streak: __ days" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            </VBox>
-        </VBox>
-
-    </VBox>
+         </children>
+      </VBox>
+      <Button alignment="BOTTOM_LEFT" layoutX="6.0" layoutY="11.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="46.0" stylesheets="@styles.css" text="Back" />
+   </children>
 </AnchorPane>
