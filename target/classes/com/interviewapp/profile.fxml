@@ -36,14 +36,14 @@
                               </ImageView>
                            </children>
                         </StackPane>
-                        <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="225.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="181.0">
                            <children>
                               <Label styleClass="white-text" stylesheets="@styles.css" text="LeBron James" />
                               <Label layoutX="10.0" layoutY="10.0" styleClass="white-text" stylesheets="@styles.css" text="Computer Science" />
                               <Label layoutX="10.0" layoutY="27.0" styleClass="white-text" stylesheets="@styles.css" text="Syntax Scout" />
                            </children>
                         </VBox>
-                        <Region prefHeight="150.0" prefWidth="13.0" />
+                        <Region prefHeight="180.0" prefWidth="0.0" />
                         <Button mnemonicParsing="false" stylesheets="@styles.css" text="Edit Profile" />
                      </children>
                      <padding>
