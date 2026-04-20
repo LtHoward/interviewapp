@@ -99,7 +99,11 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0" styleClass="question-pill">
                                              <children>
-                                                <StackPane minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" styleClass="code-icon" />
+                                                <StackPane minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0">
+                                                   <children>
+                                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="code-icon" />
+                                                   </children>
+                                                </StackPane>
                                                 <Label prefHeight="29.0" prefWidth="197.0" styleClass="card-title" text="Question Title" />
                                                 <Pane prefHeight="70.0" prefWidth="307.0" HBox.hgrow="ALWAYS" />
                                                 <Label alignment="CENTER" prefHeight="15.0" prefWidth="129.0" styleClass="difficulty-badge" text="Difficulty" />

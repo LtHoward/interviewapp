@@ -16,12 +16,12 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" prefWidth="123.0" styleClass="top-bar" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" prefWidth="1440.0" styleClass="top-bar" BorderPane.alignment="CENTER">
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="69.0" minWidth="75.0" prefHeight="272.0" prefWidth="108.0" styleClass="app-logo" />
-                  <Label prefHeight="42.0" prefWidth="266.0" styleClass="app-title" text="Interview App" />
-                  <Pane prefHeight="23.0" prefWidth="904.0" />
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About us">
+                  <Label prefHeight="52.0" prefWidth="301.0" styleClass="app-title" text="Interview App" HBox.hgrow="ALWAYS" />
+                  <Pane prefHeight="43.0" prefWidth="739.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About us" HBox.hgrow="ALWAYS">
                      <opaqueInsets>
                         <Insets left="5.0" />
                      </opaqueInsets>
@@ -93,12 +93,12 @@
                         <Label alignment="TOP_LEFT" prefHeight="83.0" prefWidth="477.0" styleClass="hero-subtitle" text="Helping CS and CIS students prepare for interviews and solve industry-related problems." />
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="232.0" spacing="40.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#login" prefHeight="55.0" prefWidth="200.0" styleClass="primary-button" text="Login">
+                              <Button mnemonicParsing="false" onAction="#login" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Login">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" styleClass="primary-button" text="Sign Up" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Sign Up" />
                            </children>
                         </HBox>
                      </children>
