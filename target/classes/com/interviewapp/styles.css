@@ -307,6 +307,24 @@
     -fx-wrap-text: true;
 }
 
+.sub-text-reset {
+    -fx-text-fill: black;
+    -fx-font-size: 17px;
+}
+
+.continue-button {
+    -fx-background-color: linear-gradient(to right, #67b7ff, #c85bff);
+    -fx-background-radius: 18;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 14 12 14;
+    -fx-min-width: 532;
+    -fx-min-height: 72;
+    -fx-cursor: hand;
+}
+
+
 /* ================= Signup Card ================= */
 .createaccount-bg {
     -fx-background-color: #ffffff;
