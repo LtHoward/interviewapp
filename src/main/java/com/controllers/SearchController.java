@@ -12,8 +12,10 @@ import java.util.ArrayList;
 
 public class SearchController {
 
-    @FXML private TextField searchField;
-    @FXML private VBox resultsContainer;
+    @FXML 
+    private TextField searchField;
+    @FXML 
+    private VBox resultsContainer;
 
     private InterviewApp app;
 
@@ -34,6 +36,7 @@ public class SearchController {
     @FXML
     private void handleBack(ActionEvent event) {
         System.out.println("Back clicked");
+        // TODO: implement navigation back to home page
     }
 
     @FXML
@@ -44,6 +47,7 @@ public class SearchController {
     @FXML
     private void handleFilter(ActionEvent event) {
         System.out.println("Filter clicked");
+        // TODO: implement filter functionality
     }
 
     @FXML
