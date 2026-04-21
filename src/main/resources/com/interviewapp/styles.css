@@ -177,6 +177,52 @@
     -fx-cursor: hand;
 }
 
+.action-button {
+    -fx-background-color: rgba(9, 22, 66, 0.85);
+    -fx-text-fill: #7d89a7;
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 24px;
+    -fx-border-radius: 24px;
+    -fx-border-color: #22395f;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+}
+
+.difficulty-easy,
+.difficulty-medium,
+.difficulty-advanced,
+.difficulty-expert {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+    -fx-padding: 12px 28px;
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+}
+
+.difficulty-easy {
+    -fx-background-color: #2d8f32;
+    -fx-border-color: #5fd468;
+}
+
+.difficulty-medium {
+    -fx-background-color: #b59a20;
+    -fx-border-color: #f0cc2e;
+}
+
+.difficulty-advanced {
+    -fx-background-color: #ad6739;
+    -fx-border-color: #e8925b;
+}
+
+.difficulty-expert {
+    -fx-background-color: #6e3740;
+    -fx-border-color: #a65763;
+}
+
 .login-button:hover {
     -fx-effect: dropshadow(gaussian, rgba(200, 91, 255, 0.45), 18, 0.25, 0, 0);
 }
@@ -787,4 +833,90 @@
 
 .accent-pink {
     -fx-text-fill: #e08ac8;
+}
+ /* ================= EDITOR BOXES ================= */
+.toolbar {
+    -fx-padding: 14px 18px;
+    -fx-border-color: #213a66;
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: center-left;
+}
+
+.toolbar-btn, .toolbar-btn-italics, .toolbar-btn-bold {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7f8da8;
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+
+.toolbar-btn:hover, .toolbar-btn-italics:hover, .toolbar-btn-bold:hover {
+    -fx-text-fill: white;
+}
+
+.toolbar-btn-italics {
+    -fx-font-style: italic;
+}
+
+.toolbar-btn-bold {
+    -fx-font-weight: 900;
+}
+
+.editor-area {
+    -fx-background-color: transparent;
+    -fx-background-radius: 16px;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-highlight-fill: #355c9a;
+    -fx-highlight-text-fill: white;
+}
+
+.editor-area .content {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-background-radius: 16px;
+}
+
+.editor-area .viewport {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+}
+
+/* scrollbar container */
+.editor-area .scroll-bar:vertical,
+.editor-area .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* track behind thumb */
+.editor-area .scroll-bar:vertical .track,
+.editor-area .scroll-bar:horizontal .track {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+}
+
+/* draggable thumb */
+.editor-area .scroll-bar:vertical .thumb,
+.editor-area .scroll-bar:horizontal .thumb {
+    -fx-background-color: #5f6f94;
+    -fx-background-radius: 10px;
+}
+
+/* top/bottom button areas */
+.editor-area .scroll-bar .increment-button,
+.editor-area .scroll-bar .decrement-button {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-border-color: transparent;
+}
+
+/* arrow icons */
+.editor-area .scroll-bar .increment-arrow,
+.editor-area .scroll-bar .decrement-arrow {
+    -fx-background-color: #cfd8ee;
+}
+
+/* corner where horizontal + vertical bars meet */
+.editor-area .corner {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
 }
