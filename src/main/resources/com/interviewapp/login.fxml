@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -12,20 +12,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="800.0" prefWidth="1440.0"
-           styleClass="main-bg" stylesheets="@styles.css"
-           fx:controller="com.controllers.LoginController"
-           xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" prefWidth="123.0" styleClass="top-bar" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" prefWidth="1440.0" styleClass="top-bar" BorderPane.alignment="CENTER">
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="69.0" minWidth="75.0" prefHeight="272.0" prefWidth="108.0" styleClass="app-logo" />
                   <Label prefHeight="42.0" prefWidth="266.0" styleClass="app-title" text="Interview App" />
                   <Pane prefHeight="23.0" prefWidth="904.0" />
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About us">
+                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About us" onAction="#switchToAboutUs">
                      <opaqueInsets>
                         <Insets left="5.0" />
                      </opaqueInsets>
@@ -36,7 +32,7 @@
          <center>
             <HBox alignment="CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox maxHeight="433.0" maxWidth="751.0" minWidth="0.0" prefHeight="433.0" prefWidth="670.0" styleClass="login-card" HBox.hgrow="NEVER">
+                  <VBox maxHeight="503.0" maxWidth="751.0" minWidth="0.0" prefHeight="503.0" prefWidth="670.0" styleClass="login-card" HBox.hgrow="NEVER">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="16.0" prefWidth="253.0" spacing="10.0" styleClass="login-header">
                            <children>
@@ -50,7 +46,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <VBox prefHeight="373.0" prefWidth="598.0" spacing="10.0" styleClass="login-body">
+                        <VBox prefHeight="444.0" prefWidth="670.0" spacing="10.0" styleClass="login-body">
                            <children>
                               <Label prefHeight="28.0" prefWidth="268.0" styleClass="code-blue" text="int main() {" />
                               <Label prefHeight="26.0" prefWidth="543.0" styleClass="code-green" text="&quot;Welcome to the Interview App!&quot;;">
@@ -78,6 +74,11 @@
                                     <Insets left="25.0" />
                                  </padding>
                               </PasswordField>
+                              <Button mnemonicParsing="false" styleClass="forgot-password-link" text="Forgot Password?">
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                              </Button>
                               <Label styleClass="code-blue" text="}" />
                            </children>
                            <padding>
@@ -92,13 +93,12 @@
                         <Label alignment="TOP_LEFT" prefHeight="83.0" prefWidth="477.0" styleClass="hero-subtitle" text="Helping CS and CIS students prepare for interviews and solve industry-related problems." />
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="232.0" spacing="40.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0"
-                                      styleClass="primary-button" text="Login" onAction="#login">
+                              <Button mnemonicParsing="false" onAction="#login" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Login">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" styleClass="primary-button" text="Sign Up" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Sign Up" />
                            </children>
                         </HBox>
                      </children>
