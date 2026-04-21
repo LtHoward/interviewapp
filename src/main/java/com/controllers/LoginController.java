@@ -50,4 +50,13 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void switchToAboutUs(ActionEvent event) {
+        try {
+            App.setRoot("aboutUs");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
