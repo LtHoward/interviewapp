@@ -25,7 +25,7 @@
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="69.0" minWidth="75.0" prefHeight="272.0" prefWidth="108.0" styleClass="app-logo" />
                   <Label prefHeight="42.0" prefWidth="266.0" styleClass="app-title" text="Interview App" />
                   <Pane prefHeight="23.0" prefWidth="904.0" />
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About us">
+                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About us" onAction="#switchToAboutUs">
                      <opaqueInsets>
                         <Insets left="5.0" />
                      </opaqueInsets>

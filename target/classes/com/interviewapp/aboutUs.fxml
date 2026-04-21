@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" fx:controller="com.controllers.AboutUsController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
       <VBox prefHeight="800.0" prefWidth="1440.0" styleClass="main-text" stylesheets="@styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -21,7 +21,10 @@
             <!-- Header copied from login.fxml -->
             <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" styleClass="top-bar">
                <children>
-                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="69.0" minWidth="75.0" prefHeight="272.0" prefWidth="108.0" styleClass="app-logo" />
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="69.0" minWidth="75.0" prefHeight="272.0" prefWidth="108.0" styleClass="app-logo">
+                     <children>
+                        <Button mnemonicParsing="false" opacity="0.0" text="Return" onAction="#switchToLogin" />
+                     </children></StackPane>
 
                   <Label prefHeight="42.0" prefWidth="266.0" styleClass="app-title" text="Interview App" />
 
