@@ -1,6 +1,8 @@
 package com.controllers;
 
+import com.interviewapp.App;
 import com.model.InterviewApp;
+import com.model.User;
 import com.model.QuestionPost;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ public class SearchController {
     private VBox resultsContainer;
 
     private InterviewApp app;
+    private User currentUser;
 
     /**
      * Initialization method called by JavaFX after the FXML is loaded.
@@ -33,10 +36,19 @@ public class SearchController {
         loadQuestions("");
     }
 
+    public void setUser(User user) {
+        this.currentUser = user;
+    }
+
     @FXML
     private void handleBack(ActionEvent event) {
-        System.out.println("Back clicked");
-        // TODO: implement navigation back to home page
+        try {
+            javafx.fxml.FXMLLoader loader = App.setRootWithLoader("dashboard");
+            DashboardController controller = loader.getController();
+            controller.setUser(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

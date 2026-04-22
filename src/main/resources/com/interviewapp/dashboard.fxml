@@ -27,7 +27,7 @@
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
-                  <Button fx:id="searchButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#switchToSearch" styleClass="sidebar-icon-button">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
@@ -99,9 +99,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="12.0" styleClass="question-pill">
                                              <children>
-                                                <StackPane minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0">
+                                                <StackPane minHeight="70.0" minWidth="70.0" prefHeight="70.0" prefWidth="70.0" styleClass="icon-box">
                                                    <children>
-                                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="code-icon" />
+                                                      <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="code-icon">
+                                                         <padding>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
+                                                         </padding>
+                                                      </StackPane>
                                                    </children>
                                                 </StackPane>
                                                 <Label prefHeight="29.0" prefWidth="197.0" styleClass="card-title" text="Question Title" />
