@@ -2,13 +2,18 @@ package com.controllers;
 
 import java.util.ArrayList;
 
+import com.interviewapp.App;
+import com.model.InterviewApp;
+
 import com.model.Reward;
 import com.model.RewardType;
 import com.model.Student;
 import com.model.Title;
 import com.model.User;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -149,6 +154,7 @@ public class DashboardController {
         sidebarVisible = !sidebarVisible;
     }
 
+    @FXML
     private void setSidebarChildrenVisible(boolean visible) {
         sidebarContainer.getChildren().forEach(node -> {
             node.setVisible(visible);
@@ -156,11 +162,13 @@ public class DashboardController {
         });
     }
 
+    @FXML
     public void setUser(User user) {
         this.currentUser = user;
         populateDashboard();
     }
 
+    @FXML
     private void populateDashboard() {
         if (currentUser == null) {
             return;
@@ -326,4 +334,27 @@ public class DashboardController {
         button.setText("");
         button.setGraphic(imageView);
     }
+
+    @FXML
+    private void switchToSearch(ActionEvent event) {
+        try {
+            FXMLLoader loader = App.setRootWithLoader("search");
+            SearchController controller = loader.getController();
+            controller.setUser(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void switchToProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = App.setRootWithLoader("profile");
+            ProfileController controller = loader.getController();
+            controller.setUser(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
