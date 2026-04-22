@@ -346,4 +346,15 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void switchToProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = App.setRootWithLoader("profile");
+            ProfileController controller = loader.getController();
+            controller.setUser(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

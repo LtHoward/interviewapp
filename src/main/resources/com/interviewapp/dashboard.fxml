@@ -38,7 +38,7 @@
                      </graphic>
                   </Button>
                   <Pane prefHeight="306.0" prefWidth="55.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="profileButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+                  <Button fx:id="profileButton" mnemonicParsing="false" onAction="#switchToProfile" styleClass="sidebar-icon-button">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
