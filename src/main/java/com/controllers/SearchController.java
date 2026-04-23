@@ -43,8 +43,8 @@ public class SearchController {
     @FXML
     private void handleBack(ActionEvent event) {
         try {
-            javafx.fxml.FXMLLoader loader = App.setRootWithLoader("dashboard");
-            DashboardController controller = loader.getController();
+            javafx.fxml.FXMLLoader loader = App.setRootWithLoader("studentDashboard");
+            StudentDashboardController controller = loader.getController();
             controller.setUser(currentUser);
         } catch (Exception e) {
             e.printStackTrace();
