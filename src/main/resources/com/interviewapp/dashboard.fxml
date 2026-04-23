@@ -43,7 +43,7 @@
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
-                  <Button fx:id="settingsButton" mnemonicParsing="false" styleClass="sidebar-icon-button">
+                  <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#switchToSettings" styleClass="sidebar-icon-button">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>

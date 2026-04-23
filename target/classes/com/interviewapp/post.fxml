@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="800.0" maxWidth="1440.0" minHeight="800.0" minWidth="1440.0" prefHeight="800.0" prefWidth="1440.0" styleClass="simple-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" spacing="20.0" styleClass="top-bar" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" styleClass="back-icon-button" text="&lt;" />
+            <StackPane prefHeight="70.0" prefWidth="70.0">
+               <children>
+                  <StackPane prefHeight="70.0" prefWidth="70.0" />
+               </children>
+            </StackPane>
+            <Label styleClass="simple-title" text="View Question" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0" styleClass="question-view-main" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="711.0" prefWidth="835.0" styleClass="question-view-left">
+               <children>
+                  <VBox prefHeight="118.0" prefWidth="835.0" styleClass="toolbar">
+                     <children>
+                        <Label styleClass="section-title" text="Title" />
+                        <Label styleClass="section-subtitle" text="Author" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label styleClass="section-subtitle" text="Difficulty" />
+                              <Pane prefHeight="88.0" prefWidth="66.0" />
+                              <Label styleClass="section-subtitle" text="Tags" />
+                              <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" text="up" />
+                              <Label styleClass="section-subtitle" text="score" />
+                              <Button mnemonicParsing="false" text="down" />
+                           </children>
+                        </HBox>
+                     </children></VBox>
+                  <ScrollPane prefHeight="529.0" prefWidth="649.0" styleClass="question-content-scroll">
+                    <content>
+                        <VBox prefHeight="663.0" prefWidth="745.0" styleClass="question-content-body">
+                           <children>
+                              <Label styleClass="comment-text" text="text" />
+                              <StackPane alignment="TOP_LEFT" prefHeight="148.0" prefWidth="200.0" styleClass="question-code-block">
+                                 <children>
+                                    <Label styleClass="question-code-text" text="code" />
+                                 </children>
+                              </StackPane>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="question-image-block" />
+                              <StackPane maxHeight="200.0" maxWidth="350.0" minHeight="4.0" prefHeight="87.0" prefWidth="286.0" styleClass="question-video-block" VBox.vgrow="NEVER" />
+                              <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="comment-username" text="Hint:" />
+                                    <Label styleClass="comment-text" text="Hint msg" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="711.0" prefWidth="609.0" spacing="14.0">
+               <children>
+                  <!-- Comments card -->
+                  <VBox prefHeight="560.0" prefWidth="607.0" styleClass="comments-card" VBox.vgrow="ALWAYS">
+                     <children>
+
+                        <!-- Header -->
+                        <Label styleClass="section-title" text="# Comments" />
+
+                        <!-- Add comment row -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="add-comment-row">
+                           <children>
+                              <StackPane prefHeight="39.0" prefWidth="60.0" styleClass="comments-user-avatar" />
+                              <TextField prefHeight="1.0" prefWidth="508.0" styleClass="pill-field" />
+                           </children>
+                        </HBox>
+
+                        <!-- Comments list -->
+                        <ScrollPane fitToWidth="true" prefHeight="480.0" prefWidth="607.0" styleClass="comments-scroll" VBox.vgrow="ALWAYS">
+                           <content>
+                              <VBox spacing="18.0" styleClass="comments-list">
+
+                                 <!-- Thread 1 -->
+                                 <VBox spacing="10.0" styleClass="comment-thread">
+                                    <children>
+                                       <HBox spacing="12.0" styleClass="comment-row">
+                                          <children>
+                                             <StackPane maxHeight="45.0" maxWidth="45.0" prefHeight="62.0" prefWidth="98.0" styleClass="comments-user-avatar" HBox.hgrow="NEVER" />
+                                             <VBox spacing="6.0">
+                                                <children>
+                                                   <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                      <children>
+                                                         <Label styleClass="comment-username" text="Username" />
+                                                         <Label styleClass="comment-date" text="##/##/##" />
+                                                      </children>
+                                                   </HBox>
+                                                   <Label styleClass="comment-text" text="Comment msg" wrapText="true" />
+                                                   <HBox spacing="18.0">
+                                                      <children>
+                                                         <Button mnemonicParsing="false" styleClass="comment-action-button" text="View #  Replies" />
+                                                         <Button mnemonicParsing="false" styleClass="comment-action-button" text="Reply" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+
+                                       <!-- Replies -->
+                                       <VBox prefHeight="80.0" prefWidth="501.0" spacing="14.0" styleClass="reply-container">
+                                          <children>
+                                             <HBox spacing="12.0" styleClass="comment-row">
+                                                <children>
+                                                   <StackPane maxHeight="45.0" maxWidth="45.0" prefHeight="46.0" prefWidth="46.0" styleClass="comments-user-avatar" />
+                                                   <VBox spacing="6.0">
+                                                      <children>
+                                                         <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                            <children>
+                                                               <Label styleClass="comment-username" text="Username" />
+                                                               <Label styleClass="comment-date" text="##/##/##" />
+                                                            </children>
+                                                         </HBox>
+                                                         <Label styleClass="comment-text" text="Reply msg" wrapText="true" />
+                                                         <HBox spacing="18.0">
+                                                            <children>
+                                                               <Button mnemonicParsing="false" styleClass="comment-action-button" text="View #  Replies" />
+                                                               <Button mnemonicParsing="false" styleClass="comment-action-button" text="Reply" />
+                                                            </children>
+                                                         </HBox>
+                                                      </children>
+                                                   </VBox>
+                                                </children>
+                                             </HBox>
+                                          </children>
+                                          <opaqueInsets>
+                                             <Insets left="20.0" />
+                                          </opaqueInsets>
+                                       </VBox>
+                                    </children>
+                                 </VBox>
+
+                                 <!-- Thread 2 -->
+                                 <VBox spacing="10.0" styleClass="comment-thread">
+                                    <children>
+                                       <HBox spacing="12.0" styleClass="comment-row">
+                                          <children>
+                                             <StackPane maxHeight="45.0" maxWidth="45.0" prefHeight="52.0" prefWidth="52.0" styleClass="comments-user-avatar" />
+                                             <VBox spacing="6.0">
+                                                <children>
+                                                   <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                      <children>
+                                                         <Label styleClass="comment-username" text="Username" />
+                                                         <Label styleClass="comment-date" text="##/##/##" />
+                                                      </children>
+                                                   </HBox>
+                                                   <Label styleClass="comment-text" text="Comment msg" wrapText="true" />
+                                                   <HBox spacing="18.0">
+                                                      <children>
+                                                         <Button mnemonicParsing="false" styleClass="comment-action-button" text="View #  Replies" />
+                                                         <Button mnemonicParsing="false" styleClass="comment-action-button" text="Reply" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+
+                  <!-- Bottom buttons -->
+                  <HBox prefHeight="58.0" prefWidth="578.0" spacing="14.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" styleClass="action-button" text="View Solutions" />
+                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" styleClass="action-button" text="Create Solution" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </center>
+</BorderPane>

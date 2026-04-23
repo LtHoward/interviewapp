@@ -27,7 +27,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
-public class DashboardController {
+public class StudentDashboardController {
 
     private User currentUser;
 
@@ -356,18 +356,5 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private void switchToSettings(ActionEvent event) {
-        try {
-            FXMLLoader loader = App.setRootWithLoader("settings");
-            SettingsController controller = loader.getController();
-            controller.setUser(currentUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-     
 
 }
