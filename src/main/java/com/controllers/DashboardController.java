@@ -357,4 +357,17 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void switchToSettings(ActionEvent event) {
+        try {
+            FXMLLoader loader = App.setRootWithLoader("settings");
+            SettingsController controller = loader.getController();
+            controller.setUser(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+     
+
 }
