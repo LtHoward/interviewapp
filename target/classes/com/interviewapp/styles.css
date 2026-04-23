@@ -1166,3 +1166,177 @@
     -fx-padding: 10px;
     -fx-alignment: center;
 }
+
+/* ================= SEARCH PAGE ================= */
+.search-section-label {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.search-row-label {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.search-text-field {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #7f8da8;
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-color: #203969;
+    -fx-border-width: 2px;
+    -fx-font-size: 16px;
+    -fx-padding: 8px 14px;
+}
+
+.search-page-button {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-color: #203969;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-padding: 8 20 8 20;
+}
+
+.search-page-button:hover {
+    -fx-background-color: rgba(18, 32, 90, 0.85);
+}
+
+.search-filter-button {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-color: #203969;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-padding: 8 20 8 20;
+}
+
+.search-filter-button:hover {
+    -fx-background-color: rgba(18, 32, 90, 0.85);
+}
+
+.search-filter-button-selected {
+    -fx-background-color: rgba(18, 32, 90, 0.95);
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-color: #5f6f94;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-padding: 8 20 8 20;
+}
+
+.search-tag-chip {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #203969;
+    -fx-border-width: 2px;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+
+.search-tag-chip:hover {
+    -fx-background-color: rgba(18, 32, 90, 0.85);
+}
+
+.search-results-box {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-border-color: #203969;
+    -fx-border-width: 2px;
+    -fx-padding: 12px;
+}
+
+.search-results-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.search-results-scroll > .viewport {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-background-radius: 18px;
+}
+
+.search-results-scroll > .corner {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+}
+
+.search-results-scroll .scroll-bar:vertical,
+.search-results-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.search-results-scroll .scroll-bar:vertical .track,
+.search-results-scroll .scroll-bar:horizontal .track {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+}
+
+.search-results-scroll .scroll-bar:vertical .thumb,
+.search-results-scroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #5f6f94;
+    -fx-background-radius: 10px;
+}
+
+.search-results-scroll .scroll-bar .increment-button,
+.search-results-scroll .scroll-bar .decrement-button {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-border-color: transparent;
+}
+
+.search-results-scroll .scroll-bar .increment-arrow,
+.search-results-scroll .scroll-bar .decrement-arrow {
+    -fx-background-color: #cfd8ee;
+}
+
+.search-result-button {
+    -fx-background-color: rgba(9, 22, 66, 0.85);
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-border-color: #22395f;
+    -fx-border-width: 2px;
+    -fx-padding: 14 18 14 18;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+.search-result-button:hover {
+    -fx-background-color: rgba(20, 36, 92, 0.95);
+}
+
+.search-result-empty {
+    -fx-background-color: rgba(9, 22, 66, 0.45);
+    -fx-text-fill: #cfd5ff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-border-color: #22395f;
+    -fx-border-width: 2px;
+    -fx-padding: 14 18 14 18;
+    -fx-alignment: center-left;
+    -fx-opacity: 1.0;
+}
