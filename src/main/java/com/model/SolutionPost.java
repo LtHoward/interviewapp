@@ -12,6 +12,7 @@ public class SolutionPost extends Post {
 
     private int solutionNumber;
     private UUID questionId;
+    private Difficulty difficulty;
 
     /**
      * Constructor for the SolutionPost class with the following parameters 
@@ -34,6 +35,14 @@ public class SolutionPost extends Post {
         super(postId, title, author, createdAt, comments, tags, contentSections, score);
         this.solutionNumber = solutionNumber;
         this.questionId = questionId;
+    }
+
+    /**
+     * Method to get the difficulty of the solution
+     * @return difficulty
+     */
+    public Difficulty getDifficulty() {
+        return difficulty;
     }
 
     /**
