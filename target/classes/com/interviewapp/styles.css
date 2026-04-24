@@ -1121,16 +1121,17 @@
     -fx-text-fill: white;
 }
 
-.vote-button {
-    -fx-background-color: rgba(8, 18, 60, 0.65);
-    -fx-text-fill: #cfd5ff;
-    -fx-border-color: #203969;
-    -fx-border-width: 2px;
-    -fx-background-radius: 14px;
-    -fx-border-radius: 14px;
-    -fx-font-size: 14px;
-    -fx-font-weight: 700;
-    -fx-padding: 6 10 6 10;
+.vote-icon-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 10;
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+    -fx-min-width: 40;
+    -fx-min-height: 40s;
+    -fx-cursor: hand;
+    -fx-alignment: center;
 }
 
 .question-code-block {
