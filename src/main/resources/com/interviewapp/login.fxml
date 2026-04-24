@@ -19,9 +19,9 @@
             <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" prefWidth="1440.0" styleClass="top-bar" BorderPane.alignment="CENTER">
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="69.0" minWidth="75.0" prefHeight="272.0" prefWidth="108.0" styleClass="app-logo" />
-                  <Label prefHeight="52.0" prefWidth="335.0" styleClass="app-title" text="Interview App" HBox.hgrow="ALWAYS" />
+                  <Label prefHeight="52.0" prefWidth="431.0" styleClass="app-title" text="Interview App" HBox.hgrow="ALWAYS" />
                   <Pane prefHeight="23.0" prefWidth="904.0" />
-                  <Button mnemonicParsing="false" onAction="#switchToAboutUs" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About us">
+                  <Button mnemonicParsing="false" onAction="#switchToAboutUs" prefHeight="44.0" prefWidth="265.0" styleClass="nav-text" text="About Us">
                      <opaqueInsets>
                         <Insets left="5.0" />
                      </opaqueInsets>

@@ -10,142 +10,199 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1440.0"
-            styleClass="main-bg"
-            stylesheets="@styles.css"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.controllers.ProfileController">
-   <children>
-      <VBox alignment="CENTER" layoutX="127.0" layoutY="97.0" prefHeight="744.0" prefWidth="1300.0" spacing="20.0" styleClass="main-text" stylesheets="@styles.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
-         <padding>
-            <Insets top="20.0" />
-         </padding>
-         <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="220.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="false">
-                     <image>
-                        <Image url="@images/banner1.png" />
-                     </image>
-                  </ImageView>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-                     <children>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/DefaultIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </StackPane>
-                        <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="250.0" spacing="6.0">
-                           <children>
-                              <Label fx:id="usernameLabel" styleClass="white-text" stylesheets="@styles.css" text="Username" />
-                              <Label fx:id="roleLabel" styleClass="white-text" stylesheets="@styles.css" text="Role / Major" />
-                              <Label fx:id="nameLabel" styleClass="white-text" stylesheets="@styles.css" text="Equipped Title / Name" />
-                           </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.ProfileController">
+    <children>
+        <VBox prefHeight="800.0" prefWidth="1440.0" spacing="18.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="18.0" />
+            </padding>
+            <children>
+
+                <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1400.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleBack" prefHeight="48.0" prefWidth="140.0" styleClass="search-page-button" text="Back">
+                            <font>
+                                <Font size="28.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <StackPane prefHeight="270.0" prefWidth="1400.0" styleClass="profile-banner-card">
+                    <children>
+
+                        <ImageView fitHeight="270.0" fitWidth="1420.0" pickOnBounds="true" preserveRatio="false">
+                            <image>
+                                <Image url="@images/banner1.png" />
+                            </image>
+                        </ImageView>
+
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="218.0" prefWidth="1420.0" spacing="24.0" styleClass="profile-banner-overlay">
+                            <padding>
+                                <Insets bottom="24.0" left="28.0" right="28.0" top="24.0" />
+                            </padding>
+                            <children>
+
+                                <StackPane prefHeight="160.0" prefWidth="135.0" styleClass="profile-avatar-frame">
+                                    <children>
+                                        <StackPane prefHeight="178.0" prefWidth="156.0" styleClass="profile-image">
+                                            <children>
+                                                <ImageView fitHeight="166.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/DefaultIcon.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </StackPane>
+                                    </children>
+                                </StackPane>
+
+                                <VBox alignment="BOTTOM_LEFT" prefHeight="170.0" prefWidth="520.0" spacing="6.0">
+                                    <children>
+                                        <Label fx:id="nameLabel" styleClass="profile-name-large" text="Full Name">
+                                            <font>
+                                                <Font size="42.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="majorLabel" styleClass="profile-subinfo" text="Major: Computer Science">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="roleLabel" styleClass="profile-subinfo" text="Role: Student">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+
+                                <Region HBox.hgrow="ALWAYS" />
+
+                                <Button mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="48.0" prefWidth="190.0" styleClass="search-page-button" text="Edit Profile">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Button>
+
+                            </children>
+                        </HBox>
+
+                    </children>
+                </StackPane>
+
+                <VBox prefHeight="470.0" prefWidth="1400.0" spacing="20.0" styleClass="card">
+                    <padding>
+                        <Insets bottom="24.0" left="26.0" right="26.0" top="24.0" />
+                    </padding>
+                    <children>
+
+                        <VBox spacing="10.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="1348.0">
+                                    <children>
+                                        <Label styleClass="search-row-label" text="About">
+                                            <font>
+                                                <Font size="28.0" />
+                                            </font>
+                                        </Label>
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Button mnemonicParsing="false" onAction="#handleEditAbout" prefHeight="42.0" prefWidth="110.0" styleClass="search-filter-button" text="Edit">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="aboutLabel" prefWidth="1348.0" styleClass="white-text" text="About text goes here." wrapText="true">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                            </children>
                         </VBox>
-                        <Region prefHeight="180.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleEditProfile" stylesheets="@styles.css" text="Edit Profile" />
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </StackPane>
 
-            <VBox prefHeight="46.0" prefWidth="1400.0" spacing="15.0">
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-               <children>
-                  <HBox prefHeight="10.0" prefWidth="1400.0">
-                     <children>
-                        <Label styleClass="white-text" text="About" />
-                        <Region prefHeight="43.0" prefWidth="1155.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleEditAbout" text="Edit" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="29.0" prefWidth="1400.0">
-                     <children>
-                        <Label fx:id="aboutLabel" styleClass="white-text" stylesheets="@styles.css" text="About text" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                        <VBox spacing="10.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="1348.0">
+                                    <children>
+                                        <Label styleClass="search-row-label" text="Skills">
+                                            <font>
+                                                <Font size="28.0" />
+                                            </font>
+                                        </Label>
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Button mnemonicParsing="false" onAction="#handleEditSkills" prefHeight="42.0" prefWidth="110.0" styleClass="search-filter-button" text="Edit">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="skillsLabel" prefWidth="1348.0" styleClass="white-text" text="Skills text goes here." wrapText="true">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
 
-            <VBox layoutX="10.0" layoutY="150.0" prefHeight="49.0" prefWidth="1400.0" spacing="15.0">
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="1400.0">
-                     <children>
-                        <Label styleClass="white-text" stylesheets="@styles.css" text="Achievements" />
-                        <Region prefHeight="100.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleEditAchievements" stylesheets="@styles.css" text="Edit" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="29.0" prefWidth="1400.0">
-                     <children>
-                        <Label fx:id="achievementsLabel" styleClass="white-text" text="Achievements text" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                        <VBox spacing="10.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="1348.0">
+                                    <children>
+                                        <Label styleClass="search-row-label" text="Achievements">
+                                            <font>
+                                                <Font size="28.0" />
+                                            </font>
+                                        </Label>
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Button mnemonicParsing="false" onAction="#handleEditAchievements" prefHeight="42.0" prefWidth="110.0" styleClass="search-filter-button" text="Edit">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="achievementsLabel" prefWidth="1348.0" styleClass="white-text" text="Achievements text goes here." wrapText="true">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
 
-            <VBox layoutX="10.0" layoutY="248.0" prefHeight="49.0" prefWidth="1400.0" spacing="15.0">
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="1400.0">
-                     <children>
-                        <Label styleClass="white-text" stylesheets="@styles.css" text="Skills" />
-                        <Region prefHeight="100.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleEditSkills" stylesheets="@styles.css" text="Edit" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="29.0" prefWidth="1400.0">
-                     <children>
-                        <Label fx:id="skillsLabel" styleClass="white-text" stylesheets="@styles.css" text="Skills text" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                        <VBox spacing="10.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="1348.0">
+                                    <children>
+                                        <Label styleClass="search-row-label" text="Stats">
+                                            <font>
+                                                <Font size="28.0" />
+                                            </font>
+                                        </Label>
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Button mnemonicParsing="false" onAction="#handleEditStatistics" prefHeight="42.0" prefWidth="110.0" styleClass="search-filter-button" text="Edit">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="statisticsLabel" prefWidth="1348.0" styleClass="white-text" text="Stats text goes here." wrapText="true">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
 
-            <VBox layoutX="10.0" layoutY="346.0" prefHeight="49.0" prefWidth="1400.0" spacing="15.0">
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="1400.0">
-                     <children>
-                        <Label styleClass="white-text" stylesheets="@styles.css" text="Stats" />
-                        <Region prefHeight="100.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleEditStatistics" stylesheets="@styles.css" text="Edit" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="29.0" prefWidth="1400.0">
-                     <children>
-                        <Label fx:id="statisticsLabel" styleClass="white-text" stylesheets="@styles.css" text="Stats text" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+                    </children>
+                </VBox>
 
-      <Button alignment="BOTTOM_LEFT"
-              layoutX="6.0" layoutY="11.0"
-              mnemonicParsing="false"
-              onAction="#handleBack"
-              prefHeight="21.0" prefWidth="46.0"
-              stylesheets="@styles.css"
-              text="Back" />
-   </children>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
