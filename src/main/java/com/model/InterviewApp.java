@@ -154,6 +154,25 @@ public class InterviewApp {
     }
 
     /**
+     * Method to search for questions with a keyword
+     * @param keyword the keyword to search for in the question titles and descriptions
+     * @return a list of questions that match the keyword in the title or description
+     */
+    public ArrayList<QuestionPost> searchQuestions(String keyword) 
+    {
+        return PostManager.getInstance().searchQuestions(keyword);
+    }
+
+    /**
+     * Method to get all the questions in the system
+     * @return all the questions in the system
+     */
+    public ArrayList<QuestionPost> getAllQuestions() 
+    {
+        return postManager.getAllQuestions();
+    }
+
+    /**
      * Method to add a saved question
      * @return true if the question was saved
      */
