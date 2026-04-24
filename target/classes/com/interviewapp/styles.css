@@ -388,7 +388,7 @@
     -fx-font-weight: bold;
 }
 
-.signup-button {
+.signin-button {
     -fx-background-color: #eeeeee;
     -fx-background-radius: 18;
     -fx-text-fill: grey;
