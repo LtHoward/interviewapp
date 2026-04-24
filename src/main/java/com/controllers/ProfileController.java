@@ -134,8 +134,8 @@ public class ProfileController {
     @FXML
     private void handleBack(ActionEvent event) {
         try {
-            FXMLLoader loader = App.setRootWithLoader("dashboard");
-            DashboardController controller = loader.getController();
+            FXMLLoader loader = App.setRootWithLoader("studentDashboard");
+            StudentDashboardController controller = loader.getController();
             controller.setUser(currentUser);
         } catch (Exception e) {
             e.printStackTrace();

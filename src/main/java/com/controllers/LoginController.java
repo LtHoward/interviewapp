@@ -29,8 +29,8 @@ public class LoginController {
 
         if (user != null) {
             try {
-                FXMLLoader loader = App.setRootWithLoader("dashboard");
-                DashboardController controller = loader.getController();
+                FXMLLoader loader = App.setRootWithLoader("studentDashboard");
+                StudentDashboardController controller = loader.getController();
                 controller.setUser(user);
 
                 System.out.println("Logged in as: " + user.getUsername());
