@@ -26,7 +26,7 @@
             </VBox>
          </children>
       </HBox>
-      <ComboBox fx:id="roleoption" onAction="#handleComboBoxAction" prefWidth="150.0" promptText="Pick your role" styleClass="signintextfield" stylesheets="@styles.css" visibleRowCount="3">
+      <ComboBox fx:id="roleComboBox" onAction="#handleComboBoxAction" prefWidth="150.0" promptText="Pick your role" styleClass="signintextfield" stylesheets="@styles.css" visibleRowCount="3">
          <StackPane.margin>
             <Insets left="30.0" />
          </StackPane.margin>

@@ -1,5 +1,9 @@
 package com.controllers;
 
+import java.io.IOException;
+
+import com.interviewapp.App;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,13 +27,11 @@ public class RoleController {
     @FXML
     private StackPane overlaypane;
 
-    @FXML
-    private ComboBox<String> roleoption;
-
     @FXML 
     private ComboBox<String> yearComboBox;
 
-    @FXML private ComboBox<String> roleComboBox;
+    @FXML 
+    private ComboBox<String> roleComboBox;
 
     @FXML 
     private TextField majorField;
@@ -43,6 +45,9 @@ public class RoleController {
     @FXML 
     private void intialize() {
         roleComboBox.getItems().addAll("Student", "Contributor", "Administrator");
+        majorComboBox.getItems().addAll("Computer Science", "Computer Engineering", "Computer Information Systems");
+        yearComboBox.getItems().addAll("Freshman", "Sophomore", "Junior", "Senior", "Graduate");
+
     }
 
     @FXML
@@ -51,38 +56,40 @@ public class RoleController {
         if (selectedRole != null) {
             roleField.setText(selectedRole);
         }
+    }
 
-        if (selectedRole.equals("Student")) {
-            majorField.setVisible(true);
-            yearField.setVisible(true);
+    @FXML
+    void handleMajor(ActionEvent event) throws IOException{
+        String selectedMajor = majorComboBox.getValue();
+        if (selectedMajor != null) {
+            majorField.setText(selectedMajor);
+
+        }
+    }
+
+    @FXML
+    void handleYear(ActionEvent event) throws IOException{
+        String selectedYear = yearComboBox.getValue();
+        if (selectedYear != null) {
+            yearField.setText(selectedYear);
+        }
+    }
+
+    @FXML
+    void switchtonext(ActionEvent event) throws IOException{
+        String selectedRole = roleComboBox.getValue();
+        if (selectedRole == null) {
+            return;
+        }
+        if("Student".equals(selectedRole)) {
+            overlaypane.setVisible(true);
         } else {
-            majorField.setVisible(false);
-            yearField.setVisible(false);
-        }
-        
-        if (selectedRole.equals("Contributor") || selectedRole.equals("Administrator")) {
-            majorField.setVisible(false);
-            yearField.setVisible(false);
+        overlaypane.setVisible(false);
         }
     }
 
     @FXML
-    void handleMajor(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleYear(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchtonext(ActionEvent event) {
-
-    }
-
-    @FXML
-    void switchtosignup(ActionEvent event) {
-
+    void switchtosignup(ActionEvent event) throws IOException{
+        App.setRoot("signup");
     }
 }
