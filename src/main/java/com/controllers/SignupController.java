@@ -2,13 +2,14 @@ package com.controllers;
 
 import java.io.IOException;
 
+import com.interviewapp.App;
 import com.model.UserManager;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
 
 
 
@@ -34,8 +35,30 @@ public class SignupController {
         String password = passwordField.getText();
         String firstname = firstNameField.getText();
         String lastname = lastNameField.getText();
-        String 
+        String major = majorField.getText();
+        String role = roleField.getText();
+
         
+        if (username.equals("") || email.equals("") || password.equals("") || firstname.equals("") || lastname.equals("") ) {
+            errorLabel.setText("Sorry, You cannot leave blank fields.");
+            return;
+        }
+
+        if (userManager.getUser(username) != null) {
+            errorLabel.setText("Sorry, username is taken.");
+            return;
+        }
+
+
+        if (!userManager.addUser(username, email, password, firstname, lastname, null, null, null)) {
+            errorLabel.setText("Sorry, this user couldn't be created.");
+            return;
+        }
+    }
+
+    @FXML 
+    private void switchToLogin() throws IOException {
+        App.setRoot("login");
     }
 
 }
