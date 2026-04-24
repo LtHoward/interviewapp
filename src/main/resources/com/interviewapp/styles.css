@@ -1463,3 +1463,68 @@
     -fx-font-size: 20px;
     -fx-font-weight: 700;
 }
+
+/* ================= ABOUT US PAGE ================= */
+.about-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.about-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.about-scroll > .corner {
+    -fx-background-color: transparent;
+}
+
+.about-page-content {
+    -fx-spacing: 22;
+}
+
+.about-hero-card {
+    -fx-background-color: rgba(10, 18, 60, 0.45);
+    -fx-background-radius: 28;
+    -fx-border-radius: 28;
+    -fx-border-color: rgba(90,140,255,0.18);
+    -fx-border-width: 2;
+    -fx-padding: 24 26 24 26;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 16, 0.2, 0, 3);
+}
+
+.about-body-text {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-line-spacing: 5px;
+    -fx-wrap-text: true;
+}
+
+.about-scroll .scroll-bar:vertical,
+.about-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.about-scroll .scroll-bar:vertical .track,
+.about-scroll .scroll-bar:horizontal .track {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+}
+
+.about-scroll .scroll-bar:vertical .thumb,
+.about-scroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #5f6f94;
+    -fx-background-radius: 10px;
+}
+
+.about-scroll .scroll-bar .increment-button,
+.about-scroll .scroll-bar .decrement-button {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-border-color: transparent;
+}
+
+.about-scroll .scroll-bar .increment-arrow,
+.about-scroll .scroll-bar .decrement-arrow {
+    -fx-background-color: #cfd8ee;
+}

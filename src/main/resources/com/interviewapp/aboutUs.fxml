@@ -11,34 +11,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" fx:controller="com.controllers.AboutUsController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.AboutUsController">
    <children>
-      <VBox prefHeight="800.0" prefWidth="1440.0" styleClass="main-text" stylesheets="@styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
+      <VBox prefHeight="800.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
 
-            <!-- Header copied from login.fxml -->
-            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" styleClass="top-bar">
+            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" prefWidth="1440.0" styleClass="top-bar">
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="69.0" minWidth="75.0" prefHeight="272.0" prefWidth="108.0" styleClass="app-logo">
                      <children>
-                        <Button mnemonicParsing="false" opacity="0.0" text="Return" onAction="#switchToLogin" />
-                     </children></StackPane>
-
-                  <Label prefHeight="42.0" prefWidth="266.0" styleClass="app-title" text="Interview App" />
-
-                  <Pane HBox.hgrow="ALWAYS" />
-
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" styleClass="nav-text" text="About Us" />
+                        <Button mnemonicParsing="false" onAction="#switchToLogin" opacity="0.0" text="Return" />
+                     </children>
+                  </StackPane>
+                  <Label prefHeight="52.0" prefWidth="335.0" styleClass="app-title" text="Interview App" HBox.hgrow="ALWAYS" />
+                  <Pane prefHeight="23.0" prefWidth="904.0" />
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="nav-text" text="About Us" />
                </children>
             </HBox>
+
             <Region prefHeight="124.0" prefWidth="1440.0" />
 
-            <!-- Main content area -->
-            <StackPane prefHeight="327.0" prefWidth="1235.0">
+            <StackPane prefHeight="327.0" prefWidth="1203.0">
                <children>
-                  <VBox alignment="CENTER" maxWidth="900.0" prefHeight="327.0" prefWidth="718.0" spacing="20.0" styleClass="login-card">
+                  <VBox alignment="CENTER" maxWidth="900.0" prefHeight="327.0" prefWidth="718.0" spacing="20.0" styleClass="about-us-card">
                      <children>
                         <Label prefHeight="89.0" prefWidth="287.0" styleClass="hero-title" text="About Us">
                            <font>
