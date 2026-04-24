@@ -677,6 +677,15 @@
     -fx-spacing: 14;
 }
 
+.question-title-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: 650;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 10;
+}
 
 .question-icon-box {
     -fx-background-color: linear-gradient(to bottom, #d266ff, #9647ff);

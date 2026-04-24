@@ -23,11 +23,18 @@ import javafx.scene.layout.VBox;
 
 public class QuestionsController {
 
+    private int userVote = 0; // 0 = none, 1 = upvote, -1 = downvote
     private User currentUser;
     private QuestionPost currentQuestion;
 
     @FXML
     private Label titleLabel;
+
+    @FXML
+    private Button upvoteButton;
+
+    @FXML
+    private Button downvoteButton;
 
     @FXML
     private Label authorLabel;

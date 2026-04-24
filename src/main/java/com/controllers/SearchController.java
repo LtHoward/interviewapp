@@ -92,8 +92,8 @@ public class SearchController {
     @FXML
     private void handleBack(ActionEvent event) {
         try {
-            FXMLLoader loader = App.setRootWithLoader("dashboard");
-            DashboardController controller = loader.getController();
+            FXMLLoader loader = App.setRootWithLoader("studentDashboard");
+            StudentDashboardController controller = loader.getController();
             controller.setUser(currentUser);
         } catch (Exception e) {
             e.printStackTrace();
@@ -268,5 +268,14 @@ public class SearchController {
         }
 
         return formatted.toString();
+    }
+
+    public void addTagFromDashboard(String tag) {
+        if (tag == null || tag.trim().isEmpty()) {
+            return;
+        }
+
+        tagInputField.setText(tag);
+        AddTag(null);
     }
 }
