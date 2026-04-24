@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,9 +18,9 @@
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" spacing="20.0" styleClass="top-bar" BorderPane.alignment="CENTER">
          <children>
            <Button mnemonicParsing="false" onAction="#handleBack" styleClass="back-icon-button" text="&lt;" />
-            <StackPane prefHeight="70.0" prefWidth="70.0">
+            <StackPane prefHeight="70.0" prefWidth="70.0" styleClass="icon-box">
                <children>
-                  <StackPane prefHeight="70.0" prefWidth="70.0" />
+                  <Label styleClass="section-title" text="?" />
                </children>
             </StackPane>
             <Label styleClass="simple-title" text="View Question" />
@@ -41,9 +42,15 @@
                               <Pane prefHeight="88.0" prefWidth="66.0" />
                               <Label fx:id="tagsLabel" styleClass="section-subtitle" text="Tags" />
                               <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" styleClass="vote-icon-button" text="up" />
-                              <Label fx:id="scoreLabel" styleClass="section-subtitle" text="score" />
-                              <Button mnemonicParsing="false" styleClass="vote-icon-button" text="down" />
+                              <Button fx:id="upvoteButton" onAction="#handleUpvote" styleClass="vote-button" text="">
+                                 <graphic>
+                                    <StackPane minHeight="35.0" prefHeight="30.0" prefWidth="35.0" styleClass="upvote-ivon" />
+                                 </graphic></Button>
+                              <Label fx:id="scoreLabel" styleClass="section-subtitle" text="0" />
+                              <Button fx:id="downvoteButton" onAction="#handleDownvote" styleClass="vote-button" text="">
+                                 <graphic>
+                                    <StackPane prefHeight="35.0" prefWidth="35.0" styleClass="downvote-icon" />
+                                 </graphic></Button>
                            </children>
                         </HBox>
                      </children></VBox>
@@ -69,8 +76,16 @@
                         <!-- Add comment row -->
                         <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="add-comment-row">
                            <children>
-                              <StackPane prefHeight="39.0" prefWidth="60.0" styleClass="comments-user-avatar" />
-                              <TextField fx:id="commentField" prefHeight="1.0" prefWidth="508.0" promptText="Add a comment..." onAction="#handleAddComment" styleClass="pill-field" />
+                              <StackPane maxHeight="45.0" maxWidth="45.0" minHeight="45.0" minWidth="45.0" prefHeight="45.0" prefWidth="45.0" styleClass="comments-user-avatar">
+                                 <children>
+                                    <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DefaultIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <TextField fx:id="commentField" onAction="#handleAddComment" prefHeight="1.0" prefWidth="508.0" promptText="Add a comment..." styleClass="pill-field" />
                            </children>
                         </HBox>
                         <!-- Comments list -->

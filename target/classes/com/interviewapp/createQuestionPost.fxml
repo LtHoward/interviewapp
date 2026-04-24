@@ -23,6 +23,7 @@
             <StackPane prefHeight="70.0" prefWidth="70.0">
                <children>
                   <StackPane prefHeight="70.0" prefWidth="70.0" />
+                  <Label text="Label" />
                </children>
             </StackPane>
             <Label styleClass="simple-title" text="Create Question Post" />

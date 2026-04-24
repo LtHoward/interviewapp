@@ -60,6 +60,24 @@
     -fx-background-position: center;
 }
 
+.upvote-ivon {
+    -fx-background-image: url("images/icons/upvote.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.downvote-icon {
+    -fx-background-image: url("images/icons/downvote.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.vote-button {
+    -fx-background-color: transparent;
+}
+
 .icon-box {
     -fx-pref-width: 60px;
     -fx-pref-height: 60px;
@@ -1270,8 +1288,6 @@
     -fx-background-color: rgba(8, 18, 60, 0.65);
     -fx-background-radius: 18px;
     -fx-border-radius: 18px;
-    -fx-border-color: #203969;
-    -fx-border-width: 2px;
     -fx-padding: 12px;
 }
 
