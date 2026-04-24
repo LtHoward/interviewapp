@@ -2,6 +2,7 @@ module com.interviewapp {
     requires javafx.controls;
     requires javafx.fxml;
     requires json.simple;
+    requires java.logging; //backup library
     requires junit;
     
     opens com.controllers to javafx.fxml;
