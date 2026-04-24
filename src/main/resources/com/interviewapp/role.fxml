@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.RoleController">
    <children>
       <HBox prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css">
          <children>
@@ -37,5 +36,39 @@
             <Insets left="30.0" top="300.0" />
          </StackPane.margin>
       </Button>
+      <StackPane fx:id="overlaypane" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="674.0" styleClass="createaccount-bg" stylesheets="@styles.css" />
+            <Label styleClass="createaccount-label" stylesheets="@styles.css" text="Academic Information">
+               <StackPane.margin>
+                  <Insets bottom="500.0" />
+               </StackPane.margin>
+            </Label>
+            <ComboBox fx:id="majorComboBox" onAction="#handleMajor" prefWidth="150.0" styleClass="signintextfield" stylesheets="@styles.css">
+               <StackPane.margin>
+                  <Insets bottom="100.0" />
+               </StackPane.margin>
+            </ComboBox>
+            <Label styleClass="login-field" stylesheets="@styles.css" text="Major">
+               <StackPane.margin>
+                  <Insets bottom="250.0" right="500.0" />
+               </StackPane.margin>
+            </Label>
+            <ComboBox fx:id="yearComboBox" onAction="#handleYear" prefWidth="150.0" styleClass="signintextfield" stylesheets="@styles.css">
+               <StackPane.margin>
+                  <Insets top="200.0" />
+               </StackPane.margin>
+            </ComboBox>
+            <Label styleClass="login-field" stylesheets="@styles.css" text="Year">
+               <StackPane.margin>
+                  <Insets right="500.0" top="50.0" />
+               </StackPane.margin>
+            </Label>
+            <Button fx:id="continuestep" mnemonicParsing="false" onAction="#switchtosignup" styleClass="continue-button" stylesheets="@styles.css" text="Continue">
+               <StackPane.margin>
+                  <Insets top="500.0" />
+               </StackPane.margin>
+            </Button>
+         </children></StackPane>
    </children>
 </StackPane>
