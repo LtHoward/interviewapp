@@ -4,154 +4,136 @@ import com.interviewapp.App;
 import com.model.InterviewApp;
 import com.model.QuestionPost;
 import com.model.User;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Controller for the Search page of the Interview App.
+ * <p>
+ * This controller is responsible for:
+ * <ul>
+ *     <li>Handling keyword-based question searches</li>
+ *     <li>Displaying a dynamic list of search results</li>
+ *     <li>Filtering questions using user-selected tags</li>
+ *     <li>Allowing users to add/remove/clear tags</li>
+ *     <li>Navigating between pages (dashboard and question view)</li>
+ * </ul>
+ * It communicates with the {@link InterviewApp} backend to retrieve and filter
+ * {@link QuestionPost} data.
+ */
 public class SearchController {
 
-    @FXML private TextField searchField;
-    @FXML private VBox resultsContainer;
-    @FXML private Button easyButton;
-    @FXML private Button mediumButton;
-    @FXML private Button hardButton;
-    @FXML private Button clearDifficultyButton;
-    @FXML private TextField tagInputField;
-    @FXML private Button clearTagsButton;
-    @FXML private FlowPane selectedTagsContainer;
+    /** Text field where the user types their search query. */
+    @FXML
+    private TextField searchField;
 
+    /** Container that holds dynamically generated search result buttons. */
+    @FXML
+    private VBox resultsContainer;
+
+    /** Text field where the user enters tags for filtering. */
+    @FXML
+    private TextField tagInputField;
+
+    /** Container that visually displays selected tags. */
+    @FXML
+    private FlowPane selectedTagsContainer;
+
+    /** Reference to the application’s backend logic. */
     private InterviewApp app;
-    private User currentUser;
-    private String selectedDifficulty;
-    private final ArrayList<String> selectedTags = new ArrayList<>();
 
+    /** The currently logged-in user. */
+    private User currentUser;
+
+    /** Set of selected tags used for filtering results. */
+    private Set<String> selectedTags = new HashSet<>();
+
+    /**
+     * Initializes the controller after the FXML has been loaded.
+     * <p>
+     * Sets up the backend instance and attaches a listener to the search field
+     * so results update dynamically as the user types.
+     */
     @FXML
     public void initialize() {
         app = new InterviewApp();
 
-        searchField.textProperty().addListener((obs, oldVal, newVal) ->
-            loadQuestions(newVal.trim())
-        );
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> {
+            loadQuestions(newVal.trim());
+        });
 
-        if (tagInputField != null) {
-            tagInputField.setOnAction(event -> addTag(null));
-        }
-
-        updateDiffButtons();
-        refreshTagChips();
         loadQuestions("");
     }
 
+    /**
+     * Sets the current logged-in user.
+     *
+     * @param user the user who is currently logged in
+     */
     public void setUser(User user) {
         this.currentUser = user;
     }
 
-    // ── Navigation ───────────────────────────────────────────────────────────
-
+    /**
+     * Handles navigation back to the dashboard page.
+     *
+     * @param event the action event triggered by the back button
+     */
     @FXML
-    private void pressBack(ActionEvent event) {
+    private void handleBack(ActionEvent event) {
         try {
-            javafx.fxml.FXMLLoader loader = App.setRootWithLoader("studentDashboard");
-            StudentDashboardController controller = loader.getController();
+            FXMLLoader loader = App.setRootWithLoader("dashboard");
+            DashboardController controller = loader.getController();
             controller.setUser(currentUser);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // ── Search ───────────────────────────────────────────────────────────────
-
+    /**
+     * Handles the search button press.
+     * <p>
+     * Reloads questions using the current search field input.
+     *
+     * @param event the action event triggered by the search button
+     */
     @FXML
-    private void searchQuestion(ActionEvent event) {
+    private void handleSearch(ActionEvent event) {
         loadQuestions(searchField.getText().trim());
     }
 
-    // ── Difficulty filters ───────────────────────────────────────────────────
-
-    @FXML
-    private void selectEasy(ActionEvent event) {
-        setDifficulty("easy");
-    }
-
-    @FXML
-    private void selectMedium(ActionEvent event) {
-        setDifficulty("medium");
-    }
-
-    @FXML
-    private void selectHard(ActionEvent event) {
-        setDifficulty("hard");
-    }
-
-    @FXML
-    private void clearDiff(ActionEvent event) {
-        selectedDifficulty = null;
-        updateDiffButtons();
-        loadQuestions(searchField.getText().trim());
-    }
-
-    // ── Tag filters ──────────────────────────────────────────────────────────
-
-    @FXML
-    private void addTag(ActionEvent event) {
-        if (tagInputField == null) return;
-
-        String tag = normalizeTag(tagInputField.getText());
-        if (tag.isEmpty()) return;
-
-        if (!selectedTags.contains(tag)) {
-            selectedTags.add(tag);
-        }
-
-        tagInputField.clear();
-        refreshTagChips();
-        loadQuestions(searchField.getText().trim());
-    }
-
-    @FXML
-    private void clearTags(ActionEvent event) {
-        selectedTags.clear();
-        refreshTagChips();
-        loadQuestions(searchField.getText().trim());
-    }
-
-    // ── Question selection ───────────────────────────────────────────────────
-
-    @FXML
-    private void selectedQuestion(ActionEvent event) {
-        Button clicked = (Button) event.getSource();
-        QuestionPost question = (QuestionPost) clicked.getUserData();
-        if (question == null) return;
-
-        try {
-            javafx.fxml.FXMLLoader loader = App.setRootWithLoader("questionDetail");
-            // TODO: swap in your actual question detail controller
-            // QuestionDetailController controller = loader.getController();
-            // controller.setQuestion(question);
-            // controller.setUser(currentUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // ── Core loading & filtering ─────────────────────────────────────────────
-
+    /**
+     * Loads and displays questions based on a keyword and selected tags.
+     * <p>
+     * If no keyword is provided, all questions are shown.
+     * If tags are selected, only questions containing at least one matching tag
+     * are displayed.
+     *
+     * @param keyword the search term entered by the user
+     */
     private void loadQuestions(String keyword) {
         resultsContainer.getChildren().clear();
 
-        ArrayList<QuestionPost> questions = keyword.isEmpty()
-            ? app.getAllQuestions()
-            : app.searchQuestions(keyword);
+        ArrayList<QuestionPost> questions;
 
-        questions = filterQuestions(questions);
+        if (keyword.isEmpty()) {
+            questions = app.getAllQuestions();
+        } else {
+            questions = app.searchQuestions(keyword);
+        }
 
         if (questions == null || questions.isEmpty()) {
-            Button empty = new Button(buildNoResultsMessage(keyword));
-            empty.getStyleClass().add("search-result-empty");
+            Button empty = new Button("No questions found for \"" + keyword + "\"");
             empty.setMaxWidth(Double.MAX_VALUE);
             empty.setDisable(true);
             resultsContainer.getChildren().add(empty);
@@ -159,128 +141,132 @@ public class SearchController {
         }
 
         for (QuestionPost q : questions) {
-            String label = formatDifficulty(q.getDifficulty()) + ": " + q.getTitle();
+
+            // Apply tag filtering
+            if (!selectedTags.isEmpty()) {
+                if (q.getTags() == null) continue;
+
+                boolean matches = false;
+
+                for (String tag : q.getTags()) {
+                    if (selectedTags.contains(tag.toLowerCase())) {
+                        matches = true;
+                        break;
+                    }
+                }
+
+                if (!matches) continue;
+            }
+
+            String label = formatEnum(q.getDifficulty()) + ": " + q.getTitle();
+
             Button btn = new Button(label);
             btn.getStyleClass().add("search-result-button");
+            btn.setUserData(q);
             btn.setMaxWidth(Double.MAX_VALUE);
             btn.setPrefHeight(70);
-            btn.setUserData(q); // store question reference for navigation
-            btn.setOnAction(this::selectedQuestion);
+            btn.setOnAction(this::handleQuestionClick);
+
             resultsContainer.getChildren().add(btn);
         }
     }
 
-    private ArrayList<QuestionPost> filterQuestions(ArrayList<QuestionPost> questions) {
-        if (questions == null || questions.isEmpty()) return questions;
+    /**
+     * Handles when a user clicks a question result.
+     * <p>
+     * Navigates to the question view page and passes the selected question
+     * and current user.
+     *
+     * @param event the action event triggered by clicking a question
+     */
+    @FXML
+    private void handleQuestionClick(ActionEvent event) {
+        Button clicked = (Button) event.getSource();
+        QuestionPost selectedQuestion = (QuestionPost) clicked.getUserData();
 
-        ArrayList<QuestionPost> filtered = new ArrayList<>();
-        for (QuestionPost q : questions) {
-            if (matchesDifficulty(q) && matchesTags(q)) {
-                filtered.add(q);
-            }
+        try {
+            FXMLLoader loader = App.setRootWithLoader("questionPost");
+            QuestionsController controller = loader.getController();
+            controller.setData(currentUser, selectedQuestion);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return filtered;
     }
 
-    private boolean matchesDifficulty(QuestionPost question) {
-        if (selectedDifficulty == null || selectedDifficulty.isEmpty()) return true;
-        if (question == null || question.getDifficulty() == null) return false;
-        return question.getDifficulty().toString().equalsIgnoreCase(selectedDifficulty);
-    }
+    /**
+     * Adds a tag to the selected tag list and updates the UI.
+     * <p>
+     * Prevents duplicate or empty tags. Clicking a tag removes it.
+     *
+     * @param event the action event triggered by the "Add Tag" button
+     */
+    @FXML
+    private void AddTag(ActionEvent event) {
+        String tag = tagInputField.getText().trim().toLowerCase();
 
-    private boolean matchesTags(QuestionPost question) {
-        if (selectedTags.isEmpty()) return true;
-        if (question == null || question.getTags() == null || question.getTags().isEmpty()) return false;
-
-        for (String selectedTag : selectedTags) {
-            boolean found = false;
-            for (String questionTag : question.getTags()) {
-                if (questionTag != null && questionTag.equalsIgnoreCase(selectedTag)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) return false;
+        if (tag.isEmpty() || selectedTags.contains(tag)) {
+            return;
         }
-        return true;
-    }
 
-    // ── UI helpers ───────────────────────────────────────────────────────────
+        selectedTags.add(tag);
 
-    private void setDifficulty(String difficulty) {
-        if (difficulty == null || difficulty.isEmpty()) return;
-        selectedDifficulty = difficulty.equalsIgnoreCase(selectedDifficulty) ? null : difficulty;
-        updateDiffButtons();
+        Button tagButton = new Button(tag);
+        tagButton.getStyleClass().add("tag-pill");
+
+        tagButton.setOnAction(e -> {
+            selectedTags.remove(tag);
+            selectedTagsContainer.getChildren().remove(tagButton);
+            loadQuestions(searchField.getText().trim());
+        });
+
+        selectedTagsContainer.getChildren().add(tagButton);
+
+        tagInputField.clear();
         loadQuestions(searchField.getText().trim());
     }
 
-    private void updateDiffButtons() {
-        updateDiffButton(easyButton, "easy");
-        updateDiffButton(mediumButton, "medium");
-        updateDiffButton(hardButton, "hard");
-        updateDiffButton(clearDifficultyButton, null);
-    }
-
-    private void updateDiffButton(Button button, String difficulty) {
-        if (button == null) return;
-        button.getStyleClass().removeAll("search-filter-button", "search-filter-button-selected");
-        boolean isSelected = difficulty != null && difficulty.equalsIgnoreCase(selectedDifficulty);
-        button.getStyleClass().add(isSelected ? "search-filter-button-selected" : "search-filter-button");
-    }
-
-    private void refreshTagChips() {
-        if (selectedTagsContainer == null) return;
+    /**
+     * Clears all selected tags and refreshes the results.
+     *
+     * @param event the action event triggered by the "Clear Tags" button
+     */
+    @FXML
+    private void ClearTags(ActionEvent event) {
+        selectedTags.clear();
         selectedTagsContainer.getChildren().clear();
-
-        for (String tag : selectedTags) {
-            Button chip = new Button("#" + tag + "  ×");
-            chip.getStyleClass().add("search-tag-chip");
-            chip.setOnAction(event -> removeTag(tag));
-            selectedTagsContainer.getChildren().add(chip);
-        }
-    }
-
-    private void removeTag(String tag) {
-        selectedTags.remove(tag);
-        refreshTagChips();
         loadQuestions(searchField.getText().trim());
     }
 
-    // ── Utilities ────────────────────────────────────────────────────────────
-
-    private String normalizeTag(String tag) {
-        if (tag == null) return "";
-        String normalized = tag.trim().toLowerCase();
-        return normalized.startsWith("#") ? normalized.substring(1) : normalized;
-    }
-
-    private String formatDifficulty(Object difficulty) {
-        if (difficulty == null) return "Unknown";
-        String value = difficulty.toString().toLowerCase();
-        if (value.isEmpty()) return "Unknown";
-        return Character.toUpperCase(value.charAt(0)) + value.substring(1);
-    }
-
-    private String buildNoResultsMessage(String keyword) {
-        boolean hasKeyword = keyword != null && !keyword.isEmpty();
-        boolean hasDifficulty = selectedDifficulty != null && !selectedDifficulty.isEmpty();
-        boolean hasTags = !selectedTags.isEmpty();
-
-        if (hasKeyword && hasDifficulty && hasTags) {
-            return "No results for \"" + keyword + "\" with difficulty and tag filters";
-        } else if (hasKeyword && hasDifficulty) {
-            return "No results for \"" + keyword + "\" with difficulty: " + formatDifficulty(selectedDifficulty);
-        } else if (hasKeyword && hasTags) {
-            return "No results for \"" + keyword + "\" with selected tags";
-        } else if (hasDifficulty && hasTags) {
-            return "No results for selected difficulty and tags";
-        } else if (hasDifficulty) {
-            return "No results for difficulty: " + formatDifficulty(selectedDifficulty);
-        } else if (hasTags) {
-            return "No results for selected tags";
-        } else if (hasKeyword) {
-            return "No results for \"" + keyword + "\"";
+    /**
+     * Converts an enum value into a user-friendly string.
+     * <p>
+     * Example:
+     * <pre>
+     * SYNTAX_SCOUT → Syntax Scout
+     * </pre>
+     *
+     * @param value the enum value to format
+     * @return a human-readable string representation
+     */
+    private String formatEnum(Enum<?> value) {
+        if (value == null) {
+            return "None";
         }
-        return "No questions found";
+
+        String[] words = value.name().toLowerCase().split("_");
+        StringBuilder formatted = new StringBuilder();
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].isEmpty()) continue;
+
+            formatted.append(Character.toUpperCase(words[i].charAt(0)))
+                     .append(words[i].substring(1));
+
+            if (i < words.length - 1) {
+                formatted.append(" ");
+            }
+        }
+
+        return formatted.toString();
     }
 }
