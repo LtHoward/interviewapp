@@ -18,7 +18,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1400.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#pressBack" prefHeight="48.0" prefWidth="140.0" styleClass="search-page-button" text="Back">
+                  <Button mnemonicParsing="false" onAction="#handleBack" prefHeight="48.0" prefWidth="140.0" styleClass="search-page-button" text="Back">
                      <font>
                         <Font name="ITFDevanagari-Book" size="28.0" />
                      </font>
@@ -34,7 +34,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="searchField" prefHeight="49.0" prefWidth="688.0" styleClass="search-text-field" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#SearchQuestion" prefHeight="49.0" prefWidth="179.0" styleClass="search-page-button" text="Search">
+                  <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="49.0" prefWidth="179.0" styleClass="search-page-button" text="Search">
                      <font>
                         <Font name="ITFDevanagari-Book" size="24.0" />
                      </font>
@@ -49,22 +49,22 @@
                         <Font name="ITFDevanagari-Book" size="26.0" />
                      </font>
                   </Label>
-                  <Button fx:id="easyButton" mnemonicParsing="false" onAction="#selectEasy" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Easy">
+                  <Button fx:id="easyButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Easy">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="mediumButton" mnemonicParsing="false" onAction="#selectMedium" prefHeight="42.0" prefWidth="140.0" styleClass="search-filter-button" text="Medium">
+                  <Button fx:id="mediumButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="140.0" styleClass="search-filter-button" text="Medium">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="hardButton" mnemonicParsing="false" onAction="#selectHard" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Hard">
+                  <Button fx:id="hardButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Hard">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="clearDifficultyButton" mnemonicParsing="false" onAction="#ClearDiff" prefHeight="42.0" prefWidth="130.0" styleClass="search-filter-button" text="Clear">
+                  <Button fx:id="clearDifficultyButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="130.0" styleClass="search-filter-button" text="Clear">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
