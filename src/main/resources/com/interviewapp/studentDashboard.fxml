@@ -108,9 +108,9 @@
                                                       </StackPane>
                                                    </children>
                                                 </StackPane>
-                                                <Label prefHeight="29.0" prefWidth="197.0" styleClass="card-title" text="Question Title" />
+                                                <Button fx:id="questionOfDayButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#openQuestionOfDay" prefHeight="70.0" prefWidth="420.0" styleClass="question-title-button" text="Question Title" />
                                                 <Pane prefHeight="70.0" prefWidth="307.0" HBox.hgrow="ALWAYS" />
-                                                <Label alignment="CENTER" prefHeight="15.0" prefWidth="129.0" styleClass="difficulty-badge" text="Difficulty" />
+                                                <Label fx:id="questionOfDayDifficultyLabel" alignment="CENTER" prefHeight="15.0" prefWidth="129.0" styleClass="difficulty-badge" text="Difficulty" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -129,33 +129,16 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-blue">
-                                                   <children>
-                                                      <Label styleClass="tag-label" text="Tag 1" />
-                                                   </children>
-                                                </StackPane>
-                                                <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-red" GridPane.rowIndex="1">
-                                                   <children>
-                                                      <Label styleClass="tag-label" text="Tag 3" />
-                                                   </children>
-                                                </StackPane>
-                                                <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-green" GridPane.columnIndex="1">
-                                                   <children>
-                                                      <Label styleClass="tag-label" text="Tag 2" />
-                                                   </children>
-                                                </StackPane>
-                                                <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-purple" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <children>
-                                                      <Label styleClass="tag-label" text="Tag 4" />
-                                                   </children>
-                                                </StackPane>
+                                                <Button fx:id="tagButtonOne" alignment="TOP_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#openTagSearch" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-blue" text="Tag 1" />
+                                                <Button fx:id="tagButtonTwo" alignment="TOP_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#openTagSearch" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-green" text="Tag 2" GridPane.columnIndex="1" />
+                                                <Button fx:id="tagButtonThree" alignment="TOP_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#openTagSearch" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-red" text="Tag 3" GridPane.rowIndex="1" />
+                                                <Button fx:id="tagButtonFour" alignment="TOP_LEFT" maxWidth="Infinity" mnemonicParsing="false" onAction="#openTagSearch" prefHeight="150.0" prefWidth="200.0" styleClass="tag-box-purple" text="Tag 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
                                     </VBox>
                                  </children>
                               </VBox>
-      
                               <VBox prefHeight="554.0" prefWidth="458.0" spacing="20.0" styleClass="right-column">
                                  <children>
       

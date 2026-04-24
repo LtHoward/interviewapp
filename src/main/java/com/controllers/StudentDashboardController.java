@@ -26,8 +26,34 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
+import com.model.QuestionPost;
 
 public class StudentDashboardController {
+
+    private InterviewApp app = new InterviewApp();
+    private QuestionPost questionOfDay;
+
+    @FXML
+    private Button questionOfDayButton;
+
+    @FXML
+    private Label questionOfDayDifficultyLabel;
+
+    @FXML
+    private Button tagButtonOne;
+
+    @FXML
+    private Button tagButtonTwo;
+
+    @FXML
+    private Button tagButtonThree;
+
+    @FXML
+    private Button tagButtonFour;
 
     private User currentUser;
 
@@ -128,6 +154,9 @@ public class StudentDashboardController {
         setButtonIcon(solutionsButton, "/com/interviewapp/images/icons/solutions.png", 32);
         setButtonIcon(profileButton, "/com/interviewapp/images/icons/profile.png", 32);
         setButtonIcon(settingsButton, "/com/interviewapp/images/icons/settings.png", 32);
+
+        populateQuestionOfDay();
+        populateTags();
     }
 
     @FXML
@@ -355,6 +384,115 @@ public class StudentDashboardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void populateQuestionOfDay() {
+        ArrayList<QuestionPost> questions = app.getAllQuestions();
+
+        if (questions == null || questions.isEmpty()) {
+            questionOfDay = null;
+            questionOfDayButton.setText("No questions available");
+            questionOfDayButton.setDisable(true);
+            questionOfDayDifficultyLabel.setText("N/A");
+            return;
+        }
+
+        Random random = new Random();
+        questionOfDay = questions.get(random.nextInt(questions.size()));
+
+        questionOfDayButton.setText(questionOfDay.getTitle());
+        questionOfDayButton.setDisable(false);
+        questionOfDayDifficultyLabel.setText(formatEnum(questionOfDay.getDifficulty()));
+    }
+
+    private void populateTags() {
+        ArrayList<QuestionPost> questions = app.getAllQuestions();
+        Set<String> tags = new HashSet<>();
+
+        for (QuestionPost question : questions) {
+            if (question.getTags() != null) {
+                tags.addAll(question.getTags());
+            }
+        }
+
+        ArrayList<String> tagList = new ArrayList<>(tags);
+
+        Button[] buttons = {
+            tagButtonOne,
+            tagButtonTwo,
+            tagButtonThree,
+            tagButtonFour
+        };
+
+        for (int i = 0; i < buttons.length; i++) {
+            if (i < tagList.size()) {
+                buttons[i].setText(formatTag(tagList.get(i)));
+                buttons[i].setUserData(tagList.get(i));
+                buttons[i].setDisable(false);
+                buttons[i].setVisible(true);
+            } else {
+                buttons[i].setText("");
+                buttons[i].setUserData(null);
+                buttons[i].setDisable(true);
+                buttons[i].setVisible(false);
+            }
+        }
+    }
+
+    @FXML
+    private void openQuestionOfDay(ActionEvent event) {
+        if (questionOfDay == null) {
+            return;
+        }
+
+        try {
+            FXMLLoader loader = App.setRootWithLoader("questionPost");
+            QuestionsController controller = loader.getController();
+            controller.setData(currentUser, questionOfDay);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void openTagSearch(ActionEvent event) {
+        Button clicked = (Button) event.getSource();
+        String tag = (String) clicked.getUserData();
+
+        if (tag == null || tag.isEmpty()) {
+            return;
+        }
+
+        try {
+            FXMLLoader loader = App.setRootWithLoader("search");
+            SearchController controller = loader.getController();
+            controller.setUser(currentUser);
+            controller.addTagFromDashboard(tag);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String formatTag(String tag) {
+        if (tag == null || tag.isEmpty()) {
+            return "";
+        }
+
+        String[] words = tag.toLowerCase().split("[_\\-\\s]+");
+        StringBuilder formatted = new StringBuilder();
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].isEmpty()) continue;
+
+            formatted.append(Character.toUpperCase(words[i].charAt(0)))
+                    .append(words[i].substring(1));
+
+            if (i < words.length - 1) {
+                formatted.append(" ");
+            }
+        }
+
+        return formatted.toString();
     }
 
 }

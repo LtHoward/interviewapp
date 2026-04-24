@@ -23,6 +23,7 @@
             <StackPane prefHeight="70.0" prefWidth="70.0">
                <children>
                   <StackPane prefHeight="70.0" prefWidth="70.0" />
+                  <Label text="Label" />
                </children>
             </StackPane>
             <Label styleClass="simple-title" text="Create Question Post" />
@@ -45,24 +46,23 @@
                   <VBox prefHeight="0.0" prefWidth="670.0" spacing="5.0" GridPane.vgrow="NEVER">
                      <children>
                         <Label styleClass="section-header" text="Enter Title" />
-                        <TextField maxHeight="40.0" styleClass="pill-field" VBox.vgrow="NEVER" />
+                        <TextField maxHeight="40.0" promptText="Enter a title..." styleClass="pill-field" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                   <VBox prefHeight="221.0" prefWidth="670.0" spacing="5.0" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="section-header" text="Enter Tags" />
-                        <TextField prefHeight="27.0" prefWidth="670.0" styleClass="pill-field" VBox.vgrow="NEVER" />
+                        <TextField prefHeight="27.0" prefWidth="670.0" promptText="Enter some tags...." styleClass="pill-field" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
                         <Label styleClass="section-header" text="Difficulty" />
-                        <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+                        <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="200.0" spacing="80.0">
                            <children>
-                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="difficulty-easy" text="Easy" />
-                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="difficulty-medium" text="Medium" />
-                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="difficulty-advanced" text="Advanced" />
-                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="difficulty-expert" text="Hard" />
+                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-easy" text="Easy" />
+                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-medium" text="Medium" />
+                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-expert" text="Hard" />
                            </children>
                         </HBox>
                      </children>
@@ -70,7 +70,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="section-header" text="Hints" />
-                        <TextField styleClass="pill-field" VBox.vgrow="NEVER" />
+                        <TextField promptText="Enter a hint..." styleClass="pill-field" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                </children>

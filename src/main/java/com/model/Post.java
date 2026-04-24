@@ -149,6 +149,10 @@ public abstract class Post {
         return score;
     }
 
+    public int setScore(int score) {
+        return this.score = score;
+    }
+
     /**
      * Method to get the upvote
      * @param user the user that made the upvote
