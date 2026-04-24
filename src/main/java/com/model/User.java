@@ -2,21 +2,21 @@ package com.model;
 import java.util.UUID;
 
 /**
- * Abstract class to repesent a user of the application, including student, contributor, and administrator users. 
- * It has method to get the user'd information like id, email, first and last name, password, and role. It also contain the method to reset the user's password.
+ * Abstract class to represent a user of the application, including student, contributor, and administrator users. 
+ * It has methods to get the user's information like id, email, first and last name, password, and role. It also contains the method to reset the user's password.
  * @author Myila Howard
  */
 public abstract class User {
     private final UUID userId;
-    private final String username;
-    private final String email;
+    private String username;
+    private String email;
     private String password;
-    private final String firstName;
-    private final String lastName;
+    private String firstName;
+    private String lastName;
     private final Role role;
 
     /**
-     * Constructor for the User class that initicalizes the user with the given parameters.
+     * Constructor for the User class that initializes the user with the given parameters.
      * @param id the id of the user to be created 
      * @param username the username of the user to be created
      * @param email the email of the user to be created 
@@ -25,7 +25,7 @@ public abstract class User {
      * @param lastName the last name of the username to be created 
      * @param role the role of the username to be created
      */
-    public User (UUID id, String username, String email, String password, String firstName, String lastName, Role role) {
+    public User(UUID id, String username, String email, String password, String firstName, String lastName, Role role) {
         this.userId = id;
         this.username = username;
         this.email = email;
@@ -35,13 +35,12 @@ public abstract class User {
         this.role = role;
     }
 
-
     /**
-     * Method to the the id of the user if valid
+     * Method to get the id of the user if valid
      * @return the id of the user
      * @author Myila Howard
      */
-    public UUID getId () {
+    public UUID getId() {
         return userId;
     }
 
@@ -55,12 +54,30 @@ public abstract class User {
     }
 
     /**
-     * Method to get the email of the user if vaild
+     * Method to set the username of the user
+     * @param username the new username of the user
+     * @author Jarris Lambert
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * Method to get the email of the user if valid
      * @return email
-     * @author myila Howard
+     * @author Myila Howard
      */
     public String getEmail() {
         return email;
+    }
+
+    /**
+     * Method to set the email of the user
+     * @param email the new email of the user
+     * @author Jarris Lambert
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -74,7 +91,7 @@ public abstract class User {
 
     /**
      * Method to get the first name of the user if valid.
-     * @return true if the first name is not null or empty, false otherwise
+     * @return the first name, or null if not set
      * @author Myila Howard
      */
     public String getFirstName() {
@@ -85,8 +102,17 @@ public abstract class User {
     }
 
     /**
+     * Method to set the first name of the user
+     * @param firstName the new first name of the user
+     * @author Jarris Lambert
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
      * Method to get the last name of the user if valid.
-     * @return true if the last name is not null or empty, false otherwise.
+     * @return the last name, or null if not set
      * @author Myila Howard
      */
     public String getLastName() {
@@ -96,14 +122,28 @@ public abstract class User {
         return lastName;
     }
 
-    public Role getStatus () {
+    /**
+     * Method to set the last name of the user
+     * @param lastName the new last name of the user
+     * @author Jarris Lambert
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * Method to get the role/status of the user
+     * @return the role of the user
+     * @author Myila Howard
+     */
+    public Role getStatus() {
         return role;
     }
 
     /**
-     * Mehthod to reset the user's password if the new password is the same as the old password,
+     * Method to reset the user's password if the new password is different from the old password,
      * otherwise return false and do not change the password.
-     * @param newPass the users new password
+     * @param newPass the user's new password
      * @return true if the password was successfully reset, false otherwise.
      * @author Myila Howard
      */
