@@ -21,6 +21,7 @@ com\model\PostContent.class
 com\model\Comment.class
 com\model\UserManager.class
 com\model\RewardType.class
+com\controllers\ResetPassword.class
 com\model\User.class
 com\controllers\SolutionsController$1.class
 com\model\PostManager.class

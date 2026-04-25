@@ -128,6 +128,11 @@ public class ProfileController {
 
     @FXML
     private void handleEditProfile(ActionEvent event) {
+        System.out.println("DEBUG: handleEditAbout fired, currentUser = " + currentUser);
+    if (!(currentUser instanceof Student)) {
+        System.out.println("DEBUG: currentUser is not a Student, returning");
+        return;
+    }
         if (!(currentUser instanceof Student)) return;
         Student student = (Student) currentUser;
 
