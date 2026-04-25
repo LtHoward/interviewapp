@@ -171,9 +171,13 @@ import java.util.UUID;
          * @return true if the password was successfully reset, false otherwise.
          * @author Myila Howard
          */
-        public boolean resetPassword (String username, String newPass) {
-            if(userExist(username)) {
-                return getUser(username).resetPassword(newPass);
+        public boolean resetPassword(String username, String newPass) {
+            if (userExist(username)) {
+                boolean changed = getUser(username).resetPassword(newPass);
+                if (changed) {
+                    DataWriter.saveUsers();
+                }
+                return changed;
             }
             return false;
         }

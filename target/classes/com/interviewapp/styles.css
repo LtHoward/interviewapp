@@ -1503,3 +1503,70 @@
     -fx-spacing: 20;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 18, 0.20, 0, 3);
 }
+
+/* ================= SETTINGS PAGE ================= */
+.root {
+    -fx-font-family: "ITF Devanagari Book";
+}
+
+.search-section-label {
+    -fx-text-fill: white;
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-font-family: "ITF Devanagari Book";
+}
+
+.search-row-label {
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-font-family: "ITF Devanagari Book";
+}
+
+.search-text-field {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #7f8da8;
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-color: #203969;
+    -fx-border-width: 2px;
+    -fx-font-size: 24px;
+    -fx-font-family: "ITF Devanagari Book";
+    -fx-padding: 12px 18px;
+}
+
+.search-page-button {
+    -fx-background-color: rgba(8, 18, 60, 0.65);
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-family: "ITF Devanagari Book";
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-color: #203969;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-padding: 12 24 12 24;
+}
+
+.settings-title {
+    -fx-text-fill: white;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-font-family: "ITF Devanagari Book";
+}
+
+.settings-danger-button {
+    -fx-background-color: rgba(90, 18, 34, 0.75);
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-font-family: "ITF Devanagari Book";
+    -fx-background-radius: 22px;
+    -fx-border-radius: 22px;
+    -fx-border-color: rgba(255, 110, 140, 0.45);
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-padding: 12 24 12 24;
+}
