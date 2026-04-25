@@ -21,6 +21,7 @@ public class Student extends User{
     private Progression progression;
     private ArrayList<Reward> rewards;
     private LocalDate lastActivityDate;
+    private ArrayList<String> skills;
 
     /**
      * Constructor for the Student class that initializes the student with the given parameters.
@@ -176,4 +177,21 @@ public class Student extends User{
     public Title getEquippedTitle(){
         return progression.getEquippedTitle();
     }
+
+    public ArrayList<String> getSkills() {
+    if (skills == null) skills = new ArrayList<>();
+    return skills;
+}
+
+public void setSkills(ArrayList<String> skills) {
+    this.skills = skills;
+}
+
+public void setMajor(Major major) {
+    this.major = major;
+}
+
+public void setSkillLevel(SkillLevel skillLevel) {
+    this.skillLevel = skillLevel;
+}
 }
