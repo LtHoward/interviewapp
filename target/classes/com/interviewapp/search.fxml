@@ -12,17 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="800.0" prefWidth="1440.0"
-            styleClass="main-bg" stylesheets="@styles.css"
-            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.controllers.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.SearchController">
    <children>
       <VBox prefHeight="800.0" prefWidth="1440.0" spacing="12.0">
          <children>
-
-            <!-- Back Button Row -->
-            <HBox alignment="CENTER_LEFT" prefHeight="55.0" maxWidth="Infinity" spacing="15.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1400.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#handleBack" prefHeight="48.0" prefWidth="140.0" styleClass="search-page-button" text="Back">
                      <font>
@@ -31,13 +25,12 @@
                   </Button>
                </children>
             </HBox>
-
-            <!-- Search Bar Row -->
-            <HBox alignment="CENTER_LEFT" prefHeight="70.0" maxWidth="Infinity" spacing="15.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1400.0" spacing="15.0">
                <children>
-                  <Label prefHeight="50.0" prefWidth="302.0"
-                         styleClass="search-section-label" text="Search Question:" textFill="WHITE">
-                     <font><Font size="40.0" /></font>
+                  <Label prefHeight="50.0" prefWidth="302.0" styleClass="search-section-label" text="Search Question:" textFill="WHITE">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
                   </Label>
                   <TextField fx:id="searchField" prefHeight="49.0" prefWidth="688.0" styleClass="search-text-field" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="49.0" prefWidth="179.0" styleClass="search-page-button" text="Search">
@@ -47,90 +40,75 @@
                   </Button>
                </children>
             </HBox>
-
-            <!-- Difficulty Filter Row -->
-            <HBox fx:id="difficultyFilterBar" alignment="CENTER_LEFT"
-                  prefHeight="55.0" maxWidth="Infinity" spacing="15.0">
+            <HBox fx:id="difficultyFilterBar" alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1400.0" spacing="15.0">
                <children>
                   <Label styleClass="search-row-label" text="Difficulty:" textFill="WHITE">
-                     <font><Font name="ITFDevanagari-Book" size="26.0" /></font>
+                     <font>
+                        <Font name="ITFDevanagari-Book" size="26.0" />
+                     </font>
                   </Label>
-                  <Button fx:id="easyButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Easy">
+                  <Button fx:id="easyButton" mnemonicParsing="false" onAction="#handleEasyClick" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Easy">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="mediumButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="140.0" styleClass="search-filter-button" text="Medium">
+                  <Button fx:id="mediumButton" mnemonicParsing="false" onAction="#handleMediumClick" prefHeight="42.0" prefWidth="140.0" styleClass="search-filter-button" text="Medium">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="hardButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Hard">
+                  <Button fx:id="hardButton" mnemonicParsing="false" onAction="#handleHardClick" prefHeight="42.0" prefWidth="120.0" styleClass="search-filter-button" text="Hard">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="clearDifficultyButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="42.0" prefWidth="130.0" styleClass="search-filter-button" text="Clear">
+                  <Button fx:id="clearDifficultyButton" mnemonicParsing="false" onAction="#handleClearDifficulty" prefHeight="42.0" prefWidth="130.0" styleClass="search-filter-button" text="Clear">
                      <font>
                         <Font name="ITFDevanagari-Book" size="22.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-
-            <!-- Tags Row -->
-            <HBox alignment="CENTER_LEFT" prefHeight="55.0" maxWidth="Infinity" spacing="15.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1400.0" spacing="15.0">
                <children>
                   <Label styleClass="search-row-label" text="Tags:" textFill="WHITE">
-                     <font><Font name="ITFDevanagari-Book" size="26.0" /></font>
+                     <font>
+                        <Font name="ITFDevanagari-Book" size="26.0" />
+                     </font>
                   </Label>
-                  <TextField fx:id="tagInputField"
-                             prefHeight="42.0" prefWidth="240.0"
-                             promptText="Enter tag (ex: arrays)"
-                             styleClass="search-text-field" />
-                  <Button mnemonicParsing="false" onAction="#AddTag"
-                          prefHeight="42.0" prefWidth="100.0"
-                          styleClass="search-page-button" text="Add">
-                     <font><Font name="ITFDevanagari-Book" size="22.0" /></font>
+                  <TextField fx:id="tagInputField" prefHeight="42.0" prefWidth="240.0" promptText="Enter tag (ex: arrays)" styleClass="search-text-field" />
+                  <Button mnemonicParsing="false" onAction="#handleAddTag" prefHeight="42.0" prefWidth="100.0" styleClass="search-page-button" text="Add">
+                     <font>
+                        <Font name="ITFDevanagari-Book" size="22.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="clearTagsButton" mnemonicParsing="false" onAction="#ClearTags"
-                          prefHeight="46.0" prefWidth="142.0"
-                          styleClass="search-filter-button" text="Clear Tags">
-                     <font><Font name="ITFDevanagari-Book" size="22.0" /></font>
+                  <Button fx:id="clearTagsButton" mnemonicParsing="false" onAction="#handleClearTags" prefHeight="46.0" prefWidth="145.0" styleClass="search-filter-button" text="Clear Tags">
+                     <font>
+                        <Font name="ITFDevanagari-Book" size="22.0" />
+                     </font>
                   </Button>
                </children>
             </HBox>
-
-            <!-- Selected Tags Display -->
-            <FlowPane fx:id="selectedTagsContainer"
-                      alignment="CENTER_LEFT"
-                      hgap="10.0" minHeight="10.0" prefWidth="1400.0" vgap="10.0" />
-
-            <!-- Suggested Questions Header -->
-            <HBox alignment="CENTER_LEFT" prefHeight="48.0" maxWidth="Infinity">
+            <FlowPane fx:id="selectedTagsContainer" alignment="CENTER_LEFT" hgap="10.0" prefWidth="1400.0" vgap="10.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="1400.0">
                <children>
-                  <Label prefHeight="48.0"
-                         styleClass="search-section-label"
-                         text="Suggested Questions:" textFill="WHITE">
-                     <font><Font name="ITFDevanagari-Book" size="40.0" /></font>
+                  <Label prefHeight="48.0" prefWidth="679.0" styleClass="search-section-label" text="Suggested Questions:" textFill="WHITE">
+                     <font>
+                        <Font name="ITFDevanagari-Book" size="40.0" />
+                     </font>
                   </Label>
-                  <Region HBox.hgrow="ALWAYS" />
+                  <Region prefHeight="48.0" prefWidth="491.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-
-            <!-- Results ScrollPane -->
-            <ScrollPane fitToWidth="true" maxWidth="Infinity"
-                        styleClass="search-results-scroll"
-                        VBox.vgrow="ALWAYS">
+            <ScrollPane fitToWidth="true" prefHeight="470.0" prefWidth="700.0" styleClass="search-results-scroll" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="resultsContainer" spacing="10.0" styleClass="search-results-box">
+                  <VBox fx:id="resultsContainer" prefWidth="544.0" spacing="10.0" styleClass="search-results-box">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
                </content>
             </ScrollPane>
-
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
