@@ -1,5 +1,7 @@
 package com.controllers;
 
+import java.io.IOException;
+
 import com.interviewapp.App;
 import com.model.InterviewApp;
 import com.model.User;
@@ -58,5 +60,15 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void switchtoforgotpassword(ActionEvent event) throws IOException {
+        App.setRoot("resetpassword");
+    }
+
+    @FXML
+    void switchtorole(ActionEvent event) throws IOException {
+        App.setRoot("role");
     }
 }

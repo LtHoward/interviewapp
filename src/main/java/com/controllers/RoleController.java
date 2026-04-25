@@ -43,10 +43,12 @@ public class RoleController {
     private TextField yearField;
 
     @FXML 
-    private void intialize() {
+    private void initialize() {
         roleComboBox.getItems().addAll("Student", "Contributor", "Administrator");
         majorComboBox.getItems().addAll("Computer Science", "Computer Engineering", "Computer Information Systems");
         yearComboBox.getItems().addAll("Freshman", "Sophomore", "Junior", "Senior", "Graduate");
+
+        overlaypane.setVisible(false);
 
     }
 
@@ -78,13 +80,21 @@ public class RoleController {
     @FXML
     void switchtonext(ActionEvent event) throws IOException{
         String selectedRole = roleComboBox.getValue();
+        String selectedMajor = majorComboBox.getValue();
+        String selectedYear = yearComboBox.getValue();
         if (selectedRole == null) {
             return;
         }
         if("Student".equals(selectedRole)) {
             overlaypane.setVisible(true);
+            overlaypane.setMouseTransparent(false);
         } else {
         overlaypane.setVisible(false);
+        overlaypane.setMouseTransparent(true);
+        }
+
+        if ("Contributor".equals(selectedRole) || "Administrator".equals(selectedRole)) {
+            App.setRoot("signup");
         }
     }
 
