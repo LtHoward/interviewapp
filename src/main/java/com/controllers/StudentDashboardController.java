@@ -386,6 +386,17 @@ public class StudentDashboardController {
         }
     }
 
+    @FXML
+    private void switchToSettings(ActionEvent event) {
+        try {
+            FXMLLoader loader = App.setRootWithLoader("settings");
+            SettingsController controller = loader.getController();
+            controller.setUser(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void populateQuestionOfDay() {
         ArrayList<QuestionPost> questions = app.getAllQuestions();
 

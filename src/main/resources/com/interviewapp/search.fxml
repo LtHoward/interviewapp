@@ -27,7 +27,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1400.0" spacing="15.0">
                <children>
-                  <Label prefHeight="50.0" prefWidth="302.0" styleClass="search-section-label" text="Search Question:" textFill="WHITE">
+                  <Label prefHeight="50.0" prefWidth="172.0" styleClass="search-section-label" text="Search Question:" textFill="WHITE">
                      <font>
                         <Font size="40.0" />
                      </font>
