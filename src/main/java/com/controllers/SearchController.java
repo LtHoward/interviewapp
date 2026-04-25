@@ -1,5 +1,9 @@
 package com.controllers;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import com.interviewapp.App;
 import com.model.InterviewApp;
 import com.model.QuestionPost;
@@ -12,10 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * Controller for the Search page of the Interview App.

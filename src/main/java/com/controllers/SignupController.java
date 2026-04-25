@@ -67,7 +67,7 @@ public class SignupController {
         if (role.equals("Student") || role.equals("Contributor") || role.equals("Administrator")) {
             App.setRoot("signup");
         } else {
-            errorLabel.setText("Please select a vali role.");
+            errorLabel.setText("Please select a valid role.");
         }
     }
 
