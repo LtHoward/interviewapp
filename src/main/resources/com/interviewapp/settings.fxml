@@ -101,6 +101,7 @@
                                 <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="18.0">
                                     <children>
                                         <Button onAction="#handleDeleteAccount" styleClass="search-page-button" text="Delete Account" />
+                              <Button layoutX="10.0" layoutY="10.0" onAction="#handleDeleteAccount" styleClass="search-page-button" text="Log Out" />
                                     </children>
                                 </HBox>
                             </children>

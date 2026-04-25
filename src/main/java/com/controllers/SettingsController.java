@@ -63,6 +63,15 @@ public class SettingsController {
         }
     }
 
+    @FXML
+    private void handleLogout(ActionEvent event) {
+        try {
+            App.setRootWithLoader("login");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Handles the action of confirming changes to the user's information. 
      * Validates the input and updates the user's information in the backend if valid.
