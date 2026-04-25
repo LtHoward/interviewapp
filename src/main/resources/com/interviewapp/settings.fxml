@@ -2,214 +2,137 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css"
-            fx:controller="com.controllers.SettingsController"
-            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.SettingsController">
    <children>
-
-      <!-- Left Nav Panel -->
-      <VBox prefHeight="800.0" prefWidth="220.0" styleClass="main-text" stylesheets="@styles.css"
-            spacing="10.0" style="-fx-background-color: #0d0d2b;">
-         <padding><Insets top="20.0" left="10.0" right="10.0" bottom="20.0" /></padding>
+      <VBox layoutX="23.0" layoutY="46.0" prefHeight="689.0" prefWidth="1394.0" spacing="15.0" styleClass="left-panel" stylesheets="@styles.css">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
          <children>
-
-            <!-- Back + Title -->
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="&lt;" onAction="#handleBackButton"
-                          prefHeight="40.0" prefWidth="40.0" style="-fx-font-size:20px;">
-                  </Button>
-                  <Label text="Settings" textFill="WHITE">
-                     <font><Font size="28.0" /></font>
+                  <Label prefHeight="113.0" prefWidth="258.0" text="Settings" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
                   </Label>
                </children>
             </HBox>
-
-            <Region prefHeight="20.0" />
-
-            <!-- Account -->
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
-                    text="  Account" onAction="#handleAccountNav"
-                    styleClass="nav-button" stylesheets="@styles.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
-                     <image><Image url="@images/icons/profile.png" /></image>
-                  </ImageView>
-               </graphic>
-            </Button>
-
-            <!-- Rewards -->
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
-                    text="  Rewards" onAction="#handleRewardsNav"
-                    styleClass="nav-button" stylesheets="@styles.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
-                     <image><Image url="@images/icons/levelUp.png" /></image>
-                  </ImageView>
-               </graphic>
-            </Button>
-
-            <!-- Subscription -->
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
-                    text="  Subscription" styleClass="nav-button" stylesheets="@styles.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
-                     <image><Image url="@images/icons/solutions.png" /></image>
-                  </ImageView>
-               </graphic>
-            </Button>
-
-            <!-- Notification -->
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
-                    text="  Notification" styleClass="nav-button" stylesheets="@styles.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
-                     <image><Image url="@images/icons/home.png" /></image>
-                  </ImageView>
-               </graphic>
-            </Button>
-
-            <!-- My Post -->
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
-                    text="  My Post" styleClass="nav-button" stylesheets="@styles.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
-                     <image><Image url="@images/icons/codeBlue.png" /></image>
-                  </ImageView>
-               </graphic>
-            </Button>
-
-            <!-- Reset Password -->
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
-                    text="  Reset Password" onAction="#handleResetPassword"
-                    styleClass="nav-button" stylesheets="@styles.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
-                     <image><Image url="@images/icons/settings.png" /></image>
-                  </ImageView>
-               </graphic>
-            </Button>
-
-            <!-- Delete Account -->
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
-                    text="  Delete Account" onAction="#handleDeleteAccount"
-                    styleClass="nav-button" stylesheets="@styles.css">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
-                     <image><Image url="@images/icons/search.png" /></image>
-                  </ImageView>
-               </graphic>
-            </Button>
-
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1400.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+               </items>
+            </SplitPane>
+            <HBox layoutX="30.0" layoutY="30.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="113.0" prefWidth="258.0" text="Account" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="145.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="100.0" prefWidth="352.0" text="First Name:" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="142.0" prefWidth="270.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Region prefHeight="100.0" prefWidth="30.0" />
+                  <Label layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="352.0" text="Last Name:" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="382.0" layoutY="30.0" prefHeight="142.0" prefWidth="270.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="288.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="100.0" prefWidth="352.0" text="Email:" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="142.0" prefWidth="270.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Region prefHeight="100.0" prefWidth="30.0" />
+                  <Label layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="352.0" text="Username:" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="382.0" layoutY="30.0" prefHeight="142.0" prefWidth="270.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1400.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+               </items>
+            </SplitPane>
+            <HBox layoutX="30.0" layoutY="173.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="100.0" prefWidth="524.0" text="Reset Password:" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="98.0" prefWidth="347.0" text="Button">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <SplitPane dividerPositions="0.5" layoutX="30.0" layoutY="518.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="1400.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+               </items>
+            </SplitPane>
+            <HBox layoutX="30.0" layoutY="546.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="100.0" prefWidth="524.0" text="Delete Account:" textFill="WHITE">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="98.0" prefWidth="347.0" text="Confirm">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
-
-      <!-- Right Content Panel -->
-      <StackPane layoutX="230.0" layoutY="40.0" prefHeight="700.0" prefWidth="1180.0"
-                 styleClass="left-panel" stylesheets="@styles.css">
-         <children>
-            <VBox spacing="20.0">
-               <padding><Insets top="30.0" left="40.0" right="40.0" bottom="30.0" /></padding>
-               <children>
-
-                  <!-- Profile Header -->
-                  <Label text="Profile" style="-fx-text-fill: #9b59b6;">
-                     <font><Font size="36.0" /></font>
-                  </Label>
-
-                  <!-- Row 1: First Name + Major -->
-                  <GridPane hgap="40.0" vgap="10.0">
-                     <children>
-                        <!-- First Name -->
-                        <Label text="First name" GridPane.columnIndex="0" GridPane.rowIndex="0"
-                               style="-fx-text-fill: #333;">
-                           <font><Font size="16.0" /></font>
-                        </Label>
-                        <TextField fx:id="firstNameField" prefHeight="40.0" prefWidth="260.0"
-                                   GridPane.columnIndex="0" GridPane.rowIndex="1" />
-
-                        <!-- Major -->
-                        <Label text="Major" GridPane.columnIndex="1" GridPane.rowIndex="0"
-                               style="-fx-text-fill: #333;">
-                           <font><Font size="16.0" /></font>
-                        </Label>
-                        <ComboBox fx:id="majorComboBox" prefHeight="40.0" prefWidth="260.0"
-                                  GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
-
-                  <!-- Row 2: Last Name + Year -->
-                  <GridPane hgap="40.0" vgap="10.0">
-                     <children>
-                        <!-- Last Name -->
-                        <Label text="Last name" GridPane.columnIndex="0" GridPane.rowIndex="0"
-                               style="-fx-text-fill: #333;">
-                           <font><Font size="16.0" /></font>
-                        </Label>
-                        <TextField fx:id="lastNameField" prefHeight="40.0" prefWidth="260.0"
-                                   GridPane.columnIndex="0" GridPane.rowIndex="1" />
-
-                        <!-- Year -->
-                        <Label text="Year" GridPane.columnIndex="1" GridPane.rowIndex="0"
-                               style="-fx-text-fill: #333;">
-                           <font><Font size="16.0" /></font>
-                        </Label>
-                        <ComboBox fx:id="yearComboBox" prefHeight="40.0" prefWidth="260.0"
-                                  GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
-
-                  <!-- Username -->
-                  <VBox spacing="5.0">
-                     <children>
-                        <Label text="Username" style="-fx-text-fill: #333;">
-                           <font><Font size="16.0" /></font>
-                        </Label>
-                        <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="260.0" />
-                     </children>
-                  </VBox>
-
-                  <!-- Email -->
-                  <VBox spacing="5.0">
-                     <children>
-                        <Label text="E-mail" style="-fx-text-fill: #333;">
-                           <font><Font size="16.0" /></font>
-                        </Label>
-                        <TextField fx:id="emailField" prefHeight="40.0" prefWidth="260.0" />
-                     </children>
-                  </VBox>
-
-                  <!-- Save + Feedback -->
-                  <HBox spacing="20.0" alignment="CENTER_LEFT">
-                     <children>
-                        <Button mnemonicParsing="false" text="Save Changes"
-                                onAction="#handleSave" prefHeight="40.0" prefWidth="160.0">
-                           <font><Font size="16.0" /></font>
-                        </Button>
-                        <Label fx:id="feedbackLabel" text="" style="-fx-text-fill: #00cc66;">
-                           <font><Font size="16.0" /></font>
-                        </Label>
-                     </children>
-                  </HBox>
-
-               </children>
-            </VBox>
-         </children>
-      </StackPane>
-
    </children>
 </AnchorPane>
