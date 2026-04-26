@@ -64,28 +64,16 @@ public class LoginController {
 
     @FXML
     void switchToSignup(ActionEvent event) throws IOException {
-        try {
-            App.setRoot("signup");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        App.setRoot("signup");
     }
 
     @FXML
     void switchtoforgotpassword(ActionEvent event) throws IOException {
-        try {
-            App.setRoot("resetpassword");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        App.setRoot("resetpassword");
     }
 
     @FXML
     void switchtorole(ActionEvent event) throws IOException {
-        try {
-            App.setRoot("role");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        App.setRoot("role");
     }
 }
