@@ -62,10 +62,6 @@ public class LoginController {
         }
     }
 
-    @FXML
-    void switchToSignup(ActionEvent event) throws IOException {
-        App.setRoot("signup");
-    }
 
     @FXML
     void switchtoforgotpassword(ActionEvent event) throws IOException {
