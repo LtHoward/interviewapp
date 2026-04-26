@@ -10,6 +10,7 @@ import com.model.ContentType;
 import com.model.PostContent;
 import com.model.PostManager;
 import com.model.QuestionPost;
+import com.model.SolutionPost;
 import com.model.User;
 
 import javafx.event.ActionEvent;
@@ -427,5 +428,44 @@ public class QuestionsController {
         }
 
         return count;
+    }
+
+    /**
+     * Event handler for the "View Solutions" button. 
+     * It finds the solution associated with the current question
+     * @param event The ActionEvent triggered by clicking the "View Solutions" button
+     */
+    @FXML
+    private void handleViewSolutions(ActionEvent event) {
+        if (currentQuestion == null || currentUser == null) return;
+        
+        SolutionPost matchingSolution = findSolutionForQuestion(currentQuestion.getPostId());
+
+        if (matchingSolution == null) {
+            System.out.println("No solution found for question: " + currentQuestion.getTitle());
+            return;
+        }
+
+        try {
+            FXMLLoader loader = App.setRootWithLoader("solutionPost");
+            SolutionsController controller = loader.getController();
+            controller.setData(currentUser, matchingSolution, currentQuestion);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Helper method to find the solution post associated with a given question ID.
+     * @param questionId The UUID of the question for which we want to find the solution.
+     * @return The SolutionPost associated with the question, or null if not found.
+     */
+    private SolutionPost findSolutionForQuestion(UUID questionId) {
+        for (SolutionPost solution : PostManager.getInstance().getAllSolutions()) {
+            if (solution.getQuestionId() != null && solution.getQuestionId().equals(questionId)) {
+                return solution;
+            }
+        }
+        return null;
     }
 }

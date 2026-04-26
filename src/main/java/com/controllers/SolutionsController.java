@@ -9,6 +9,7 @@ import com.model.SolutionPost;
 import com.model.Comment;
 import com.model.ContentType;
 import com.model.PostContent;
+import com.model.PostManager;
 import com.model.User;
 
 import javafx.event.ActionEvent;
@@ -25,42 +26,27 @@ import javafx.scene.layout.VBox;
 public class SolutionsController {
     
     private User currentUser;
-
+    private int userVote = 0;
     private SolutionPost currentSolution;
-
     private QuestionPost selectedQuestion;
 
-    @FXML
-    private Label titleLabel;
-
-    @FXML
-    private Label authorLabel;
-
-    @FXML
-    private Label difficultyLabel;
-
-    @FXML
-    private Label tagsLabel;
-
-    @FXML
-    private Label scoreLabel;
-
-    @FXML
-    private Label commentsCountLabel;
-
-    @FXML
-    private VBox contentContainer;
-
-    @FXML
-    private VBox commentsContainer;
-
-    @FXML
-    private TextField commentField;
+    @FXML private Label titleLabel;
+    @FXML private Label authorLabel;
+    @FXML private Label difficultyLabel;
+    @FXML private Label tagsLabel;
+    @FXML private Label scoreLabel;
+    @FXML private Label commentsCountLabel;
+    @FXML private VBox contentContainer;
+    @FXML private VBox commentsContainer;
+    @FXML private TextField commentField;
+    @FXML private Button upvoteButton;
+    @FXML private Button downvoteButton;
 
     
-    public void setData(User user, SolutionPost solution) {
+    public void setData(User user, SolutionPost solution, QuestionPost question) {
         this.currentUser = user;
         this.currentSolution = solution;
+        this.selectedQuestion = question;
         populateSolution();
     }
 
@@ -231,6 +217,67 @@ public class SolutionsController {
         }
 
         return thread;
+    }
+
+    @FXML
+    private void handleUpvote(ActionEvent event) {
+        if (currentSolution == null || currentUser == null) {
+            return;
+        }
+
+        if (userVote == 1) {
+            currentSolution.downvote(currentUser);
+            userVote = 0;
+        } else if (userVote == -1) {
+            currentSolution.upvote(currentUser);
+            currentSolution.upvote(currentUser);
+            userVote = 1;
+        } else {
+            currentSolution.upvote(currentUser);
+            userVote = 1;
+        }
+
+        updateScoreDisplay();
+        PostManager.getInstance().save();
+    }
+
+    @FXML
+    private void handleDownvote(ActionEvent event) {
+        if (currentSolution == null || currentUser == null) {
+            return;
+        }
+
+        if (userVote == -1) {
+            currentSolution.upvote(currentUser);
+            userVote = 0;
+        } else if (userVote == 1) {
+            currentSolution.downvote(currentUser);
+            currentSolution.downvote(currentUser);
+            userVote = -1;
+        } else {
+            currentSolution.downvote(currentUser);
+            userVote = -1;
+        }
+
+        updateScoreDisplay();
+        PostManager.getInstance().save();
+    }
+
+    private void updateScoreDisplay() {
+        if (currentSolution == null) {
+            return;
+        }
+
+        scoreLabel.setText(String.valueOf(currentSolution.getScore()));
+
+        upvoteButton.getStyleClass().remove("vote-selected");
+        downvoteButton.getStyleClass().remove("vote-selected");
+
+        if (userVote == 1) {
+            upvoteButton.getStyleClass().add("vote-selected");
+        } else if (userVote == -1) {
+            downvoteButton.getStyleClass().add("vote-selected");
+        }
     }
 
     @FXML

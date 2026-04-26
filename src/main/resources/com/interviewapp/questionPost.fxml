@@ -100,8 +100,8 @@
                   <!-- Bottom buttons -->
                   <HBox prefHeight="58.0" prefWidth="578.0" spacing="14.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" styleClass="action-button" onAction="#handleViewSolutions" text="View Solutions" />
-                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" styleClass="action-button" onAction="#handleCreateSolution" text="Create Solution" />
+                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" onAction="#handleViewSolutions" styleClass="action-button" text="View Solutions" />
+                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" styleClass="action-button" text="Create Solution" />
                      </children>
                   </HBox>
                </children>

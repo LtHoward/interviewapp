@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="800.0" maxWidth="1440.0" minHeight="800.0" minWidth="1440.0" prefHeight="800.0" prefWidth="1440.0" styleClass="simple-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.QuestionsController">
+<BorderPane maxHeight="800.0" maxWidth="1440.0" minHeight="800.0" minWidth="1440.0" prefHeight="800.0" prefWidth="1440.0" styleClass="simple-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.SolutionsController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" spacing="20.0" styleClass="top-bar" BorderPane.alignment="CENTER">
          <children>
