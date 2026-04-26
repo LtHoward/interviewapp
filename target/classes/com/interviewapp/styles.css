@@ -443,6 +443,11 @@
     -fx-font-weight: bold;
 }
 
+.error-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: red;
+}
+
 /* ================= WINDOW DOTS ================= */
 .red-dot {
     -fx-fill: #ff5757;

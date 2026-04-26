@@ -73,7 +73,7 @@ public class SignupController {
         if (role == null) {
             return;
         }
-        if("Student".equals(role)) {
+        if(role == Role.STUDENT) {
             overlaypane.setVisible(true);
             overlaypane.setMouseTransparent(false);
         } else {
@@ -81,7 +81,7 @@ public class SignupController {
         overlaypane.setMouseTransparent(true);
         }
 
-        if ("Contributor".equals(role) || "Administrator".equals(role)) {
+        if (role == Role.CONTRIBUTOR || role == Role.ADMINISTRATOR) {
             App.setRoot("signup");
         }
     }
