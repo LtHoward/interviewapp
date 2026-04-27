@@ -73,7 +73,7 @@ public class LoginController {
     }
 
     @FXML
-    void switchtorole(ActionEvent event) throws IOException {
-        App.setRoot("role");
+    void switchtosignup(ActionEvent event) throws IOException {
+        App.setRoot("signup");
     }
 }

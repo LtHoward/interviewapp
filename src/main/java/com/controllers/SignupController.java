@@ -33,6 +33,8 @@ public class SignupController {
     @FXML private Button loginbutton;
     @FXML private Button continuebutton;
     @FXML private StackPane overlaypane;
+    @FXML private StackPane topoverlaypane;
+    @FXML private StackPane roleoverlay;
     @FXML private Button handlecontinue;
     @FXML private Button continuestep;
 
@@ -40,23 +42,40 @@ public class SignupController {
     private UserManager userManager = UserManager.getInstance();
 
     
-    @FXML 
+    @FXML
     private void initialize() {
+
+        // populate combos safely
         if (roleComboBox != null) {
-        roleComboBox.getItems().addAll(Role.values());
-    }
-       if (majorComboBox != null) {
-        majorComboBox.getItems().addAll(Major.values());
-       }
+            roleComboBox.getItems().setAll(Role.values());
+        }
 
-       if (yearComboBox != null) {
-        yearComboBox.getItems().addAll(Year.values());
-       }
-        
-       if (overlaypane != null) {
-        overlaypane.setVisible(false);
-    }
+        if (majorComboBox != null) {
+            majorComboBox.getItems().setAll(Major.values());
+        }
 
+        if (yearComboBox != null) {
+            yearComboBox.getItems().setAll(Year.values());
+        }
+
+        // SAFE overlay setup (prevents white screen bug)
+        if (overlaypane != null) {
+            overlaypane.setVisible(false);
+            overlaypane.setMouseTransparent(true);
+        }
+
+        if (topoverlaypane != null) {
+            topoverlaypane.setVisible(false);
+            topoverlaypane.setMouseTransparent(true);
+        }
+
+        if (roleoverlay != null) {
+            roleoverlay.setVisible(true);
+        }
+
+        if (errorLabel != null) {
+            errorLabel.setText("");
+        }
     }
     
      @FXML
@@ -91,13 +110,17 @@ public class SignupController {
         }
 
         if (role == Role.CONTRIBUTOR || role == Role.ADMINISTRATOR) {
-            App.setRoot("signup");
+            topoverlaypane.setVisible(true);
+            topoverlaypane.setMouseTransparent(false);
+        }else {
+            topoverlaypane.setVisible(false);
+            topoverlaypane.setMouseTransparent(true);
         }
     }
 
     @FXML
     void switchtosignup(ActionEvent event) throws IOException{
-        App.setRoot("signup");
+        topoverlaypane.setVisible(true);
     }
 
     @FXML 
@@ -112,7 +135,7 @@ public class SignupController {
         Major major = majorComboBox.getValue();
         Year year = yearComboBox.getValue();
 
-        if(firstNameField == null || lastNameField == null || emailField == null || passwordField == null || usernameField == null || roleComboBox == null) {
+        if(firstname == null || lastname == null || email == null || password == null || username == null || role == null) {
             return;
         }
 

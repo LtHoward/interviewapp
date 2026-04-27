@@ -98,7 +98,7 @@
                                     <Insets left="25.0" />
                                  </padding>
                               </Button>
-                              <Button fx:id="signupbutton" alignment="CENTER" mnemonicParsing="false" onAction="#switchtorole" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Sign Up" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchtosignup" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Sign Up" />
                            </children>
                         </HBox>
                      </children>
