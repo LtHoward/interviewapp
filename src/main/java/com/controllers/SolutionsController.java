@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import com.interviewapp.App;
-import com.model.QuestionPost;
-import com.model.SolutionPost;
 import com.model.Comment;
 import com.model.ContentType;
 import com.model.PostContent;
 import com.model.PostManager;
+import com.model.QuestionPost;
+import com.model.SolutionPost;
 import com.model.User;
 
 import javafx.event.ActionEvent;

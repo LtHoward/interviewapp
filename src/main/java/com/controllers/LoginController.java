@@ -9,6 +9,7 @@ import com.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -19,6 +20,9 @@ public class LoginController {
 
     @FXML
     private PasswordField passwordField;
+
+    @FXML 
+    private Button signupbutton;
 
     private final InterviewApp app = new InterviewApp();
 

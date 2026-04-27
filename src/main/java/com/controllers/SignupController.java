@@ -42,7 +42,6 @@ public class SignupController {
     
     @FXML 
     private void initialize() {
-        errorLabel.setText("");
         roleComboBox.getItems().addAll(Role.values());
         majorComboBox.getItems().addAll(Major.values());
         yearComboBox.getItems().addAll(Year.values());
@@ -105,17 +104,14 @@ public class SignupController {
 
         
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || firstname.isEmpty() || lastname.isEmpty() || role ==null ){
-            errorLabel.setText("Sorry, You cannot leave blank fields.");
             return;
         } 
 
         if (role == Role.STUDENT && (major == null || year == null)) {
-            errorLabel.setText("Sorry, you must select a major and year.");
             return;
         }
 
         if (userManager.getUser(username) != null) {
-            errorLabel.setText("Sorry, username is taken.");
             return;
         } 
 
@@ -123,7 +119,6 @@ public class SignupController {
 
 
         if (!success) {
-            errorLabel.setText("Sorry, this user couldn't be created.");
             return;
         } 
 
