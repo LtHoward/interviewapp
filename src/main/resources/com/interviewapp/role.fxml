@@ -7,57 +7,129 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.SignupController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="800.0" prefWidth="1440.0"
+           styleClass="main-bg"
+           stylesheets="@styles.css"
+           xmlns="http://javafx.com/javafx/23.0.1"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.controllers.RoleController">
+
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="674.0" styleClass="createaccount-bg" stylesheets="@styles.css" />
-      <Label styleClass="createaccount-label" stylesheets="@styles.css" text="What kind of account?">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="750.0" prefWidth="674.0"
+            styleClass="createaccount-bg"
+            stylesheets="@styles.css" />
+
+      <Label styleClass="createaccount-label"
+             stylesheets="@styles.css"
+             text="What kind of account?">
          <StackPane.margin>
             <Insets bottom="300.0" />
          </StackPane.margin>
       </Label>
-      <Label styleClass="signinlabel" stylesheets="@styles.css" text="Choose the role that best describes you.">
+
+      <Label styleClass="signinlabel"
+             stylesheets="@styles.css"
+             text="Choose the role that best describes you.">
          <StackPane.margin>
             <Insets bottom="190.0" />
          </StackPane.margin>
       </Label>
-      <ComboBox fx:id="roleComboBox" onAction="#handleComboBoxAction" prefWidth="150.0" promptText="Select your role" styleClass="signintextfield" stylesheets="@styles.css" />
-      <Button fx:id="handlecontinue" mnemonicParsing="false" onAction="#switchtonext" styleClass="login-button" stylesheets="@styles.css" text="Continue">
+
+      <ComboBox fx:id="roleComboBox"
+                onAction="#handleComboBoxAction"
+                prefWidth="150.0"
+                promptText="Select your role"
+                styleClass="signintextfield"
+                stylesheets="@styles.css" />
+
+      <Label fx:id="errorLabel"
+             styleClass="signinlabel"
+             stylesheets="@styles.css"
+             text=""
+             wrapText="true">
+         <StackPane.margin>
+            <Insets top="180.0" />
+         </StackPane.margin>
+      </Label>
+
+      <Button fx:id="handlecontinue"
+              mnemonicParsing="false"
+              onAction="#switchtonext"
+              styleClass="login-button"
+              stylesheets="@styles.css"
+              text="Continue">
          <StackPane.margin>
             <Insets top="300.0" />
          </StackPane.margin>
       </Button>
-      <StackPane fx:id="overlaypane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css">
+
+      <StackPane fx:id="overlaypane"
+                 maxHeight="-Infinity" maxWidth="-Infinity"
+                 minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="800.0" prefWidth="1440.0"
+                 styleClass="main-bg"
+                 stylesheets="@styles.css">
          <children>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="674.0" styleClass="createaccount-bg" stylesheets="@styles.css" />
-            <Label styleClass="createaccount-label" stylesheets="@styles.css" text="Academic Information">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity"
+                  minHeight="-Infinity" minWidth="-Infinity"
+                  prefHeight="750.0" prefWidth="674.0"
+                  styleClass="createaccount-bg"
+                  stylesheets="@styles.css" />
+
+            <Label styleClass="createaccount-label"
+                   stylesheets="@styles.css"
+                   text="Academic Information">
                <StackPane.margin>
                   <Insets bottom="500.0" />
                </StackPane.margin>
             </Label>
-            <ComboBox fx:id="majorComboBox" onAction="#handleMajor" prefWidth="150.0" styleClass="signintextfield" stylesheets="@styles.css">
+
+            <ComboBox fx:id="majorComboBox"
+                      onAction="#handleMajor"
+                      prefWidth="150.0"
+                      styleClass="signintextfield"
+                      stylesheets="@styles.css">
                <StackPane.margin>
                   <Insets bottom="100.0" />
                </StackPane.margin>
             </ComboBox>
-            <Label styleClass="signinlabel" stylesheets="@styles.css" text="Major">
+
+            <Label styleClass="signinlabel"
+                   stylesheets="@styles.css"
+                   text="Major">
                <StackPane.margin>
                   <Insets bottom="250.0" right="500.0" />
                </StackPane.margin>
             </Label>
-            <ComboBox fx:id="yearComboBox" onAction="#handleYear" prefWidth="150.0" styleClass="signintextfield" stylesheets="@styles.css">
+
+            <ComboBox fx:id="yearComboBox"
+                      onAction="#handleYear"
+                      prefWidth="150.0"
+                      styleClass="signintextfield"
+                      stylesheets="@styles.css">
                <StackPane.margin>
                   <Insets top="200.0" />
                </StackPane.margin>
             </ComboBox>
-            <Label styleClass="signinlabel" stylesheets="@styles.css" text="Year">
+
+            <Label styleClass="signinlabel"
+                   stylesheets="@styles.css"
+                   text="Year">
                <StackPane.margin>
                   <Insets right="500.0" top="50.0" />
                </StackPane.margin>
             </Label>
-            <Button fx:id="continuestep" mnemonicParsing="false" onAction="#switchtosignup" styleClass="login-button" stylesheets="@styles.css" text="Continue">
+
+            <Button fx:id="continuestep"
+                    mnemonicParsing="false"
+                    onAction="#switchtosignup"
+                    styleClass="login-button"
+                    stylesheets="@styles.css"
+                    text="Continue">
                <StackPane.margin>
                   <Insets top="500.0" />
                </StackPane.margin>
