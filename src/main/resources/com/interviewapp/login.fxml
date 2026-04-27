@@ -74,7 +74,7 @@
                                     <Insets left="25.0" />
                                  </padding>
                               </PasswordField>
-                              <Button mnemonicParsing="false" styleClass="forgot-password-link" text="Forgot Password?">
+                              <Button mnemonicParsing="false" styleClass="forgot-password-link" onAction="#switchtoforgotpassword" text="Forgot Password?">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
@@ -98,7 +98,7 @@
                                     <Insets left="25.0" />
                                  </padding>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Sign Up" />
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" onAction="#switchtorole" styleClass="login-button" text="Sign Up" />
                            </children>
                         </HBox>
                      </children>

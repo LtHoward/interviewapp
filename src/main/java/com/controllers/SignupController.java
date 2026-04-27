@@ -3,7 +3,10 @@ package com.controllers;
 import java.io.IOException;
 
 import com.interviewapp.App;
+import com.model.Major;
+import com.model.Role;
 import com.model.UserManager;
+import com.model.Year;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 
 
 
@@ -21,56 +25,71 @@ public class SignupController {
     @FXML private PasswordField passwordField;
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
-    @FXML private TextField majorField;
-    @FXML private TextField roleField;
-    @FXML private TextField yearField;
+    @FXML private ComboBox<Major> majorComboBox;
+    @FXML private ComboBox<Role> roleComboBox;
+    @FXML private ComboBox<Year> yearComboBox;
     @FXML private Label errorLabel;
     @FXML private Button signinbutton;
     @FXML private Button loginbutton;
     @FXML private Button continuebutton;
-    @FXML private ComboBox<String> roleComboBox;
+    @FXML private StackPane overlaypane;
+    @FXML private Button handlecontinue;
+    @FXML private Button continuestep;
 
 
     private UserManager userManager = UserManager.getInstance();
 
     
     @FXML 
-    private void intialize() {
+    private void initialize() {
         errorLabel.setText("");
-        roleComboBox.getItems().addAll("Student", "Contributor", "Administrator");
-    }
+        roleComboBox.getItems().addAll(Role.values());
+        majorComboBox.getItems().addAll(Major.values());
+        yearComboBox.getItems().addAll(Year.values());
 
-    @FXML void handleComboBoxAction(ActionEvent event) {
-        String selectedRole = roleComboBox.getValue();
-        if (selectedRole != null) {
-            roleField.setText(selectedRole);
-        }
-
-        if (selectedRole.equals("Student")) {
-            majorField.setVisible(true);
-            yearField.setVisible(true);
-        } else {
-            majorField.setVisible(false);
-            yearField.setVisible(false);
-        }
-        
-        if (selectedRole.equals("Contributor") || selectedRole.equals("Administrator")) {
-            majorField.setVisible(false);
-            yearField.setVisible(false);
-        }
+        overlaypane.setVisible(false);
     }
     
+     @FXML
+    void handleComboBoxAction(ActionEvent event) {
+        Role selectedRole = roleComboBox.getValue();
+    }
+
     @FXML
-    private void handlecontinue(ActionEvent event) throws IOException {
-        String role = roleField.getText();
-        String major = majorField.getText();
-        if (role.equals("Student") || role.equals("Contributor") || role.equals("Administrator")) {
-            App.setRoot("signup");
+    void handleMajor(ActionEvent event) throws IOException{
+        Major selectedMajor = majorComboBox.getValue();
+    }
+
+    @FXML
+    void handleYear(ActionEvent event) throws IOException{
+        Year selectedYear = yearComboBox.getValue();
+    }
+
+    @FXML
+    void switchtonext(ActionEvent event) throws IOException{
+        Role role = roleComboBox.getValue();
+        Major major = majorComboBox.getValue();
+        Year year = yearComboBox.getValue();
+        if (role == null) {
+            return;
+        }
+        if(role == Role.STUDENT) {
+            overlaypane.setVisible(true);
+            overlaypane.setMouseTransparent(false);
         } else {
-            errorLabel.setText("Please select a valid role.");
+        overlaypane.setVisible(false);
+        overlaypane.setMouseTransparent(true);
+        }
+
+        if (role == Role.CONTRIBUTOR || role == Role.ADMINISTRATOR) {
+            App.setRoot("signup");
         }
     }
 
+    @FXML
+    void switchtosignup(ActionEvent event) throws IOException{
+        App.setRoot("signup");
+    }
 
     @FXML 
     private void handlesignup(ActionEvent event) throws IOException {
@@ -79,25 +98,41 @@ public class SignupController {
         String password = passwordField.getText();
         String firstname = firstNameField.getText();
         String lastname = lastNameField.getText();
-        String major = majorField.getText();
-        String role = roleField.getText();
+        
+        Role role = roleComboBox.getValue();
+        Major major = majorComboBox.getValue();
+        Year year = yearComboBox.getValue();
 
         
-        if (username.equals("") || email.equals("") || password.equals("") || firstname.equals("") || lastname.equals("") ) {
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || firstname.isEmpty() || lastname.isEmpty() || role ==null ){
             errorLabel.setText("Sorry, You cannot leave blank fields.");
+            return;
+        } 
+
+        if (role == Role.STUDENT && (major == null || year == null)) {
+            errorLabel.setText("Sorry, you must select a major and year.");
             return;
         }
 
         if (userManager.getUser(username) != null) {
             errorLabel.setText("Sorry, username is taken.");
             return;
-        }
+        } 
+
+        boolean success = userManager.addUser(username,email,password,firstname,lastname,role,major,year);
 
 
-        if (!userManager.addUser(username, email, password, firstname, lastname, null, null, null)) {
+        if (!success) {
             errorLabel.setText("Sorry, this user couldn't be created.");
             return;
+        } 
+
+        if (role == Role.STUDENT) {
+            App.setRoot("studentDashboard");
+        } else {
+            App.setRoot("dashboard");
         }
+        
     }
 
     @FXML 

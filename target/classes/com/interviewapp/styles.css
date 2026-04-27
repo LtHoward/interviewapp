@@ -455,7 +455,7 @@
 }
 
 .signintextfield {
-    -fx-text-fill: #f4f4f5;
+    -fx-text-fill: black;
     -fx-background-radius: 12;
     -fx-font-size: 18px;
     -fx-padding: 12 14 12 14;
@@ -464,7 +464,7 @@
 }
 
 .nametextfield {
-    -fx-text-fill: #f4f4f5;
+    -fx-text-fill: black;
     -fx-background-radius: 12;
     -fx-font-size: 18px;
     -fx-padding: 12 14 12 14;
@@ -476,6 +476,11 @@
     -fx-text-fill: grey;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
+}
+
+.error-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: red;
 }
 
 /* ================= WINDOW DOTS ================= */

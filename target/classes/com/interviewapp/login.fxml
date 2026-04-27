@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -74,7 +74,7 @@
                                     <Insets left="25.0" />
                                  </padding>
                               </PasswordField>
-                              <Button mnemonicParsing="false" styleClass="forgot-password-link" text="Forgot Password?">
+                              <Button mnemonicParsing="false" onAction="#switchtoforgotpassword" styleClass="forgot-password-link" text="Forgot Password?">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
@@ -98,7 +98,7 @@
                                     <Insets left="25.0" />
                                  </padding>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Sign Up" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchtorole" prefHeight="55.0" prefWidth="200.0" styleClass="login-button" text="Sign Up" />
                            </children>
                         </HBox>
                      </children>
