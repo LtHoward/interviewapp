@@ -265,6 +265,22 @@ public class QuestionsController {
         actions.setSpacing(18);
         actions.getChildren().addAll(repliesButton, replyButton);
 
+        if (comment.getAuthor() != null 
+                && currentUser != null 
+                && comment.getAuthor().getId().equals(currentUser.getId())) {
+
+            Button deleteButton = new Button("Delete");
+            deleteButton.getStyleClass().add("comment-action-button");
+
+            deleteButton.setOnAction(e -> {
+                deleteComment(currentQuestion.getComments(), comment);
+                populateComments();
+                PostManager.getInstance().save();
+            });
+
+            actions.getChildren().add(deleteButton);
+        }
+
         textBox.getChildren().addAll(header, contentLabel, actions);
         row.getChildren().addAll(avatar, textBox);
 
@@ -529,5 +545,34 @@ public class QuestionsController {
             }
         }
         return null;
+    }
+
+    @FXML
+    private void switchToCreateSolutionPost(ActionEvent event) {
+        try {
+            FXMLLoader loader = App.setRootWithLoader("createSolutionPost");
+            CreateSolutionPostController controller = loader.getController();
+            controller.setData(currentUser, currentQuestion);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean deleteComment(ArrayList<Comment> comments, Comment target) {
+        if (comments == null || target == null) {
+            return false;
+        }
+
+        if (comments.remove(target)) {
+            return true;
+        }
+
+        for (Comment comment : comments) {
+            if (deleteComment(comment.getReply(), target)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
