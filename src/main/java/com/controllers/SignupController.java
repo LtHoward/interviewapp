@@ -42,11 +42,21 @@ public class SignupController {
     
     @FXML 
     private void initialize() {
+        if (roleComboBox != null) {
         roleComboBox.getItems().addAll(Role.values());
+    }
+       if (majorComboBox != null) {
         majorComboBox.getItems().addAll(Major.values());
-        yearComboBox.getItems().addAll(Year.values());
+       }
 
+       if (yearComboBox != null) {
+        yearComboBox.getItems().addAll(Year.values());
+       }
+        
+       if (overlaypane != null) {
         overlaypane.setVisible(false);
+    }
+
     }
     
      @FXML
@@ -101,6 +111,10 @@ public class SignupController {
         Role role = roleComboBox.getValue();
         Major major = majorComboBox.getValue();
         Year year = yearComboBox.getValue();
+
+        if(firstNameField == null || lastNameField == null || emailField == null || passwordField == null || usernameField == null || roleComboBox == null) {
+            return;
+        }
 
         
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || firstname.isEmpty() || lastname.isEmpty() || role ==null ){
