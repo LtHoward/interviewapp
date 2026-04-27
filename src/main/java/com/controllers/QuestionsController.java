@@ -447,26 +447,12 @@ public class QuestionsController {
         return count;
     }
 
-    /**
-     * Event handler for the "View Solutions" button. 
-     * It finds the solution associated with the current question
-     * @param event The ActionEvent triggered by clicking the "View Solutions" button
-     */
     @FXML
-    private void handleViewSolutions(ActionEvent event) {
-        if (currentQuestion == null || currentUser == null) return;
-        
-        SolutionPost matchingSolution = findSolutionForQuestion(currentQuestion.getPostId());
-
-        if (matchingSolution == null) {
-            System.out.println("No solution found for question: " + currentQuestion.getTitle());
-            return;
-        }
-
+    private void switchToSearchSolutions(ActionEvent event) {
         try {
-            FXMLLoader loader = App.setRootWithLoader("solutionPost");
-            SolutionsController controller = loader.getController();
-            controller.setData(currentUser, matchingSolution, currentQuestion);
+            FXMLLoader loader = App.setRootWithLoader("searchSolutions");
+            SearchSolutionsController controller = loader.getController();
+            controller.setData(currentUser, currentQuestion);
         } catch (Exception e) {
             e.printStackTrace();
         }

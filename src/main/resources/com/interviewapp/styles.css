@@ -1640,3 +1640,19 @@
     -fx-fill: white;
     -fx-font-size: 16px;
 }
+
+.delete-question-button {
+    -fx-background-color: rgba(120, 30, 45, 0.75);
+    -fx-border-color: #ca4855;
+    -fx-border-width: 2;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.delete-question-button:hover {
+    -fx-background-color: rgba(202, 72, 85, 0.95);
+}

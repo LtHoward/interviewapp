@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.interviewapp.App;
 import com.model.InterviewApp;
+import com.model.PostManager;
 import com.model.QuestionPost;
 import com.model.User;
 import com.model.Role;
@@ -16,7 +17,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.Priority;
 
 /**
  * Controller for the Search page of the Interview App.
@@ -107,6 +110,10 @@ public class SearchController {
      */
     public void setUser(User user) {
         this.currentUser = user;
+
+        if(searchField != null) {
+            loadQuestions(searchField.getText().trim());
+        }
     }
 
     /**
@@ -248,14 +255,40 @@ public class SearchController {
 
             String label = formatEnum(q.getDifficulty()) + ": " + q.getTitle();
 
+            HBox resultRow = new HBox();
+            resultRow.setSpacing(10);
+            resultRow.setMaxWidth(Double.MAX_VALUE);
+
             Button btn = new Button(label);
             btn.getStyleClass().add("search-result-button");
             btn.setUserData(q);
             btn.setMaxWidth(Double.MAX_VALUE);
             btn.setPrefHeight(70);
             btn.setOnAction(this::handleQuestionClick);
+            HBox.setHgrow(btn, Priority.ALWAYS);
 
-            resultsContainer.getChildren().add(btn);
+            resultRow.getChildren().add(btn);
+
+            if (isCurrentUsersQuestion(q)) {
+                Button deleteButton = new Button("X");
+                deleteButton.getStyleClass().add("delete-question-button");
+                deleteButton.setPrefWidth(55);
+                deleteButton.setPrefHeight(70);
+
+                deleteButton.setOnAction(e -> {
+                    if (!"Confirm".equals(deleteButton.getText())) {
+                        deleteButton.setText("Confirm");
+                    } else {
+                        PostManager.getInstance().deletePost(currentUser, q);
+                        PostManager.getInstance().save();
+                        loadQuestions(searchField.getText().trim());
+                    }
+                });
+
+                resultRow.getChildren().add(deleteButton);
+            }
+
+            resultsContainer.getChildren().add(resultRow);
         }
 
         if (resultsContainer.getChildren().isEmpty()) {
@@ -496,5 +529,19 @@ public class SearchController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isCurrentUsersQuestion(QuestionPost question) {
+        if (question == null || question.getAuthor() == null || currentUser == null) {
+            return false;
+        }
+
+        if (question.getAuthor().getId() != null && currentUser.getId() != null) {
+            if (question.getAuthor().getId().equals(currentUser.getId())) {
+                return true;
+            }
+        }
+
+        return question.getAuthor().getUsername().equals(currentUser.getUsername());
     }
 }
