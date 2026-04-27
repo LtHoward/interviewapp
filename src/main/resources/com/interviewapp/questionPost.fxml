@@ -18,7 +18,7 @@
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" spacing="20.0" styleClass="top-bar" BorderPane.alignment="CENTER">
          <children>
            <Button mnemonicParsing="false" onAction="#handleBack" styleClass="back-icon-button" text="&lt;" />
-            <StackPane prefHeight="70.0" prefWidth="70.0" styleClass="icon-box">
+            <StackPane prefHeight="70.0" prefWidth="70.0" styleClass="icon-box-blue">
                <children>
                   <Label styleClass="section-title" text="?" />
                </children>
@@ -54,7 +54,7 @@
                            </children>
                         </HBox>
                      </children></VBox>
-                  <ScrollPane prefHeight="529.0" prefWidth="649.0" styleClass="question-content-scroll">
+                  <ScrollPane prefHeight="502.0" prefWidth="734.0" styleClass="question-content-scroll">
                     <content>
                         <VBox fx:id="contentContainer" prefHeight="663.0" prefWidth="745.0" styleClass="question-content-body">
                            <children>
@@ -100,7 +100,7 @@
                   <!-- Bottom buttons -->
                   <HBox prefHeight="58.0" prefWidth="578.0" spacing="14.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" onAction="#handleViewSolutions" styleClass="action-button" text="View Solutions" />
+                        <Button mnemonicParsing="false" onAction="#handleViewSolutions" prefHeight="90.0" prefWidth="296.0" styleClass="action-button" text="View Solutions" />
                         <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="296.0" styleClass="action-button" text="Create Solution" />
                      </children>
                   </HBox>

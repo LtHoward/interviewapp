@@ -25,6 +25,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class QuestionsController {
 
@@ -90,10 +92,9 @@ public class QuestionsController {
 
                 switch (type) {
                     case TEXT:
-                        Label textLabel = new Label(value);
-                        textLabel.setWrapText(true);
-                        textLabel.getStyleClass().add("comment-text");
-                        contentContainer.getChildren().add(textLabel);
+                        TextFlow formattedText = createFormattedText(value);
+                        formattedText.setMaxWidth(740);
+                        contentContainer.getChildren().add(formattedText);
                         break;
 
                     case CODE:
@@ -453,6 +454,67 @@ public class QuestionsController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private TextFlow createFormattedText(String raw) {
+        TextFlow flow = new TextFlow();
+        flow.getStyleClass().add("formatted-text");
+
+        boolean bold = false;
+        boolean italic = false;
+        boolean underline = false;
+
+        StringBuilder buffer = new StringBuilder();
+
+        for (int i = 0; i < raw.length(); i++) {
+            if (i + 1 < raw.length() && raw.substring(i, i + 2).equals("**")) {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                bold = !bold;
+                i++;
+            } else if (raw.charAt(i) == '*') {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                italic = !italic;
+            } else if (raw.startsWith("<u>", i)) {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                underline = true;
+                i += 2;
+            } else if (raw.startsWith("</u>", i)) {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                underline = false;
+                i += 3;
+            } else {
+                buffer.append(raw.charAt(i));
+            }
+        }
+
+        addStyledText(flow, buffer.toString(), bold, italic, underline);
+        return flow;
+    }
+
+    private void addStyledText(TextFlow flow, String textValue, boolean bold, boolean italic, boolean underline) {
+        if (textValue == null || textValue.isEmpty()) {
+            return;
+        }
+
+        Text text = new Text(textValue);
+        text.setUnderline(underline);
+
+        String style = "-fx-fill: white; -fx-font-size: 16px;";
+
+        if (bold) {
+            style += "-fx-font-weight: bold;";
+        }
+
+        if (italic) {
+            style += "-fx-font-style: italic;";
+        }
+
+        text.setStyle(style);
+        flow.getChildren().add(text);
     }
 
     /**

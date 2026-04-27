@@ -4,6 +4,8 @@ import com.interviewapp.App;
 import com.model.DataWriter;
 import com.model.User;
 import com.model.UserManager;
+import com.model.Role;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -241,13 +243,7 @@ public class SettingsController {
      */
     @FXML
     private void handleBackButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = App.setRootWithLoader("studentDashboard");
-            StudentDashboardController controller = loader.getController();
-            controller.setUser(currentUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        returnToDashboard();
     }
 
     /**
@@ -310,5 +306,22 @@ public class SettingsController {
      */
     private String nullToEmpty(String value) {
         return value == null ? "" : value;
+    }
+
+    private void returnToDashboard() {
+        try {
+            if (currentUser.getStatus() == Role.STUDENT) {
+                FXMLLoader loader = App.setRootWithLoader("studentDashboard");
+                StudentDashboardController controller = loader.getController();
+                controller.setUser(currentUser);
+            } else if (currentUser.getStatus() == Role.CONTRIBUTOR
+                    || currentUser.getStatus() == Role.ADMINISTRATOR) {
+                FXMLLoader loader = App.setRootWithLoader("contributorDashboard");
+                ContributorDashboardController controller = loader.getController();
+                controller.setUser(currentUser);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

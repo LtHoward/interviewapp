@@ -46,6 +46,27 @@
     -fx-background-position: center;
 }
 
+.add-photo-icon {
+    -fx-background-image: url("images/icons/addPhoto.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.add-code-icon {
+    -fx-background-image: url("images/icons/addCode.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.add-video-icon {
+    -fx-background-image: url("images/icons/addVideo.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
 .code-icon {
     -fx-background-image: url("images/icons/codeWhite.png");
     -fx-background-size: 60px 60px;
@@ -78,15 +99,29 @@
     -fx-background-color: transparent;
 }
 
-.icon-box {
+.icon-box-purple, .icon-box-blue, .icon-box-green {
     -fx-pref-width: 60px;
     -fx-pref-height: 60px;
-    -fx-background-color: #c300ff;
     -fx-background-radius: 14px;
     -fx-border-radius: 14px;
-    -fx-border-color: #ff7dff;
     -fx-border-width: 2px;
 }
+
+.icon-box-purple{
+    -fx-border-color: #af73c2;
+    -fx-background-color: #764585;
+}
+
+.icon-box-blue{
+    -fx-border-color: #7dd3fc;
+    -fx-background-color: #3f7892;
+}
+
+.icon-box-green{
+    -fx-border-color: #86efac;
+    -fx-background-color: #469362;
+}
+
 
 /* ================= CODE / LOGIN PANEL TEXT ================= */
 .code-blue {
@@ -213,7 +248,6 @@
 
 .difficulty-easy,
 .difficulty-medium,
-.difficulty-advanced,
 .difficulty-expert {
     -fx-text-fill: white;
     -fx-font-size: 18px;
@@ -235,14 +269,15 @@
     -fx-border-color: #f0cc2e;
 }
 
-.difficulty-advanced {
-    -fx-background-color: #ad6739;
-    -fx-border-color: #e8925b;
-}
-
 .difficulty-expert {
     -fx-background-color: #6e3740;
     -fx-border-color: #a65763;
+}
+
+.selected-difficulty {
+    -fx-border-color: white;
+    -fx-border-width: 3;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.45), 12, 0.3, 0, 0);
 }
 
 .login-button:hover {
@@ -464,7 +499,6 @@
     -fx-border-color: rgba(90,140,255,0.15);
     -fx-border-width: 2;
     -fx-padding: 20 22 20 22;
-    -fx-spacing: 10;
 }
 
 .card-title {
@@ -535,10 +569,6 @@
 .dashboard-main {
     -fx-padding: 18 20 18 20;
     -fx-spacing: 18;
-}
-
-.lower-content {
-    -fx-spacing: 20;
 }
 
 .left-column {
@@ -716,6 +746,12 @@
     -fx-alignment: center;
 }
 
+.icon-text-icons{
+    -fx-text-fill: white;
+    -fx-font-size: 50px;
+    -fx-font-weight: 900;
+}
+
 .difficulty-badge {
     -fx-background-color: rgba(177, 93, 255, 0.28);
     -fx-border-color: rgba(215, 140, 255, 0.5);
@@ -742,7 +778,6 @@
     -fx-border-radius: 14;
     -fx-padding: 18 20 18 20;
     -fx-pref-width: 420;
-    -fx-pref-height: 145;
     -fx-font-size: 24px;
     -fx-font-weight: 500;
     -fx-text-fill: white;
@@ -754,10 +789,20 @@
     -fx-border-width: 2;
 }
 
+.tag-box-blue:hover {
+    -fx-background-color: rgba(39, 120, 170, 0.85);
+    -fx-border-color: rgba(85, 180, 255, 0.75);
+}
+
 .tag-box-green {
     -fx-background-color: rgba(39, 124, 44, 0.65);
     -fx-border-color: rgba(124, 255, 120, 0.4);
     -fx-border-width: 2;
+}
+
+.tag-box-green:hover {
+    -fx-background-color: rgba(39, 124, 44, 0.85);
+    -fx-border-color: rgba(124, 255, 120, 0.75);
 }
 
 .tag-box-red {
@@ -766,10 +811,20 @@
     -fx-border-width: 2;
 }
 
+.tag-box-red:hover {
+    -fx-background-color: rgba(120, 43, 43, 0.85);
+    -fx-border-color: rgba(255, 122, 122, 0.65);
+}
+
 .tag-box-purple {
     -fx-background-color: rgba(104, 36, 132, 0.68);
     -fx-border-color: rgba(213, 108, 255, 0.4);
     -fx-border-width: 2;
+}
+
+.tag-box-purple:hover {
+    -fx-background-color: rgba(104, 36, 132, 0.88);
+    -fx-border-color: rgba(213, 108, 255, 0.7);
 }
 
 .tag-label {
@@ -1185,6 +1240,7 @@
     -fx-background-radius: 18px;
     -fx-border-radius: 18px;
     -fx-padding: 10px;
+    -fx-alignment: center;
 }
 
 .question-video-block {
@@ -1569,4 +1625,13 @@
     -fx-border-width: 2px;
     -fx-cursor: hand;
     -fx-padding: 12 24 12 24;
+}
+
+.formatted-text {
+    -fx-padding: 6 0 12 0;
+}
+
+.formatted-text .text {
+    -fx-fill: white;
+    -fx-font-size: 16px;
 }

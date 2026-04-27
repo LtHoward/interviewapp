@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.interviewapp.App;
 import com.model.InterviewApp;
 import com.model.User;
+import com.model.Role;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,9 +32,15 @@ public class LoginController {
 
         if (user != null) {
             try {
-                FXMLLoader loader = App.setRootWithLoader("studentDashboard");
-                StudentDashboardController controller = loader.getController();
-                controller.setUser(user);
+                if (user.getStatus() == Role.STUDENT) {
+                    FXMLLoader loader = App.setRootWithLoader("studentDashboard");
+                    StudentDashboardController controller = loader.getController();
+                    controller.setUser(user);
+                } else if (user.getStatus() == Role.CONTRIBUTOR || user.getStatus() == Role.ADMINISTRATOR) {
+                    FXMLLoader loader = App.setRootWithLoader("contributorDashboard");
+                    ContributorDashboardController controller = loader.getController();
+                    controller.setUser(user);
+                }
 
                 System.out.println("Logged in as: " + user.getUsername());
             } catch (Exception e) {
