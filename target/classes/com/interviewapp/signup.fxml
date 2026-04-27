@@ -31,6 +31,11 @@
             <Insets left="200.0" top="618.0" />
          </StackPane.margin>
       </Button>
+      <Label fx:id="errorLabel" text="" wrapText="true" styleClass="signinlabel" stylesheets="@styles.css">
+         <StackPane.margin>
+            <Insets top="540.0" />
+         </StackPane.margin>
+      </Label>
       <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="532.0" styleClass="signintextfield" stylesheets="@styles.css">
          <StackPane.margin>
             <Insets top="430.0" />
@@ -61,7 +66,7 @@
             <Insets bottom="206.0" right="400.0" />
          </StackPane.margin>
       </Label>
-      <TextField fx:id="firstnameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="220.0" styleClass="nametextfield" stylesheets="@styles.css">
+      <TextField fx:id="firstNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="220.0" styleClass="nametextfield" stylesheets="@styles.css">
          <StackPane.margin>
             <Insets bottom="350.0" right="322.0" />
          </StackPane.margin>
@@ -71,7 +76,7 @@
             <Insets bottom="466.0" right="400.0" />
          </StackPane.margin>
       </Label>
-      <TextField fx:id="lastnameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="220.0" styleClass="nametextfield" stylesheets="@styles.css">
+      <TextField fx:id="lastNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="220.0" styleClass="nametextfield" stylesheets="@styles.css">
          <StackPane.margin>
             <Insets bottom="350.0" left="322.0" />
          </StackPane.margin>

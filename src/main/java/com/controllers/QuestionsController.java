@@ -25,6 +25,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class QuestionsController {
 
@@ -90,10 +92,9 @@ public class QuestionsController {
 
                 switch (type) {
                     case TEXT:
-                        Label textLabel = new Label(value);
-                        textLabel.setWrapText(true);
-                        textLabel.getStyleClass().add("comment-text");
-                        contentContainer.getChildren().add(textLabel);
+                        TextFlow formattedText = createFormattedText(value);
+                        formattedText.setMaxWidth(740);
+                        contentContainer.getChildren().add(formattedText);
                         break;
 
                     case CODE:
@@ -264,6 +265,22 @@ public class QuestionsController {
         actions.setSpacing(18);
         actions.getChildren().addAll(repliesButton, replyButton);
 
+        if (comment.getAuthor() != null 
+                && currentUser != null 
+                && comment.getAuthor().getId().equals(currentUser.getId())) {
+
+            Button deleteButton = new Button("Delete");
+            deleteButton.getStyleClass().add("comment-action-button");
+
+            deleteButton.setOnAction(e -> {
+                deleteComment(currentQuestion.getComments(), comment);
+                populateComments();
+                PostManager.getInstance().save();
+            });
+
+            actions.getChildren().add(deleteButton);
+        }
+
         textBox.getChildren().addAll(header, contentLabel, actions);
         row.getChildren().addAll(avatar, textBox);
 
@@ -430,29 +447,76 @@ public class QuestionsController {
         return count;
     }
 
-    /**
-     * Event handler for the "View Solutions" button. 
-     * It finds the solution associated with the current question
-     * @param event The ActionEvent triggered by clicking the "View Solutions" button
-     */
     @FXML
-    private void handleViewSolutions(ActionEvent event) {
-        if (currentQuestion == null || currentUser == null) return;
-        
-        SolutionPost matchingSolution = findSolutionForQuestion(currentQuestion.getPostId());
-
-        if (matchingSolution == null) {
-            System.out.println("No solution found for question: " + currentQuestion.getTitle());
-            return;
-        }
-
+    private void switchToSearchSolutions(ActionEvent event) {
         try {
-            FXMLLoader loader = App.setRootWithLoader("solutionPost");
-            SolutionsController controller = loader.getController();
-            controller.setData(currentUser, matchingSolution, currentQuestion);
+            FXMLLoader loader = App.setRootWithLoader("searchSolutions");
+            SearchSolutionsController controller = loader.getController();
+            controller.setData(currentUser, currentQuestion);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private TextFlow createFormattedText(String raw) {
+        TextFlow flow = new TextFlow();
+        flow.getStyleClass().add("formatted-text");
+
+        boolean bold = false;
+        boolean italic = false;
+        boolean underline = false;
+
+        StringBuilder buffer = new StringBuilder();
+
+        for (int i = 0; i < raw.length(); i++) {
+            if (i + 1 < raw.length() && raw.substring(i, i + 2).equals("**")) {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                bold = !bold;
+                i++;
+            } else if (raw.charAt(i) == '*') {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                italic = !italic;
+            } else if (raw.startsWith("<u>", i)) {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                underline = true;
+                i += 2;
+            } else if (raw.startsWith("</u>", i)) {
+                addStyledText(flow, buffer.toString(), bold, italic, underline);
+                buffer.setLength(0);
+                underline = false;
+                i += 3;
+            } else {
+                buffer.append(raw.charAt(i));
+            }
+        }
+
+        addStyledText(flow, buffer.toString(), bold, italic, underline);
+        return flow;
+    }
+
+    private void addStyledText(TextFlow flow, String textValue, boolean bold, boolean italic, boolean underline) {
+        if (textValue == null || textValue.isEmpty()) {
+            return;
+        }
+
+        Text text = new Text(textValue);
+        text.setUnderline(underline);
+
+        String style = "-fx-fill: white; -fx-font-size: 16px;";
+
+        if (bold) {
+            style += "-fx-font-weight: bold;";
+        }
+
+        if (italic) {
+            style += "-fx-font-style: italic;";
+        }
+
+        text.setStyle(style);
+        flow.getChildren().add(text);
     }
 
     /**
@@ -467,5 +531,34 @@ public class QuestionsController {
             }
         }
         return null;
+    }
+
+    @FXML
+    private void switchToCreateSolutionPost(ActionEvent event) {
+        try {
+            FXMLLoader loader = App.setRootWithLoader("createSolutionPost");
+            CreateSolutionPostController controller = loader.getController();
+            controller.setData(currentUser, currentQuestion);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean deleteComment(ArrayList<Comment> comments, Comment target) {
+        if (comments == null || target == null) {
+            return false;
+        }
+
+        if (comments.remove(target)) {
+            return true;
+        }
+
+        for (Comment comment : comments) {
+            if (deleteComment(comment.getReply(), target)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -20,6 +20,7 @@ import com.model.SkillLevel;
 import com.model.Student;
 import com.model.Title;
 import com.model.User;
+import com.model.Role;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -471,13 +472,7 @@ public class ProfileController {
 
     @FXML
     private void handleBack(ActionEvent event) {
-        try {
-            FXMLLoader loader = App.setRootWithLoader("dashboard");
-            DashboardController controller = loader.getController();
-            controller.setUser(currentUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        returnToDashboard();
     }
 
     // ── Image helpers ──────────────────────────────────────────────────
@@ -538,5 +533,22 @@ public class ProfileController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void returnToDashboard() {
+        try {
+            if (currentUser.getStatus() == Role.STUDENT) {
+                FXMLLoader loader = App.setRootWithLoader("studentDashboard");
+                StudentDashboardController controller = loader.getController();
+                controller.setUser(currentUser);
+            } else if (currentUser.getStatus() == Role.CONTRIBUTOR
+                    || currentUser.getStatus() == Role.ADMINISTRATOR) {
+                FXMLLoader loader = App.setRootWithLoader("contributorDashboard");
+                ContributorDashboardController controller = loader.getController();
+                controller.setUser(currentUser);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

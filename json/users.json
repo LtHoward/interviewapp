@@ -8,7 +8,7 @@
             "currentClasses": "CSCE 211, CSCE 240, MATH 347",
             "major": "COMPUTER_SCIENCE",
             "year": "SOPHOMORE",
-            "lastActivityDate": "2026-04-25",
+            "lastActivityDate": "2026-04-26",
             "classesTaken": "CSCE 145, CSCE 190, CSCE 146, CSCE 215",
             "progression": {
                 "currentStreak": 9,
@@ -49,7 +49,7 @@
             "currentClasses": "CSCE 212, CSCE 247, STAT 509",
             "major": "COMPUTER_ENGINEERING",
             "year": "JUNIOR",
-            "lastActivityDate": "2026-04-25",
+            "lastActivityDate": "2026-04-26",
             "classesTaken": "CSCE 145, CSCE 146, CSCE 190, MATH 241",
             "progression": {
                 "currentStreak": 5,
@@ -126,5 +126,44 @@
         "userId": "bf13dcef-8a66-4c93-886f-9ab2ee7894ea",
         "email": "sally@email.com",
         "username": "SallySparrow"
+    },
+    {
+        "firstName": "Drake",
+        "lastName": "Drizzy",
+        "password": "Drake123*",
+        "role": "STUDENT",
+        "studentData": {
+            "currentClasses": "",
+            "major": "COMPUTER_SCIENCE",
+            "year": "FRESHMAN",
+            "lastActivityDate": "2026-04-26",
+            "classesTaken": "",
+            "progression": {
+                "currentStreak": 0,
+                "level": 1,
+                "equippedTitle": null,
+                "longestStreak": 0,
+                "points": 0,
+                "unlockedTitles": []
+            },
+            "skillLevel": "BEGINNER",
+            "solvedQuestions": 0
+        },
+        "userId": "2556c38c-9985-4c36-8ed7-e214252db6b5",
+        "email": "drake@email.sc.edu",
+        "rewards": [],
+        "username": "drake"
+    },
+    {
+        "firstName": "Mike",
+        "lastName": "Goopa",
+        "password": "Mikey123*",
+        "role": "CONTRIBUTOR",
+        "contributorData": {
+            "experience": null
+        },
+        "userId": "685b26c9-8f91-4415-bc9d-ddf1536ef9ec",
+        "email": "Mike@email.sc.edu",
+        "username": "MikeGoopa"
     }
 ]

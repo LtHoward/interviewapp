@@ -18,7 +18,7 @@
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" spacing="20.0" styleClass="top-bar" BorderPane.alignment="CENTER">
          <children>
            <Button mnemonicParsing="false" onAction="#handleBack" styleClass="back-icon-button" text="&lt;" />
-            <StackPane prefHeight="70.0" prefWidth="70.0" styleClass="icon-box">
+            <StackPane prefHeight="70.0" prefWidth="70.0" styleClass="icon-box-blue">
                <children>
                   <Label styleClass="section-title" text="?" />
                </children>
@@ -67,7 +67,7 @@
             <VBox prefHeight="724.0" prefWidth="605.0" spacing="14.0">
                <children>
                   <!-- Comments card -->
-                  <VBox prefHeight="572.0" prefWidth="603.0" styleClass="comments-card" VBox.vgrow="ALWAYS">
+                  <VBox prefHeight="769.0" prefWidth="603.0" styleClass="comments-card" VBox.vgrow="ALWAYS">
                      <children>
 
                         <!-- Header -->

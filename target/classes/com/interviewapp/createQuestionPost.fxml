@@ -15,15 +15,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="800.0" maxWidth="1440.0" minHeight="800.0" minWidth="1440.0" prefHeight="800.0" prefWidth="1440.0" styleClass="simple-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="800.0" maxWidth="1440.0" minHeight="800.0" minWidth="1440.0" prefHeight="800.0" prefWidth="1440.0" styleClass="simple-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.CreateQuestionPostController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="1440.0" spacing="20.0" styleClass="top-bar" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" styleClass="back-icon-button" text="&lt;" />
-            <StackPane prefHeight="70.0" prefWidth="70.0">
+            <Button fx:id="backButton" onAction="#handleBack" mnemonicParsing="false" styleClass="back-icon-button" text="&lt;" />
+            <StackPane prefHeight="70.0" prefWidth="70.0" styleClass="icon-box-purple">
                <children>
-                  <StackPane prefHeight="70.0" prefWidth="70.0" />
-                  <Label text="Label" />
+                  <Label styleClass="section-title" text="✎" />
                </children>
             </StackPane>
             <Label styleClass="simple-title" text="Create Question Post" />
@@ -46,13 +45,13 @@
                   <VBox prefHeight="0.0" prefWidth="670.0" spacing="5.0" GridPane.vgrow="NEVER">
                      <children>
                         <Label styleClass="section-header" text="Enter Title" />
-                        <TextField maxHeight="40.0" promptText="Enter a title..." styleClass="pill-field" VBox.vgrow="NEVER" />
+                        <TextField fx:id="titleField" maxHeight="40.0" promptText="Enter a title..." styleClass="pill-field" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                   <VBox prefHeight="221.0" prefWidth="670.0" spacing="5.0" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="section-header" text="Enter Tags" />
-                        <TextField prefHeight="27.0" prefWidth="670.0" promptText="Enter some tags...." styleClass="pill-field" VBox.vgrow="NEVER" />
+                        <TextField fx:id="tagsField" prefHeight="27.0" prefWidth="670.0" promptText="Enter some tags...." styleClass="pill-field" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
@@ -60,9 +59,9 @@
                         <Label styleClass="section-header" text="Difficulty" />
                         <HBox alignment="CENTER" maxHeight="40.0" prefHeight="40.0" prefWidth="200.0" spacing="80.0">
                            <children>
-                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-easy" text="Easy" />
-                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-medium" text="Medium" />
-                              <Button maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-expert" text="Hard" />
+                              <Button fx:id="easyButton" onAction="#selectEasy" maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-easy" text="Easy" />
+                              <Button fx:id="mediumButton" onAction="#selectMedium" maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-medium" text="Medium" />
+                              <Button fx:id="hardButton" onAction="#selectHard" maxHeight="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" styleClass="difficulty-expert" text="Hard" />
                            </children>
                         </HBox>
                      </children>
@@ -70,7 +69,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label styleClass="section-header" text="Hints" />
-                        <TextField promptText="Enter a hint..." styleClass="pill-field" VBox.vgrow="NEVER" />
+                        <TextField fx:id="hintField" promptText="Enter a hint..." styleClass="pill-field" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                </children>
@@ -87,32 +86,38 @@
                            <children>
                               <HBox prefHeight="68.0" prefWidth="1049.0" spacing="10.0" styleClass="toolbar">
                                  <children>
-                                    <Button mnemonicParsing="false" styleClass="toolbar-btn-bold" text="B" />
-                                    <Button mnemonicParsing="false" styleClass="toolbar-btn-italics" text="I">
+                                    <Button onAction="#toggleBold" mnemonicParsing="false" styleClass="toolbar-btn-bold" text="B" />
+                                    <Button onAction="#toggleItalics" mnemonicParsing="false" styleClass="toolbar-btn-italics" text="I">
                                        <font>
                                           <Font name="Bookshelf Symbol 7" size="12.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" styleClass="toolbar-btn" text="U" underline="true" />
+                                    <Button onAction="#toggleUnderline" mnemonicParsing="false" styleClass="toolbar-btn" text="U" underline="true" />
                                     <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                    <Button minHeight="45.0" minWidth="50.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="50.0" styleClass="toolbar-btn">
+                                    <Button  onAction="#insertCodeBlock" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="50.0" styleClass="toolbar-btn">
                                        <graphic>
-                                          <StackPane prefHeight="29.5" prefWidth="30.0" />
+                                          <StackPane minHeight="50.0" minWidth="50.0" prefHeight="51.0" prefWidth="51.0" styleClass="add-code-icon" />
                                        </graphic>
                                     </Button>
-                                    <Button minHeight="45.0" minWidth="50.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="50.0" styleClass="toolbar-btn" />
-                                    <Button minHeight="45.0" minWidth="50.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="50.0" styleClass="toolbar-btn" />
+                                    <Button onAction="#insertImagePlaceholder" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="50.0" styleClass="toolbar-btn">
+                                       <graphic>
+                                          <StackPane minHeight="50.0" minWidth="50.0" prefHeight="51.0" prefWidth="51.0" styleClass="add-photo-icon" />
+                                       </graphic></Button>
+                                    <Button onAction="#insertVideoPlaceholder" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="50.0" styleClass="toolbar-btn">
+                                       <graphic>
+                                          <StackPane minHeight="50.0" minWidth="50.0" prefHeight="51.0" prefWidth="51.0" styleClass="add-video-icon" />
+                                       </graphic></Button>
                                  </children>
                               </HBox>
-                              <TextArea prefHeight="349.0" prefWidth="1098.0" styleClass="editor-area" />
+                              <TextArea fx:id="contentArea" prefHeight="349.0" prefWidth="1098.0" styleClass="editor-area" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="404.0" prefWidth="619.0" spacing="20.0" HBox.hgrow="NEVER">
                      <children>
-                        <Button maxHeight="60.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="303.0" styleClass="action-button" text="Preview Post" VBox.vgrow="NEVER" />
-                        <Button maxHeight="60.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="308.0" styleClass="action-button" text="Create Post" />
+                        <Button onAction="#previewPost" maxHeight="60.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="303.0" styleClass="action-button" text="Preview Post" VBox.vgrow="NEVER" />
+                        <Button onAction="#createPost" maxHeight="60.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="308.0" styleClass="action-button" text="Create Post" />
                      </children>
                   </VBox>
                </children>

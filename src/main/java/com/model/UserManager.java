@@ -41,6 +41,8 @@ import java.util.UUID;
         public User getUser (String username) {
             if (username == null) return null;
 
+            users = DataLoader.getUsers();
+
             for(User user : users) {
                 if(user.getUsername().equals(username)) {
                     return user;
@@ -48,6 +50,7 @@ import java.util.UUID;
             }
             return null;
         }
+
         public ArrayList<User> getUsers() 
         {
             return users;
@@ -104,38 +107,54 @@ import java.util.UUID;
          * @return true if the user was successfuly added to the user list, false otherwise.
          * 
          */
-        public boolean addUser(String username, String email, String password, String firstName, String lastName, Role role, Major major, Year year) 
-        {
+        public boolean addUser(String username, String email, String password,
+        String firstName, String lastName, Role role, Major major, Year year) {
 
-        if (username == null || email == null || password == null || firstName == null || lastName == null || role == null) return false;
-        if (userExist(username)) return false;
+            users = DataLoader.getUsers();
 
-        switch (role) 
-        {
-            case STUDENT:
-                users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName, major, year,
-                "", "", SkillLevel.BEGINNER, 0,
-                new Progression(), new ArrayList<>(), LocalDate.now(), Role.STUDENT));
-                break;
+            if (username == null || email == null || password == null
+                || firstName == null || lastName == null || role == null) return false;
+            
+            if (userExist(username)) return false;
+            
+            if (!isPasswordValid(password)) return false;
+            
+            switch (role) {
+                case STUDENT:
+                    if (major == null || year == null) return false;
+                    users.add(new Student(UUID.randomUUID(), username, email, password, firstName, lastName,
+                    major, year, "", "", SkillLevel.BEGINNER, 0, 
+                    new Progression(), new ArrayList<>(), LocalDate.now(), Role.STUDENT));
+                    break;
 
-            case ADMINISTRATOR:
-                users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null, Role.ADMINISTRATOR));
-                break;
+                case ADMINISTRATOR:
+                    users.add(new Contributor(UUID.randomUUID(), username, email, password,firstName, 
+                    lastName, null,Role.ADMINISTRATOR));
+                    break;
 
-            default: // CONTRIBUTOR
-                users.add(new Contributor(UUID.randomUUID(), username, email, password, firstName, lastName, null));
-                break;
-        }
-        return true;
-    }
-
-    /**
-     * Method to save the user data to the data writter
-     * @return true if the user data was successfuly saved, false otherwise.
-     * @author Myila Howard
-     */
-        public boolean saveUser () {
+                case CONTRIBUTOR:
+                default:
+                    users.add(new Contributor(UUID.randomUUID(),username,email,password,firstName,
+                    lastName, null));
+                    break;
+            }
+            DataWriter.saveUsers();
             return true;
+        }
+
+        /**
+         * Method to save the user data to the data writter
+         * @return true if the user data was successfuly saved, false otherwise.
+         * @author Myila Howard
+         */
+        public boolean saveUser() {
+            try {
+                DataWriter.saveUsers();
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
         }
 
         /**
@@ -160,7 +179,6 @@ import java.util.UUID;
 
         public boolean logout() {
             DataWriter.saveUsers();
-            users.clear();
             return true;
         }
 
