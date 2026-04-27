@@ -12,3 +12,5 @@ https://lucid.app/lucidchart/2dba232a-3755-452a-9f53-0195d6f5dfec/edit?viewport_
 https://lucid.app/lucidchart/f8b5a96b-6a74-4a53-9901-5ddb2b6ff205/edit?viewport_loc=-490%2C-578%2C3674%2C1586%2C0_0&invitationId=inv_a9aa4c9b-4481-485c-a9c2-4408f60b4010
 ## YouTube Scenario Video
 https://youtu.be/ImqSQGhwT3g
+## GUI Presentation
+https://youtu.be/VWHt_dm4DnI
