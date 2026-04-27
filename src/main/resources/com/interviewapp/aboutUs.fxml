@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.AboutUsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1440.0" styleClass="main-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.AboutUsController">
    <children>
       <VBox prefHeight="800.0" prefWidth="1440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,9 +23,9 @@
                         <Button mnemonicParsing="false" onAction="#switchToLogin" opacity="0.0" text="Return" />
                      </children>
                   </StackPane>
-                  <Label prefHeight="52.0" prefWidth="335.0" styleClass="app-title" text="Interview App" HBox.hgrow="ALWAYS" />
+                  <Label prefHeight="62.0" prefWidth="429.0" styleClass="app-title" text="Interview App" HBox.hgrow="ALWAYS" />
                   <Pane prefHeight="23.0" prefWidth="904.0" />
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="175.0" styleClass="nav-text" text="About Us" />
+                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="333.0" styleClass="nav-text" text="About Us" />
                </children>
             </HBox>
 
@@ -33,23 +33,46 @@
 
             <StackPane prefHeight="327.0" prefWidth="1203.0">
                <children>
-                  <VBox alignment="CENTER" maxWidth="900.0" prefHeight="327.0" prefWidth="718.0" spacing="20.0" styleClass="about-us-card">
+                  <VBox alignment="CENTER" maxWidth="955.0" minHeight="400.0" prefHeight="400.0" prefWidth="955.0" spacing="20.0" styleClass="about-us-card">
                      <children>
-                        <Label prefHeight="89.0" prefWidth="287.0" styleClass="hero-title" text="About Us">
+                        <Label alignment="CENTER" prefHeight="78.0" prefWidth="572.0" styleClass="hero-title" text="About Us">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="69.0" prefWidth="490.0" text="Hello, we are the Overnight Operators. " textAlignment="JUSTIFY" textFill="WHITE">
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="828.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="27.0" prefWidth="934.0" styleClass="hero-subtitle" text="Hello, we are the Overnight Operators. A group of students from the University of" textAlignment="JUSTIFY" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="33.0" prefWidth="882.0" styleClass="hero-subtitle" text="South Carolina. This App is a project for our CSCE 247 - Software Engineering class" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="33.0" prefWidth="882.0" styleClass="hero-subtitle" text="and we hope you enjoy it!" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER" prefHeight="52.0" prefWidth="771.0" styleClass="section-title" text="THE TEAM" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="49.0" layoutY="149.0" prefHeight="54.0" prefWidth="701.0" text="A group of students from the university of south carolina" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                           <children>
+                              <Label styleClass="card-title" text="Tyrel Hamilton" />
+                              <Label styleClass="card-title" text="My'ila Howard" />
+                              <Label styleClass="card-title" text="Michelle Ihetu" />
+                              <Label styleClass="card-title" text="Jarris Lambert" />
+                              <Label styleClass="card-title" text="Dorian Rhone" />
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
