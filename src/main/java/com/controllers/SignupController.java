@@ -42,12 +42,21 @@ public class SignupController {
     
     @FXML 
     private void initialize() {
-        errorLabel.setText("");
+        if (roleComboBox != null) {
         roleComboBox.getItems().addAll(Role.values());
+    }
+       if (majorComboBox != null) {
         majorComboBox.getItems().addAll(Major.values());
-        yearComboBox.getItems().addAll(Year.values());
+       }
 
+       if (yearComboBox != null) {
+        yearComboBox.getItems().addAll(Year.values());
+       }
+        
+       if (overlaypane != null) {
         overlaypane.setVisible(false);
+    }
+
     }
     
      @FXML
@@ -103,19 +112,20 @@ public class SignupController {
         Major major = majorComboBox.getValue();
         Year year = yearComboBox.getValue();
 
+        if(firstNameField == null || lastNameField == null || emailField == null || passwordField == null || usernameField == null || roleComboBox == null) {
+            return;
+        }
+
         
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || firstname.isEmpty() || lastname.isEmpty() || role ==null ){
-            errorLabel.setText("Sorry, You cannot leave blank fields.");
             return;
         } 
 
         if (role == Role.STUDENT && (major == null || year == null)) {
-            errorLabel.setText("Sorry, you must select a major and year.");
             return;
         }
 
         if (userManager.getUser(username) != null) {
-            errorLabel.setText("Sorry, username is taken.");
             return;
         } 
 
@@ -123,7 +133,6 @@ public class SignupController {
 
 
         if (!success) {
-            errorLabel.setText("Sorry, this user couldn't be created.");
             return;
         } 
 
